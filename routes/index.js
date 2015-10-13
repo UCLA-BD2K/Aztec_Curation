@@ -23,9 +23,15 @@ router.get('/testOut', function(req, res, next) {
   var query = req.query.q;
   console.log('query '+query);
   req.getConnection(function(err, connection) {
-      if (err) return next(err);
+      if (err){
+        connection.release();
+        return next(err);
+      }
       connection.query('SELECT * FROM TOOL_INFO WHERE NAME LIKE \''+query+'\'', [], function(err, results) {
-        if (err) return next(err);
+        if (err) {
+          connection.release();
+          return next(err);
+        }
         var result = JSON.stringify(results[0]);
         if(result==null)
           result = 'Not Found';
