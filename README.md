@@ -29,6 +29,7 @@ module.exports = {
 ```
 * To start webserver, run:
 ```js
+$ npm install
 $ npm start
 # using nodemon, first install, then call nodemon
 $ npm install -g nodemon
