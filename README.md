@@ -13,8 +13,8 @@ docker pull vincekyi/aztec-mysql
 * Pull Repository
 * Pull aztec-mysql database from Docker
 * Run /Docker/run-server.sh to run mysql database
-* Add a connect folder and create a file called mysql.js inside folder
-* Conents of mysql.js should look like:
+* Create a folder named 'connect' and create a file called mysql.js inside folder [Also in Vincent's pastebin]
+* Contents of mysql.js should look like:
 ```js
 
 module.exports = {
@@ -29,9 +29,7 @@ module.exports = {
 ```
 * To start webserver, run:
 ```js
-$ node start
-# runs node start
-$ npm
+$ npm start
 # using nodemon, first install, then call nodemon
 $ npm install -g nodemon
 $ nodemon
