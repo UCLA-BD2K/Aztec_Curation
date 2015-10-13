@@ -12,7 +12,7 @@ docker pull vincekyi/aztec-mysql
 
 * Pull Repository
 * Pull aztec-mysql database from Docker
-* Run /Docker/run-server.sh to run mysql database
+* cd into Docker and then run ./run-server.sh to run mysql database
 * Create a folder named 'connect' and create a file called mysql.js inside folder [Also in Vincent's pastebin]
 * Contents of mysql.js should look like:
 ```js
