@@ -1,48 +1,31 @@
 var express = require('express');
 var router = express.Router();
+var test = require('../db/test.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index.ejs');
 });
 
-router.get('/testIn', function(req, res, next) {
-  res.render('testIn.ejs');
+router.get('/testWrite', function(req, res, next) {
+  var newReqs = req.query.c;
+  var toolName = req.query.n;
+  var render = function(status){
+    res.render('testWrite.ejs', {message: status});
+  };
+  console.log('Writing:'+toolName+' '+newReqs);
+  test.writeNewReqs(req, toolName, newReqs, render);
 });
 
-router.post('/testIn', function(req, res, next) {
-  var query = req.body.query;
-  console.log('query '+query);
 
 
-  res.redirect('/testOut?q='+query);
-});
-
-router.get('/testOut', function(req, res, next) {
-
+router.get('/testRead', function(req, res, next) {
   var query = req.query.q;
-  console.log('query '+query);
-  req.getConnection(function(err, connection) {
-      if (err){
-        connection.release();
-        return next(err);
-      }
-      connection.query('SELECT * FROM TOOL_INFO WHERE NAME LIKE \''+query+'\'', [], function(err, results) {
-        if (err) {
-          connection.release();
-          return next(err);
-        }
-        var result = JSON.stringify(results[0]);
-        if(result==null)
-          result = 'Not Found';
-        console.log(result);
-        res.render('testOut.ejs', {message: result});
-        // -> 1
-
-
-      });
-
-    });
+  var render = function(status){
+    res.render('testRead.ejs', {message: status});
+  };
+  console.log('Reading: '+query);
+  test.readTestEntry(req, query, render);
 
 });
 
