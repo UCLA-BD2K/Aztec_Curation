@@ -12,24 +12,33 @@ docker pull vincekyi/aztec-mysql
 
 * Pull Repository
 * Pull aztec-mysql database from Docker
-* cd into Docker and then run ./run-server.sh to run mysql database
+* cd into the Docker folder and then run ./run-server.sh to run mysql database
 * Create a folder named 'connect' and create a file called mysql.js inside folder [Also in Vincent's pastebin]
+* May need to change 'host' depending on the location of MySQL database. (Usually localhost, but different for Mac)
 * Contents of mysql.js should look like:
 ```js
 
 module.exports = {
-  host     : '',
-  port     : '',
-  user     : '',
-  password : '',
-  database : 'AZ_Curation',
-  connectionLimit : 4
+  client: 'mysql',
+  connection: {
+    host     : '',
+    port     : '',
+    user     : '',
+    password : '',
+    database : '',
+    charset: 'utf8'
+  },
+  pool: {
+    min: 0,
+    max: 4
+  }
 };
+
 
 ```
 * To start webserver, run:
 ```js
-$ npm install
+$ sudo npm install
 $ npm start
 # using nodemon, first install, then call nodemon
 $ npm install -g nodemon
