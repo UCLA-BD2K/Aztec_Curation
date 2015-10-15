@@ -15,6 +15,22 @@ module.exports = {
 
       });
   },
+  writeNewObject: function(id, newToolObject, finished){
+    var Tool = require('../../models/tool.js');
+    (new Tool).where('AZID', parseInt(id))
+      .save(newToolObject, { method : 'update'})
+      .then(function(tool) {
+          if(tool==null)
+            return finished('Tool with ID '+id+' was not found!');
+          return finished(JSON.stringify(tool.toJSON()));
+        })
+      .catch(function(err) {
+
+        console.error(err);
+        return finished(err);
+
+      });
+  },
   readTestEntry: function(req, toolName, finished){
 
     var Tool = require('../../models/tool.js');

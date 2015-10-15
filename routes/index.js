@@ -7,6 +7,31 @@ router.get('/', function(req, res, next) {
   res.render('index.ejs');
 });
 
+router.get('/testEdit', function(req, res, next) {
+  var query = req.query.q;
+  var render = function(status){
+    res.render('testEdit.ejs', {message: status});
+  };
+  console.log('Reading: '+query);
+  test.readTestEntry(req, query, render);
+
+});
+
+router.post('/testEdit', function(req, res, next) {
+	//console.log(req.query);
+	console.log("post request body:");
+	console.log(req.body);
+
+	var AZID = req.body.AZID;
+	console.log("the AZID is " + AZID);
+
+	var render = function(status){
+	    res.render('testEdit.ejs', {message: status});
+	};
+	test.writeNewObject(AZID, req.body, render);
+
+});
+
 router.get('/testWrite', function(req, res, next) {
   var newReqs = req.query.c;
   var id = req.query.i;
@@ -16,8 +41,6 @@ router.get('/testWrite', function(req, res, next) {
   console.log('Writing:'+id+' '+newReqs);
   test.writeNewReqs(req, id, newReqs, render);
 });
-
-
 
 router.get('/testRead', function(req, res, next) {
   var query = req.query.q;
