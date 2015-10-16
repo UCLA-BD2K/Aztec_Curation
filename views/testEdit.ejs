@@ -8,14 +8,14 @@
   <body>
     <h1>Test Edit</h1>
 	<span id='message'><%= message %></span>
-	<span id='suggestions'><%= suggestions %></span>
 	<span id='form'></span>	
 	<script>
+
+	
+
 	console.log(message);
 	var jsonObject = JSON.parse(document.getElementById('message').innerHTML);
-	var suggestObject = JSON.parse(document.getElementById('suggestions').innerHTML);
 	var formPlace = document.getElementById('form');
-	//var form = "<br><br><form action=\"\" method=\"POST\">";
 
 	var form = document.createElement("form");
 	form.action = "";
@@ -36,39 +36,51 @@
 		field.id = prop;
 		field.value = jsonObject[prop];
 		if(isID)
-			field.readOnly = true;
-		
-		var afterText = document.createElement("div");
-		afterText.innerHTML = "";
-		if(suggestObject[prop])
-			afterText.innerHTML = " <b>Suggestion:</b> " + suggestObject[prop] + " ";
+			field.readOnly = true;	
 
-		var approveButton = document.createElement("button");
-		approveButton.type = "button";
-		approveButton.appendChild(document.createTextNode("Approve"));
+		var httpGetAsync = function(theUrl, callback, callbackparam, callbackparam2)
+		{
+		    var xmlHttp = new XMLHttpRequest();
+		    xmlHttp.onreadystatechange = function() { 
+			if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+			    callback(xmlHttp.responseText, callbackparam, callbackparam2);
+		    }
+		    xmlHttp.open("GET", theUrl, true); // true for asynchronous
+		    xmlHttp.send(null);
+		}
 
-		approveButton.newValue = prop;
-		approveButton.fieldToChange = field;
-		approveButton.onclick = function(){
-			//alert(this.newValue);
-			this.fieldToChange.value = suggestObject[this.newValue];
-		};
+		var buttonMaker = function(suggestion, rowToAddon, field)
+		{
+		    	if(suggestion == "")
+				return;
+
+			var afterText = document.createElement("div");
+			afterText.innerHTML = " <b>Suggestion:</b> " + suggestion + " ";
+
+			var approveButton = document.createElement("button");
+
+			rowToAddon.appendChild(afterText);
+			rowToAddon.appendChild(approveButton);
+
+			approveButton.type = "button";
+			approveButton.appendChild(document.createTextNode("Approve"));
+
+			approveButton.newValue = suggestion;
+			approveButton.fieldToChange = field;
+			approveButton.rowToRemoveFrom = rowToAddon;
+			approveButton.textToRemove = afterText;
+			approveButton.onclick = function(){
+				this.fieldToChange.value = suggestion;
+				this.rowToRemoveFrom.removeChild(this.textToRemove);
+				this.rowToRemoveFrom.removeChild(this);
+			};
+		};		
+
+		httpGetAsync("/suggestion?q="+jsonObject.NAME+"&field="+prop, buttonMaker, row, field);
 
 		row.appendChild(foreText);
 		row.appendChild(field);
-		row.appendChild(afterText);
-		if(suggestObject[prop])
-			row.appendChild(approveButton);
 		form.appendChild(row);
-
-
-		/*var stuff = "<b>"+prop+":</b> <input type=\"text\" name=\""+prop+"\" value=\""+jsonObject[prop]+"\"";
-		
-		if(isID) stuff += " readonly";
-		stuff += ">";
-
-		if(suggestObject[prop]) stuff += " <b>Suggestion:</b> " + suggestObject[prop] + "  <button type=\"button\">Approve</button>";
-		form += stuff + "<br>";*/
     	}
 
 	var submitButton = document.createElement("button");
@@ -76,11 +88,7 @@
 	submitButton.appendChild(document.createTextNode("Submit"));
 
 	form.appendChild(submitButton);
-	//form += "<br><br><input type=\"submit\" value=\"Submit\">";
-	//form += "</form>";
-
-	//console.log(form);
-	formPlace.appendChild(form);// = form;
+	formPlace.appendChild(form);
 	</script>
     
   </body>
