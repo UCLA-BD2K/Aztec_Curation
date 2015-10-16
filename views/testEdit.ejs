@@ -8,18 +8,24 @@
   <body>
     <h1>Test Edit</h1>
 	<span id='message'><%= message %></span>
+	<span id='suggestions'><%= suggestions %></span>
 	<span id='form'></span>	
 	<script>
+	console.log(message);
 	var jsonObject = JSON.parse(document.getElementById('message').innerHTML);
+	var suggestObject = JSON.parse(document.getElementById('suggestions').innerHTML);
 	var formPlace = document.getElementById('form');
 	var form = "<br><br><form action=\"\" method=\"POST\">";
+
 	for (var prop in jsonObject) {
 
+		var isID = prop == "AZID";
 		var stuff = "<b>"+prop+":</b> <input type=\"text\" name=\""+prop+"\" value=\""+jsonObject[prop]+"\"";
 		
-		if(prop == "AZID")
-			stuff += " readonly";
+		if(isID) stuff += " readonly";
 		stuff += ">";
+
+		if(suggestObject[prop]) stuff += " <b>Suggestion:</b> " + suggestObject[prop] + "  <button type=\"button\">Approve</button>";
 		form += stuff + "<br>";
     	}
 

@@ -1,3 +1,5 @@
+var suggester = require('../suggester.js');
+
 module.exports = {
   writeNewReqs: function(req, id, newReqs, finished){
     var Tool = require('../../models/tool.js');
@@ -40,7 +42,12 @@ module.exports = {
         if(tool==null)
           return finished(toolName+' not found!');
         console.log(tool.toJSON());
-        return finished(JSON.stringify(tool.toJSON()));
+
+	var suggestions = suggester.generateSuggestions(tool.toJSON());
+	console.log("here are the suggestions:");
+	console.log(suggestions);
+
+        return finished(JSON.stringify(tool.toJSON()),JSON.stringify(suggestions));
 
       })
       .catch(function(err) {

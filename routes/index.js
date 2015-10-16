@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var test = require('./db/test.js');
 
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index.ejs');
@@ -9,11 +10,14 @@ router.get('/', function(req, res, next) {
 
 router.get('/testEdit', function(req, res, next) {
   var query = req.query.q;
-  var render = function(status){
-    res.render('testEdit.ejs', {message: status});
+
+  var render = function(status,suggestions){
+    res.render('testEdit.ejs', {message: status, suggestions: suggestions});
   };
   console.log('Reading: '+query);
   test.readTestEntry(req, query, render);
+
+	
 
 });
 
@@ -21,6 +25,10 @@ router.post('/testEdit', function(req, res, next) {
 	//console.log(req.query);
 	console.log("post request body:");
 	console.log(req.body);
+
+	var suggestions = suggester.generateSuggestions(req.body);
+	console.log("here are the suggestions:");
+	console.log(suggestions);
 
 	var AZID = req.body.AZID;
 	console.log("the AZID is " + AZID);
