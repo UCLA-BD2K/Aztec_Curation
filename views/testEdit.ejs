@@ -15,25 +15,72 @@
 	var jsonObject = JSON.parse(document.getElementById('message').innerHTML);
 	var suggestObject = JSON.parse(document.getElementById('suggestions').innerHTML);
 	var formPlace = document.getElementById('form');
-	var form = "<br><br><form action=\"\" method=\"POST\">";
+	//var form = "<br><br><form action=\"\" method=\"POST\">";
+
+	var form = document.createElement("form");
+	form.action = "";
+	form.method = "POST";
+	
 
 	for (var prop in jsonObject) {
 
 		var isID = prop == "AZID";
-		var stuff = "<b>"+prop+":</b> <input type=\"text\" name=\""+prop+"\" value=\""+jsonObject[prop]+"\"";
+		var row = document.createElement("div");
+
+		var foreText = document.createElement("div");
+		foreText.innerHTML = "<br><b>"+prop+":</b> ";
+
+		var field = document.createElement("input");
+		field.type = "text";
+		field.name = prop;
+		field.id = prop;
+		field.value = jsonObject[prop];
+		if(isID)
+			field.readOnly = true;
+		
+		var afterText = document.createElement("div");
+		afterText.innerHTML = "";
+		if(suggestObject[prop])
+			afterText.innerHTML = " <b>Suggestion:</b> " + suggestObject[prop] + " ";
+
+		var approveButton = document.createElement("button");
+		approveButton.type = "button";
+		approveButton.appendChild(document.createTextNode("Approve"));
+
+		approveButton.newValue = prop;
+		approveButton.fieldToChange = field;
+		approveButton.onclick = function(){
+			//alert(this.newValue);
+			this.fieldToChange.value = suggestObject[this.newValue];
+		};
+
+		row.appendChild(foreText);
+		row.appendChild(field);
+		row.appendChild(afterText);
+		if(suggestObject[prop])
+			row.appendChild(approveButton);
+		form.appendChild(row);
+
+
+		/*var stuff = "<b>"+prop+":</b> <input type=\"text\" name=\""+prop+"\" value=\""+jsonObject[prop]+"\"";
 		
 		if(isID) stuff += " readonly";
 		stuff += ">";
 
 		if(suggestObject[prop]) stuff += " <b>Suggestion:</b> " + suggestObject[prop] + "  <button type=\"button\">Approve</button>";
-		form += stuff + "<br>";
+		form += stuff + "<br>";*/
     	}
 
-	form += "<br><br><input type=\"submit\" value=\"Submit\">";
-	form += "</form>";
+	var submitButton = document.createElement("button");
+	submitButton.type = "submit";
+	submitButton.appendChild(document.createTextNode("Submit"));
 
-	console.log(form);
-	formPlace.innerHTML = form;
+	form.appendChild(submitButton);
+	//form += "<br><br><input type=\"submit\" value=\"Submit\">";
+	//form += "</form>";
+
+	//console.log(form);
+	formPlace.appendChild(form);// = form;
 	</script>
     
   </body>

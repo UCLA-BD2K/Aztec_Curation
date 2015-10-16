@@ -17,7 +17,7 @@ router.get('/testEdit', function(req, res, next) {
   console.log('Reading: '+query);
   test.readTestEntry(req, query, render);
 
-
+	
 
 });
 
@@ -26,15 +26,11 @@ router.post('/testEdit', function(req, res, next) {
 	console.log("post request body:");
 	console.log(req.body);
 
-	var suggestions = suggester.generateSuggestions(req.body);
-	console.log("here are the suggestions:");
-	console.log(suggestions);
-
 	var AZID = req.body.AZID;
 	console.log("the AZID is " + AZID);
 
 	var render = function(status){
-	    res.render('testEdit.ejs', {message: status});
+	    res.render('testRead.ejs', {message: status});
 	};
 	test.writeNewObject(AZID, req.body, render);
 
