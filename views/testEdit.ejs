@@ -11,17 +11,14 @@
 	<span id='form'></span>	
 	<script>
 
-	
-
-	console.log(message);
+	//console.log(message);
 	var jsonObject = JSON.parse(document.getElementById('message').innerHTML);
 	var formPlace = document.getElementById('form');
 
 	var form = document.createElement("form");
 	form.action = "";
-	form.method = "POST";
+	form.method = "PUT";
 	
-
 	for (var prop in jsonObject) {
 
 		var isID = prop == "AZID";
@@ -74,7 +71,7 @@
 				this.rowToRemoveFrom.removeChild(this.textToRemove);
 				this.rowToRemoveFrom.removeChild(this);
 			};
-		};		
+		};
 
 		httpGetAsync("/suggestion?q="+jsonObject.NAME+"&field="+prop, buttonMaker, row, field);
 

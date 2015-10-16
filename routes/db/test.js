@@ -43,10 +43,6 @@ module.exports = {
           return finished(toolName+' not found!');
         console.log(tool.toJSON());
 
-	/*var suggestions = suggester.generateSuggestions(tool.toJSON());
-	console.log("here are the suggestions:");
-	console.log(suggestions);*/
-
         return finished(JSON.stringify(tool.toJSON()));
 
       })

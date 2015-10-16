@@ -21,10 +21,12 @@ router.get('/testEdit', function(req, res, next) {
 
 });
 
-router.post('/testEdit', function(req, res, next) {
+router.put('/testEdit', function(req, res, next) {
 	//console.log(req.query);
-	console.log("post request body:");
-	console.log(req.body);
+	//console.log("post request body:");
+	//console.log(req.body);
+
+	
 
 	var AZID = req.body.AZID;
 	console.log("the AZID is " + AZID);
