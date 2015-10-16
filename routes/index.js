@@ -17,7 +17,7 @@ router.get('/testEdit', function(req, res, next) {
   console.log('Reading: '+query);
   test.readTestEntry(req, query, render);
 
-	
+
 
 });
 
@@ -56,7 +56,7 @@ router.get('/testRead', function(req, res, next) {
     res.render('testRead.ejs', {message: status});
   };
   console.log('Reading: '+query);
-  test.readTestEntry(req, query, render);
+  test.readWholeEntry(req, query, render);
 
 });
 

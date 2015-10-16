@@ -56,6 +56,24 @@ module.exports = {
         return finished(err);
 
     });
+  },
+  readWholeEntry: function(req, toolName, finished){
+    var Tool = require('../../models/tool.js');
+    (new Tool).where('NAME', toolName)
+      .fetch({withRelated: ['links', 'authors', 'domains', 'downstream', 'upstream', 'extension', 'agency', 'funding', 'format', 'license', 'platform', 'version', 'map', 'io']})
+      .then(function(tool) {
+        if(tool==null)
+          return finished(toolName+' not found!');
+        console.log(tool.toJSON());
+        return finished(JSON.stringify(tool.toJSON()));
+
+      })
+      .catch(function(err) {
+
+        console.error(err);
+        return finished(err);
+
+    });
   }
 
 };
