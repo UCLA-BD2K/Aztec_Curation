@@ -51,8 +51,11 @@
 		    	if(suggestion == "")
 				return;
 
+			var suggestionAsJson = JSON.parse(suggestion);
+
 			var afterText = document.createElement("div");
-			afterText.innerHTML = " <b>Suggestion:</b> " + suggestion;
+			afterText.innerHTML = " <b>Suggestion:</b> <a href=\"" + suggestionAsJson.suggestedUrl + "\" target=\"_blank\">" + suggestionAsJson.suggestedUrl + "</a> ";
+			afterText.innerHTML += suggestionAsJson.suggestedDescription;
 
 			var approveButton = document.createElement("button");
 
@@ -67,7 +70,7 @@
 			approveButton.rowToRemoveFrom = rowToAddon;
 			approveButton.textToRemove = afterText;
 			approveButton.onclick = function(){
-				this.fieldToChange.value = suggestion;
+				this.fieldToChange.value = suggestionAsJson.suggestedUrl;
 				this.rowToRemoveFrom.removeChild(this.textToRemove);
 				this.rowToRemoveFrom.removeChild(this);
 			};

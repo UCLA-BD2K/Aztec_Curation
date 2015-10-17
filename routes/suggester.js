@@ -16,18 +16,33 @@ module.exports = {
 			var options = {
 			  url: 'url'
 			};
-			options.url = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=" + JSON.parse(toolMetadataJson).NAME + "&field=title";
+			options.url = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=" + JSON.parse(toolMetadataJson).NAME + "&field=title&rettype=abstract";
 			//options.url = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=RchyOptimyx&field=title";
 			request(options, function (error, response, body) {
 			  if (!error && response.statusCode == 200) {
 				var responseAsJson = JSON.parse(xmlParser.toJson(body));
-				//console.log("pubmed json:");
-				//console.log(responseAsJson);
 				var bestGuess = 0; //just pick one
 				var articleNumber = responseAsJson.eSearchResult.IdList.Id[bestGuess];
-				console.log("best article guess:");
-				console.log(articleNumber);
-				callback("http://www.ncbi.nlm.nih.gov/pubmed/" + articleNumber);
+
+
+				var secondQueryURL = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&retmode=json&id=" + articleNumber;
+				console.log(secondQueryURL);
+				request(secondQueryURL, function (error, response, body) {
+				  if (!error && response.statusCode == 200) {
+					var responseAsJson = JSON.parse(body);
+					//WARNING: is this always the correct article number?
+					var title = responseAsJson.result[articleNumber].title;
+					console.log("title:");
+					console.log(title);
+
+					var response = {
+						suggestedDescription: title,
+						suggestedUrl: "http://www.ncbi.nlm.nih.gov/pubmed/" + articleNumber				
+					}
+					callback(JSON.stringify(response));
+					}
+				});
+
 				}
 			});
 			break;
@@ -48,8 +63,12 @@ module.exports = {
 				var bestGuessURL = responseAsJson.items[bestGuess].html_url;
 				var bestGuessDesc = responseAsJson.items[bestGuess].description;
 				console.log(bestGuessURL);
+				var response = {
+					suggestedDescription: bestGuessDesc,
+					suggestedUrl: bestGuessURL				
+				}
 				//callback("<a href=\"" + bestGuessURL + "\" target=\"_blank\">" + bestGuessURL + "</a> " + bestGuessDesc);
-				callback(bestGuessURL);
+				callback(JSON.stringify(response));
 			  }
 			});
 			break;
