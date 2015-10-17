@@ -56,7 +56,7 @@ module.exports = {
   readWholeEntry: function(req, toolName, finished){
     var Tool = require('../../models/tool.js');
     (new Tool).where('NAME', toolName)
-      .fetch({withRelated: ['links', 'authors', 'domains', 'downstream', 'upstream', 'extension', 'agency', 'funding', 'format', 'license', 'platform', 'version', 'map', 'io']})
+      .fetch({withRelated: ['links', 'authors', 'domains', 'downstream', 'upstream', 'extension', 'agency', 'funding', 'ioformat', 'license', 'platform', 'version', 'map', 'io']})
       .then(function(tool) {
         if(tool==null)
           return finished(toolName+' not found!');

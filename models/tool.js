@@ -46,7 +46,7 @@ var toolSchema = Bookshelf.Model.extend({
     funding: function() {
       return this.hasMany(Funding, 'AZID');
     },
-    format: function() {
+    ioformat: function() {
       return this.belongsToMany(Format, 'TOOL_IO', 'AZID', 'IO_ID')
     },
     license: function() {

@@ -15,22 +15,16 @@ router.get('/testEdit', function(req, res, next) {
     res.render('testEdit.ejs', {message: status});
   };
   console.log('Reading: '+query);
-  test.readTestEntry(req, query, render);
-
-	
+  test.readWholeEntry(req, query, render);
 
 });
 
-router.put('/testEdit', function(req, res, next) {
-	//console.log(req.query);
-	//console.log("post request body:");
-	//console.log(req.body);
+router.post('/testEdit', function(req, res, next) {
 
 	var AZID = req.body.AZID;
 	console.log("the AZID is " + AZID);
 
 	var render = function(status){
-	    //res.render('testRead.ejs', {message: status});
 		res.send("Submission accepted.");
 	};
 	test.writeNewObject(AZID, req.body, render);
