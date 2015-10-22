@@ -1,5 +1,5 @@
-var Bookshelf = require('../../config/bookshelf');
-var Tool = require('../tool.js');
+var Bookshelf = require('../../config/bookshelf.js');
+var Tool = require('./tool.js');
 
 // define the schema for our tool model
 var licenseSchema = Bookshelf.Model.extend({

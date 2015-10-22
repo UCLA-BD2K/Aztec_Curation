@@ -1,18 +1,18 @@
-var Bookshelf = require('../config/bookshelf');
-var Link = require('./mysql/relatedLinks.js');
-var Author = require('./mysql/author.js');
-var Domain = require('./mysql/domain.js');
-var Downstream = require('./mysql/downstream.js');
-var Upstream = require('./mysql/upstream.js');
-var Extension = require('./mysql/extension.js');
-var Agency = require('./mysql/agency.js');
-var Funding = require('./mysql/funding.js');
-var Format = require('./mysql/format.js');
-var License = require('./mysql/license.js');
-var Platform = require('./mysql/platform.js');
-var Version = require('./mysql/version.js');
-var Map = require('./mysql/map.js');
-var Toolio = require('./mysql/toolio.js');
+var Bookshelf = require('../../config/bookshelf.js');
+var Link = require('./relatedLinks.js');
+var Author = require('./author.js');
+var Domain = require('./domain.js');
+var Downstream = require('./downstream.js');
+var Upstream = require('./upstream.js');
+var Extension = require('./extension.js');
+var Agency = require('./agency.js');
+var Funding = require('./funding.js');
+var Format = require('./format.js');
+var License = require('./license.js');
+var Platform = require('./platform.js');
+var Version = require('./version.js');
+var Map = require('./map.js');
+var Toolio = require('./toolio.js');
 
 
 
@@ -46,8 +46,8 @@ var toolSchema = Bookshelf.Model.extend({
     funding: function() {
       return this.hasMany(Funding, 'AZID');
     },
-    ioformat: function() {
-      return this.belongsToMany(Format, 'TOOL_IO', 'AZID', 'IO_ID')
+    ioformat: function(){
+      return this.belongsToMany(Format, 'TOOL_IO', 'AZID', 'IO_ID');
     },
     license: function() {
       return this.belongsToMany(License, 'TOOL_LICENSE', 'AZID', 'LICENSE_ID')

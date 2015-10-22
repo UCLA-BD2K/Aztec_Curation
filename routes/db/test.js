@@ -1,8 +1,8 @@
 var suggester = require('../suggester.js');
+var Tool = require('../../models/mysql/tool.js');
 
 module.exports = {
   writeNewReqs: function(req, id, newReqs, finished){
-    var Tool = require('../../models/tool.js');
     (new Tool).where('AZID', parseInt(id))
       .save({SPECIAL_REQ : newReqs}, { method : 'update'})
       .then(function(tool) {
@@ -18,7 +18,6 @@ module.exports = {
       });
   },
   writeNewObject: function(id, newToolObject, finished){
-    var Tool = require('../../models/tool.js');
     (new Tool).where('AZID', parseInt(id))
       .save(newToolObject, { method : 'update'})
       .then(function(tool) {
@@ -35,7 +34,6 @@ module.exports = {
   },
   readTestEntry: function(req, toolName, finished){
 
-    var Tool = require('../../models/tool.js');
     (new Tool).where('NAME', toolName)
       .fetch()
       .then(function(tool) {
@@ -54,7 +52,6 @@ module.exports = {
     });
   },
   readWholeEntry: function(req, toolName, finished){
-    var Tool = require('../../models/tool.js');
     (new Tool).where('NAME', toolName)
       .fetch({withRelated: ['links', 'authors', 'domains', 'downstream', 'upstream', 'extension', 'agency', 'funding', 'ioformat', 'license', 'platform', 'version', 'map', 'io']})
       .then(function(tool) {

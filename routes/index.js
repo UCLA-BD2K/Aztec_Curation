@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var test = require('./db/test.js');
+var db = require('./db/database.js');
 
 
 /* GET home page. */
@@ -66,6 +67,41 @@ router.get('/suggestion', function(req, res, next) {
 	  };
 
 	test.readWholeEntry(req, query, suggest);
+});
+
+router.get('/testForm', function(req, res, next) {
+  var query = req.query.q;
+
+  var render = function(status){
+    res.render('testForm.ejs', {message: JSON.stringify(status)});
+  };
+  console.log('Reading: '+query);
+  db.queryTool(query, ['authors'], render);
+});
+
+router.post('/testForm', function(req, res, next) {
+	//console.log(req.query);
+	console.log("post request body:");
+	console.log(req.body);
+
+	var AZID = req.body.AZID;
+	console.log("the AZID is " + AZID);
+
+	var render = function(status){
+	    res.render('testRead.ejs', {message: JSON.stringify(status)});
+	};
+	db.saveToolInfo(req.body, 'update', render);
+
+});
+
+router.get('/testQuery', function(req, res, next) {
+  var query = req.query.q;
+
+  var render = function(status){
+    res.render('testRead.ejs', {message: JSON.stringify(status)});
+  };
+  console.log('Reading: '+query);
+  db.queryAgency(query, render);
 });
 
 module.exports = router;
