@@ -1,0 +1,201 @@
+<!doctype html>
+<html ng-app="submit">
+  <head>
+<!-- Links to js/css files -->
+    <title>Register New Resource</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="mockup.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src ="mockup-effects.js"> </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="mockup.css">
+  </head>
+  <body>
+    <img src="aztec.png"> </img>
+    <h1>Register New Resource</h1>
+
+<!--- Registration Form -->    
+<div class="col-md-9">
+  <form name="userForm" novalidate>
+    <div ng-controller="ElementListController as registerFieldList">
+
+    <!---Name and stuff-->
+<h2 id ="Resource Details"> Resource Details <i class="ion-ios-plus-empty" id="resourceShow"></i></h2>
+<div id = "resourceIntro"> <!--div used for hide purposes-->
+<div class="form-group" ng-repeat="registerField in registerFieldList.registerResources" id="resources">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label> {{registerField.text}}</label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div>
+<button type="button" class="btn btn-primary" id ="resourcesbtn">
+  Done </button>
+</div>
+
+
+    <!---Publication-->
+<h2 id="Publication Details">Publication Details <i class="ion-ios-plus-empty" id="pubShow"></i></h2>
+<div id = "pub">
+<div class="form-group" ng-repeat="registerField in registerFieldList.registerPublication" id="publication">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label> {{registerField.text}} </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div>
+ <button type="button" class="btn btn-primary" id ="publicationbtn">
+  Done</button>
+</div>
+
+    <!---Links-->
+<h2 id="Links">Links <i class="ion-ios-plus-empty" id="linkShow"></i></h2>
+<div id = "lnk">
+<div class="form-group" ng-repeat="registerField in registerFieldList.registerLinks" id="links">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label> {{registerField.text}}  </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div>
+<button type="button" class="btn btn-primary" id ="linkbtn">
+  Done </button>
+</div>
+    <!---Licenses-->
+<h2 id="Licenses">Licenses <i class="ion-ios-plus-empty" id="licenseShow"></i></h2>
+<div id = "lns">
+<div class="form-group" ng-repeat="registerField in registerFieldList.registerLicenses" id="licenses">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label> {{registerField.text}} </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div>
+<button type="button" class="btn btn-primary" id ="licensebtn">
+  Done </button>
+</div>
+    <!---Resource Types-->
+<h2 id="Resource Types">Resource Types <i class="ion-ios-plus-empty" id="resourceTypeShow"></i></h2>
+<div id ="rT">
+<div class="form-group" ng-repeat="registerField in registerFieldList.registerResourceType" id="resourceType">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label> {{registerField.text}} </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div>
+<button type="button" class="btn btn-primary" id ="resourcetypebtn">
+  Done </button>
+</div>
+    <!---Bio Domains-->
+<h2 id="Biological Domains"> Biological Domains <i class="ion-ios-plus-empty" id="bioShow"></i></h2>
+<div id ="bd">
+<div class="form-group" ng-repeat="registerField in registerFieldList.biologicalDomains" id="bioDomains">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label> {{registerField.text}} </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div>
+<button type="button" class="btn btn-primary" id ="biobtn">
+  Done </button>
+</div>
+
+    <!---Authors/Institutions-->
+<h2 id="Authors and Institutions">Authors and Institutions <i class="ion-ios-plus-empty" id="authorShow"></i></h2>
+<div id="ai">
+<div class="form-group" ng-repeat="registerField in registerFieldList.authorsAndInstitutions" id="authors">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label> {{registerField.text}} </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div>
+<button type="button" class="btn btn-primary" id ="authorbtn">
+  Done </button>
+</div>
+
+    <!---fileTypes-->
+<h2 id ="File Types">File Types <i class="ion-ios-plus-empty" id="fileShow"></i></h2>
+<div id = "fT">
+<div class="form-group" ng-repeat="registerField in registerFieldList.fileTypes" id="fileTypes">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label> {{registerField.text}}</label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div>        
+<button type="button" class="btn btn-primary" id ="filebtn">
+  Done </button>
+</div>
+    <!---Tools-->
+<h2 id ="Tools">Tools <i class="ion-ios-plus-empty" id="toolShow"></i></h2>
+<div id = "tls">
+<div class="form-group" ng-repeat="registerField in registerFieldList.tools" id="tools">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label>  {{registerField.text}} </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div>  
+<button type="button" class="btn btn-primary" id ="toolbtn">
+  Done </button>
+</div>
+    <!---Dependencies-->
+<h2 id ="Dependencies">Dependencies <i class="ion-ios-plus-empty" id="dependencyShow"></i></h2>
+<div id = "dpndncy">
+<div class="form-group" ng-repeat="registerField in registerFieldList.dependencies" id="dependencies">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label> {{registerField.text}} </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div>  
+<button type="button" class="btn btn-primary" id ="dependencybtn">
+  Done </button>
+</div>
+    <!---Tags-->
+<h2 id ="Tags">Tags <i class="ion-ios-plus-empty" id="tagShow"></i></h2>
+<div id = "tgs">
+<div class="form-group" ng-repeat="registerField in registerFieldList.tag" id="tag">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label> {{registerField.text}} </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div>  
+<button type="button" class="btn btn-primary" id ="tagsbtn">
+  Done </button>
+</div>
+    <!---Maintainers-->
+<h2 id ="Maintainers">Maintainers <i class="ion-ios-plus-empty" id="maintainerShow"></i></h2>
+<div id ="mtn">
+<div class="form-group" ng-repeat="registerField in registerFieldList.maintainers" id="maintainers">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label> {{registerField.text}} </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div>  
+ <button type="button" class="btn btn-primary" id ="maintainbtn">
+  Done</button>
+</div>
+    </div> <!--closing div for elementListController-->
+  </form>
+</div> <!--closing div for bootstrap form spacing-->
+
+
+<!-- Scrollable Menu -->
+      <div class="scrollable-list">
+      <div class="col-md-3" role="complementary">
+          <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm" id="sideb">
+           
+            <div ng-controller="ElementListController as elementList">
+            <ul class="nav bs-docs-sidenav">
+             <li ng-repeat="element in elementList.elements">
+              <a href="#{{element.text}}" id ="#{{element.text}}">
+             {{element.text}}
+             </li>  
+            </ul>
+           </div> 
+           <!---
+            <div class="progress">
+          <div class="progress-bar" id="progBar"role="progressbar" aria-valuenow="20"
+            aria-valuemin="0" aria-valuemax="100" style="width:0%">
+          <span class="sr-only"></span>
+          </div>
+          </div>
+          ---->
+          </nav>
+      </div>
+  </body>
+</html>
