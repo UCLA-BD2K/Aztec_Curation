@@ -90,6 +90,8 @@ router.post('/testForm', function(req, res, next) {
 	var render = function(status){
 	    res.render('testRead.ejs', {message: JSON.stringify(status)});
 	};
+  console.log(req.body);
+  db.saveTool(req.body, null);
 	db.saveToolInfo(req.body, 'update', render);
 
 });
@@ -101,7 +103,7 @@ router.get('/testQuery', function(req, res, next) {
     res.render('testRead.ejs', {message: JSON.stringify(status)});
   };
   console.log('Reading: '+query);
-  db.queryAgency(query, render);
+  db.queryAuthor(query, render);
 });
 
 module.exports = router;

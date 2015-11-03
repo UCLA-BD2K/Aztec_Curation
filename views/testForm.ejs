@@ -15,29 +15,33 @@
   function isObject(element) {
     return (typeof element === "object") && (element !== null);
   };
-  function createForm(form, json){
+  function createForm(form, header, json){
     for (var prop in json) {
       if(prop.startsWith('_'))
         continue;
-        
+
   		var isID = prop == "AZID";
       var isArr = Array.isArray(json[prop]);
       var isObj = isObject(json[prop]);
   		var row = document.createElement("div");
-
+      //console.log(prop+'** '+(typeof json[prop]));
   		var foreText = document.createElement("div");
   		foreText.innerHTML = "<br><b>"+prop+":</b> ";
+
 
       if(isArr || isObj){
         row.appendChild(foreText);
         form.appendChild(row);
-        form = createForm(form, json[prop]);
+        form = createForm(form, header+prop+'^', json[prop]);
         continue;
       }
 
   		var field = document.createElement("input");
   		field.type = "text";
-  		field.name = prop;
+      if(header=="")
+        field.name = 'toolInfo^'+prop;
+      else
+  		  field.name = header+prop;
   		field.id = prop;
   		field.value = json[prop];
   		if(isID)
@@ -61,8 +65,9 @@
 	var form = document.createElement("form");
 	form.action = "";
 	form.method = "POST";
+  //form.onSubmit = createJSON();
 
-  form = createForm(form, jsonObject);
+  form = createForm(form, "", jsonObject);
 
 	var submitButton = document.createElement("button");
 	submitButton.type = "submit";

@@ -1,6 +1,8 @@
+var async = require('async');
 var Tool = require('../../models/mysql/tool.js');
 var Author = require('../../models/mysql/author.js');
 var Agency = require('../../models/mysql/agency.js');
+
 
 module.exports = {
   //input: azid(integer), with(array of relations), callback(function(param1))
@@ -36,7 +38,7 @@ module.exports = {
       });
   },
 
-  queryAgency: function(id, callback){
+  queryAuthor: function(id, callback){
     (new Author).where('AUTHOR_ID', id)
       .fetch()
       .then(function(author) {
@@ -49,7 +51,7 @@ module.exports = {
         return callback(err);
     });
   },
-  saveAgency: function(author, type, callback){
+  saveAuthor: function(author, type, callback){
     console.log('saving '+JSON.stringify(author));
     (new Author).save(agency, { method : type})
       .then(function(a) {
@@ -62,4 +64,34 @@ module.exports = {
 
       });
   },
+  saveTool: function(obj, callback){
+    var toolInfo = {};
+    var authors = [];
+
+    for (var prop in obj) {
+        var tokens = prop.split('^');
+        var len = tokens.length;
+        //console.log(tokens);
+        switch(tokens[0]){
+          case 'toolInfo':
+            toolInfo[tokens[len-1]] = obj[prop];
+            break;
+          case 'authors':
+            if(authors.length==0)
+              authors.push({});
+            else if(len > 2 && (authors.length-1) != Number(tokens[1]))
+              authors.push({});
+            authors[authors.length-1][tokens[len-1]] = obj[prop]
+            break;
+          default:
+
+        }
+    }
+    //TODO: update the tables SYNCHRONOUSLY
+
+    console.log(toolInfo);
+    console.log(authors);
+
+
+  }
 };

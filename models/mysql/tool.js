@@ -13,6 +13,7 @@ var Platform = require('./platform.js');
 var Version = require('./version.js');
 var Map = require('./map.js');
 var Toolio = require('./toolio.js');
+var Tag = require('./tag.js');
 
 
 
@@ -63,6 +64,9 @@ var toolSchema = Bookshelf.Model.extend({
     },
     io: function() {
       return this.hasMany(Toolio, 'AZID');
+    },
+    tags: function(){
+      return this.belongsToMany(Tag, 'TOOL_TAG', 'AZID', 'TAG_ID');
     }
 });
 
