@@ -84,15 +84,15 @@ router.post('/testForm', function(req, res, next) {
 	console.log("post request body:");
 	console.log(req.body);
 
-	var AZID = req.body.AZID;
+	var AZID = req.body.toolInfo^AZID;
 	console.log("the AZID is " + AZID);
 
 	var render = function(status){
 	    res.render('testRead.ejs', {message: JSON.stringify(status)});
 	};
   console.log(req.body);
-  db.saveTool(req.body, null);
-	db.saveToolInfo(req.body, 'update', render);
+  db.saveTool(req.body, render);
+	//db.saveToolInfo(req.body, 'update', render);
 
 });
 
