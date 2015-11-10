@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<!-- saved from url=(0077)file:///Users/davidmeng/Desktop/Aztec_Curation/Mockup/mockup.html#Maintainers -->
+<html ng-app="submit" class="ng-scope"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+<!-- Links to js/css files -->
+    <title>Register New Resource</title>
+    <script src="./Register New Resource_files/angular.min.js"></script>
+    <script src="./Register New Resource_files/mockup.js"></script>
+    <script src="./Register New Resource_files/jquery.min.js"></script>
+    <script src="./Register New Resource_files/mockup-effects.js"> </script>
+    <link rel="stylesheet" href="./Register New Resource_files/bootstrap.min.css">
+    <link rel="stylesheet" href="./Register New Resource_files/ionicons.min.css">
+    <link rel="stylesheet" href="./Register New Resource_files/mockup.css">
+  </head>
+  <body style="
+    /* background-image: linear-gradient(#BBD2DB 0px ,#FFFFFF 160%); */
+">
+    <img src="./Register New Resource_files/aztec.png"> 
+    <h1 style="
+    float: center;
+    padding-right: 331px;
+">   <img border="0" src="./Register New Resource_files/bd2k.png" width="200" style="margin-bottom:30px;height: inherit;/* align-self: flex-start; *//* padding-left: 20px; */"> Register New Resource</h1>
+
+<!--- Registration Form -->    
+<div class="col-md-9">
+  <form name="userForm" novalidate="" class="ng-pristine ng-valid">
+    <div ng-controller="ElementListController as registerFieldList" class="ng-scope">
+
+    <!---Name and stuff-->
+<h2 id="Resource Details"> Resource Details <i class="ion-ios-plus-empty" id="resourceShow" style="visibility: hidden;"></i></h2>
+<div id="resourceIntro" style="display: block;"> <!--div used for hide purposes-->
+<!-- ngRepeat: registerField in registerFieldList.registerResources --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.registerResources" id="resources">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Resource Name</label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.registerResources --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.registerResources" id="resources">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Logo URL</label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.registerResources --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.registerResources" id="resources">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Description</label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.registerResources --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.registerResources" id="resources">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Link URL</label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.registerResources -->
+<button type="button" class="btn btn-primary" id="resourcesbtn">
+  Done </button>
+</div>
+
+
+    <!---Publication-->
+<h2 id="Publication Details">Publication Details <i class="ion-ios-plus-empty" id="pubShow"></i></h2>
+<div id="pub">
+<!-- ngRepeat: registerField in registerFieldList.registerPublication --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.registerPublication" id="publication">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Primary Publication DOI </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.registerPublication --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.registerPublication" id="publication">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Publication DOI </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.registerPublication --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.registerPublication" id="publication">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Tool DOI </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.registerPublication --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.registerPublication" id="publication">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Programming Languages </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.registerPublication --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.registerPublication" id="publication">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Latest Version Number </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.registerPublication --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.registerPublication" id="publication">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Latest Version Release Date </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.registerPublication --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.registerPublication" id="publication">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Previous Version </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.registerPublication --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.registerPublication" id="publication">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Next Version </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.registerPublication -->
+ <button type="button" class="btn btn-primary" id="publicationbtn">
+  Done</button>
+</div>
+
+    <!---Links-->
+<h2 id="Links">Links <i class="ion-ios-plus-empty" id="linkShow"></i></h2>
+<div id="lnk">
+<!-- ngRepeat: registerField in registerFieldList.registerLinks --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.registerLinks" id="links">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Link Description  </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.registerLinks --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.registerLinks" id="links">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Source Code URL  </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.registerLinks -->
+<button type="button" class="btn btn-primary" id="linkbtn">
+  Done </button>
+</div>
+    <!---Licenses-->
+<h2 id="Licenses">Licenses <i class="ion-ios-plus-empty" id="licenseShow"></i></h2>
+<div id="lns">
+<!-- ngRepeat: registerField in registerFieldList.registerLicenses --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.registerLicenses" id="licenses">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Licenses </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.registerLicenses --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.registerLicenses" id="licenses">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> License URL </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.registerLicenses -->
+<button type="button" class="btn btn-primary" id="licensebtn">
+  Done </button>
+</div>
+    <!---Resource Types-->
+<h2 id="Resource Types">Resource Types <i class="ion-ios-plus-empty" id="resourceTypeShow"></i></h2>
+<div id="rT">
+<!-- ngRepeat: registerField in registerFieldList.registerResourceType --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.registerResourceType" id="resourceType">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Resource Type </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.registerResourceType -->
+<button type="button" class="btn btn-primary" id="resourcetypebtn">
+  Done </button>
+</div>
+    <!---Bio Domains-->
+<h2 id="Biological Domains"> Biological Domains <i class="ion-ios-plus-empty" id="bioShow"></i></h2>
+<div id="bd">
+<!-- ngRepeat: registerField in registerFieldList.biologicalDomains --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.biologicalDomains" id="bioDomains">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Biological Domain </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.biologicalDomains -->
+<button type="button" class="btn btn-primary" id="biobtn">
+  Done </button>
+</div>
+
+    <!---Authors/Institutions-->
+<h2 id="Authors and Institutions">Authors and Institutions <i class="ion-ios-plus-empty" id="authorShow" style="visibility: hidden;"></i></h2>
+<div id="ai" style="display: block;">
+<!-- ngRepeat: registerField in registerFieldList.authorsAndInstitutions --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.authorsAndInstitutions" id="authors">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Author Name </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.authorsAndInstitutions --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.authorsAndInstitutions" id="authors">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Author Email </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.authorsAndInstitutions --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.authorsAndInstitutions" id="authors">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Funder </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.authorsAndInstitutions --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.authorsAndInstitutions" id="authors">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Platform </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.authorsAndInstitutions -->
+<button type="button" class="btn btn-primary" id="authorbtn">
+  Done </button>
+</div>
+
+    <!---fileTypes-->
+<h2 id="File Types">File Types <i class="ion-ios-plus-empty" id="fileShow" style="visibility: hidden;"></i></h2>
+<div id="fT" style="display: block;">
+<!-- ngRepeat: registerField in registerFieldList.fileTypes --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.fileTypes" id="fileTypes">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Input File Type</label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.fileTypes --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.fileTypes" id="fileTypes">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Output File Type</label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.fileTypes -->        
+<button type="button" class="btn btn-primary" id="filebtn">
+  Done </button>
+</div>
+    <!---Tools-->
+<h2 id="Tools">Tools <i class="ion-ios-plus-empty" id="toolShow"></i></h2>
+<div id="tls">
+<!-- ngRepeat: registerField in registerFieldList.tools --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.tools" id="tools">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding">  Downstream Tool </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.tools --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.tools" id="tools">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding">  Upstream Tool </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.tools -->  
+<button type="button" class="btn btn-primary" id="toolbtn">
+  Done </button>
+</div>
+    <!---Dependencies-->
+<h2 id="Dependencies">Dependencies <i class="ion-ios-plus-empty" id="dependencyShow"></i></h2>
+<div id="dpndncy">
+<!-- ngRepeat: registerField in registerFieldList.dependencies --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.dependencies" id="dependencies">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Dependency </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.dependencies -->  
+<button type="button" class="btn btn-primary" id="dependencybtn">
+  Done </button>
+</div>
+    <!---Tags-->
+<h2 id="Tags">Tags <i class="ion-ios-plus-empty" id="tagShow"></i></h2>
+<div id="tgs">
+<!-- ngRepeat: registerField in registerFieldList.tag --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.tag" id="tag">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Tags </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.tag -->  
+<button type="button" class="btn btn-primary" id="tagsbtn">
+  Done </button>
+</div>
+    <!---Maintainers-->
+<h2 id="Maintainers">Maintainers <i class="ion-ios-plus-empty" id="maintainerShow" style="visibility: hidden;"></i></h2>
+<div id="mtn" style="display: block;">
+<!-- ngRepeat: registerField in registerFieldList.maintainers --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.maintainers" id="maintainers">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Maintainer Name </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.maintainers --><div class="form-group ng-scope" ng-repeat="registerField in registerFieldList.maintainers" id="maintainers">
+      <!-- to validate data fields <ng-form name="userFieldForm"> -->
+        <label class="ng-binding"> Maintainer Email </label>
+       <input type="text" class="form-control" name="registerElements">
+      <!--- </ng-form> -->
+        </div><!-- end ngRepeat: registerField in registerFieldList.maintainers -->  
+ <button type="button" class="btn btn-primary" id="maintainbtn">
+  Done</button>
+</div>
+    </div> <!--closing div for elementListController-->
+  </form>
+</div> <!--closing div for bootstrap form spacing-->
+
+
+<!-- Scrollable Menu -->
+      <div class="scrollable-list">
+      <div class="col-md-3" role="complementary">
+          <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm" id="sideb">
+           
+            <div ng-controller="ElementListController as elementList" class="ng-scope">
+            <ul class="nav bs-docs-sidenav">
+             <!-- ngRepeat: element in elementList.elements --><li ng-repeat="element in elementList.elements" class="ng-scope">
+              <a href="file:///Users/davidmeng/Desktop/Aztec_Curation/Mockup/mockup.html#Resource Details" id="#Resource Details" class="ng-binding">
+             Resource Details
+             </a></li><!-- end ngRepeat: element in elementList.elements --><li ng-repeat="element in elementList.elements" class="ng-scope">
+              <a href="file:///Users/davidmeng/Desktop/Aztec_Curation/Mockup/mockup.html#Publication Details" id="#Publication Details" class="ng-binding">
+             Publication Details
+             </a></li><!-- end ngRepeat: element in elementList.elements --><li ng-repeat="element in elementList.elements" class="ng-scope">
+              <a href="file:///Users/davidmeng/Desktop/Aztec_Curation/Mockup/mockup.html#Links" id="#Links" class="ng-binding">
+             Links
+             </a></li><!-- end ngRepeat: element in elementList.elements --><li ng-repeat="element in elementList.elements" class="ng-scope">
+              <a href="file:///Users/davidmeng/Desktop/Aztec_Curation/Mockup/mockup.html#Licenses" id="#Licenses" class="ng-binding">
+             Licenses
+             </a></li><!-- end ngRepeat: element in elementList.elements --><li ng-repeat="element in elementList.elements" class="ng-scope">
+              <a href="file:///Users/davidmeng/Desktop/Aztec_Curation/Mockup/mockup.html#Resource Types" id="#Resource Types" class="ng-binding">
+             Resource Types
+             </a></li><!-- end ngRepeat: element in elementList.elements --><li ng-repeat="element in elementList.elements" class="ng-scope">
+              <a href="file:///Users/davidmeng/Desktop/Aztec_Curation/Mockup/mockup.html#Biological Domains" id="#Biological Domains" class="ng-binding">
+             Biological Domains
+             </a></li><!-- end ngRepeat: element in elementList.elements --><li ng-repeat="element in elementList.elements" class="ng-scope">
+              <a href="file:///Users/davidmeng/Desktop/Aztec_Curation/Mockup/mockup.html#Authors and Institutions" id="#Authors and Institutions" class="ng-binding">
+             Authors and Institutions
+             </a></li><!-- end ngRepeat: element in elementList.elements --><li ng-repeat="element in elementList.elements" class="ng-scope">
+              <a href="file:///Users/davidmeng/Desktop/Aztec_Curation/Mockup/mockup.html#File Types" id="#File Types" class="ng-binding">
+             File Types
+             </a></li><!-- end ngRepeat: element in elementList.elements --><li ng-repeat="element in elementList.elements" class="ng-scope">
+              <a href="file:///Users/davidmeng/Desktop/Aztec_Curation/Mockup/mockup.html#Tools" id="#Tools" class="ng-binding">
+             Tools
+             </a></li><!-- end ngRepeat: element in elementList.elements --><li ng-repeat="element in elementList.elements" class="ng-scope">
+              <a href="file:///Users/davidmeng/Desktop/Aztec_Curation/Mockup/mockup.html#Dependencies" id="#Dependencies" class="ng-binding">
+             Dependencies
+             </a></li><!-- end ngRepeat: element in elementList.elements --><li ng-repeat="element in elementList.elements" class="ng-scope">
+              <a href="file:///Users/davidmeng/Desktop/Aztec_Curation/Mockup/mockup.html#Tags" id="#Tags" class="ng-binding">
+             Tags
+             </a></li><!-- end ngRepeat: element in elementList.elements --><li ng-repeat="element in elementList.elements" class="ng-scope">
+              <a href="./Register New Resource_files/Register New Resource.html" id="#Maintainers" class="ng-binding">
+             Maintainers
+             </a></li><!-- end ngRepeat: element in elementList.elements --><a href="file:///Users/davidmeng/Desktop/Aztec_Curation/Mockup/mockup.html#" id="#">  
+            </a></ul><a href="file:///Users/davidmeng/Desktop/Aztec_Curation/Mockup/mockup.html#" id="#">
+           </a></div><a href="file:///Users/davidmeng/Desktop/Aztec_Curation/Mockup/mockup.html#" id="#"> 
+           <!---
+            <div class="progress">
+          <div class="progress-bar" id="progBar"role="progressbar" aria-valuenow="20"
+            aria-valuemin="0" aria-valuemax="100" style="width:0%">
+          <span class="sr-only"></span>
+          </div>
+          </div>
+          ---->
+          </a></nav><a href="file:///Users/davidmeng/Desktop/Aztec_Curation/Mockup/mockup.html#" id="#">
+      </a></div><a href="file:///Users/davidmeng/Desktop/Aztec_Curation/Mockup/mockup.html#" id="#">
+  
+</a></div></body></html>

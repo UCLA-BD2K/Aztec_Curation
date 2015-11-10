@@ -8,6 +8,7 @@ var db = require('./db/database.js');
 router.get('/', function(req, res, next) {
   res.render('index.ejs');
 });
+router.use(express.static(__dirname + '/public')); //just added 
 
 router.get('/testEdit', function(req, res, next) {
   var query = req.query.q;
