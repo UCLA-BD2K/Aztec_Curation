@@ -1,3 +1,6 @@
+#content{
+        padding-top: 73px;
+}
 img {
 	height: 52px; 
 }
@@ -95,6 +98,10 @@ label{
 #sideb
 {
 	position: fixed;
+}
+
+#regForm{
+    padding-left: 43px;
 }
 
 .progress {

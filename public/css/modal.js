@@ -53,3 +53,6 @@ mymodal.directive('modal', function () {
       }
     };
   });
+angular.element(document).ready(function() {
+    angular.bootstrap(document.getElementById("nav-stuff"), ["mymodal"]);
+});

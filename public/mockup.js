@@ -77,7 +77,8 @@ angular.module('submit', [])
       ];
 
 });
-     /*
+
+ angular.bootstrap(document.getElementById("Reg-Angular"),['submit']);     /*
  .controller('RegisterFieldListController', function() {
   
 });         
