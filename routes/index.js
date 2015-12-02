@@ -76,6 +76,25 @@ router.get('/suggestion', function(req, res, next) {
 	test.readWholeEntry(req, query, suggest);
 });
 
+router.get('/github', function (req, res, next) {
+    var name = req.query.name;
+
+    var suggester = require('./suggester.js');
+        suggester.githubSuggestion(name, function (actualSuggestion) {
+            res.send(actualSuggestion);
+        });
+});
+
+router.get('/pubmed', function (req, res, next) {
+    var name = req.query.name;
+
+    var suggester = require('./suggester.js');
+    suggester.pubmedSuggestion(name, function (actualSuggestion) {
+        res.send(actualSuggestion);
+    });
+});
+
+
 router.get('/testForm', function(req, res, next) {
   var query = req.query.q;
 
