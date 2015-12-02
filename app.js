@@ -4,10 +4,15 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport = require('passport');
+var bcrypt = require('bcrypt-nodejs');
+var session = require('express-session');
+var LocalStrategy = require('passport-local').Strategy;
 var bookshelf = require('./config/bookshelf.js');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var User = require('./models/mysql/user.js');
 
 var app = express();
 
@@ -24,6 +29,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'secret strategic xxzzz code',
+  resave: true,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', routes);
 app.use('/users', users);
@@ -58,6 +70,37 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: {}
   });
+});
+
+passport.use(new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password'
+  }, function(email, password, done) {
+   new User({EMAIL: email}).fetch().then(function(data) {
+      var user = data;
+      console.log(data);
+      if(user === null) {
+         return done(null, false, {message: 'Invalid username or password'});
+      } else {
+         user = data.toJSON();
+         //console.log(password+' * '+user.PASSWORD);
+         if(!bcrypt.compareSync(password, user.PASSWORD)) {
+            return done(null, false, {message: 'Invalid username or password'});
+         } else {
+            return done(null, user);
+         }
+      }
+   });
+}));
+
+passport.serializeUser(function(user, done) {
+  done(null, user.EMAIL);
+});
+
+passport.deserializeUser(function(email, done) {
+   new User({EMAIL: email}).fetch().then(function(user) {
+      done(null, user);
+   });
 });
 
 

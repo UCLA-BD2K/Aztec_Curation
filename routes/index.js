@@ -2,11 +2,18 @@ var express = require('express');
 var router = express.Router();
 var test = require('./db/test.js');
 var db = require('./db/database.js');
+var passport = require('passport');
+var bcrypt = require('bcrypt-nodejs');
+var User = require('../models/mysql/user.js');
 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index.ejs');
+  console.log(bcrypt.hashSync('testing123'));
+  var loginName = 'Login';
+  if(req.isAuthenticated())
+    loginName = req.user.attributes.FIRST_NAME;
+  res.render('index.ejs', {name: loginName, loggedIn : req.isAuthenticated()});
 });
 
 router.get('/testEdit', function(req, res, next) {
@@ -104,6 +111,96 @@ router.get('/testQuery', function(req, res, next) {
   };
   console.log('Reading: '+query);
   db.queryAuthor(query, render);
+});
+
+router.get('/create', function(req, res, next) {
+    var loginName = 'Login';
+    console.log(1);
+    console.log(req.user);
+    if(req.isAuthenticated())
+      loginName = req.user.attributes.FIRST_NAME;
+    res.render('register.ejs', {name: loginName, loggedIn : req.isAuthenticated()});
+
+});
+
+var loginPost = function(req, res, next) {
+    console.log(req.body);
+    var response = {};
+    passport.authenticate('local', function(err, user, info) {
+      if(err) {
+        response = {
+                      loggedIn: false,
+                      error: err.message
+                   };
+        res.send(response);
+      }
+      else if(!user) {
+         response = {
+                      loggedIn: false,
+                      error: info.message
+                   };
+         res.send(response);
+      }
+      else{
+        return req.logIn(user, function(err) {
+           if(err) {
+             response = {
+                           loggedIn: false,
+                           error: err.message
+                        };
+           } else {
+             response = {
+                           loggedIn: true,
+                           error: ''
+                        };
+           }
+           res.send(response);
+        });
+    }
+   })(req, res, next);
+
+
+};
+router.post('/login', loginPost );
+
+router.get('/logout', function(req, res, next){
+  if(req.isAuthenticated()) {
+      req.logout();
+      res.redirect('/');
+   }
+});
+
+router.post('/signup', function(req, res, next) {
+    console.log(req.body);
+    var user = req.body;
+     var usernamePromise = null;
+     usernamePromise = new User({EMAIL: user.email}).fetch();
+
+     return usernamePromise.then(function(model) {
+        if(model) {
+           res.send( {error: 'username already exists'} );
+        } else {
+           //****************************************************//
+           // MORE VALIDATION GOES HERE(E.G. PASSWORD VALIDATION)
+           //****************************************************//
+           var password = user.password;
+           var hash = bcrypt.hashSync(password);
+           console.log(user);
+           var signUpUser = new User({
+             EMAIL: user.email,
+             FIRST_NAME: user.firstname,
+             LAST_NAME: user.lastname,
+             POSITION: user.position,
+             PASSWORD: hash
+           });
+
+           signUpUser.save().then(function(model) {
+              // sign in the newly registered user
+              loginPost(req, res, next);
+           });
+        }
+     });
+
 });
 
 module.exports = router;
