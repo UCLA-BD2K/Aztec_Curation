@@ -3,24 +3,46 @@
   <head>
 <!-- Links to js/css files -->
     <title>Register New Resource</title>
+    <!-- CDNs and Libraries for Java Script  -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     <script src="mockup.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
     <script src ="mockup-effects.js"> </script>
+    <!-- Styling and CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
-
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="mockup.css">
-          <link href="/css/index.css" rel="stylesheet" >
+     <link href="/css/index.css" rel="stylesheet" >
      <script src="/css/modal.js"></script>
+     <script src="tag-it.js" type="text/javascript" charset="utf-8"></script>
   </head>
   <body>
-   <!--  make these into legit partials -->
-    <!-- <img src="aztec.png"> </img> -->
+
      <%- include ../public/header.ejs %>
     <div id = "content"> 
     <h1>Register New Resource</h1>
+<!-- Test script  -->
+
+<script>
+          //-------------------------------
+            // Allow spaces without quotes.
+            //-------------------------------
+          $(document).ready(function() {
+            $("#myTags").tagit();
+        });
+</script>
+
+    <form>
+            <p>
+                Vanilla example &mdash; the absolute minimum amount of code required, no configuration. No autocomplete, either. See the other examples for that.
+            </p>
+            <ul id="myTags"></ul>
+            <input type="submit" value="Submit">
+              <input name="tags" id="myTags">
+        </form>
+
 
 <!--- Registration Form - angular app --> 
 <div id = "Reg-Angular" ng-app ="submit">
@@ -34,7 +56,7 @@
 <div class="form-group" ng-repeat="registerField in registerFieldList.registerResources" id="resources">
       <!-- to validate data fields <ng-form name="userFieldForm"> -->
         <label> {{registerField.text}}</label>
-       <input type="text" class="form-control" name="registerElements">
+       <input type="text" class="form-control" name="tags" id="myTags">
       <!--- </ng-form> -->
         </div>
 <button type="button" class="btn btn-primary" id ="resourcesbtn">
@@ -42,13 +64,14 @@
 </div>
 
 
+
     <!---Publication-->
 <h2 id="Publication Details">Publication Details <i class="ion-ios-plus-empty" id="pubShow"></i></h2>
 <div id = "pub">
 <div class="form-group" ng-repeat="registerField in registerFieldList.registerPublication" id="publication">
       <!-- to validate data fields <ng-form name="userFieldForm"> -->
-        <label> {{registerField.text}} </label>
-       <input type="text" class="form-control" name="registerElements">
+       <label> {{registerField.text}} </label>
+       <input id="allowSpacesTags" class="form-control" name="tags"> 
       <!--- </ng-form> -->
         </div>
  <button type="button" class="btn btn-primary" id ="publicationbtn">
@@ -210,7 +233,11 @@
    <!--  closing div for the angular app  -->
 
   </div>
-  <!--closing div for content ---->
+  <!--closing div for content -->
 </div>
+<!-- CSS and Javascript to make the tags work -->
+    <link href="css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
   </body>
 </html>
