@@ -30,18 +30,15 @@
             // Allow spaces without quotes.
             //-------------------------------
           $(document).ready(function() {
-            $("#myTags").tagit();
+            $(".tagThis").tagit();
         });
 </script>
 
-    <form>
-            <p>
-                Vanilla example &mdash; the absolute minimum amount of code required, no configuration. No autocomplete, either. See the other examples for that.
-            </p>
-            <ul id="myTags"></ul>
-            <input type="submit" value="Submit">
-              <input name="tags" id="myTags">
-        </form>
+       
+
+<!--       <form>
+            <input name="tags" id="myTags">          
+        </form> -->
 
 
 <!--- Registration Form - angular app --> 
@@ -56,7 +53,8 @@
 <div class="form-group" ng-repeat="registerField in registerFieldList.registerResources" id="resources">
       <!-- to validate data fields <ng-form name="userFieldForm"> -->
         <label> {{registerField.text}}</label>
-       <input type="text" class="form-control" name="tags" id="myTags">
+         <input type="text" class="form-control" name="registerElements">
+
       <!--- </ng-form> -->
         </div>
 <button type="button" class="btn btn-primary" id ="resourcesbtn">
@@ -71,7 +69,7 @@
 <div class="form-group" ng-repeat="registerField in registerFieldList.registerPublication" id="publication">
       <!-- to validate data fields <ng-form name="userFieldForm"> -->
        <label> {{registerField.text}} </label>
-       <input id="allowSpacesTags" class="form-control" name="tags"> 
+        <input type="text" class="tagThis" name="registerElements">
       <!--- </ng-form> -->
         </div>
  <button type="button" class="btn btn-primary" id ="publicationbtn">
@@ -108,7 +106,7 @@
 <div class="form-group" ng-repeat="registerField in registerFieldList.registerResourceType" id="resourceType">
       <!-- to validate data fields <ng-form name="userFieldForm"> -->
         <label> {{registerField.text}} </label>
-       <input type="text" class="form-control" name="registerElements">
+       <input type="text" class="tagThis" name="registerElements">
       <!--- </ng-form> -->
         </div>
 <button type="button" class="btn btn-primary" id ="resourcetypebtn">
@@ -120,7 +118,7 @@
 <div class="form-group" ng-repeat="registerField in registerFieldList.biologicalDomains" id="bioDomains">
       <!-- to validate data fields <ng-form name="userFieldForm"> -->
         <label> {{registerField.text}} </label>
-       <input type="text" class="form-control" name="registerElements">
+       <input type="text" class="tagThis" name="registerElements">
       <!--- </ng-form> -->
         </div>
 <button type="button" class="btn btn-primary" id ="biobtn">
@@ -146,7 +144,7 @@
 <div class="form-group" ng-repeat="registerField in registerFieldList.fileTypes" id="fileTypes">
       <!-- to validate data fields <ng-form name="userFieldForm"> -->
         <label> {{registerField.text}}</label>
-       <input type="text" class="form-control" name="registerElements">
+       <input type="text" class="tagThis" name="registerElements">
       <!--- </ng-form> -->
         </div>        
 <button type="button" class="btn btn-primary" id ="filebtn">
@@ -158,7 +156,7 @@
 <div class="form-group" ng-repeat="registerField in registerFieldList.tools" id="tools">
       <!-- to validate data fields <ng-form name="userFieldForm"> -->
         <label>  {{registerField.text}} </label>
-       <input type="text" class="form-control" name="registerElements">
+       <input type="text" class="tagThis" name="registerElements">
       <!--- </ng-form> -->
         </div>  
 <button type="button" class="btn btn-primary" id ="toolbtn">
@@ -170,7 +168,7 @@
 <div class="form-group" ng-repeat="registerField in registerFieldList.dependencies" id="dependencies">
       <!-- to validate data fields <ng-form name="userFieldForm"> -->
         <label> {{registerField.text}} </label>
-       <input type="text" class="form-control" name="registerElements">
+       <input type="text" class="tagThis" name="registerElements">
       <!--- </ng-form> -->
         </div>  
 <button type="button" class="btn btn-primary" id ="dependencybtn">
@@ -182,7 +180,7 @@
 <div class="form-group" ng-repeat="registerField in registerFieldList.tag" id="tag">
       <!-- to validate data fields <ng-form name="userFieldForm"> -->
         <label> {{registerField.text}} </label>
-       <input type="text" class="form-control" name="registerElements">
+       <input type="text" class="tagThis" name="registerElements">
       <!--- </ng-form> -->
         </div>  
 <button type="button" class="btn btn-primary" id ="tagsbtn">

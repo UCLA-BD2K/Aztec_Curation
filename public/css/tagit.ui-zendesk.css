@@ -7,7 +7,17 @@ ul.tagit {
     border-width: 1px;
     border-color: #C6C6C6;
     background: inherit;
+    border-radius: 4px;
+    padding-right: 12px;
+    padding-left: 12px;
+    padding-bottom: 1px;
+    padding-top: 1px;
+    height: 34px;
+    font-size: 14px;
+
 }
+
+
 ul.tagit li.tagit-choice {
     -moz-border-radius: 6px;
     border-radius: 6px;
