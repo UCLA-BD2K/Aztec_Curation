@@ -1,5 +1,5 @@
 angular.module('submit', [])
-  .controller('ElementListController', function() {
+  .controller('ElementListController', ['$scope', function($scope) {
     var elementList = this;
     elementList.elements = [
       {text:'Resource Details'},
@@ -18,70 +18,75 @@ angular.module('submit', [])
 
     var registerFieldList = this;
     registerFieldList.registerResources = [
-      {text:'Resource Name', name:'Resource Details'},
-      {text:'Logo URL'},
-      {text:'Description'},
-      {text:'Link URL'}];
+      {text:'Resource Name', name:'Resource Details', type: 'text', ngmodel: 'res.name'},
+      {text:'Logo URL', type: 'text', ngmodel: 'res.logo'},
+      {text:'Description', type: 'text', ngmodel: 'res.desc'},
+      {text:'Link URL', type: 'number', ngmodel: 'res.url'}];
       registerFieldList.registerPublication = [{text:'Primary Publication DOI',name:'Publication Details'},
-      {text:'Publication DOI'},
-      {text:'Tool DOI'},
-      {text:'Programming Languages'},
-      {text:'Latest Version Number'},
-      {text:'Latest Version Release Date'},
-      {text:'Previous Version'},
-      {text:'Next Version'}];
+      {text:'Publication DOI', type: 'text'},
+      {text:'Tool DOI', type: 'text'},
+      {text:'Programming Languages', type: 'text'},
+      {text:'Latest Version Number', type: 'text'},
+      {text:'Latest Version Release Date', type: 'text'},
+      {text:'Previous Version', type: 'text'},
+      {text:'Next Version', type: 'text'}];
 
       registerFieldList.registerLinks =[
-      {text:'Link Description', name:'Links'},
-      {text:'Source Code URL'}];
-       
+      {text:'Link Description', name:'Links', type: 'text'},
+      {text:'Source Code URL', type: 'text'}];
+
        registerFieldList.registerLicenses = [
-      {text:'Licenses', name:'Licenses'},
-      {text:'License URL'},];
+      {text:'Licenses', name:'Licenses', type: 'text'},
+      {text:'License URL', type: 'text'}];
       registerFieldList.registerResourceType =[
-      {text:'Resource Type', name:'Resource Types'}
+      {text:'Resource Type', name:'Resource Types', type: 'text'}
       ];
 
       registerFieldList.biologicalDomains = [
-      {text:'Biological Domain', name:'Biological Domains'}
+      {text:'Biological Domain', name:'Biological Domains', type: 'text'}
       ];
-      
+
       registerFieldList.authorsAndInstitutions  = [
-      {text:'Author Name', name:'Authors and Institutions'},
-      {text:'Author Email'},
-      {text:'Funder'},
-      {text:'Platform'}
+      {text:'Author Name', name:'Authors and Institutions', type: 'text'},
+      {text:'Author Email', type: 'email'},
+      {text:'Funder', type: 'text'},
+      {text:'Platform', type: 'text'}
       ];
 
       registerFieldList.fileTypes = [
-      {text:'Input File Type', name:'File Types'},
-      {text:'Output File Type'}
+      {text:'Input File Type', name:'File Types', type: 'text'},
+      {text:'Output File Type', type: 'text'}
       ];
 
 
       registerFieldList.tools = [
-      {text:'Downstream Tool', name:'Tools'},
-      {text:'Upstream Tool'}];
+      {text:'Downstream Tool', name:'Tools', type: 'text'},
+      {text:'Upstream Tool', type: 'text'}];
 
       registerFieldList.dependencies = [
-      {text:'Dependency', name:'Dependencies'},
+      {text:'Dependency', name:'Dependencies', type: 'text'},
       ];
 
       registerFieldList.tag = [
-      {text:'Tags', name:'Tags' }
+      {text:'Tags', name:'Tags', type: 'text'}
       ];
 
       registerFieldList.maintainers = [
-      {text:'Maintainer Name', name:'Maintainers'},
-      {text:'Maintainer Email'}
+      {text:'Maintainer Name', name:'Maintainers', type: 'text'},
+      {text:'Maintainer Email', type: 'email'}
       ];
 
-});
+      $scope.submit = function(res){
+        console.log(1);
+        $http.post('/create', res);
+      };
+
+}]);
 
  angular.bootstrap(document.getElementById("Reg-Angular"),['submit']);     /*
  .controller('RegisterFieldListController', function() {
-  
-});         
+
+});
  /*
     todoList.addTodo = function() {
       todoList.todos.push({text:todoList.todoText, done:false});

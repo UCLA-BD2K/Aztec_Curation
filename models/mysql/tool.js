@@ -15,7 +15,8 @@ var Map = require('./map.js');
 var Toolio = require('./toolio.js');
 var Tag = require('./tag.js');
 var User = require('./user.js');
-
+var Resource = require('./resource.js');
+var Language = require('./language.js');
 
 
 
@@ -31,7 +32,7 @@ var toolSchema = Bookshelf.Model.extend({
       return this.belongsToMany(Author, 'TOOL_AUTHOR', 'AZID', 'AUTHOR_ID');
     },
     domains: function() {
-      return this.belongsToMany(Domain, 'TOOL_DOMAINS', 'AZID', 'DOMAIN_ID');
+      return this.hasMany(Domain, 'AZID');
     },
     downstream: function() {
       return this.hasMany(Downstream, 'AZID');
@@ -71,6 +72,12 @@ var toolSchema = Bookshelf.Model.extend({
     },
     users: function(){
       return this.belongsToMany(User, 'TOOL_USER', 'AZID', 'USER_ID');
+    },
+    resource_types: function(){
+      return this.hasMany(Resource, 'AZID');
+    },
+    languages: function() {
+      return this.belongsToMany(Language, 'TOOL_LANG', 'AZID', 'LANG_ID');
     }
 });
 

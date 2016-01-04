@@ -4,10 +4,9 @@ var Tool = require('./tool.js');
 // define the schema for our tool model
 var domainSchema = Bookshelf.Model.extend({
 
-    tableName: 'BIOLOGICAL_DOMAIN',
-    idAttribute: 'DOMAIN_ID',
+    tableName: 'TOOL_DOMAINS',
     tools: function() {
-      return this.belongsToMany(Tool, 'TOOL_DOMAINS', 'AZID', 'DOMAIN_ID');
+      return this.hasMany(Tool, 'TD_ID');
     }
 });
 

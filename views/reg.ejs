@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Register</title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/register/styles.css">
+  <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/register/ng-tags-input.min.css">
+  <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script>
+    var current_sec = '#part1';
+    $(document).ready(function() {
+      console.log(2);
+      $('#b1next').on('click', function() {
+        $('#part1').hide();
+        $('#part2').show();
+        current_sec = '#part2';
+      });
+      $('#b2prev').on('click', function() {
+        $('#part2').hide();
+        $('#part1').show();
+        current_sec = '#part1';
+      });
+      $('#b2next').on('click', function() {
+        $('#part2').hide();
+        $('#part3').show();
+        current_sec = '#part3';
+      });
+      $('#b3prev').on('click', function() {
+        $('#part3').hide();
+        $('#part2').show();
+        current_sec = '#part2';
+      });
+      $('#b3next').on('click', function() {
+        $('#part3').hide();
+        $('#part4').show();
+        current_sec = '#part4';
+      });
+      $('#b4prev').on('click', function() {
+        $('#part4').hide();
+        $('#part3').show();
+        current_sec = '#part3';
+      });
+      $('#b4next').on('click', function() {
+        $('#part4').hide();
+        $('#part5').show();
+        current_sec = '#part5';
+      });
+      $('#b5prev').on('click', function() {
+        $('#part5').hide();
+        $('#part4').show();
+        current_sec = '#part4';
+      });
+      $('#b5next').on('click', function() {
+        $('#part5').hide();
+        $('#part6').show();
+        current_sec = '#part6';
+      });
+      $('#b6prev').on('click', function() {
+        $('#part6').hide();
+        $('#part5').show();
+        current_sec = '#part5';
+      });
+      $('#b6next').on('click', function() {
+        $('#part6').hide();
+        $('#part7').show();
+        current_sec = '#part7';
+      });
+      $('#b7prev').on('click', function() {
+        $('#part7').hide();
+        $('#part6').show();
+        current_sec = '#part6';
+      });
+      $('#b7next').on('click', function() {
+        $('#part7').hide();
+        $('#part8').show();
+        current_sec = '#part8';
+      });
+      $('#b8prev').on('click', function() {
+        $('#part8').hide();
+        $('#part7').show();
+        current_sec = '#part7';
+      });
+      $('#b8next').on('click', function() {
+        $('#part8').hide();
+        $('#part9').show();
+        current_sec = '#part9';
+      });
+      $('#b9prev').on('click', function() {
+        $('#part9').hide();
+        $('#part8').show();
+        current_sec = '#part8';
+      });
+
+
+      $('#pre1').on('click', function() {
+        $(current_sec).hide();
+        $('#part1').show();
+        current_sec = '#part1';
+      });
+      $('#pre2').on('click', function() {
+        $(current_sec).hide();
+        $('#part2').show();
+        current_sec = '#part2';
+      });
+      $('#pre3').on('click', function() {
+        $(current_sec).hide();
+        $('#part3').show();
+        current_sec = '#part3';
+      });
+      $('#pre4').on('click', function() {
+        $(current_sec).hide();
+        $('#part4').show();
+        current_sec = '#part4';
+      });
+      $('#pre5').on('click', function() {
+        $(current_sec).hide();
+        $('#part5').show();
+        current_sec = '#part5';
+      });
+      $('#pre6').on('click', function() {
+        $(current_sec).hide();
+        $('#part6').show();
+        current_sec = '#part6';
+      });
+      $('#pre7').on('click', function() {
+        $(current_sec).hide();
+        $('#part7').show();
+        current_sec = '#part7';
+      });
+      $('#pre8').on('click', function() {
+        $(current_sec).hide();
+        $('#part8').show();
+        current_sec = '#part8';
+      });
+      $('#pre9').on('click', function() {
+        $(current_sec).hide();
+        $('#part9').show();
+        current_sec = '#part9';
+      });
+
+    });
+  </script>
+  <style>
+    pre:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    .repeat_section {
+      margin-top: 25px
+    }
+  </style>
+</head>
+
+<body ng-app="formlyApp" ng-controller="MainController as vm">
+  <div class='row'>
+    <div class="text-center">
+      <h1>Register New Resource</h1>
+    </div>
+    <div class="col-md-2 col-md-offset-8">
+      <button id='save' class="btn btn-primary">Save</button>
+      <button id='submit' class="btn btn-primary" data-toggle="modal" data-target="#submitModal">Submit</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="container col-md-2 col-md-offset-1">
+      <h1>Suggestions</h1>
+    </div>
+    <div class="container col-md-4" style="height:85vh;overflow: auto">
+      <form data-toggle="validator" novalidate>
+        <div id='part1'>
+          <h1>Basic Information</h1>
+          <formly-form model="vm.basic" fields="vm.basicFields" form="vm.basicForm">
+          </formly-form>
+          <div class="row text-center">
+            <button id='b1next' class="btn btn-success">Next</button>
+          </div>
+        </div>
+        <div id='part2' style='display:none'>
+          <h1>Author Information</h1>
+          <formly-form model="vm.authors" fields="vm.authorFields" form="vm.authorForm">
+          </formly-form>
+          <div class="row text-center">
+            <button id='b2prev' class="btn btn-success">Prev</button>
+            <button id='b2next' class="btn btn-success">Next</button>
+          </div>
+        </div>
+        <div id='part3' style='display:none'>
+          <h1>Publication Information</h1>
+          <formly-form model="vm.publication" fields="vm.pubFields" form="vm.pubForm">
+          </formly-form>
+          <div class="row text-center">
+            <button id='b3prev' class="btn btn-success">Prev</button>
+            <button id='b3next' class="btn btn-success">Next</button>
+          </div>
+        </div>
+        <div id='part4' style='display:none'>
+          <h1>Related Links</h1>
+          <formly-form model="vm.links" fields="vm.linkFields" form="vm.linksForm">
+          </formly-form>
+          <div class="row text-center">
+            <button id='b4prev' class="btn btn-success">Prev</button>
+            <button id='b4next' class="btn btn-success">Next</button>
+          </div>
+        </div>
+        <div id='part5' style='display:none'>
+          <h1>Development Information</h1>
+          <formly-form model="vm.dev" fields="vm.devFields" form="vm.devForm">
+          </formly-form>
+          <div class="row text-center">
+            <button id='b5prev' class="btn btn-success">Prev</button>
+            <button id='b5next' class="btn btn-success">Next</button>
+          </div>
+        </div>
+        <div id='part6' style='display:none'>
+          <h1>Version History</h1>
+          <formly-form model="vm.version" fields="vm.versionFields" form="vm.versionForm" options="vm.versionOptions">
+          </formly-form>
+          <div class="row text-center">
+            <button id='b6prev' class="btn btn-success">Prev</button>
+            <button id='b6next' class="btn btn-success">Next</button>
+          </div>
+        </div>
+        <div id='part7' style='display:none'>
+          <h1>IO Information</h1>
+          <formly-form model="vm.io" fields="vm.ioFields" form="vm.ioForm">
+          </formly-form>
+          <div class="row text-center">
+            <button id='b7prev' class="btn btn-success">Prev</button>
+            <button id='b7next' class="btn btn-success">Next</button>
+          </div>
+        </div>
+        <div id='part8' style='display:none'>
+          <h1>License Information</h1>
+          <formly-form model="vm.license" fields="vm.licenseFields" form="vm.licenseForm">
+          </formly-form>
+          <div class="row text-center">
+            <button id='b8prev' class="btn btn-success">Prev</button>
+            <button id='b8next' class="btn btn-success">Next</button>
+          </div>
+        </div>
+        <div id='part9' style='display:none'>
+          <h1>Funding Information</h1>
+          <formly-form model="vm.funding" fields="vm.fundingFields" form="vm.fundingForm">
+          </formly-form>
+          <div class="row text-center">
+            <button id='b9prev' class="btn btn-success">Prev</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="container col-md-3" style="height:85vh;overflow: auto">
+      <h1>Form Summary</h1>
+      <pre id='pre1' style="cursor: pointer;">Basic Information{{vm.basic | json}}</pre>
+      <pre id='pre2' style="cursor: pointer;">Author Information{{vm.authors | json}}</pre>
+      <pre id='pre3' style="cursor: pointer;">Publication Information{{vm.publication | json}}</pre>
+      <pre id='pre4' style="cursor: pointer;">Related Links{{vm.links | json}}</pre>
+      <pre id='pre5' style="cursor: pointer;">Development Information{{vm.dev | json}}</pre>
+      <pre id='pre6' style="cursor: pointer;">Version History{{vm.version | json}}</pre>
+      <pre id='pre7' style="cursor: pointer;">IO Information{{vm.io | json}}</pre>
+      <pre id='pre8' style="cursor: pointer;">License Information{{vm.license | json}}</pre>
+      <pre id='pre9' style="cursor: pointer;">Funding Information{{vm.funding | json}}</pre>
+
+    </div>
+  </div>
+  <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <center>
+            <h4 class="modal-title" id="myModalLabel">Submit resource</h4>
+          </center>
+        </div>
+        <div class="modal-body" style="height:75vh;overflow: auto">
+          <pre id='sub_pre1'>Basic Information{{vm.basic | json}}</pre>
+          <pre id='sub_pre2'>Author Information{{vm.authors | json}}</pre>
+          <pre id='sub_pre3'>Publication Information{{vm.publication | json}}</pre>
+          <pre id='sub_pre4'>Related Links{{vm.links | json}}</pre>
+          <pre id='sub_pre5'>Development Information{{vm.dev | json}}</pre>
+          <pre id='sub_pre6'>Version History{{vm.version | json}}</pre>
+          <pre id='sub_pre7'>IO Information{{vm.io | json}}</pre>
+          <pre id='sub_pre8'>License Information{{vm.license | json}}</pre>
+          <pre id='sub_pre9'>Funding Information{{vm.funding | json}}</pre>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" ng-click='vm.onSubmit()'>Submit resource</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/ng-template" id="repeatSection.html">
+    <div>
+      <!--loop through each element in model array-->
+      <div class="{{hideRepeat}}">
+        <div class="repeatsection" ng-repeat="element in model[options.key]" ng-init="fields = copyFields(to.fields)">
+          <hr style="border: 0; height: 1px;background: #333;background-image: linear-gradient(to right, #ccc, #333, #ccc);" />
+          <formly-form fields="fields" model="element" form="form">
+          </formly-form>
+          <div style="margin-bottom:20px;">
+            <br>
+            <button type="button" class="btn btn-sm btn-danger pull-right" ng-click="model[options.key].splice($index, 1)">
+              Remove
+            </button>
+            <br/>
+          </div>
+        </div>
+        <p class="AddNewButton">
+          <button type="button" class="btn btn-secondary" ng-click="addNew()">{{to.btnText}}</button>
+        </p>
+        <hr style="border: 0; height: 1px;background: #333;background-image: linear-gradient(to right, #ccc, #333, #ccc);" />
+      </div>
+  </script>
+  <script type="text/ng-template" id="datepicker.html">
+    <p class="input-group">
+      <input type="text" id="{{::id}}" name="{{::id}}" ng-model="model[options.key]" class="form-control" ng-click="datepicker.open($event)" datepicker-popup="{{to.datepickerOptions.format}}" is-open="datepicker.opened" datepicker-options="to.datepickerOptions"
+      readonly/>
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-default" ng-click="datepicker.open($event)" ng-disabled="to.disabled"><i class="glyphicon glyphicon-calendar"></i></button>
+      </span>
+    </p>
+  </script>
+  <script type="text/ng-template" id="typeahead.html">
+    <label>{{to.label}}</label>
+    <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched" ng-model="model[options.key]" placeholder="{{to.placeholder}}" uib-typeahead="item for item in getItems($viewValue, to.link)" typeahead-loading="loadingItems"
+    typeahead-no-results="noResults" required>
+    <i ng-show="loadingItems" class="glyphicon glyphicon-refresh"></i>
+    <div ng-show="noResults">
+      <i class="glyphicon glyphicon-remove"></i> No Results Found
+    </div>
+  </script>
+  <script type="text/ng-template" id="async-ui-select-type.html">
+    <ui-select ng-model="model[options.key]" theme="bootstrap">
+      <ui-select-match placeholder="{{to.placeholder}}">{{$select.selected[to.labelProp || 'name']}}</ui-select-match>
+      <ui-select-choices repeat="option[to.valueProp || 'value'] as option in to.options | filter: $select.search" refresh="to.refresh($select.search, options)" refresh-delay="{{to.refreshDelay}}">
+        <div ng-bind-html="option['name'] | highlight: $select.search"></div>
+      </ui-select-choices>
+    </ui-select>
+  </script>
+  <script type="text/ng-template" id="tags.html">
+    <label>{{to.label}}</label>
+    <tags-input ng-model="model[options.key]">
+      <auto-complete source="getItems($query, to.link)"></auto-complete>
+    </tags-input>
+  </script>
+
+</body>
+
+
+<!-- Application Dependencies -->
+<script src="//npmcdn.com/api-check@latest/dist/api-check.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+<script type="text/javascript" src="/javascripts/register/ng-tags-input.min.js"></script>
+<script src="//npmcdn.com/angular-ui-bootstrap@latest/ui-bootstrap-tpls.js"></script>
+<script src="//npmcdn.com/angular-formly@latest/dist/formly.js"></script>
+<script src="//npmcdn.com/angular-formly-templates-bootstrap@latest/dist/angular-formly-templates-bootstrap.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
+<script src="/javascripts/register/validator.js"></script>
+<script src="./javascripts/register/form-validator.js"></script>
+<script src="./javascripts/register/typeahead.js"></script>
+
+<!-- Application Scripts -->
+<script src="./javascripts/register/app.js"></script>
+<script src="./javascripts/register/MainController.js"></script>
+
+</html>

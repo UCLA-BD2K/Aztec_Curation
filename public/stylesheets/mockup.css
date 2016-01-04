@@ -14,7 +14,9 @@ h2{
     font-weight: 100;
 
 }
-
+.nav{
+    font-weight: 200;
+}
 label{
 	font-weight: 200;
     text-transform: uppercase;
@@ -121,4 +123,14 @@ label{
 
 .progress-bar{
 	background-color: #BBD2DB;
+}
+
+.form-control:focus,.form-control:active:focus,.form-control:focus,
+.form-control.focus,.form-control:active.focus,.form-control.active.focus{
+
+    outline: none;
+    border-color: #ccc;
+    box-shadow: none;
+    -webkit-box-shadow:none;
+
 }

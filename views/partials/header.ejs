@@ -1,8 +1,8 @@
- <!--  angular app for navigation  -->
- <script src="/javascripts/validator.js"></script>
- <script>
- $(document).ready(function(){
-   $('#login-form').on('submit', function (e) {
+<!--  angular app for navigation  -->
+<script src="/javascripts/validator.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#login-form').on('submit', function(e) {
 
       // everything looks good!
       $.ajax({
@@ -10,97 +10,100 @@
         type: 'POST',
         data: {
           email: $('#email').val(),
-          password : $('#password').val()
+          password: $('#password').val()
         },
-        success : function (json) {
+        success: function(json) {
 
           $('#login-message').html(json.error);
-          if(json.loggedIn)
-            window.location.href = '/create';
+          if (json.loggedIn)
+            window.location.href = '/reg';
         },
-        error : function (xhre) {
+        error: function(xhre) {
           console.log(xhre);
         }
       });
     });
-    $('#signup-form').on('submit', function (e) {
+    $('#signup-form').on('submit', function(e) {
 
-       // everything looks good!
-       $.ajax({
-         url: '/signup',
-         type: 'POST',
-         data: {
-           email: $('#s_email').val(),
-           firstname: $('#s_firstname').val(),
-           lastname:$('#s_lastname').val(),
-           position:$('#s_position').val(),
-           password : $('#s_password').val()
-         },
-         success : function (json) {
+      // everything looks good!
+      $.ajax({
+        url: '/signup',
+        type: 'POST',
+        data: {
+          email: $('#s_email').val(),
+          firstname: $('#s_firstname').val(),
+          lastname: $('#s_lastname').val(),
+          position: $('#s_position').val(),
+          password: $('#s_password').val()
+        },
+        success: function(json) {
 
-           $('#signup-message').html(json.error);
-           if(json.loggedIn)
-             window.location.href = '/create';
-         },
-         error : function (xhre) {
-           console.log(xhre);
-         }
-       });
-     })
+          $('#signup-message').html(json.error);
+          if (json.loggedIn)
+            window.location.href = '/create';
+        },
+        error: function(xhre) {
+          console.log(xhre);
+        }
+      });
+    })
   });
-
- </script>
-  <div id = "nav-stuff">
-    <nav class="navbar navbar-default navbar-fixed-top">
+</script>
+<div id="nav-stuff">
+  <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid" style="margin:0; margin-left: 9em; margin-right: 20em">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-            </button>
-            <a class="navbar-brand" href="/">AZ<span style="font-size: 80%">TEC</span> <span style="font-size: 70%; color: gray">[Review]</span></a>
-        </div>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+        </button>
+        <a class="navbar-brand" href="/">AZ<span style="font-size: 80%">TEC</span> <span style="font-size: 70%; color: gray">[Review]</span></a>
+      </div>
 
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/home/overview">Overview</a></li>
-                        <li><a href="/home/metadata">Metadata</a></li>
-                        <li><a href="/home/technologies">Technologies</a></li>
-                        <li><a href="/home/sources">Sources</a></li>
-                    </ul>
-                </li>
-                <%if (loggedIn) { %>
-                  <li id="liRegister"><a href="/create">Register New Resource</a></li>
-                <% } %>
-
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Related Links<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="http://heartbd2k.org">HeartBD2K</a></li>
-                        <li><a href="https://bd2kccc.org">BD2K Centers-Coordination Center</a></li>
-                        <li><a href="https://datascience.nih.gov/bd2k">NIH BD2K Initiative</a></li>
-                    </ul>
-                </li>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/home/overview">Overview</a></li>
+              <li><a href="/home/metadata">Metadata</a></li>
+              <li><a href="/home/technologies">Technologies</a></li>
+              <li><a href="/home/sources">Sources</a></li>
             </ul>
-            <%if (!loggedIn) { %>
-              <%- include ./login_modal.ejs %>
+          </li>
+          <%if (loggedIn) { %>
+            <li id="liRegister"><a href="/create">Register New Resource</a></li>
+            <% } %>
+
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Related Links<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="http://heartbd2k.org">HeartBD2K</a></li>
+                  <li><a href="https://bd2kccc.org">BD2K Centers-Coordination Center</a></li>
+                  <li><a href="https://datascience.nih.gov/bd2k">NIH BD2K Initiative</a></li>
+                </ul>
+              </li>
+        </ul>
+        <%if (!loggedIn) { %>
+          <%- include ./login_modal.ejs %>
             <% } else { %>
               <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= name %><span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="/logout">Logout</a></li>
-                    </ul>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <%= name %>
+                      <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                  </ul>
                 </li>
               </ul>
-            <% } %>
+              <% } %>
 
- </div><!-- /.navbar-collapse -->
+      </div>
+      <!-- /.navbar-collapse -->
     </div>
-    </div>
+</div>
 </nav>
 <!-- closing div for angular app -->
 </div>
