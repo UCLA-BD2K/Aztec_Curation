@@ -22,6 +22,14 @@ router.post('/testForm', test.postForm);
 
 router.get('/testQuery', test.getQuery);
 
+router.get('/home', isLoggedIn, login.getPortal);
+
+router.get('/all', isLoggedIn, login.getAllTools);
+
+router.get('/tool/:id', isLoggedIn, login.getTool);
+
+router.get('/id/:azid', login.getToolByAZID);
+
 router.get('/create', isLoggedIn, login.getOldReg);
 
 router.get('/reg', isLoggedIn, login.getReg);

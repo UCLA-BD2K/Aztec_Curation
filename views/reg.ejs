@@ -6,6 +6,7 @@
   <link rel="stylesheet" type="text/css" href="/stylesheets/register/styles.css">
   <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <link rel="stylesheet" href="/stylesheets/register/ng-tags-input.min.css">
+  <link href="/stylesheets/index.css" rel="stylesheet">
   <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
   <script>
     var current_sec = '#part1';
@@ -153,6 +154,7 @@
 </head>
 
 <body ng-app="formlyApp" ng-controller="MainController as vm">
+    <%- include ./partials/header.ejs %>
   <div class='row'>
     <div class="text-center">
       <h1>Register New Resource</h1>

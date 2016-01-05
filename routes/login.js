@@ -1,6 +1,7 @@
 var bcrypt = require('bcrypt-nodejs');
 var passport = require('passport');
 var User  = require('../models/mysql/user.js');
+var Tool  = require('../models/mysql/tool.js');
 
 
 function loginPost(req, res, next) {
@@ -42,7 +43,6 @@ function loginPost(req, res, next) {
 
 module.exports = {
   getHome: function(req, res, next) {
-    console.log(bcrypt.hashSync('testing123'));
     var loginName = 'Login';
     if(req.isAuthenticated())
       loginName = req.user.attributes.FIRST_NAME;
@@ -97,11 +97,92 @@ module.exports = {
 
   },
   getReg: function(req, res, next) {
-
-      res.render('reg.ejs', {loggedIn : req.isAuthenticated()});
+    var loginName = 'Login';
+    if(req.isAuthenticated())
+      loginName = req.user.attributes.FIRST_NAME;
+    res.render('reg.ejs', {name: loginName, loggedIn : req.isAuthenticated()});
 
   },
+  getPortal: function(req, res, next) {
+    var loginName = 'Login';
+    if(req.isAuthenticated())
+      loginName = req.user.attributes.FIRST_NAME;
+    User.forge()
+      .query({where: {USER_ID: req.user.attributes.USER_ID}})
+      .fetch({withRelated: ['tools']})
+      .then(function(user){
+        if(user==null){
+          return res.render('portal.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: 'not found'});
+        }
+        else{
+          console.log('Found existing user:', user.attributes.FIRST_NAME);
+           console.log('tools', user.tools());
+          return res.render('portal.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: user});
 
+        }
+      })
+      .catch(function(err){
+        console.log('query user error', err);
+        return res.render('portal.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: 'error'});
+      })
+  },
+  getAllTools: function(req, res, next) {
+    var loginName = 'Login';
+    if(req.isAuthenticated())
+      loginName = req.user.attributes.FIRST_NAME;
+    Tool.forge()
+      .fetchAll()
+      .then(function(tool){
+        if(tool==null){
+          return res.render('all.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: 'not found'});
+        }
+        else{
+          console.log('tools', tool);
+          return res.render('all.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: tool});
+        }
+      })
+      .catch(function(err){
+        console.log('query tool error', err);
+        return res.render('all.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: 'error'});
+      })
+  },
+  getTool: function(req, res, next) {
+    var loginName = 'Login';
+    if(req.isAuthenticated())
+      loginName = req.user.attributes.FIRST_NAME;
 
+    console.log('find tool ', req.params.id);
+    Tool.forge()
+      .query({where: {AZID: req.params.id}})
+      .fetch({withRelated: ['authors', 'links', 'domains', 'agency', 'funding', 'license', 'platform', 'version', 'tags', 'users', 'resource_types', 'languages']})
+      .then(function(tool){
+        if(tool==null){
+          return res.render('tool.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: 'not found'});
+        }
+        else{
+          console.log('tools', tool);
+          return res.render('tool.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: tool});
+        }
+      })
+      .catch(function(err){
+        console.log('query tool error', err);
+        return res.render('tool.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: 'error'});
+      })
+  },
+  getToolByAZID: function(req, res, next) {
+    var azid = req.params[0];
+    var regex = /(AZ\d{7})/;
+    if(azid.length!=9){
+      console.log('not valid!');
+    }else{
+      var match = azid.match(regex);
+      console.log('match', match);
+      if(match!=null){
+        var id = parseInt(azid.substring(2));
+        console.log('id number', id);
+        res.redirect('/tool/'+id);
+      }
+    }
+  },
 
 };

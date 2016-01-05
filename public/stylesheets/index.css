@@ -1,5 +1,5 @@
 #login{
-	padding: 5px; 
+	padding: 5px;
 }
 #signup{
 	padding: 5px;
@@ -11,10 +11,10 @@
 	font-weight: 200;
     font-size: 24px;
 }
-/* have ids for form groups 
+/* have ids for form groups
 and make their font weight 100*/
 #email-form , #name-form{
-	font-weight: 200; 
+	font-weight: 200;
 }
 #pass-form{
 	font-weight: 200;
@@ -23,14 +23,14 @@ and make their font weight 100*/
 	margin-left: 490px;
 }
 label{
-	font-weight: 200; 
+	font-weight: 200;
 }
 .modal-header{
 	text-align: center;
 }
-.navbar 
+.navbar
 {
-	font-weight: 200; 
+	font-weight: 200;
 }
 #modal-h4{
 	font-size: 14px;
@@ -42,3 +42,5 @@ label{
 #create-AC-btn{
 	margin-left: 443px;
 }
+
+body { padding-top: 70px; }

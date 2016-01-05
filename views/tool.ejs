@@ -1,0 +1,30 @@
+<html>
+
+<head>
+  <title>Tool</title>
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+  <script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link href="/stylesheets/index.css" rel="stylesheet">
+  <script src="/javascripts/modal.js"></script>
+</head>
+
+<body>
+  <div class='container'>
+    <div id="header" style="position:relative">
+      <%- include ./partials/header.ejs %>
+    </div>
+
+    <% var tool = data.toJSON(); %>
+    <center><h1>Tool <%=tool.AZID%>: <%=tool.NAME%></h1></center>
+    <%=JSON.stringify(tool)%>
+    <br>
+
+
+  </div>
+</body>
+
+</html>

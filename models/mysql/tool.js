@@ -18,6 +18,8 @@ var User = require('./user.js');
 var Resource = require('./resource.js');
 var Language = require('./language.js');
 
+Bookshelf.plugin('registry');
+
 
 
 // define the schema for our tool model
@@ -85,4 +87,4 @@ var toolSchema = Bookshelf.Model.extend({
 
 
 // create the model for tools and expose it to our app
-module.exports = toolSchema;
+module.exports = Bookshelf.model('Tool', toolSchema);
