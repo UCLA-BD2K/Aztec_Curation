@@ -165,8 +165,14 @@
     </div>
   </div>
   <div class="row">
-    <div class="container col-md-2 col-md-offset-1">
+    <div class="container col-md-2 col-md-offset-1" style="height:85vh;overflow: auto">
       <h1>Suggestions</h1>
+      <center><button class="btn btn-default" ng-click="vm.suggest()">Suggest</button></center>
+      <div id='loading' style='display:none'>
+        <center><img src='/images/magnify.gif'/></center>
+      </div>
+      <div id='suggestions' style='word-wrap: break-word;'>
+      </div>
     </div>
     <div class="container col-md-4" style="height:85vh;overflow: auto">
       <form data-toggle="validator" novalidate>

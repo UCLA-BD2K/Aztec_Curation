@@ -188,6 +188,7 @@
 
     var vm = this;
     vm.onSubmit = onSubmit;
+    vm.suggest = suggest;
 
     // The model object that we reference
     // on the <formly-form> element in index.html
@@ -802,6 +803,35 @@
       return promise.then(function(response) {
         field.templateOptions.options = response.data.results;
       });
+    };
+
+    function suggest(){
+      var fields = {
+        basic: vm.basic,
+        authors: vm.authors,
+        publication: vm.publication,
+        links: vm.links,
+        dev: vm.dev,
+        version: vm.version,
+        io: vm.io,
+        license: vm.license,
+        funding: vm.funding
+      };
+      $('#suggestions').text('');
+      $('#loading').show();
+      $.post("/suggestion?field=pub_primary_doi", fields)
+        .done(function(data) {
+          $('#loading').hide();
+          var json = JSON.parse(data);
+          console.log(json);
+          console.log(json['suggestedDescription']);
+          console.log(json.suggestedDescription);
+          $('#suggestions').html('<strong>Description: </strong>'+
+            json['suggestedDescription']+'<br>'+
+            '<strong>URL: </strong>'+
+            json['suggestedUrl']
+          );
+        });
     }
 
   }

@@ -170,7 +170,7 @@ module.exports = {
       })
   },
   getToolByAZID: function(req, res, next) {
-    var azid = req.params[0];
+    var azid = req.params.azid;
     var regex = /(AZ\d{7})/;
     if(azid.length!=9){
       console.log('not valid!');
@@ -183,6 +183,7 @@ module.exports = {
         res.redirect('/tool/'+id);
       }
     }
+    res.send('invalid AZID');
   },
 
 };

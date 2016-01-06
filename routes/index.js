@@ -42,21 +42,25 @@ router.get('/logout', login.getLogout);
 
 router.post('/signup', login.postSignup);
 
-router.get('/suggestion', function(req, res, next) {
-	var query = req.query.q;
-	var azid = req.query.AZID;
-	var field = req.query.field;
+router.post('/suggestion', function(req, res, next) {
+    var query = req.body;
+    //var azid = req.query.AZID;
+    var field = req.query.field;
+    console.log(JSON.stringify(query), field);
+    console.log(query['basic[res_name]']);
 
-	//console.log("field is " + field);
+    //console.log("field is " + field);
 
-	var suggester = require('./suggester.js');
-	var suggest = function(toolJson){
-		suggester.generateSuggestion(toolJson,field,function(actualSuggestion){
-	    		res.send(actualSuggestion);
-		});
-	  };
+    var suggester = require('./suggester.js');
+    var suggest = function(toolJson){
+      console.log('suggesting');
+        suggester.generateSuggestion(toolJson,field,function(actualSuggestion){
+                res.send(actualSuggestion);
+        });
+      };
 
-	test.readWholeEntry(req, query, suggest);
+    suggest(query);
+    //test.readWholeEntry(req, query, suggest);
 });
 
 router.get('/github', function (req, res, next) {
