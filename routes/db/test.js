@@ -1,4 +1,4 @@
-var suggester = require('../suggester.js');
+var suggester = require('../suggester/suggester.js');
 var Tool = require('../../models/mysql/tool.js');
 
 module.exports = {

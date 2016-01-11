@@ -8,10 +8,15 @@ var passport = require('passport');
 var bcrypt = require('bcrypt-nodejs');
 var session = require('express-session');
 var LocalStrategy = require('passport-local').Strategy;
-var bookshelf = require('./config/bookshelf.js');
+var mongoose = require('mongoose');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var bookshelf = require('./config/bookshelf.js');
+var configMongo = require('./config/mongo.js');
+mongoose.connect(configMongo.url); // connect to our database
+
+var routes = require('./routes/website_router');
+var api = require('./routes/api_router');
+var suggester = require('./routes/suggest_router');
 var User = require('./models/mysql/user.js');
 
 var app = express();
@@ -20,6 +25,16 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+// Authentication module.
+var auth = require('http-auth');
+var basic = auth.basic({
+	realm: "Dev Site",
+  skipUser: true,
+  msg401: '401 Error: Authentication Failure.',
+	file: __dirname + "/config/dev.htpasswd"
+});
+app.use(auth.connect(basic));
 
 
 // uncomment after placing your favicon in /public
@@ -38,7 +53,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/suggest', suggester);
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -48,7 +48,7 @@ module.exports = {
       res.render('testForm.ejs', {message: JSON.stringify(status)});
     };
     console.log('Reading: '+query);
-    db.queryTool(query, ['authors', 'resource_types', 'domains', 'tags', 'languages'], render);
+    db.queryTool(query, ['authors', 'resource_types', 'domains', 'tags', 'languages', 'institutions'], render);
   },
   postForm: function(req, res, next) {
   	//console.log(req.query);

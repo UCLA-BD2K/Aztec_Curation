@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="/stylesheets/register/ng-tags-input.min.css">
   <link href="/stylesheets/index.css" rel="stylesheet">
   <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="/javascripts/register/validator.js"></script>
   <script>
     var current_sec = '#part1';
     $(document).ready(function() {
@@ -161,7 +162,7 @@
     </div>
     <div class="col-md-2 col-md-offset-8">
       <button id='save' class="btn btn-primary">Save</button>
-      <button id='submit' class="btn btn-primary" data-toggle="modal" data-target="#submitModal">Submit</button>
+      <button id='submit' class="btn btn-primary" ng-click="vm.checkForm()" data-toggle="modal" data-target="#submitModal">Submit</button>
     </div>
   </div>
   <div class="row">
@@ -279,23 +280,18 @@
             <span aria-hidden="true">&times;</span>
           </button>
           <center>
-            <h4 class="modal-title" id="myModalLabel">Submit resource</h4>
+            <h4 class="modal-title" id="myModalLabel"></h4>
           </center>
         </div>
-        <div class="modal-body" style="height:75vh;overflow: auto">
-          <pre id='sub_pre1'>Basic Information{{vm.basic | json}}</pre>
-          <pre id='sub_pre2'>Author Information{{vm.authors | json}}</pre>
-          <pre id='sub_pre3'>Publication Information{{vm.publication | json}}</pre>
-          <pre id='sub_pre4'>Related Links{{vm.links | json}}</pre>
-          <pre id='sub_pre5'>Development Information{{vm.dev | json}}</pre>
-          <pre id='sub_pre6'>Version History{{vm.version | json}}</pre>
-          <pre id='sub_pre7'>IO Information{{vm.io | json}}</pre>
-          <pre id='sub_pre8'>License Information{{vm.license | json}}</pre>
-          <pre id='sub_pre9'>Funding Information{{vm.funding | json}}</pre>
+        <div id='pre-submit'>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" ng-click='vm.onSubmit()'>Submit resource</button>
+        <div id='modal-submit' class='modal-footer' style="display: none;">
+          <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+          <button type='button' class='btn btn-primary' ng-click='vm.onSubmit()'>Submit resource</button>
+        </div>
+        <div id='modal-warn' class='modal-footer' style="display: none;">
+          <button type='button' class='btn btn-default' data-dismiss='modal'>Okay</button>
+          <button type='button' class='btn btn-primary' ng-click='vm.passWarning()'>Continue</button>
         </div>
       </div>
     </div>
@@ -316,8 +312,8 @@
             <br/>
           </div>
         </div>
-        <p class="AddNewButton">
-          <button type="button" class="btn btn-secondary" ng-click="addNew()">{{to.btnText}}</button>
+        <p class="AddNewButton form-group ng-scope" ng-class="{'has-error': showError}">
+          <button type="button" class="btn btn-secondary control-label" ng-click="addNew()">{{to.btnText}}{{to.required ? '*' : ''}}</button>
         </p>
         <hr style="border: 0; height: 1px;background: #333;background-image: linear-gradient(to right, #ccc, #333, #ccc);" />
       </div>
@@ -332,21 +328,15 @@
     </p>
   </script>
   <script type="text/ng-template" id="typeahead.html">
-    <label>{{to.label}}</label>
-    <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched" ng-model="model[options.key]" placeholder="{{to.placeholder}}" uib-typeahead="item for item in getItems($viewValue, to.link)" typeahead-loading="loadingItems"
+  <div class="form-group ng-scope" ng-class="{'has-error': showError}">
+    <label class="control-label">{{to.label}}{{to.required ? '*' : ''}}</label>
+    <input type="text" class="form-control ng-pristine ng-invalid ng-valid-required ng-touched" ng-model="model[options.key]" placeholder="{{to.placeholder}}" uib-typeahead="item for item in getItems($viewValue, to.link)" typeahead-loading="loadingItems"
     typeahead-no-results="noResults" required>
     <i ng-show="loadingItems" class="glyphicon glyphicon-refresh"></i>
     <div ng-show="noResults">
       <i class="glyphicon glyphicon-remove"></i> No Results Found
     </div>
-  </script>
-  <script type="text/ng-template" id="async-ui-select-type.html">
-    <ui-select ng-model="model[options.key]" theme="bootstrap">
-      <ui-select-match placeholder="{{to.placeholder}}">{{$select.selected[to.labelProp || 'name']}}</ui-select-match>
-      <ui-select-choices repeat="option[to.valueProp || 'value'] as option in to.options | filter: $select.search" refresh="to.refresh($select.search, options)" refresh-delay="{{to.refreshDelay}}">
-        <div ng-bind-html="option['name'] | highlight: $select.search"></div>
-      </ui-select-choices>
-    </ui-select>
+    </div>
   </script>
   <script type="text/ng-template" id="tags.html">
     <label>{{to.label}}</label>
@@ -354,6 +344,21 @@
       <auto-complete source="getItems($query, to.link)"></auto-complete>
     </tags-input>
   </script>
+  <script type="text/ng-template" id="error-messages.html">
+      <formly-transclude></formly-transclude>
+      <div ng-messages="fc.$error" ng-if="form.$submitted || options.formControl.$touched" class="error-messages">
+        <div ng-message="{{ ::name }}" ng-repeat="(name, message) in ::options.validation.messages" class="message">{{ message(fc.$viewValue, fc.$modelValue, this)}}</div>
+      </div>
+  </script>
+  <script type="text/ng-template" id="ui-select-single-async-search.html">
+      <ui-select data-ng-model="model[options.key]" data-required="{{to.required}}" data-disabled="{{to.disabled}}" theme="bootstrap">
+        <ui-select-match placeholder="{{to.placeholder}}">{{$select.selected[to.otherProp]}} [{{$select.selected[to.labelProp]}}]</ui-select-match>
+        <ui-select-choices data-repeat="{{to.ngOptions}}" data-refresh="to.refresh($select.search, options, to.endpoint)" data-refresh-delay="{{to.refreshDelay}}">
+          <div ng-bind-html="option[to.labelProp] | highlight: $select.search"></div>
+          <div><small>{{option[to.otherProp]}}</small></div>
+        </ui-select-choices>
+      </ui-select>
+    </script>
 
 </body>
 
@@ -362,18 +367,20 @@
 <script src="//npmcdn.com/api-check@latest/dist/api-check.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
 <script type="text/javascript" src="/javascripts/register/ng-tags-input.min.js"></script>
-<script src="//npmcdn.com/angular-ui-bootstrap@latest/ui-bootstrap-tpls.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.js"></script>
 <script src="//npmcdn.com/angular-formly@latest/dist/formly.js"></script>
 <script src="//npmcdn.com/angular-formly-templates-bootstrap@latest/dist/angular-formly-templates-bootstrap.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 <script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
-<script src="/javascripts/register/validator.js"></script>
-<script src="./javascripts/register/form-validator.js"></script>
-<script src="./javascripts/register/typeahead.js"></script>
+<script src="https://rawgit.com/angular/bower-angular-messages/v1.4.4/angular-messages.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-sanitize.js"></script>
+<script src="https://rawgit.com/angular-ui/ui-select/master/dist/select.js"></script>
+  <link rel="stylesheet" href="https://rawgit.com/angular-ui/ui-select/master/dist/select.css">
+<script src="<%=editURL%>/javascripts/register/typeahead.js"></script>
 
 <!-- Application Scripts -->
-<script src="./javascripts/register/app.js"></script>
-<script src="./javascripts/register/MainController.js"></script>
+<script src="<%=editURL%>/javascripts/register/app.js"></script>
+<script src="<%=editURL%>/javascripts/<%=type%>/MainController.js"></script>
 
 </html>

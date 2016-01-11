@@ -100,7 +100,7 @@ module.exports = {
     var loginName = 'Login';
     if(req.isAuthenticated())
       loginName = req.user.attributes.FIRST_NAME;
-    res.render('reg.ejs', {name: loginName, loggedIn : req.isAuthenticated()});
+    res.render('reg.ejs', {name: loginName, loggedIn : req.isAuthenticated(), editURL: ".", type: 'edit'});
 
   },
   getPortal: function(req, res, next) {
@@ -185,5 +185,16 @@ module.exports = {
     }
     res.send('invalid AZID');
   },
+  getEdit: function(req, res, next){
+    console.log(req.params.id);
+    var loginName = 'Login';
+    if(req.isAuthenticated())
+      loginName = req.user.attributes.FIRST_NAME;
+    res.render('reg.ejs', {name: loginName, loggedIn : req.isAuthenticated(), editURL: "..", type: 'edit'});
+  },
+  putEdit: function(req, res, next){
+    console.log(req.body);
+    res.send('got it');
+  }
 
 };

@@ -14,6 +14,13 @@ var Agency = require('../models/mysql/agency.js');
 var Funding = require('../models/mysql/funding.js');
 var Bookshelf = require('../config/bookshelf.js');
 
+var M_tool = require('../models/mongo/toolMisc.js');
+var M_funding = require('../models/mongo/funding.js');
+var M_link = require('../models/mongo/link.js');
+var M_publication = require('../models/mongo/publication.js');
+var M_version = require('../models/mongo/version.js');
+
+
 
 function unflatten(data) {
     "use strict";
@@ -44,6 +51,7 @@ function toMysqlDate(date){
   return date.getUTCFullYear() + "-" + twoDigits(1 + date.getUTCMonth()) + "-" + twoDigits(date.getUTCDate());
 };
 
+
 module.exports = {
   saveTool: function(req, res, next) {
     var obj = unflatten(req.body);
@@ -59,90 +67,157 @@ module.exports = {
     var license = {};
     var agency = [];
     var funding = [];
+    var institutions = [];
+
+    var m_tool = new M_tool;
     console.log('user submitted', obj);
 
     // get basic tool info
-    toolInfo.NAME = obj['basic']['res_name'];
-    toolInfo.LOGO_LINK = obj['basic']['res_logo'];
-    toolInfo.DESCRIPTION= obj['basic']['res_desc'];
-    toolInfo.PRIMARY_PUB_DOI = obj['publication']['pub_primary_doi'];
-    toolInfo.SOURCE_LINK = obj['dev']['res_code_url'];
-
+    if(obj['basic']!=undefined){
+      if(obj['basic']['res_name']!=undefined)
+        toolInfo.NAME = obj['basic']['res_name'];
+      if(obj['basic']['res_logo']!=undefined)
+        toolInfo.LOGO_LINK = obj['basic']['res_logo'];
+      if(obj['basic']['res_desc']!=undefined)
+        toolInfo.DESCRIPTION= obj['basic']['res_desc'];
+    }
+    if(obj['publication']!=undefined && obj['publication']['pub_primary_doi']!=undefined){
+      toolInfo.PRIMARY_PUB_DOI = obj['publication']['pub_primary_doi'];
+      var m_pub = new M_publication;
+      m_pub.pub_doi = obj['publication']['pub_primary_doi'];
+      m_pub.primary = true;
+      m_tool.publications.push(m_pub);
+    }
+    if(obj['dev']!=undefined && obj['dev']['res_code_url']!=undefined)
+      toolInfo.SOURCE_LINK = obj['dev']['res_code_url'];
     // get author info
-    for(var i = 0; obj['authors']['authors']!=undefined && i<obj['authors']['authors'].length; i++){
-      var name = obj['authors']['authors'][i]['author_name'].split(' ');
-      var author = {FIRST_NAME: name[0], LAST_NAME: name[1], EMAIL: obj['authors']['authors'][i]['author_email'] };
-      authors.push(author);
+    if(obj['authors']!=undefined && obj['authors']['authors']!=undefined){
+      for(var i = 0; i<obj['authors']['authors'].length; i++){
+        if(obj['authors']['authors'][i]['author_name']==undefined || obj['authors']['authors'][i]['author_email']==undefined)
+          break;
+        var name = obj['authors']['authors'][i]['author_name'].split(' ');
+        var author = {FIRST_NAME: name[0], LAST_NAME: name[1], EMAIL: obj['authors']['authors'][i]['author_email'] };
+        authors.push(author);
+      }
+    }
+    if(obj['authors']!=undefined && obj['authors']['institution']!=undefined){
+      for(var i = 0; i<obj['authors']['institution'].length; i++){
+        institutions.push(obj['authors']['institution'][i]['inst_id']);
+      }
     }
 
     // get resource type
-    for(var i = 0; obj['basic']['res_types']!=undefined && i<obj['basic']['res_types'].length; i++){
-      var res_type;
-      if(obj['basic']['res_types'][i]['res_type']=='Other')
-        res_type = obj['basic']['res_types'][i]['res_type_other'];
-      else
-        res_type = obj['basic']['res_types'][i]['res_type'];
-      res_types.push({RESOURCE_TYPE: res_type});
+    if(obj['basic']!=undefined && obj['basic']['res_types']!=undefined){
+      for(var i = 0; i<obj['basic']['res_types'].length; i++){
+        var res_type;
+        if(obj['basic']['res_types'][i]['res_type']=='Other')
+          res_type = obj['basic']['res_types'][i]['res_type_other'];
+        else
+          res_type = obj['basic']['res_types'][i]['res_type'];
+        res_types.push({RESOURCE_TYPE: res_type});
+      }
     }
 
     // get domain info
-    for(var i = 0; obj['basic']['bio_domains']!=undefined && i<obj['basic']['bio_domains'].length; i++){
-      domains.push({DOMAIN: obj['basic']['bio_domains'][i]['bio_domain']});
+    if(obj['basic']!=undefined && obj['basic']['bio_domains']!=undefined){
+      for(var i = 0; i<obj['basic']['bio_domains'].length; i++){
+        domains.push({DOMAIN: obj['basic']['bio_domains'][i]['bio_domain']});
+      }
     }
 
     // get tags
-    for(var i = 0; obj['basic']['tags']!=undefined && i<obj['basic']['tags'].length; i++){
-      tags.push({NAME: obj['basic']['tags'][i]['text']});
+    if(obj['basic']!=undefined && obj['basic']['tags']!=undefined){
+      for(var i = 0; i<obj['basic']['tags'].length; i++){
+        tags.push({NAME: obj['basic']['tags'][i]['text']});
+      }
     }
 
     // get links
-    for(var i = 0; obj['publication']['pub_dois']!=undefined && i<obj['publication']['pub_dois'].length; i++){
-      links.push({TYPE:'PUB DOI', URL: obj['publication']['pub_dois'][i]['pub_doi']});
+    if(obj['publication']!=undefined && obj['publication']['pub_dois']!=undefined){
+      for(var i = 0; i<obj['publication']['pub_dois'].length; i++){
+        links.push({TYPE:'PUB DOI', URL: obj['publication']['pub_dois'][i]['pub_doi']});
+        var m_pub = new M_publication;
+        m_pub.pub_doi = obj['publication']['pub_dois'][i]['pub_doi'];
+        m_tool.publications.push(m_pub);
+      }
     }
-    for(var i = 0; obj['links']['links']!=undefined && i<obj['links']['links'].length; i++){
-      links.push({TYPE:obj['links']['links'][i]['link_name'], URL: obj['links']['links'][i]['link_url']});
+    if(obj['links']!=undefined && obj['links']['links']!=undefined){
+      for(var i = 0; i<obj['links']['links'].length; i++){
+        links.push({TYPE:obj['links']['links'][i]['link_name'], URL: obj['links']['links'][i]['link_url']});
+        var m_link = new M_link;
+        m_link.link_name = obj['links']['links'][i]['link_name'];
+        m_link.link_url = obj['links']['links'][i]['link_url'];
+        m_tool.links.push(m_link);
+      }
     }
 
     // get programming languages
-    for(var i = 0; obj['dev']['dev_lang']!=undefined && i<obj['dev']['dev_lang'].length; i++){
-      langs.push({NAME: obj['dev']['dev_lang'][i]['lang_name']});
+    if(obj['dev']!=undefined && obj['dev']['dev_lang']!=undefined){
+      for(var i = 0; i<obj['dev']['dev_lang'].length; i++){
+        langs.push({NAME: obj['dev']['dev_lang'][i]['lang_name']});
+      }
     }
 
     // get platforms
-    for(var i = 0; obj['dev']['dev_platform']!=undefined && i<obj['dev']['dev_platform'].length; i++){
-      platforms.push({NAME: obj['dev']['dev_platform'][i]['platform_name']});
+    if(obj['dev']!=undefined && obj['dev']['dev_platform']!=undefined){
+      for(var i = 0; i<obj['dev']['dev_platform'].length; i++){
+        platforms.push({NAME: obj['dev']['dev_platform'][i]['platform_name']});
+      }
     }
 
     // get versions
-    versions.push({VERSION: obj['version']['latest_version'],
-                    LATEST: 1,
-                    VERSION_DATE: toMysqlDate(new Date(obj['version']['latest_version_date'])),
-                    DESCRIPTION: obj['version']['latest_version_desc']
-                    });
-
-    for(var i = 0; obj['version']['prev_versions']!=undefined && i<obj['version']['prev_versions'].length; i++){
-      versions.push({VERSION: obj['version']['prev_versions'][i]['version_number'],
-                      DESCRIPTION: obj['version']['prev_versions'][i]['version_description'],
-                      VERSION_DATE: toMysqlDate(new Date(obj['version']['prev_versions'][i]['version_date']))
+    if(obj['version']!=undefined){
+      versions.push({VERSION: obj['version']['latest_version'],
+                      LATEST: 1,
+                      VERSION_DATE: toMysqlDate(new Date(obj['version']['latest_version_date'])),
+                      DESCRIPTION: obj['version']['latest_version_desc']
                       });
+      var m_ver = new M_version;
+      m_ver.version_number = obj['version']['latest_version'];
+      m_ver.version_description = obj['version']['latest_version_desc'];
+      m_ver.version_date = new Date(obj['version']['latest_version_date']);
+      m_ver.latest = true;
+      m_tool.versions.push(m_ver);
+      if(obj['version']!=undefined && obj['version']['prev_versions']!=undefined){
+        for(var i = 0; i<obj['version']['prev_versions'].length; i++){
+          versions.push({VERSION: obj['version']['prev_versions'][i]['version_number'],
+                          DESCRIPTION: obj['version']['prev_versions'][i]['version_description'],
+                          VERSION_DATE: toMysqlDate(new Date(obj['version']['prev_versions'][i]['version_date']))
+                          });
+          var prev_ver = new M_version;
+          prev_ver.version_number = obj['version']['latest_version'];
+          prev_ver.version_description = obj['version']['latest_version_desc'];
+          prev_ver.version_date = new Date(obj['version']['latest_version_date']);
+          m_tool.versions.push(prev_ver);
+        }
+      }
     }
 
     // get license
-    license = {
-      NAME:  obj['license']['license'],
-      VERSION: obj['license']['license_version'],
-      OPEN: (obj['license']['license_type']==1),
-    };
-    if(obj['license']['other_license']!=undefined)
-      license.NAME = obj['license']['other_license'];
-    if(obj['license']['other_license_link']!=undefined)
-      license.LINK = obj['license']['other_license_link'];
+    if(obj['license']!=undefined){
+      if(obj['license']['license']!=undefined && obj['license']['license_version']!=undefined && obj['license']['license_type']!=undefined){
+        license = {
+          NAME:  obj['license']['license'],
+          VERSION: obj['license']['license_version'],
+          OPEN: (obj['license']['license_type']==1),
+        };
+        if(obj['license']['other_license']!=undefined)
+          license.NAME = obj['license']['other_license'];
+        if(obj['license']['other_license_link']!=undefined)
+          license.LINK = obj['license']['other_license_link'];
+      }
+    }
 
     // get funding
-    for(var i = 0; obj['funding']['funding']!=undefined && i<obj['funding']['funding'].length; i++){
-      agency.push({NAME: obj['funding']['funding'][i]['funding_agency']})
-      funding.push({GRANT_NUM: obj['funding']['funding'][i]['funding_grant']});
+    if(obj['funding']!=undefined && obj['funding']['funding']!=undefined){
+      for(var i = 0; i<obj['funding']['funding'].length; i++){
+        agency.push({NAME: obj['funding']['funding'][i]['funding_agency']})
+        funding.push({GRANT_NUM: obj['funding']['funding'][i]['funding_grant']});
+      }
     }
+    console.log(1);
+
+
 
 
     console.log('tool info', JSON.stringify(toolInfo));
@@ -155,13 +230,21 @@ module.exports = {
     console.log('platforms', JSON.stringify(platforms));
     console.log('version', JSON.stringify(versions));
     console.log('license', JSON.stringify(license));
-    console.log('funding', JSON.stringify(agency), JSON.stringify(funding))
+    console.log('funding', JSON.stringify(agency), JSON.stringify(funding));
+
+    var response = {};
+    if(toolInfo.NAME==undefined || toolInfo.DESCRIPTION==undefined || (toolInfo.SOURCE_LINK==undefined && links.length==0)){
+      response.success = false;
+      response.message = "Must enter the minimum fields: Resource Name, Description, and Source Code URL or at least 1 link."
+      console.log(2);
+      return res.send(response);
+    }
 
     // var id = parseInt(toolInfo.AZID);
     // delete toolInfo['AZID'];
     //toolInfo.AZID=1;
     //authors[0].AUTHOR_ID = 1;
-    var type = 'insert'; //'insert' or 'update' 
+    var type = 'insert'; //'insert' or 'update'
 
     Bookshelf.transaction(function (transaction) {
       //DOING INSERTS USING ASYNC
@@ -321,35 +404,35 @@ module.exports = {
               }
             });
           },
-          function(toolData, callbackAsync) { //Save links
-            var promises = [];
-            var insertLinks = [];
-            for(var i = 0; i<links.length; i++){
-              promises.push(new Promise(function(resolve, reject){
-                links[i].AZID = toolData.toolInfo.attributes.AZID;
-                Link.forge()
-                  .save(links[i], {transacting: transaction, method: type})
-                  .then(function(link){
-                    console.log("ready to commit "+link.attributes.URL+"!");
-                    insertLinks.push(link);
-                    resolve(0);
-                  })
-                  .catch(function(err){
-                    console.log("need to rollback links", err);
-                    resolve(-1);
-                  });
-              }));
-            }
-            Promise.all(promises).then(function(values){
-              console.log(values);
-              if(values.indexOf(-1)>-1)
-                return callbackAsync('Error with Links', 0);
-              else{
-                toolData.links = insertLinks;
-                return callbackAsync(null, toolData);
-              }
-            });
-          },
+          // function(toolData, callbackAsync) { //Save links
+          //   var promises = [];
+          //   var insertLinks = [];
+          //   for(var i = 0; i<links.length; i++){
+          //     promises.push(new Promise(function(resolve, reject){
+          //       links[i].AZID = toolData.toolInfo.attributes.AZID;
+          //       Link.forge()
+          //         .save(links[i], {transacting: transaction, method: type})
+          //         .then(function(link){
+          //           console.log("ready to commit "+link.attributes.URL+"!");
+          //           insertLinks.push(link);
+          //           resolve(0);
+          //         })
+          //         .catch(function(err){
+          //           console.log("need to rollback links", err);
+          //           resolve(-1);
+          //         });
+          //     }));
+          //   }
+          //   Promise.all(promises).then(function(values){
+          //     console.log(values);
+          //     if(values.indexOf(-1)>-1)
+          //       return callbackAsync('Error with Links', 0);
+          //     else{
+          //       toolData.links = insertLinks;
+          //       return callbackAsync(null, toolData);
+          //     }
+          //   });
+          // },
           function(toolData, callbackAsync) { //Save languages
             var promises = [];
             var insertLangs = [];
@@ -472,33 +555,35 @@ module.exports = {
               }
             });
           },
-          function(toolData, callbackAsync) { //Save version
-            var promises = [];
-            for(var i = 0; i<versions.length; i++){
-              versions[i].AZID = toolData.toolInfo.attributes.AZID;
-              promises.push(new Promise(function(resolve, reject){
-                Version.forge()
-                  .save(versions[i], {transacting: transaction, method: type})
-                  .then(function(ver){
-                    console.log("ready to commit "+ver.attributes.VERSION+"!");
-                    resolve(0);
-                  })
-                  .catch(function(err){
-                    console.log("need to rollback version", err);
-                    resolve(-1);
-                  });
-              }));
-            }
-            Promise.all(promises).then(function(values){
-              console.log(values);
-              if(values.indexOf(-1)>-1)
-                return callbackAsync('Error with version');
-              else{
-                return callbackAsync(null, toolData);
-              }
-            });
-          },
+          // function(toolData, callbackAsync) { //Save version
+          //   var promises = [];
+          //   for(var i = 0; i<versions.length; i++){
+          //     versions[i].AZID = toolData.toolInfo.attributes.AZID;
+          //     promises.push(new Promise(function(resolve, reject){
+          //       Version.forge()
+          //         .save(versions[i], {transacting: transaction, method: type})
+          //         .then(function(ver){
+          //           console.log("ready to commit "+ver.attributes.VERSION+"!");
+          //           resolve(0);
+          //         })
+          //         .catch(function(err){
+          //           console.log("need to rollback version", err);
+          //           resolve(-1);
+          //         });
+          //     }));
+          //   }
+          //   Promise.all(promises).then(function(values){
+          //     console.log(values);
+          //     if(values.indexOf(-1)>-1)
+          //       return callbackAsync('Error with version');
+          //     else{
+          //       return callbackAsync(null, toolData);
+          //     }
+          //   });
+          // },
           function(toolData, callbackAsync) { //Save license
+            if(Object.keys(license).length==0)
+              return callbackAsync(null, toolData);
             async.waterfall([
               function(cb){
                 License.forge()
@@ -544,6 +629,7 @@ module.exports = {
           },
           function(toolData, callbackAsync) { //Save funding
             var promises = [];
+            var insertFunding = [];
             for(var i = 0; i<agency.length; i++){
               promises.push(new Promise(function(resolve, reject){
                 async.waterfall([
@@ -559,6 +645,7 @@ module.exports = {
                         }
                         else{
                           console.log('Found existing Agency:', a.attributes.NAME);
+                          insertFunding.push(a);
                           return cb(null, true, a, currentFunding);
                         }
                       })
@@ -575,6 +662,7 @@ module.exports = {
                       .save(newAgency, {transacting: transaction, method: type})
                       .then(function(a){
                         console.log("ready to commit "+a.attributes.NAME+"!");
+                        insertFunding.push(a);
                         return cb(null, a, newFunding);
                       })
                       .catch(function(err){
@@ -582,20 +670,20 @@ module.exports = {
                         return cb('error');
                       });
                   },
-                  function(newAgency, newFunding, cb){
-                    newFunding.AZID = toolData.toolInfo.attributes.AZID;
-                    newFunding.AGENCY_ID = newAgency.attributes.AGENCY_ID;
-                    Funding.forge()
-                      .save(newFunding, {transacting: transaction, method: type})
-                      .then(function(f){
-                        console.log("ready to commit "+f.attributes.GRANT_NUM+"!");
-                        return cb(null);
-                      })
-                      .catch(function(err){
-                        console.log("need to rollback funding", err);
-                        return cb('error');
-                      });
-                  }
+                  // function(newAgency, newFunding, cb){
+                  //   newFunding.AZID = toolData.toolInfo.attributes.AZID;
+                  //   newFunding.AGENCY_ID = newAgency.attributes.AGENCY_ID;
+                  //   Funding.forge()
+                  //     .save(newFunding, {transacting: transaction, method: type})
+                  //     .then(function(f){
+                  //       console.log("ready to commit "+f.attributes.GRANT_NUM+"!");
+                  //       return cb(null);
+                  //     })
+                  //     .catch(function(err){
+                  //       console.log("need to rollback funding", err);
+                  //       return cb('error');
+                  //     });
+                  // }
                 ],
                 function(error){
                   if(error==null || error=='found'){
@@ -613,6 +701,7 @@ module.exports = {
               if(values.indexOf(-1)>-1)
                 return callbackAsync('Error with funding');
               else{
+                toolData.funding = insertFunding;
                 return callbackAsync(null, toolData);
               }
             });
@@ -641,10 +730,10 @@ module.exports = {
                 console.log("rolling back "+tags[i].NAME+"!");
                 transaction.rollback(tags[i]);
               }
-              for(var i = 0; i<links.length; i++){
-                console.log("rolling back "+links[i].URL+"!");
-                transaction.rollback(links[i]);
-              }
+              // for(var i = 0; i<links.length; i++){
+              //   console.log("rolling back "+links[i].URL+"!");
+              //   transaction.rollback(links[i]);
+              // }
               for(var i = 0; i<langs.length; i++){
                 console.log("rolling back "+langs[i].NAME+"!");
                 transaction.rollback(langs[i]);
@@ -653,16 +742,16 @@ module.exports = {
                 console.log("rolling back "+platforms[i].NAME+"!");
                 transaction.rollback(platforms[i]);
               }
-              for(var i = 0; i<versions.length; i++){
-                console.log("rolling back "+versions[i].VERSION+"!");
-                transaction.rollback(versions[i]);
-              }
+              // for(var i = 0; i<versions.length; i++){
+              //   console.log("rolling back "+versions[i].VERSION+"!");
+              //   transaction.rollback(versions[i]);
+              // }
               console.log("rolling back "+license.NAME+"!");
               transaction.rollback(license);
               for(var i = 0; i<agency.length; i++){
                 console.log("rolling back "+agency[i].NAME+" "+funding[i].GRANT_NUM+"!");
                 transaction.rollback(agency[i]);
-                transaction.rollback(funding[i]);
+                //transaction.rollback(funding[i]);
               }
             }
             else{
@@ -699,6 +788,24 @@ module.exports = {
               console.log('attach user:', req.user);
               toolData.toolInfo.users().attach(req.user);
 
+              m_tool.azid = toolData.toolInfo.attributes.AZID;
+              for(var i = 0; i<toolData.funding.length; i++){
+                var m_fund = new M_funding;
+                m_fund.agency_id = toolData.funding[i].attributes.AGENCY_ID;
+                m_fund.funding_agency = agency[i].NAME;
+                m_fund.funding_grant = funding[i].GRANT_NUM;
+                m_tool.funding.push(m_fund);
+              }
+
+              console.log('attach institutions');
+              toolData.toolInfo.institutions().attach(institutions);
+
+              m_tool.save(function (err) {
+                if(err)
+                  console.log('mongo error', err);
+                console.log('mongo success');
+              });
+
 
             }
             //return res.send("UPDATE COMPLETE!"); //Return whatever page or message
@@ -706,6 +813,9 @@ module.exports = {
       );
     }).then(function(){
       console.log(toolInfo.NAME+" was successfully inserted!");
+      response.success = true;
+      response.message = "Successfully inserted "+toolInfo.NAME;
+      res.send(response);
     }).catch(function(err){
       console.log(err);
     });

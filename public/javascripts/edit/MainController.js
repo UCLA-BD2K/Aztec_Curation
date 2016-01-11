@@ -829,11 +829,19 @@
         license: vm.license,
         funding: vm.funding
       };
-      $.post("/reg", submit)
-        .done(function(data) {
-          console.log('Inserted?', data.success)
-          alert("Data Loaded: " + data.message);
-        });
+      $.ajax({
+          url: window.location.pathname,
+          type: 'PUT',
+          data: submit
+      }).done(function(data) {
+        console.log('Inserted?', data.success)
+        alert("Data Loaded: " + data.message);
+      });
+      // $.put(".", submit)
+      //   .done(function(data) {
+      //     console.log('Inserted?', data.success)
+      //     alert("Data Loaded: " + data.message);
+      //   });
       //console.log(JSON.stringify(submit));
     };
 
