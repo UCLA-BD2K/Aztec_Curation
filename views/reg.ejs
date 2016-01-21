@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Register</title>
+  <title><%=title%></title>
   <link rel="stylesheet" type="text/css" href="/stylesheets/register/styles.css">
   <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <link rel="stylesheet" href="/stylesheets/register/ng-tags-input.min.css">
@@ -12,6 +12,7 @@
   <script>
     var current_sec = '#part1';
     $(document).ready(function() {
+
       console.log(2);
       $('#b1next').on('click', function() {
         $('#part1').hide();
@@ -154,11 +155,11 @@
   </style>
 </head>
 
-<body ng-app="formlyApp" ng-controller="MainController as vm">
-    <%- include ./partials/header.ejs %>
+<body ng-app="Aztec" ng-controller="MainController as vm" <%= init %> >
+  <%- include ./partials/header.ejs %>
   <div class='row'>
     <div class="text-center">
-      <h1>Register New Resource</h1>
+      <h1><%=heading%></h1>
     </div>
     <div class="col-md-2 col-md-offset-8">
       <button id='save' class="btn btn-primary">Save</button>
@@ -287,7 +288,7 @@
         </div>
         <div id='modal-submit' class='modal-footer' style="display: none;">
           <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-          <button type='button' class='btn btn-primary' ng-click='vm.onSubmit()'>Submit resource</button>
+          <button type='button' class='btn btn-primary' ng-click='vm.<%=submitFunc%>'>Submit resource</button>
         </div>
         <div id='modal-warn' class='modal-footer' style="display: none;">
           <button type='button' class='btn btn-default' data-dismiss='modal'>Okay</button>
@@ -327,7 +328,7 @@
       </span>
     </p>
   </script>
-  <script type="text/ng-template" id="typeahead.html">
+  <script type="text/ng-template" id="typeahead-async.html">
   <div class="form-group ng-scope" ng-class="{'has-error': showError}">
     <label class="control-label">{{to.label}}{{to.required ? '*' : ''}}</label>
     <input type="text" class="form-control ng-pristine ng-invalid ng-valid-required ng-touched" ng-model="model[options.key]" placeholder="{{to.placeholder}}" uib-typeahead="item for item in getItems($viewValue, to.link)" typeahead-loading="loadingItems"
@@ -337,6 +338,9 @@
       <i class="glyphicon glyphicon-remove"></i> No Results Found
     </div>
     </div>
+  </script>
+  <script type="text/ng-template" id="typeahead.html">
+    <input type="text" ng-model="model[options.key]" uib-typeahead="item for item in to.options | filter:$viewValue | limitTo:8" class="form-control">
   </script>
   <script type="text/ng-template" id="tags.html">
     <label>{{to.label}}</label>
@@ -352,7 +356,11 @@
   </script>
   <script type="text/ng-template" id="ui-select-single-async-search.html">
       <ui-select data-ng-model="model[options.key]" data-required="{{to.required}}" data-disabled="{{to.disabled}}" theme="bootstrap">
-        <ui-select-match placeholder="{{to.placeholder}}">{{$select.selected[to.otherProp]}} [{{$select.selected[to.labelProp]}}]</ui-select-match>
+
+        <ui-select-match placeholder="{{to.placeholder}}">
+        {{$select.selected[to.otherProp]|| model[to.otherProp]}} [{{$select.selected[to.labelProp]}}]
+
+        </ui-select-match>
         <ui-select-choices data-repeat="{{to.ngOptions}}" data-refresh="to.refresh($select.search, options, to.endpoint)" data-refresh-delay="{{to.refreshDelay}}">
           <div ng-bind-html="option[to.labelProp] | highlight: $select.search"></div>
           <div><small>{{option[to.otherProp]}}</small></div>
@@ -381,6 +389,7 @@
 
 <!-- Application Scripts -->
 <script src="<%=editURL%>/javascripts/register/app.js"></script>
-<script src="<%=editURL%>/javascripts/<%=type%>/MainController.js"></script>
+<script src="<%=editURL%>/javascripts/register/MainController.js"></script>
+
 
 </html>

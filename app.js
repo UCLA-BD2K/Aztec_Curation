@@ -1,7 +1,7 @@
+var logger = require("./config/logger");
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
-var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
@@ -39,7 +39,8 @@ app.use(auth.connect(basic));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+logger.debug("Overriding 'Express' logger");
+app.use(require('morgan')({ "stream": logger.stream }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -94,15 +95,16 @@ passport.use(new LocalStrategy({
   }, function(email, password, done) {
    new User({EMAIL: email}).fetch().then(function(data) {
       var user = data;
-      console.log(data);
       if(user === null) {
+				 logger.info('User %s: invalid username', email);
          return done(null, false, {message: 'Invalid username or password'});
       } else {
          user = data.toJSON();
-         //console.log(password+' * '+user.PASSWORD);
          if(!bcrypt.compareSync(password, user.PASSWORD)) {
+					 	logger.info('User %s: invalid password', email);
             return done(null, false, {message: 'Invalid username or password'});
          } else {
+					  logger.info('User %s: Successful login', email);
             return done(null, user);
          }
       }
