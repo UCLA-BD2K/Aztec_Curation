@@ -1,6 +1,5 @@
 var Bookshelf = require('../../config/bookshelf.js');
 var Link = require('./relatedLinks.js');
-var Author = require('./author.js');
 var Domain = require('./domain.js');
 var Downstream = require('./downstream.js');
 var Upstream = require('./upstream.js');
@@ -31,9 +30,6 @@ var toolSchema = Bookshelf.Model.extend({
     links: function() {
       return this.hasMany(Link, 'AZID');
     },
-    authors: function() {
-      return this.belongsToMany(Author, 'TOOL_AUTHOR', 'AZID', 'AUTHOR_ID');
-    },
     domains: function() {
       return this.hasMany(Domain, 'AZID');
     },
@@ -56,7 +52,7 @@ var toolSchema = Bookshelf.Model.extend({
       return this.belongsToMany(Format, 'TOOL_IO', 'AZID', 'IO_ID');
     },
     license: function() {
-      return this.belongsToMany(License, 'TOOL_LICENSE', 'AZID', 'LICENSE_ID')
+      return this.hasMany(License, 'AZID');
     },
     platform: function() {
       return this.belongsToMany(Platform, 'TOOL_PLATFORM', 'AZID', 'PLATFORM_ID');

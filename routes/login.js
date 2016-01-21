@@ -2,10 +2,13 @@ var bcrypt = require('bcrypt-nodejs');
 var passport = require('passport');
 var User  = require('../models/mysql/user.js');
 var Tool  = require('../models/mysql/tool.js');
+var util = require('./utilities/util.js');
+var db = require('./utilities/db.js');
+var logger = require("../config/logger");
 
 
 function loginPost(req, res, next) {
-    console.log(req.body);
+    logger.debug(req.body);
     var response = {};
     passport.authenticate('local', function(err, user, info) {
       if(err) {
@@ -50,7 +53,7 @@ module.exports = {
   },
   postLogin: loginPost,
   postSignup: function(req, res, next) {
-      console.log(req.body);
+      logger.debug(req.body);
       var user = req.body;
        var usernamePromise = null;
        usernamePromise = new User({EMAIL: user.email}).fetch();
@@ -64,7 +67,7 @@ module.exports = {
              //****************************************************//
              var password = user.password;
              var hash = bcrypt.hashSync(password);
-             console.log(user);
+             logger.debug(user);
              var signUpUser = new User({
                EMAIL: user.email,
                FIRST_NAME: user.firstname,
@@ -89,8 +92,6 @@ module.exports = {
   },
   getOldReg: function(req, res, next) {
       var loginName = 'Login';
-      console.log(1);
-      console.log('user', req.user);
       if(req.isAuthenticated())
         loginName = req.user.attributes.FIRST_NAME;
       res.render('register.ejs', {name: loginName, loggedIn : req.isAuthenticated()});
@@ -100,7 +101,7 @@ module.exports = {
     var loginName = 'Login';
     if(req.isAuthenticated())
       loginName = req.user.attributes.FIRST_NAME;
-    res.render('reg.ejs', {name: loginName, loggedIn : req.isAuthenticated(), editURL: ".", type: 'edit'});
+    res.render('reg.ejs', {title:"Register", heading:"Register New Resource", name: loginName, loggedIn : req.isAuthenticated(), editURL: ".", submitFunc: "onNewSubmit()", tool: null, init: ""});
 
   },
   getPortal: function(req, res, next) {
@@ -115,14 +116,15 @@ module.exports = {
           return res.render('portal.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: 'not found'});
         }
         else{
-          console.log('Found existing user:', user.attributes.FIRST_NAME);
-           console.log('tools', user.tools());
+          logger.info('Found existing user: %s', user.attributes.FIRST_NAME);
+          logger.debug(user.tools());
           return res.render('portal.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: user});
 
         }
       })
       .catch(function(err){
-        console.log('query user error', err);
+        logger.info('query user error');
+        logger.debug(err);
         return res.render('portal.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: 'error'});
       })
   },
@@ -137,12 +139,13 @@ module.exports = {
           return res.render('all.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: 'not found'});
         }
         else{
-          console.log('tools', tool);
+          logger.debug(tool);
           return res.render('all.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: tool});
         }
       })
       .catch(function(err){
-        console.log('query tool error', err);
+        logger.info('query tool error');
+        logger.debug(err);
         return res.render('all.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: 'error'});
       })
   },
@@ -151,7 +154,7 @@ module.exports = {
     if(req.isAuthenticated())
       loginName = req.user.attributes.FIRST_NAME;
 
-    console.log('find tool ', req.params.id);
+    logger.info('Find tool #%s', req.params.id);
     Tool.forge()
       .query({where: {AZID: req.params.id}})
       .fetch({withRelated: ['authors', 'links', 'domains', 'agency', 'funding', 'license', 'platform', 'version', 'tags', 'users', 'resource_types', 'languages']})
@@ -160,12 +163,12 @@ module.exports = {
           return res.render('tool.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: 'not found'});
         }
         else{
-          console.log('tools', tool);
           return res.render('tool.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: tool});
         }
       })
       .catch(function(err){
-        console.log('query tool error', err);
+        logger.info('query tool error');
+        logger.debug(err);
         return res.render('tool.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: 'error'});
       })
   },
@@ -173,28 +176,71 @@ module.exports = {
     var azid = req.params.azid;
     var regex = /(AZ\d{7})/;
     if(azid.length!=9){
-      console.log('not valid!');
+      logger.info('Invalid AZID: %s', azid);
     }else{
       var match = azid.match(regex);
-      console.log('match', match);
+      logger.debug(match);
       if(match!=null){
         var id = parseInt(azid.substring(2));
-        console.log('id number', id);
+        logger.debug('id number: %d', id);
         res.redirect('/tool/'+id);
       }
     }
     res.send('invalid AZID');
   },
   getEdit: function(req, res, next){
-    console.log(req.params.id);
-    var loginName = 'Login';
-    if(req.isAuthenticated())
-      loginName = req.user.attributes.FIRST_NAME;
-    res.render('reg.ejs', {name: loginName, loggedIn : req.isAuthenticated(), editURL: "..", type: 'edit'});
-  },
-  putEdit: function(req, res, next){
-    console.log(req.body);
-    res.send('got it');
+    var id = req.params.id;
+    id = parseInt(id);
+    if(!req.isAuthenticated()){
+      return res.send({
+        status: 'error',
+        message: 'Not logged in'
+      });
+    }
+    var userID = req.user.attributes.USER_ID;
+    logger.info("User %s is accessing resource #%s", userID, id);
+    Tool.forge()
+      .where({AZID: id})
+      .fetch({withRelated: ['users']})
+      .then(function(tool){
+
+        var toolJson = tool.toJSON();
+        var access = false;
+        toolJson['users'].forEach(function(user){
+          logger.debug(user);
+          if(userID==user.USER_ID){
+            access = true;
+          }
+        });
+        if(access==false){
+          return res.send({
+            status: 'error',
+            message: 'You do not have permission to edit this tool.'
+          });
+        }
+        else{
+          var loginName = 'Login';
+          if(req.isAuthenticated())
+            loginName = req.user.attributes.FIRST_NAME;
+          db.searchToolByID(id, function(result){
+            return res.render('reg.ejs', {title: "Edit",
+              heading: "Edit Resource #"+id,
+              name: loginName,
+              loggedIn : req.isAuthenticated(),
+              editURL: "..",
+              submitFunc: "onEditSubmit()",
+              tool: result,
+              init: "data-ng-init=vm.init("+id+")"});
+          });
+        }
+      })
+      .catch(function(err){
+        return res.send({
+          status: 'error',
+          message: 'Invalid AZID'
+        });
+      })
+
   }
 
 };

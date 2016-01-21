@@ -1,7 +1,10 @@
+var logger = require("../../config/logger");
 var Bookshelf = require('../../config/bookshelf.js');
 var async = require('async');
 var Institution = require('../../models/mysql/institution.js');
-var Alias = require('../../models/mysql/inst_alias.js');
+var InstAlias = require('../../models/mysql/inst_alias.js');
+var Language = require('../../models/mysql/language.js');
+var LangAlias = require('../../models/mysql/lang_alias.js');
 var Set = require('collections/set');
 
 module.exports = {
@@ -21,19 +24,18 @@ module.exports = {
 
     // var obj = json[1];
     json.forEach(function(obj){
-      var name = obj['name'].toUpperCase();
+      var name = obj['name'];
       var inst = {NAME: name};
       async.waterfall([
         function(cb){
           Institution.forge()
             .save(inst)
             .then(function(i){
-              console.log("saved "+name+"!");
+              logger.debug("Saved institution %s!", name);
               return cb(null, i);
             })
             .catch(function(err){
-              console.log("error "+name+"!");
-              console.log("skipping");
+              logger.debug("Error for institution %s!", name);
               return cb(name);
             });
         },
@@ -46,23 +48,22 @@ module.exports = {
           });
 
           var alias =  new AliasObj(newInst.attributes.INST_ID, newInst.attributes.NAME, newInst.attributes.NAME);
-          console.log(JSON.stringify(alias));
           aliasSet.add(alias);
 
-          if(name.startsWith(UNIVERSITY_OF_THE)){
+          if(name.toUpperCase().startsWith(UNIVERSITY_OF_THE)){
             var newAlias =  new AliasObj(newInst.attributes.INST_ID, newInst.attributes.NAME, newInst.attributes.NAME.substring(UNIVERSITY_OF_THE.length));
             aliasSet.add(newAlias);
-          }else if(name.startsWith(UNIVERSITY_OF)){
+          }else if(name.toUpperCase().startsWith(UNIVERSITY_OF)){
             var newAlias =  new AliasObj(newInst.attributes.INST_ID, newInst.attributes.NAME, newInst.attributes.NAME.substring(UNIVERSITY_OF.length));
             aliasSet.add(newAlias);
           }
 
           obj['aliases'].forEach(function(element){
-            var aliasName = element.toUpperCase();
-            if(aliasName.startsWith(UNIVERSITY_OF_THE)){
+            var aliasName = element;
+            if(aliasName.toUpperCase().startsWith(UNIVERSITY_OF_THE)){
               var newAlias =  new AliasObj(newInst.attributes.INST_ID, newInst.attributes.NAME, aliasName.substring(UNIVERSITY_OF_THE.length));
               aliasSet.add(newAlias);
-            }else if(aliasName.startsWith(UNIVERSITY_OF)){
+            }else if(aliasName.toUpperCase().startsWith(UNIVERSITY_OF)){
               var newAlias =  new AliasObj(newInst.attributes.INST_ID, newInst.attributes.NAME, aliasName.substring(UNIVERSITY_OF.length));
               aliasSet.add(newAlias);
             }
@@ -71,29 +72,100 @@ module.exports = {
           });
 
           var arr = aliasSet.toArray();
-          console.log(JSON.stringify(arr));
+
           arr.forEach(function(element){
-            Alias.forge()
+            InstAlias.forge()
               .save(element)
               .then(function(i){
-                console.log("saved alias "+i.attributes.ALIAS+"!");
+                logger.debug("Saved alias %s!", i.attributes.ALIAS);
               })
               .catch(function(err){
-                console.log("error alias "+element.ALIAS+"!", err);
-                console.log("skipping");
+                logger.debug("Error for alias %s!", element.ALIAS);
               });
           });
           return cb(null);
         }],
         function(error){
           if(error!=null)
-            console.log('Async error', error);
+            logger.debug("Async Error");
         }
       );
 
     });
 
     res.send(result);
+
+  },
+  insertLang: function(req, res, next) {
+    var json = require('../../misc/database/languages_aliases.json');
+    var result = [];
+
+
+    var AliasObj = function(lang_id, primary, alias){
+      this.LANG_ID = lang_id;
+      this.PRIMARY_NAME = primary;
+      this.ALIAS = alias;
+    };
+
+    for(var key in json){
+
+      var obj = json[key];
+      async.waterfall([
+        function(cb){
+          Language.forge()
+            .save({NAME: obj['name']})
+            .then(function(lang){
+              logger.debug("Saved language %s!", lang.attributes.NAME);
+              return cb(null, lang);
+            })
+            .catch(function(err){
+              logger.debug("Error for language %s!", obj['name']);
+              return cb(obj);
+            });
+        },
+        function(newLang, cb){
+          var aliasSet = new Set(null, function(a, b){
+            return a.ALIAS==b.ALIAS;
+          }, function(object){
+            return object.ALIAS;
+          });
+
+          var name = newLang.attributes.NAME;
+          var alias =  new AliasObj(newLang.attributes.LANG_ID, name, name);
+          aliasSet.add(alias);
+
+          var aliases = json[name]['aliases'];
+          //return cb(null);
+          if(aliases!=undefined){
+            aliases.forEach(function(a){
+              var newAlias =  new AliasObj(newLang.attributes.LANG_ID, name, a);
+              aliasSet.add(newAlias);
+            })
+          }
+          var arr = aliasSet.toArray();
+          //console.log(JSON.stringify(arr));
+          arr.forEach(function(element){
+            LangAlias.forge()
+              .save(element)
+              .then(function(i){
+                //console.log("saved alias "+i.attributes.ALIAS+"!");
+              })
+              .catch(function(err){
+                logger.debug("Error for alias %s!", element.ALIAS);
+              });
+          });
+          cb(null);
+        }
+      ],
+      function(error){
+        if(error!=null)
+          logger.debug("Async Error");
+      }
+    );
+
+    }
+
+    res.send('got it');
 
   }
 }

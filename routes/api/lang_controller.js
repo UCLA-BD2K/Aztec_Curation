@@ -1,7 +1,7 @@
 var Bookshelf = require('../../config/bookshelf.js');
 var async = require('async');
-var Institution = require('../../models/mysql/institution.js');
-var Alias = require('../../models/mysql/inst_alias.js');
+var Language = require('../../models/mysql/language.js');
+var Alias = require('../../models/mysql/lang_alias.js');
 var Set = require('collections/set');
 
 var LIMIT_DEFAULT = 10;
@@ -24,7 +24,7 @@ module.exports = {
     }
 
     if(params['q']==undefined){
-      return getAllInst(res, limit, offset, limExist, offExist);
+      return getAllLang(res, limit, offset, limExist, offExist);
     }else{
       var term = params['q'];
       return queryDB(res, term, limit, offset, limExist, offExist);
@@ -32,8 +32,8 @@ module.exports = {
   }
 };
 
-function getAllInst(res, lim, off, limExist, offExist){
-  Institution.forge()
+function getAllLang(res, lim, off, limExist, offExist){
+  Language.forge()
     .query(function (qb) {
       if(offExist){
         qb.offset(off);
@@ -41,7 +41,7 @@ function getAllInst(res, lim, off, limExist, offExist){
       if(limExist){
         qb.limit(lim);
       }
-      qb.orderBy('INST_ID');
+      qb.orderBy('LANG_ID');
     })
     .fetchAll()
     .then(function(i){
@@ -66,8 +66,8 @@ function queryDB(res, term, lim, off, limExist, offExist){
         qb.offset(off);
       }
 
-      qb.groupBy('INST_ID');
-      qb.column('PRIMARY_NAME', 'ALIAS', 'INST_ID');
+      qb.groupBy('LANG_ID');
+      qb.column('PRIMARY_NAME', 'ALIAS', 'LANG_ID');
     })
     .where('ALIAS', 'LIKE', term+'%')
     .fetchAll()

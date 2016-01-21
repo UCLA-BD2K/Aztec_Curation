@@ -3,6 +3,7 @@ var router = express.Router();
 var test = require('./test.js');
 var register = require('./register.js');
 var login = require('./login.js');
+var edit = require('./edit.js');
 
 
 /* GET home page. */
@@ -38,15 +39,15 @@ router.get('/create', isLoggedIn, login.getOldReg);
 
 router.get('/reg', isLoggedIn, login.getReg);
 
-router.post('/reg', register.saveTool);
+router.post('/reg', isLoggedIn, register.saveTool);
 
-router.get('/edit/:id', isLoggedIn, login.getEdit);
+router.get('/edit/:id', login.getEdit);
 
-router.put('/edit/:id', isLoggedIn, login.putEdit);
+router.put('/edit/:id', isLoggedIn, edit.putEdit);
 
 router.post('/login', login.postLogin );
 
-router.get('/logout', login.getLogout);
+router.get('/logout', isLoggedIn, login.getLogout);
 
 router.post('/signup', login.postSignup);
 

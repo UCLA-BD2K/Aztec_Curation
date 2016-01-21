@@ -1,5 +1,4 @@
 var async = require('async');
-var logger = require("../config/logger");
 var util = require('./utilities/util.js');
 var Tool = require('../models/mysql/tool.js');
 var Author = require('../models/mysql/author.js');
@@ -58,29 +57,30 @@ module.exports = {
 
     var m_tool = json['m_tool'];
 
-    logger.debug(obj);
+    console.log('user submitted', obj);
 
 
 
 
-    // console.log('tool info', JSON.stringify(toolInfo));
-    // console.log('author:',JSON.stringify(authors));
-    // console.log('resource types', JSON.stringify(res_types));
-    // console.log('domains', JSON.stringify(domains));
-    // console.log('tags', JSON.stringify(tags));
-    // console.log('links', JSON.stringify(links));
-    // console.log('languages', JSON.stringify(langs));
-    // console.log('platforms', JSON.stringify(platforms));
-    // console.log('version', JSON.stringify(versions));
-    // console.log('license', JSON.stringify(license));
-    // console.log('funding', JSON.stringify(agency), JSON.stringify(funding));
-    // console.log('mongo tool', JSON.stringify(m_tool));
+    console.log('tool info', JSON.stringify(toolInfo));
+    console.log('author:',JSON.stringify(authors));
+    console.log('resource types', JSON.stringify(res_types));
+    console.log('domains', JSON.stringify(domains));
+    console.log('tags', JSON.stringify(tags));
+    console.log('links', JSON.stringify(links));
+    console.log('languages', JSON.stringify(langs));
+    console.log('platforms', JSON.stringify(platforms));
+    console.log('version', JSON.stringify(versions));
+    console.log('license', JSON.stringify(license));
+    console.log('funding', JSON.stringify(agency), JSON.stringify(funding));
+    console.log('mongo tool', JSON.stringify(m_tool));
 
 
     var response = {};
     if(toolInfo.NAME==undefined || toolInfo.DESCRIPTION==undefined || (toolInfo.SOURCE_LINK==undefined && links.length==0)){
       response.success = false;
       response.message = "Must enter the minimum fields: Resource Name, Description, and Source Code URL or at least 1 link."
+      console.log(2);
       return res.send(response);
     }
 
@@ -97,15 +97,43 @@ module.exports = {
                 Tool.forge()
                   .save(toolInfo, {transacting: transaction, method: type})
                   .then(function(tool){
-                    logger.info("ready to commit %s!", toolInfo.NAME);
+                    console.log("ready to commit "+toolInfo.NAME+"!");
                     return callbackAsync(null, {toolInfo: tool});
                   })
                   .catch(function(){
-                    logger.info("need to rollback %s!", toolInfo.NAME);
+                    console.log("need to rollback "+toolInfo.NAME+"!");
                     return callbackAsync('Error with Tool Info', 0);
                   });
 
 
+          },
+          function(toolData, callbackAsync) { //Save author info
+            var promises = [];
+            var insertAuthors = [];
+            for(var i = 0; i<authors.length; i++){
+              promises.push(new Promise(function(resolve, reject){
+                Author.forge()
+                  .save(authors[i], {transacting: transaction, method: type})
+                  .then(function(author){
+                    console.log("ready to commit "+author.attributes.FIRST_NAME+"!");
+                    insertAuthors.push(author);
+                    resolve(0);
+                  })
+                  .catch(function(err){
+                    console.log("need to rollback author", err);
+                    resolve(-1);
+                  });
+              }));
+            }
+            Promise.all(promises).then(function(values){
+              console.log(values);
+              if(values.indexOf(-1)>-1)
+                return callbackAsync('Error with Authors', 0);
+              else{
+                toolData.authors = insertAuthors;
+                return callbackAsync(null, toolData);
+              }
+            });
           },
           function(toolData, callbackAsync) { //Save resource type
             var promises = [];
@@ -115,17 +143,17 @@ module.exports = {
                 Resource.forge()
                   .save(res_types[i], {transacting: transaction, method: type})
                   .then(function(res){
-                    logger.info("ready to commit %s!", res.attributes.RESOURCE_TYPE);
+                    console.log("ready to commit "+res.attributes.RESOURCE_TYPE+"!");
                     resolve(0);
                   })
                   .catch(function(err){
-                    logger.info("need to rollback resource type");
-                    logger.debug(err);
+                    console.log("need to rollback resource type", err);
                     resolve(-1);
                   });
               }));
             }
             Promise.all(promises).then(function(values){
+              console.log(values);
               if(values.indexOf(-1)>-1)
                 return callbackAsync('Error with resource type');
               else{
@@ -141,17 +169,17 @@ module.exports = {
                 Domain.forge()
                   .save(domains[i], {transacting: transaction, method: type})
                   .then(function(dom){
-                    logger.info("ready to commit %s!", dom.attributes.DOMAIN);
+                    console.log("ready to commit "+dom.attributes.DOMAIN+"!");
                     resolve(0);
                   })
                   .catch(function(err){
-                    logger.info("need to rollback domain info");
-                    logger.debug(err);
+                    console.log("need to rollback domain info", err);
                     resolve(-1);
                   });
               }));
             }
             Promise.all(promises).then(function(values){
+              console.log(values);
               if(values.indexOf(-1)>-1)
                 return callbackAsync('Error with domain info');
               else{
@@ -175,14 +203,13 @@ module.exports = {
                           return cb(null, currentTag);
                         }
                         else{
-                          logger.info('Found existing tag: %s', tag.attributes.NAME);
+                          console.log('Found existing tag:', tag.attributes.NAME);
                           insertTags.push(tag);
                           return cb('found');
                         }
                       })
                       .catch(function(err){
-                        logger.info('query tag error');
-                        logger.debug(err);
+                        console.log('query tag error', err);
                         return cb('error');
                       })
                   },
@@ -190,13 +217,12 @@ module.exports = {
                     Tag.forge()
                       .save(newtag, {transacting: transaction, method: type})
                       .then(function(tag){
-                        logger.info("ready to commit %s!", tag.attributes.NAME);
+                        console.log("ready to commit "+tag.attributes.NAME+"!");
                         insertTags.push(tag);
                         cb(null);
                       })
                       .catch(function(err){
-                        logger.info("need to rollback tags");
-                        logger.debug(err);
+                        console.log("need to rollback tags", err);
                         cb('error');
                       });
                   }
@@ -213,6 +239,7 @@ module.exports = {
               }));
             }
             Promise.all(promises).then(function(values){
+              console.log(values);
               if(values.indexOf(-1)>-1)
                 return callbackAsync('Error with tags');
               else{
@@ -221,6 +248,35 @@ module.exports = {
               }
             });
           },
+          // function(toolData, callbackAsync) { //Save links
+          //   var promises = [];
+          //   var insertLinks = [];
+          //   for(var i = 0; i<links.length; i++){
+          //     promises.push(new Promise(function(resolve, reject){
+          //       links[i].AZID = toolData.toolInfo.attributes.AZID;
+          //       Link.forge()
+          //         .save(links[i], {transacting: transaction, method: type})
+          //         .then(function(link){
+          //           console.log("ready to commit "+link.attributes.URL+"!");
+          //           insertLinks.push(link);
+          //           resolve(0);
+          //         })
+          //         .catch(function(err){
+          //           console.log("need to rollback links", err);
+          //           resolve(-1);
+          //         });
+          //     }));
+          //   }
+          //   Promise.all(promises).then(function(values){
+          //     console.log(values);
+          //     if(values.indexOf(-1)>-1)
+          //       return callbackAsync('Error with Links', 0);
+          //     else{
+          //       toolData.links = insertLinks;
+          //       return callbackAsync(null, toolData);
+          //     }
+          //   });
+          // },
           function(toolData, callbackAsync) { //Save languages
             var promises = [];
             var insertLangs = [];
@@ -237,14 +293,13 @@ module.exports = {
                           return cb(null, currentLang);
                         }
                         else{
-                          logger.info('Found existing language: %s', lang.attributes.NAME);
+                          console.log('Found existing language:', lang.attributes.NAME);
                           insertLangs.push(lang);
                           return cb('found');
                         }
                       })
                       .catch(function(err){
-                        logger.info('query language error');
-                        logger.debug(err);
+                        console.log('query language error', err);
                         return cb('error');
                       })
                   },
@@ -252,13 +307,12 @@ module.exports = {
                     Language.forge()
                       .save(newlang, {transacting: transaction, method: type})
                       .then(function(lang){
-                        logger.info("ready to commit %s!", lang.attributes.NAME);
+                        console.log("ready to commit "+lang.attributes.NAME+"!");
                         insertLangs.push(lang);
                         cb(null);
                       })
                       .catch(function(err){
-                        logger.info("need to rollback languages");
-                        logger.debug(err);
+                        console.log("need to rollback languages", err);
                         cb('error');
                       });
                   }
@@ -275,6 +329,7 @@ module.exports = {
               }));
             }
             Promise.all(promises).then(function(values){
+              console.log(values);
               if(values.indexOf(-1)>-1)
                 return callbackAsync('Error with languages');
               else{
@@ -288,30 +343,54 @@ module.exports = {
             var insertPlatforms = [];
             for(var i = 0; i<platforms.length; i++){
               promises.push(new Promise(function(resolve, reject){
-
-                  var currentPlatform = platforms[i];
-                  Platform.forge()
-                    .query({where: {NAME: currentPlatform.NAME}})
-                    .fetch()
-                    .then(function(platform){
-                      if(platform==null){
-                        return resolve(-1);
-                      }
-                      else{
-                        logger.info('Found existing platform: %s', platform.attributes.NAME);
+                async.waterfall([
+                  function(cb){
+                    var currentPlatform = platforms[i];
+                    Platform.forge()
+                      .query({where: {NAME: currentPlatform.NAME}})
+                      .fetch()
+                      .then(function(platform){
+                        if(platform==null){
+                          return cb(null, currentPlatform);
+                        }
+                        else{
+                          console.log('Found existing platform:', platform.attributes.NAME);
+                          insertPlatforms.push(platform);
+                          return cb('found');
+                        }
+                      })
+                      .catch(function(err){
+                        console.log('query platform error', err);
+                        return cb('error');
+                      })
+                  },
+                  function(newplatform, cb){
+                    Platform.forge()
+                      .save(newplatform, {transacting: transaction, method: type})
+                      .then(function(platform){
+                        console.log("ready to commit "+platform.attributes.NAME+"!");
                         insertPlatforms.push(platform);
-                        return resolve(0);
-                      }
-                    })
-                    .catch(function(err){
-                      logger.info('query platform error');
-                      logger.debug(err);
-                      return resolve(-1);
-                    })
+                        cb(null);
+                      })
+                      .catch(function(err){
+                        console.log("need to rollback platforms", err);
+                        cb('error');
+                      });
+                  }
+                ],
+                function(error){
+                  if(error==null || error=='found'){
+                    resolve(0);
+                  }
+                  else{
+                    resolve(-1);
+                  }
+                });
 
               }));
             }
             Promise.all(promises).then(function(values){
+              console.log(values);
               if(values.indexOf(-1)>-1)
                 return callbackAsync('Error with platforms');
               else{
@@ -320,30 +399,89 @@ module.exports = {
               }
             });
           },
+          // function(toolData, callbackAsync) { //Save version
+          //   var promises = [];
+          //   for(var i = 0; i<versions.length; i++){
+          //     versions[i].AZID = toolData.toolInfo.attributes.AZID;
+          //     promises.push(new Promise(function(resolve, reject){
+          //       Version.forge()
+          //         .save(versions[i], {transacting: transaction, method: type})
+          //         .then(function(ver){
+          //           console.log("ready to commit "+ver.attributes.VERSION+"!");
+          //           resolve(0);
+          //         })
+          //         .catch(function(err){
+          //           console.log("need to rollback version", err);
+          //           resolve(-1);
+          //         });
+          //     }));
+          //   }
+          //   Promise.all(promises).then(function(values){
+          //     console.log(values);
+          //     if(values.indexOf(-1)>-1)
+          //       return callbackAsync('Error with version');
+          //     else{
+          //       return callbackAsync(null, toolData);
+          //     }
+          //   });
+          // },
           function(toolData, callbackAsync) { //Save license
+            console.log('lic');
             var promises = [];
+            var insertLicenses = [];
             for(var i = 0; i<license.length; i++){
-              var newLicense = license[i];
-              newLicense.AZID = toolData.toolInfo.attributes.AZID;
               promises.push(new Promise(function(resolve, reject){
-                License.forge()
-                  .save(newLicense, {transacting: transaction, method: type})
-                  .then(function(lic){
-                    logger.info("ready to commit %s!"+lic.attributes.LICENSE_TYPE);
-                    return resolve(0);
-                  })
-                  .catch(function(err){
-                    logger.info("need to rollback license");
-                    logger.debug(err);
-                    return resolve(-1);
-                  });
-
-              }));
+                async.waterfall([
+                  function(cb){
+                    var currentLic = license[i];
+                    License.forge()
+                      .query({where: {NAME: currentLic.NAME, LINK: currentLic.LINK, VERSION: currentLic.VERSION, OPEN: 1}})
+                      .fetch()
+                      .then(function(lic){
+                        if(lic==null){
+                          return cb(null, currentLic);
+                        }
+                        else{
+                          console.log('Found existing license:', lic.attributes.NAME);
+                          insertLicenses.push(lic);
+                          return cb('found');
+                        }
+                      })
+                      .catch(function(err){
+                        console.log('query license error', err);
+                        return cb('error');
+                      })
+                  },
+                  function(newLicense, cb){
+                    License.forge()
+                      .save(newLicense, {transacting: transaction, method: type})
+                      .then(function(lic){
+                        console.log("ready to commit "+lic.attributes.NAME+"!");
+                        insertLicenses.push(lic);
+                        return cb('new');
+                      })
+                      .catch(function(err){
+                        console.log("need to rollback license", err);
+                        return cb('error');
+                      });
+                  }
+                ],
+                function(error){
+                  if(error==null || error=='found' || error=='new'){
+                    resolve(0);
+                  }
+                  else{
+                    resolve(-1);
+                  }
+                });
+              }))
             }
             Promise.all(promises).then(function(values){
+              console.log(values);
               if(values.indexOf(-1)>-1)
                 return callbackAsync('Error with license');
               else{
+                toolData.licenses = insertLicenses;
                 return callbackAsync(null, toolData);
               }
             });
@@ -365,14 +503,13 @@ module.exports = {
                           return cb(null, false, currentAgency, currentFunding);
                         }
                         else{
-                          logger.info('Found existing Agency: %s', a.attributes.NAME);
+                          console.log('Found existing Agency:', a.attributes.NAME);
                           insertFunding.push(a);
                           return cb(null, true, a, currentFunding);
                         }
                       })
                       .catch(function(err){
-                        logger.info('query agency error');
-                        logger.debug(err);
+                        console.log('query agency error', err);
                         return cb('error');
                       })
                   },
@@ -383,16 +520,29 @@ module.exports = {
                     Agency.forge()
                       .save(newAgency, {transacting: transaction, method: type})
                       .then(function(a){
-                        logger.info("ready to commit %s!", a.attributes.NAME);
+                        console.log("ready to commit "+a.attributes.NAME+"!");
                         insertFunding.push(a);
                         return cb(null, a, newFunding);
                       })
                       .catch(function(err){
-                        logger.info("need to rollback agency");
-                        logger.debug(err);
+                        console.log("need to rollback agency", err);
                         return cb('error');
                       });
                   },
+                  // function(newAgency, newFunding, cb){
+                  //   newFunding.AZID = toolData.toolInfo.attributes.AZID;
+                  //   newFunding.AGENCY_ID = newAgency.attributes.AGENCY_ID;
+                  //   Funding.forge()
+                  //     .save(newFunding, {transacting: transaction, method: type})
+                  //     .then(function(f){
+                  //       console.log("ready to commit "+f.attributes.GRANT_NUM+"!");
+                  //       return cb(null);
+                  //     })
+                  //     .catch(function(err){
+                  //       console.log("need to rollback funding", err);
+                  //       return cb('error');
+                  //     });
+                  // }
                 ],
                 function(error){
                   if(error==null || error=='found'){
@@ -406,6 +556,7 @@ module.exports = {
               }));
             }
             Promise.all(promises).then(function(values){
+              console.log(values);
               if(values.indexOf(-1)>-1)
                 return callbackAsync('Error with funding');
               else{
@@ -417,75 +568,91 @@ module.exports = {
 
         ],
           function(error, toolData) {
-
+            console.log('finish',error, toolData);
             if(error!=null){
-              logger.info('Error with inserting: %s', error);
-              logger.info("rolling back %s!", toolInfo.NAME);
-              transaction.rollback();
-              logger.info('Finished rollback');
-              // for(var i = 0; i<res_types.length; i++){
-              //   console.log("rolling back "+res_types[i].RESOURCE_TYPE+"!");
-              //   transaction.rollback(res_types[i]);
+              console.log(error);
+              console.log("rolling back "+toolInfo.NAME+"!");
+              transaction.rollback(toolInfo);
+              for(var i = 0; i<authors.length; i++){
+                console.log("rolling back "+authors[i].FIRST_NAME+"!");
+                transaction.rollback(authors[i]);
+              }
+              for(var i = 0; i<res_types.length; i++){
+                console.log("rolling back "+res_types[i].RESOURCE_TYPE+"!");
+                transaction.rollback(res_types[i]);
+              }
+              for(var i = 0; i<domains.length; i++){
+                console.log("rolling back "+domains[i].DOMAIN+"!");
+                transaction.rollback(domains[i]);
+              }
+              for(var i = 0; i<tags.length; i++){
+                console.log("rolling back "+tags[i].NAME+"!");
+                transaction.rollback(tags[i]);
+              }
+              // for(var i = 0; i<links.length; i++){
+              //   console.log("rolling back "+links[i].URL+"!");
+              //   transaction.rollback(links[i]);
               // }
-              // for(var i = 0; i<domains.length; i++){
-              //   console.log("rolling back "+domains[i].DOMAIN+"!");
-              //   transaction.rollback(domains[i]);
+              for(var i = 0; i<langs.length; i++){
+                console.log("rolling back "+langs[i].NAME+"!");
+                transaction.rollback(langs[i]);
+              }
+              for(var i = 0; i<platforms.length; i++){
+                console.log("rolling back "+platforms[i].NAME+"!");
+                transaction.rollback(platforms[i]);
+              }
+              // for(var i = 0; i<versions.length; i++){
+              //   console.log("rolling back "+versions[i].VERSION+"!");
+              //   transaction.rollback(versions[i]);
               // }
-              // for(var i = 0; i<tags.length; i++){
-              //   console.log("rolling back "+tags[i].NAME+"!");
-              //   transaction.rollback(tags[i]);
-              // }
-              //
-              // for(var i = 0; i<langs.length; i++){
-              //   console.log("rolling back "+langs[i].NAME+"!");
-              //   transaction.rollback(langs[i]);
-              // }
-              // for(var i = 0; i<platforms.length; i++){
-              //   console.log("rolling back "+platforms[i].NAME+"!");
-              //   transaction.rollback(platforms[i]);
-              // }
-              //
-              // for(var i = 0; i<license.length; i++){
-              //   console.log("rolling back "+license[i].NAME+"!");
-              //   transaction.rollback(license[i]);
-              // }
-              //
-              // for(var i = 0; i<agency.length; i++){
-              //   console.log("rolling back "+agency[i].NAME+" "+funding[i].GRANT_NUM+"!");
-              //   transaction.rollback(agency[i]);
-              // }
+              for(var i = 0; i<license.length; i++){
+                console.log("rolling back "+license[i].NAME+"!");
+                transaction.rollback(license[i]);
+                //transaction.rollback(funding[i]);
+              }
+
+              for(var i = 0; i<agency.length; i++){
+                console.log("rolling back "+agency[i].NAME+" "+funding[i].GRANT_NUM+"!");
+                transaction.rollback(agency[i]);
+                //transaction.rollback(funding[i]);
+              }
             }
             else{
-              logger.info("Committing Tool "+toolData.toolInfo.attributes.NAME+"!");
+              console.log("Committing Tool "+toolData.toolInfo.attributes.NAME+"!");
               transaction.commit(toolData.toolInfo);
+
+              // committing author and tool relationship
+              for(var i = 0; i<toolData.authors.length; i++){
+                console.log("Committing "+authors[i].FIRST_NAME+"!");
+                toolData.toolInfo.authors().attach(toolData.authors[i]);
+              }
 
 
               for(var i = 0; i<toolData.tags.length; i++){
-                logger.debug("Committing "+tags[i].NAME+"!");
-                logger.debug('attach tags:', toolData.tags[i]);
+                console.log("Committing "+tags[i].NAME+"!");
+                console.log('attach tags:', toolData.tags[i]);
                 toolData.toolInfo.tags().attach(toolData.tags[i]);
               }
               for(var i = 0; i<toolData.langs.length; i++){
-                logger.debug("Committing "+langs[i].NAME+"!");
-                logger.debug('attach languages:', toolData.langs[i]);
+                console.log("Committing "+langs[i].NAME+"!");
+                console.log('attach languages:', toolData.langs[i]);
                 toolData.toolInfo.languages().attach(toolData.langs[i]);
               }
 
               for(var i = 0; i<toolData.platforms.length; i++){
-                logger.debug("Committing "+platforms[i].NAME+"!");
-                logger.debug('attach platforms:', toolData.platforms[i]);
+                console.log("Committing "+platforms[i].NAME+"!");
+                console.log('attach platforms:', toolData.platforms[i]);
                 toolData.toolInfo.platform().attach(toolData.platforms[i]);
               }
 
+              console.log('attach license:', toolData.licenses);
+              toolData.toolInfo.license().attach(toolData.licenses);
 
-              if(req.user!=undefined){
-                logger.debug('attach user:', req.user);
-                toolData.toolInfo.users().attach(req.user);
-              }
+              console.log('attach user:', req.user);
+              toolData.toolInfo.users().attach(req.user);
 
               m_tool.azid = toolData.toolInfo.attributes.AZID;
               for(var i = 0; i<toolData.funding.length; i++){
-
                 var m_fund = new M_funding;
                 m_fund.agency_id = toolData.funding[i].attributes.AGENCY_ID;
                 m_fund.funding_agency = agency[i].NAME;
@@ -493,15 +660,13 @@ module.exports = {
                 m_tool.funding.push(m_fund);
               }
 
-              logger.debug('attach institutions');
+              console.log('attach institutions');
               toolData.toolInfo.institutions().attach(institutions);
 
               m_tool.save(function (err) {
-                if(err){
-                  logger.info('mongo error');
-                  logger.debug(err);
-                }
-                logger.debug('mongo success');
+                if(err)
+                  console.log('mongo error', err);
+                console.log('mongo success');
               });
 
 
@@ -510,12 +675,12 @@ module.exports = {
           }
       );
     }).then(function(){
-      logger.info("%s was successfully inserted!", toolInfo.NAME);
+      console.log(toolInfo.NAME+" was successfully inserted!");
       response.success = true;
       response.message = "Successfully inserted "+toolInfo.NAME;
       res.send(response);
     }).catch(function(err){
-      logger.debug(err);
+      console.log(err);
     });
     }
 

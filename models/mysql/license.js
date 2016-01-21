@@ -4,10 +4,9 @@ var Tool = require('./tool.js');
 // define the schema for our tool model
 var licenseSchema = Bookshelf.Model.extend({
 
-    tableName: 'LICENSE',
-    idAttribute: 'LICENSE_ID',
+    tableName: 'TOOL_LICENSE',
     tool: function() {
-      return this.belongsToMany(Tool, 'TOOL_LICENSE', 'AZID', 'LICENSE_ID');
+      return this.hasMany(Tool, 'TL_ID');
     }
 
 });

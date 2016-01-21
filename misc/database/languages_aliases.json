@@ -1,0 +1,521 @@
+{
+ "Tex": {"name": "Tex"},
+ "Arc": {"name": "Arc"},
+ "F#": {
+  "name": "F#",
+  "aliases": [
+   "F#",
+   "F-Sharp",
+   "FSharp",
+   "F Sharp"
+  ]
+ },
+ "MOO": {"name": "MOO"},
+ "Smarty": {"name": "Smarty"},
+ "ECMAScript": {"name": "ECMAScript"},
+ "AutoIt": {"name": "AutoIt"},
+ "POV-Ray": {"name": "POV-Ray"},
+ "Forth": {"name": "Forth"},
+ "Xtend": {"name": "Xtend"},
+ "Nemerle": {"name": "Nemerle"},
+ "Hack": {"name": "Hack"},
+ "RPG (OS/400)": {
+  "name": "RPG (OS/400)",
+  "aliases": [
+   "RPG",
+   "RPGLE",
+   "ILERPG",
+   "RPGIV",
+   "RPGIII",
+   "RPG400",
+   "RPGII",
+   "RPG4"
+  ]
+ },
+ "Ceylon": {"name": "Ceylon"},
+ "Oxygene": {"name": "Oxygene"},
+ "Informix-4GL": {"name": "Informix-4GL"},
+ "Ch": {"name": "Ch"},
+ "LabVIEW": {"name": "LabVIEW"},
+ "Clojure": {"name": "Clojure"},
+ "PowerBasic": {"name": "PowerBasic"},
+ "Applescript": {"name": "Applescript"},
+ "C shell": {
+  "name": "C shell",
+  "aliases": [
+   "Csh",
+   "C shell"
+  ]
+ },
+ "Inform": {"name": "Inform"},
+ "Lustre": {"name": "Lustre"},
+ "Assembly language": {
+  "name": "Assembly language",
+  "aliases": [
+   "Assembly",
+   "Assembly language"
+  ]
+ },
+ "GNU Octave": {
+  "name": "GNU Octave",
+  "aliases": [
+   "GNU Octave",
+   "Octave"
+  ]
+ },
+ "Processing": {"name": "Processing"},
+ "Korn shell": {
+  "name": "Korn shell",
+  "aliases": [
+   "Korn shell",
+   "ksh"
+  ]
+ },
+ "ABAP": {"name": "ABAP"},
+ "D": {
+  "name": "D",
+  "aliases": [
+   "D",
+   "dlang"
+  ]
+ },
+ "NQC": {"name": "NQC"},
+ "E": {"name": "E"},
+ "Bash": {"name": "Bash"},
+ "BCPL": {"name": "BCPL"},
+ "Logo": {"name": "Logo"},
+ "Elixir": {"name": "Elixir"},
+ "C": {"name": "C"},
+ "Clean": {"name": "Clean"},
+ "Caml": {"name": "Caml"},
+ "COBOL": {"name": "COBOL"},
+ "J": {"name": "J"},
+ "Emacs Lisp": {
+  "name": "Emacs Lisp",
+  "aliases": [
+   "Emacs Lisp",
+   "Elips"
+  ]
+ },
+ "Q": {"name": "Q"},
+ "SAS": {"name": "SAS"},
+ "S": {"name": "S"},
+ "Fortran": {"name": "Fortran"},
+ "R": {"name": "R"},
+ "Malbolge": {"name": "Malbolge"},
+ "Slate": {"name": "Slate"},
+ "Z shell": {
+  "name": "Z shell",
+  "aliases": [
+   "Z shell",
+   "zsh"
+  ]
+ },
+ "ActionScript": {
+  "name": "ActionScript",
+  "aliases": [
+   "ActionScript",
+   "AS1",
+   "AS2",
+   "AS3"
+  ]
+ },
+ "Pascal": {"name": "Pascal"},
+ "COMAL": {"name": "COMAL"},
+ "Ada": {"name": "Ada"},
+ "ABC": {"name": "ABC"},
+ "Moto": {"name": "Moto"},
+ "Transact-SQL": {
+  "name": "Transact-SQL",
+  "aliases": [
+   "T-SQL",
+   "Transact-SQL",
+   "TSQL"
+  ]
+ },
+ "Cobra": {"name": "Cobra"},
+ "ATLAS": {"name": "ATLAS"},
+ "PHP": {"name": "PHP"},
+ "Sather": {"name": "Sather"},
+ "Simula": {"name": "Simula"},
+ "4th Dimension": {
+  "name": "4th Dimension",
+  "aliases": [
+   "4D",
+   "4th Dimension",
+   "Silver Surfer"
+  ]
+ },
+ "OpenCL": {"name": "OpenCL"},
+ "cT": {"name": "cT"},
+ "Rust": {"name": "Rust"},
+ "Paradox": {"name": "Paradox"},
+ "Heron": {"name": "Heron"},
+ "Scala": {"name": "Scala"},
+ "Eiffel": {"name": "Eiffel"},
+ "Simulink": {"name": "Simulink"},
+ "MAXScript": {"name": "MAXScript"},
+ "bc": {"name": "bc"},
+ "NXT-G": {"name": "NXT-G"},
+ "Object Rexx": {"name": "Object Rexx"},
+ "Squirrel": {"name": "Squirrel"},
+ "VHDL": {"name": "VHDL"},
+ "Alice": {"name": "Alice"},
+ "MATLAB": {"name": "MATLAB"},
+ "LotusScript": {"name": "LotusScript"},
+ "PL/SQL": {"name": "PL/SQL"},
+ "Standard ML": {
+  "name": "Standard ML",
+  "aliases": [
+   "Standard ML",
+   "SML"
+  ]
+ },
+ "Monkey": {"name": "Monkey"},
+ "CL (OS/400)": {
+  "name": "CL (OS/400)",
+  "aliases": [
+   "CL",
+   "CLLE"
+  ]
+ },
+ "SIGNAL": {"name": "SIGNAL"},
+ "cg": {"name": "cg"},
+ "Oz": {"name": "Oz"},
+ "Max/MSP": {"name": "Max/MSP"},
+ "Xen": {"name": "Xen"},
+ "CoffeeScript": {"name": "CoffeeScript"},
+ "Perl": {"name": "Perl"},
+ "EXEC": {"name": "EXEC"},
+ "C#": {
+  "name": "C#",
+  "aliases": [
+   "C#",
+   "C-Sharp",
+   "C Sharp",
+   "CSharp",
+   "CSharp.NET",
+   "C#.NET"
+  ]
+ },
+ "Lisp": {"name": "Lisp"},
+ "BETA": {"name": "BETA"},
+ "OCaml": {
+  "name": "OCaml",
+  "aliases": [
+   "Objective Caml",
+   "OCaml"
+  ]
+ },
+ "Stata": {"name": "Stata"},
+ "Occam": {"name": "Occam"},
+ "Awk": {
+  "name": "Awk",
+  "aliases": [
+   "Awk",
+   "Mawk",
+   "Gawk",
+   "Nawk"
+  ]
+ },
+ "S-PLUS": {
+  "name": "S-PLUS",
+  "aliases": ["S-PLUS"]
+ },
+ "Basic": {"name": "Basic"},
+ "Visual Basic": {
+  "name": "Visual Basic",
+  "aliases": [
+   "Visual Basic",
+   "VB",
+   "VBA",
+   "VB6"
+  ]
+ },
+ "Vala/Genie": {
+  "name": "Vala/Genie",
+  "aliases": [
+   "Vala",
+   "Genie"
+  ]
+ },
+ "CIL": {"name": "CIL"},
+ "sed": {"name": "sed"},
+ "Haxe": {"name": "Haxe"},
+ "Clipper": {"name": "Clipper"},
+ "NATURAL": {"name": "NATURAL"},
+ "Algol": {"name": "Algol"},
+ "Clarion": {"name": "Clarion"},
+ "C++": {"name": "C++"},
+ "Lingo": {"name": "Lingo"},
+ "Icon": {"name": "Icon"},
+ "Apex": {"name": "Apex"},
+ "PostScript": {
+  "name": "PostScript",
+  "aliases": [
+   "PostScript",
+   "PS"
+  ]
+ },
+ "INTERCAL": {"name": "INTERCAL"},
+ "Limbo": {"name": "Limbo"},
+ "M4": {"name": "M4"},
+ "LPC": {"name": "LPC"},
+ "Scratch": {"name": "Scratch"},
+ "Modula-3": {"name": "Modula-3"},
+ "ML": {"name": "ML"},
+ "Modula-2": {"name": "Modula-2"},
+ "IDL": {"name": "IDL"},
+ "Gambas": {"name": "Gambas"},
+ "Lua": {"name": "Lua"},
+ "Seed7": {"name": "Seed7"},
+ "Pure Data": {
+  "name": "Pure Data",
+  "aliases": [
+   "Pure Data",
+   "PD"
+  ]
+ },
+ "Ruby": {"name": "Ruby"},
+ "Avenue": {"name": "Avenue"},
+ "TACL": {"name": "TACL"},
+ "SuperCollider": {"name": "SuperCollider"},
+ "Ladder Logic": {"name": "Ladder Logic"},
+ "Angelscript": {"name": "Angelscript"},
+ "JADE": {"name": "JADE"},
+ "Automator": {"name": "Automator"},
+ "SQR": {"name": "SQR"},
+ "Swift": {"name": "Swift"},
+ "C-Omega": {"name": "C-Omega"},
+ "Pliant": {"name": "Pliant"},
+ "Dart": {"name": "Dart"},
+ "Ioke": {"name": "Ioke"},
+ "CLU": {"name": "CLU"},
+ "PowerScript": {"name": "PowerScript"},
+ "MUMPS": {"name": "MUMPS"},
+ "Racket": {"name": "Racket"},
+ "Agilent VEE": {"name": "Agilent VEE"},
+ "EGL": {"name": "EGL"},
+ "Falcon": {"name": "Falcon"},
+ "Bourne shell": {
+  "name": "Bourne shell",
+  "aliases": [
+   "Bourne shell",
+   "sh"
+  ]
+ },
+ "Erlang": {"name": "Erlang"},
+ "WebDNA": {"name": "WebDNA"},
+ "Tcl": {
+  "name": "Tcl",
+  "aliases": [
+   "Tcl/Tk",
+   "Tcl"
+  ]
+ },
+ "HyperTalk": {"name": "HyperTalk"},
+ "Verilog": {"name": "Verilog"},
+ "Delphi/Object Pascal": {
+  "name": "Delphi/Object Pascal",
+  "aliases": [
+   "Delphi",
+   "Delphi.NET",
+   "DwScript",
+   "Object Pascal",
+   "Pascal"
+  ]
+ },
+ "AspectJ": {"name": "AspectJ"},
+ "Scheme": {"name": "Scheme"},
+ "Haskell": {"name": "Haskell"},
+ "Felix": {"name": "Felix"},
+ "Magic": {"name": "Magic"},
+ "Visual Basic .NET": {
+  "name": "Visual Basic .NET",
+  "aliases": [
+   "Visual Basic .NET",
+   "VB.NET",
+   "Visual Basic.NET",
+   "Visual Basic",
+   "VB"
+  ]
+ },
+ "LiveCode": {
+  "name": "LiveCode",
+  "aliases": [
+   "Revolution",
+   "LiveCode"
+  ]
+ },
+ "BlitzMax": {
+  "name": "BlitzMax",
+  "aliases": [
+   "BlitzMax",
+   "BlitzBasic",
+   "Blitz Basic"
+  ]
+ },
+ "REBOL": {"name": "REBOL"},
+ "MEL": {"name": "MEL"},
+ "OpenEdge ABL": {
+  "name": "OpenEdge ABL",
+  "aliases": [
+   "Progress",
+   "Progress 4GL",
+   "ABL",
+   "Advanced Business Language",
+   "OpenEdge"
+  ]
+ },
+ "Oberon": {"name": "Oberon"},
+ "Magik": {"name": "Magik"},
+ "TypeScript": {"name": "TypeScript"},
+ "VBScript": {"name": "VBScript"},
+ "MDX": {"name": "MDX"},
+ "PL/I": {
+  "name": "PL/I",
+  "aliases": [
+   "PL/1",
+   "PL/I"
+  ]
+ },
+ "BBC BASIC": {"name": "BBC BASIC"},
+ "MS-DOS batch": {"name": "MS-DOS batch"},
+ "Go": {
+  "name": "Go",
+  "aliases": [
+   "Go",
+   "Golang"
+  ]
+ },
+ "FoxPro": {
+  "name": "FoxPro",
+  "aliases": [
+   "FoxPro",
+   "Visual FoxPro",
+   "Visual Fox Pro",
+   "Fox Pro",
+   "VFP"
+  ]
+ },
+ "Smalltalk": {"name": "Smalltalk"},
+ "Java": {"name": "Java"},
+ "Objective-C": {
+  "name": "Objective-C",
+  "aliases": [
+   "Objective-C",
+   "objc",
+   "obj-c"
+  ]
+ },
+ "J#": {"name": "J#"},
+ "Xojo": {
+  "name": "Xojo",
+  "aliases": [
+   "REALbasic",
+   "Xojo"
+  ]
+ },
+ "CHILL": {"name": "CHILL"},
+ "Lasso": {"name": "Lasso"},
+ "Factor": {"name": "Factor"},
+ "Miva": {"name": "Miva"},
+ "AutoLISP": {"name": "AutoLISP"},
+ "C++/CLI": {"name": "C++/CLI"},
+ "XPL": {"name": "XPL"},
+ "Common Lisp": {"name": "Common Lisp"},
+ "Maple": {"name": "Maple"},
+ "yacc": {"name": "yacc"},
+ "Prolog": {"name": "Prolog"},
+ "Whitespace": {"name": "Whitespace"},
+ "Curl": {"name": "Curl"},
+ "JavaFX Script": {"name": "JavaFX Script"},
+ "Mercury": {"name": "Mercury"},
+ "MQL4": {
+  "name": "MQL4",
+  "aliases": [
+   "MQL4",
+   "MQL5"
+  ]
+ },
+ "Groovy": {
+  "name": "Groovy",
+  "aliases": [
+   "Groovy",
+   "GPATH",
+   "GSQL",
+   "Groovy++"
+  ]
+ },
+ "JavaScript": {
+  "name": "JavaScript",
+  "aliases": [
+   "JavaScript",
+   "JS",
+   "SSJS"
+  ]
+ },
+ "Yorick": {"name": "Yorick"},
+ "Io": {"name": "Io"},
+ "DiBOL": {
+  "name": "DiBOL",
+  "aliases": [
+   "DBL",
+   "Synergy/DE",
+   "DIBOL"
+  ]
+ },
+ "X10": {"name": "X10"},
+ "xBase": {"name": "xBase"},
+ "SPSS": {"name": "SPSS"},
+ "thinBasic": {"name": "thinBasic"},
+ "DCL": {"name": "DCL"},
+ "Julia": {"name": "Julia"},
+ "JScript.NET": {"name": "JScript.NET"},
+ "Fortress": {"name": "Fortress"},
+ "XBase++": {"name": "XBase++"},
+ "Dylan": {"name": "Dylan"},
+ "Programming Without Coding Technology": {
+  "name": "Programming Without Coding Technology",
+  "aliases": [
+   "Programming Without Coding Technology",
+   "PWCT"
+  ]
+ },
+ "OPL": {"name": "OPL"},
+ "APL": {"name": "APL"},
+ "Suneido": {"name": "Suneido"},
+ "REXX": {"name": "REXX"},
+ "Euphoria": {"name": "Euphoria"},
+ "Mathematica": {
+  "name": "Mathematica",
+  "aliases": [
+   "Mathematica",
+   "Wolfram"
+  ]
+ },
+ "Python": {"name": "Python"},
+ "JScript": {"name": "JScript"},
+ "HPL": {"name": "HPL"},
+ "Fantom": {"name": "Fantom"},
+ "Boo": {"name": "Boo"},
+ "MAD": {"name": "MAD"},
+ "PILOT": {"name": "PILOT"},
+ "SPARK": {"name": "SPARK"},
+ "MANTIS": {"name": "MANTIS"},
+ "XSLT": {"name": "XSLT"},
+ "PowerShell": {"name": "PowerShell"},
+ "Gosu": {"name": "Gosu"},
+ "Pike": {"name": "Pike"},
+ "NSIS": {"name": "NSIS"},
+ "Etoys": {"name": "Etoys"},
+ "CFML": {
+  "name": "CFML",
+  "aliases": [
+   "CFML",
+   "ColdFusion"
+  ]
+ },
+ "TOM": {"name": "TOM"},
+ "Squeak": {"name": "Squeak"}
+}
