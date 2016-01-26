@@ -43,4 +43,44 @@ label{
 	margin-left: 443px;
 }
 
-body { padding-top: 70px; }
+body { 
+	padding-top: 70px; 
+	background-image:linear-gradient(#99C0CC 0px, #BBD2DB 100%);
+
+}
+.navbar-right {
+    float: right!important;
+    margin-right: -20vw;
+}
+#aztecimg{
+	margin-right: 38vw;
+	margin-top: 10vh;
+}
+
+
+.cover-heading{
+	color: white; 
+	font-weight: 200;
+    margin-top: -10vh;
+    padding-left: 16vw;
+    margin-bottom: 10px;
+    font-size: 48px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container{
+	background-color: #5A7B85;
+    margin-top: 10vh;
+    height: 16vh;
+    width: 100vw;
+}
+
+.container h3{
+	padding-top: 3vh;
+	color: white;
+	font-weight: 100;
+	font-family:  'Open Sans', sans-serif;
+}
+
+
+
