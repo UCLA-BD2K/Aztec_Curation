@@ -1,0 +1,9 @@
+az_mysql:
+ image: vincekyi/aztec-mysql:empty
+ ports:
+  - "3306:3306"
+
+az_mongo:
+ image: vincekyi/aztec-mongo:empty
+ ports:
+  - "27017:27017"
