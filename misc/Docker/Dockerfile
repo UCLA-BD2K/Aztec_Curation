@@ -1,13 +1,13 @@
-FROM mysql
+FROM node:latest
 
-RUN sed -i 's/^#bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/' /etc/mysql/my.cnf
+ADD ./start.sh /opt/start.sh
 
-RUN mkdir /mysql
+RUN mkdir /src
 
-RUN sed -i '/datadir.*= \/var\/lib\/mysql/c\datadir = \/mysql' /etc/mysql/my.cnf
+VOLUME /src
 
-ADD ./startup.sh /opt/startup.sh
+WORKDIR /src
 
-EXPOSE 3306
+EXPOSE 3000
 
-CMD ["/bin/bash", "/opt/startup.sh"]
+CMD ["/bin/bash", "/opt/start.sh"]
