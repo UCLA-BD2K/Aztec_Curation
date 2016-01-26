@@ -494,11 +494,12 @@ module.exports = {
               m_pub.primary = true;
               misc.publications.push(m_pub);
           }
-
-          for(var i = 0; i<obj['new']['publication']['pub_dois'].length; i++){
-            var m_pub = new M_publication;
-            m_pub.pub_doi = obj['new']['publication']['pub_dois'][i]['pub_doi'];
-            misc.publications.push(m_pub);
+          if(obj['new']['publication']['pub_dois']!=undefined){
+            for(var i = 0; i<obj['new']['publication']['pub_dois'].length; i++){
+              var m_pub = new M_publication;
+              m_pub.pub_doi = obj['new']['publication']['pub_dois'][i]['pub_doi'];
+              misc.publications.push(m_pub);
+            }
           }
         }
         if(obj['new']['links']!=undefined)
