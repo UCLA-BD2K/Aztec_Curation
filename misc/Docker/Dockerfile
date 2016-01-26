@@ -10,4 +10,6 @@ WORKDIR /src
 
 EXPOSE 3000
 
+RUN npm install -g nodemon
+
 CMD ["/bin/bash", "/opt/start.sh"]
