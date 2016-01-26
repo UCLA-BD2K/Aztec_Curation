@@ -17,6 +17,7 @@ var User = require('./user.js');
 var Resource = require('./resource.js');
 var Language = require('./language.js');
 var Institution = require('./institution.js');
+var Center = require('./center.js');
 
 Bookshelf.plugin('registry');
 
@@ -80,6 +81,9 @@ var toolSchema = Bookshelf.Model.extend({
     },
     institutions: function() {
       return this.belongsToMany(Institution, 'TOOL_INSTITUTION', 'AZID', 'INST_ID');
+    },
+    centers: function(){
+      return this.hasMany(Center, 'AZID');
     }
 });
 

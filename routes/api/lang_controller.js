@@ -71,8 +71,8 @@ function queryDB(res, term, lim, off, limExist, offExist){
     })
     .where('ALIAS', 'LIKE', term+'%')
     .fetchAll()
-    .then(function(inst){
-      return res.send(inst);
+    .then(function(lang){
+      return res.send(lang);
     })
     .catch(function(err){
       var response = {

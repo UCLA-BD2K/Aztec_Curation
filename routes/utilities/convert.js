@@ -74,7 +74,7 @@ module.exports = {
       });
     }
 
-    publication['pub_tool_doi'] = json['PRIMARY_PUB_DOI'];
+    publication['pub_tool_doi'] = json['TOOL_DOI'];
     publication['pub_dois'] = [];
     if(json['publications']!=undefined){
       json['publications'].forEach(function(pub){
@@ -106,6 +106,7 @@ module.exports = {
       });
     }
 
+
     version['prev_versions'] = [];
     if(json['version']!=undefined){
       json['version'].forEach(function(ver){
@@ -115,7 +116,6 @@ module.exports = {
           version['latest_version_desc'] = ver['version_description'];
         }else{
           version['prev_versions'].push({version_number: ver['version_number'], version_description: ver['version_description'], version_date: ver['version_date']});
-
         }
       });
     }
@@ -137,6 +137,17 @@ module.exports = {
     }
 
     funding['funding'] = json['funding'];
+
+    funding['bd2k'] = [];
+    if(json['centers']!=undefined){
+      json['centers'].forEach(function(center){
+        var pushCenter = {};
+        pushCenter['center'] = center['BD2K_CENTER'];
+        if(center['PROJECT_NAME']!=null)
+          pushCenter['other'] = center['PROJECT_NAME'];
+        funding['bd2k'].push(pushCenter);
+      });
+    }
 
 
 
@@ -176,6 +187,7 @@ module.exports = {
     var agency = [];
     var funding = [];
     var institutions = [];
+    var centers = [];
 
     var m_tool = new M_tool;
     // get basic tool info
@@ -220,7 +232,7 @@ module.exports = {
       }
     }
     if(obj['authors']!=undefined && obj['authors']['maintainers']!=undefined){
-      
+
       for(var i = 0; i<obj['authors']['maintainers'].length; i++){
         var m_maintainer = new M_maintainer;
         m_maintainer['first_name'] = obj['authors']['maintainers'][i]['first_name'];
@@ -235,7 +247,6 @@ module.exports = {
           institutions.push(obj['authors']['institution'][i]['inst_id']);
         else {
           m_tool.missing_inst.push({new_institution: obj['authors']['institution'][i]['new_institution']});
-          console.log(m_tool);
         }
       }
     }
@@ -269,6 +280,13 @@ module.exports = {
     }
     // get links
     if(obj['publication']!=undefined && obj['publication']['pub_dois']!=undefined){
+      if(obj['publication']['pub_primary_doi']){
+          var m_pub = new M_publication;
+          m_pub.pub_doi = obj['publication']['pub_primary_doi'];
+          m_pub.primary = true;
+          m_tool.publications.push(m_pub);
+      }
+
       for(var i = 0; i<obj['publication']['pub_dois'].length; i++){
         links.push({TYPE:'PUB DOI', URL: obj['publication']['pub_dois'][i]['pub_doi']});
         var m_pub = new M_publication;
@@ -300,31 +318,28 @@ module.exports = {
     }
     // get versions
     if(obj['version']!=undefined){
-      versions.push({VERSION: obj['version']['latest_version'],
-                      LATEST: 1,
-                      VERSION_DATE: toMysqlDate(new Date(obj['version']['latest_version_date'])),
-                      DESCRIPTION: obj['version']['latest_version_desc']
-                      });
+
       var m_ver = new M_version;
       m_ver.version_number = obj['version']['latest_version'];
       m_ver.version_description = obj['version']['latest_version_desc'];
       m_ver.version_date = new Date(obj['version']['latest_version_date']);
       m_ver.latest = true;
       m_tool.versions.push(m_ver);
-      if(obj['version']!=undefined && obj['version']['prev_versions']!=undefined){
+
+      if(obj['version']['prev_versions']!=undefined){
         for(var i = 0; i<obj['version']['prev_versions'].length; i++){
-          versions.push({VERSION: obj['version']['prev_versions'][i]['version_number'],
-                          DESCRIPTION: obj['version']['prev_versions'][i]['version_description'],
-                          VERSION_DATE: toMysqlDate(new Date(obj['version']['prev_versions'][i]['version_date']))
-                          });
           var prev_ver = new M_version;
-          prev_ver.version_number = obj['version']['latest_version'];
-          prev_ver.version_description = obj['version']['latest_version_desc'];
-          prev_ver.version_date = new Date(obj['version']['latest_version_date']);
+          prev_ver.version_number = obj['version']['prev_versions'][i]['version_number'];
+          prev_ver.version_description = obj['version']['prev_versions'][i]['version_description'];
+          prev_ver.version_date = new Date(obj['version']['prev_versions'][i]['version_date']);
           m_tool.versions.push(prev_ver);
         }
+
       }
     }
+
+
+
     // get license
     if(obj['license']!=undefined && obj['license']['licenses']!=undefined){
       for(var i = 0; i<obj['license']['licenses'].length; i++){
@@ -354,6 +369,17 @@ module.exports = {
         funding.push({GRANT_NUM: obj['funding']['funding'][i]['funding_grant']});
       }
     }
+
+    if(obj['funding']!=undefined && obj['funding']['bd2k']!=undefined){
+      for(var i = 0; i<obj['funding']['bd2k'].length; i++){
+        var center = {};
+        center['BD2K_CENTER'] = obj['funding']['bd2k'][i]['center'];
+        if(obj['funding']['bd2k'][i]['center']=='Other' && obj['funding']['bd2k'][i]['other']!=undefined){
+          center['PROJECT_NAME'] = obj['funding']['bd2k'][i]['other'];
+        }
+        centers.push(center);
+      }
+    }
   return {
     toolInfo: toolInfo,
     m_tool: m_tool,
@@ -368,7 +394,8 @@ module.exports = {
     versions: versions,
     license: license,
     agency: agency,
-    funding: funding
+    funding: funding,
+    centers: centers
   };
 }
 };

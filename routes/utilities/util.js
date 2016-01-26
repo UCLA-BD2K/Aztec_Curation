@@ -25,5 +25,17 @@ module.exports = {
       return obj;
     });
     return json;
+  },
+  showStatus: function(req, res, status, message){
+    var loginName = 'Login';
+    if(req.isAuthenticated())
+      loginName = req.user.attributes.FIRST_NAME;
+    var response = {
+      status   : status,
+      message  : message,
+      loggedIn : req.isAuthenticated(),
+      name     : loginName
+    };
+    return res.render('errorPage.ejs', response);
   }
 };

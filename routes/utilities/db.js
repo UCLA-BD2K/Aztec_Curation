@@ -6,7 +6,7 @@ module.exports = {
   searchToolByID: function(id, cb){
     Tool.forge()
       .where({AZID: id})
-      .fetchAll({withRelated: ['domains', 'license', 'platform', 'tags', 'resource_types', 'languages', 'institutions']})
+      .fetchAll({withRelated: ['domains', 'license', 'platform', 'tags', 'resource_types', 'languages', 'institutions', 'centers']})
       .then(function(i){
         var thisTool = i;
         ToolMisc.findOne({azid: id}, function(err, misc){

@@ -39,11 +39,11 @@ router.get('/create', isLoggedIn, login.getOldReg);
 
 router.get('/reg', isLoggedIn, login.getReg);
 
-router.post('/reg', isLoggedIn, register.saveTool);
+router.post('/reg', register.saveTool);
 
 router.get('/edit/:id', login.getEdit);
 
-router.put('/edit/:id', isLoggedIn, edit.putEdit);
+router.put('/edit/:id', verifyRecaptcha, edit.putEdit);
 
 router.post('/login', login.postLogin );
 
@@ -58,6 +58,29 @@ function isLoggedIn(req, res, next) {
         return next();
 
     res.redirect('/');
+}
+
+function verifyRecaptcha(req, res, next){
+  console.log(req.body);
+  var recaptcha = req.body.recaptcha;
+  // if (!req.isAuthenticated())
+  //   return res.redirect('/');
+    var https = require("https");
+    https.get('https://www.google.com/recaptcha/api/siteverify?secret=6Lc4DxYTAAAAAAoYu7jSvX3CXGQ_xyzE4qkC8KOG&response='+recaptcha, function(response){
+      response.on('data', function(data) {
+             var success = JSON.parse(data);
+             console.log(success);
+             if(success['success']){
+               return next();
+             }
+             else{
+               var response = {};
+               response.success = false;
+               response.message = "Error: Recaptcha";
+               return res.send(response);
+             }
+        });
+    });
 }
 
 module.exports = router;

@@ -43,7 +43,7 @@
           <% var tools = data['models']; %>
           <% for(var i = 0; i<tools.length; i++){ %>
             <tr>
-              <td><a href='/tool/<%=tools[i].attributes.AZID %>'><%=tools[i].attributes.AZID %></a></td>
+              <td><a href='/api/tool/<%=tools[i].attributes.AZID %>'><%=tools[i].attributes.AZID %></a></td>
               <td> <%=tools[i].attributes.NAME %></td>
               <td> <%=tools[i].attributes.LOGO_LINK %></td>
               <td> <%=tools[i].attributes.DESCRIPTION %></td>

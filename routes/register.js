@@ -14,8 +14,10 @@ var Version = require('../models/mysql/version.js');
 var License = require('../models/mysql/license.js');
 var Agency = require('../models/mysql/agency.js');
 var Funding = require('../models/mysql/funding.js');
+var Center = require('../models/mysql/center.js');
 var Bookshelf = require('../config/bookshelf.js');
 var convert = require('./utilities/convert');
+
 
 var M_tool = require('../models/mongo/toolMisc.js');
 var M_author = require('../models/mongo/author.js');
@@ -40,6 +42,8 @@ function toMysqlDate(date){
 
 module.exports = {
   saveTool: function(req, res, next) {
+
+
     var obj = util.unflatten(req.body);
     var json = convert.convert2mysql(obj);
     var toolInfo = json['toolInfo'];
@@ -55,11 +59,12 @@ module.exports = {
     var agency = json['agency'];
     var funding = json['funding'];
     var institutions = json['institutions'];
+    var centers = json['centers'];
 
     var m_tool = json['m_tool'];
 
     logger.debug(obj);
-
+    var resID = 0;
 
 
 
@@ -79,7 +84,7 @@ module.exports = {
 
     var response = {};
     if(toolInfo.NAME==undefined || toolInfo.DESCRIPTION==undefined || (toolInfo.SOURCE_LINK==undefined && links.length==0)){
-      response.success = false;
+      response.status = 'error';
       response.message = "Must enter the minimum fields: Resource Name, Description, and Source Code URL or at least 1 link."
       return res.send(response);
     }
@@ -413,6 +418,34 @@ module.exports = {
                 return callbackAsync(null, toolData);
               }
             });
+          },
+          function(toolData, callbackAsync) { //Save bd2k centers
+            var promises = [];
+            for(var i = 0; i<centers.length; i++){
+              var newCenter = centers[i];
+              newCenter.AZID = toolData.toolInfo.attributes.AZID;
+              promises.push(new Promise(function(resolve, reject){
+                Center.forge()
+                  .save(newCenter, {transacting: transaction, method: type})
+                  .then(function(c){
+                    logger.info("ready to commit %s!"+c.attributes.BD2K_CENTER);
+                    return resolve(0);
+                  })
+                  .catch(function(err){
+                    logger.info("need to rollback center");
+                    logger.debug(err);
+                    return resolve(-1);
+                  });
+
+              }));
+            }
+            Promise.all(promises).then(function(values){
+              if(values.indexOf(-1)>-1)
+                return callbackAsync('Error with center');
+              else{
+                return callbackAsync(null, toolData);
+              }
+            });
           }
 
         ],
@@ -423,39 +456,12 @@ module.exports = {
               logger.info("rolling back %s!", toolInfo.NAME);
               transaction.rollback();
               logger.info('Finished rollback');
-              // for(var i = 0; i<res_types.length; i++){
-              //   console.log("rolling back "+res_types[i].RESOURCE_TYPE+"!");
-              //   transaction.rollback(res_types[i]);
-              // }
-              // for(var i = 0; i<domains.length; i++){
-              //   console.log("rolling back "+domains[i].DOMAIN+"!");
-              //   transaction.rollback(domains[i]);
-              // }
-              // for(var i = 0; i<tags.length; i++){
-              //   console.log("rolling back "+tags[i].NAME+"!");
-              //   transaction.rollback(tags[i]);
-              // }
-              //
-              // for(var i = 0; i<langs.length; i++){
-              //   console.log("rolling back "+langs[i].NAME+"!");
-              //   transaction.rollback(langs[i]);
-              // }
-              // for(var i = 0; i<platforms.length; i++){
-              //   console.log("rolling back "+platforms[i].NAME+"!");
-              //   transaction.rollback(platforms[i]);
-              // }
-              //
-              // for(var i = 0; i<license.length; i++){
-              //   console.log("rolling back "+license[i].NAME+"!");
-              //   transaction.rollback(license[i]);
-              // }
-              //
-              // for(var i = 0; i<agency.length; i++){
-              //   console.log("rolling back "+agency[i].NAME+" "+funding[i].GRANT_NUM+"!");
-              //   transaction.rollback(agency[i]);
-              // }
+              response.status = 'error';
+              response.message = "Error inserting metadata into database";
+              res.send(response);
             }
             else{
+              resID = parseInt(toolData.toolInfo.attributes.AZID);
               logger.info("Committing Tool "+toolData.toolInfo.attributes.NAME+"!");
               transaction.commit(toolData.toolInfo);
 
@@ -506,13 +512,13 @@ module.exports = {
 
 
             }
-            //return res.send("UPDATE COMPLETE!"); //Return whatever page or message
           }
       );
     }).then(function(){
       logger.info("%s was successfully inserted!", toolInfo.NAME);
-      response.success = true;
+      response.status = 'success';
       response.message = "Successfully inserted "+toolInfo.NAME;
+      response.id = resID;
       res.send(response);
     }).catch(function(err){
       logger.debug(err);

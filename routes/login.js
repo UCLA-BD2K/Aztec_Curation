@@ -101,7 +101,11 @@ module.exports = {
     var loginName = 'Login';
     if(req.isAuthenticated())
       loginName = req.user.attributes.FIRST_NAME;
-    res.render('reg.ejs', {title:"Register", heading:"Register New Resource", name: loginName, loggedIn : req.isAuthenticated(), editURL: ".", submitFunc: "onNewSubmit()", tool: null, init: ""});
+    else {
+      return util.showStatus(req, res, 'error', 'Not logged in');
+    }
+
+    res.render('form.ejs', {title:"Register", heading:"Register New Resource", name: loginName, loggedIn : req.isAuthenticated(), editURL: ".", submitFunc: "onNewSubmit()", tool: null, init: ""});
 
   },
   getPortal: function(req, res, next) {
@@ -192,10 +196,7 @@ module.exports = {
     var id = req.params.id;
     id = parseInt(id);
     if(!req.isAuthenticated()){
-      return res.send({
-        status: 'error',
-        message: 'Not logged in'
-      });
+      return util.showStatus(req, res, 'error', 'Not logged in');
     }
     var userID = req.user.attributes.USER_ID;
     logger.info("User %s is accessing resource #%s", userID, id);
@@ -213,17 +214,14 @@ module.exports = {
           }
         });
         if(access==false){
-          return res.send({
-            status: 'error',
-            message: 'You do not have permission to edit this tool.'
-          });
+          return util.showStatus(req, res, 'error', 'You do not have permission to edit this tool.');
         }
         else{
           var loginName = 'Login';
           if(req.isAuthenticated())
             loginName = req.user.attributes.FIRST_NAME;
           db.searchToolByID(id, function(result){
-            return res.render('reg.ejs', {title: "Edit",
+            return res.render('form.ejs', {title: "Edit",
               heading: "Edit Resource #"+id,
               name: loginName,
               loggedIn : req.isAuthenticated(),

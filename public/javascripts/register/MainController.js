@@ -159,16 +159,15 @@
       name: 'tag',
       templateUrl: 'tags.html',
       controller: ['$scope', '$http', function($scope, $http) {
-        $scope.getItems = function(query, url) {
+
+        $scope.getItems = function(val, url, attr) {
           return $http.get(url, {
             params: {
-              address: query,
-              sensor: false
+              q : val
             }
-          }).then(function(response) {
-            return response.data.results.map(function(item) {
-              //console.log(item);
-              return item.formatted_address;
+          }).then(function(response){
+            return response.data.map(function(item){
+              return item[attr];
             });
           });
         };
@@ -260,7 +259,7 @@
         templateOptions: {
           type: 'text',
           label: 'Logo URL',
-          placeholder: 'Enter the URL for the logo image',
+          placeholder: 'Enter the URL for the logo image (optional)',
           required: false
         }
       }, {
@@ -373,8 +372,9 @@
         templateOptions: {
           type: 'text',
           label: 'Tags',
-          placeholder: 'Enter the tag, then press \'ENTER\'',
-          link: 'https://maps.googleapis.com/maps/api/geocode/json',
+          placeholder: 'Enter the tag, then press \'ENTER\' (optional)',
+          link: '/api/tag',
+          attr: 'NAME',
           required: false
         }
       }
@@ -661,20 +661,20 @@
             required: true
           }
         }, {
-          type: 'input',
-          key: 'version_description',
-          templateOptions: {
-            label: 'Version Description',
-            placeholder: 'Enter the description of the version',
-            required: false
-          }
-        }, {
           key: 'version_date',
           type: 'datepicker',
           templateOptions: {
             label: 'Version Date',
             type: 'text',
             datepickerPopup: 'dd-MMMM-yyyy'
+          }
+        }, {
+          type: 'textarea',
+          key: 'version_description',
+          templateOptions: {
+            label: 'Version Description',
+            placeholder: 'Enter the description of the version (optional)',
+            required: false
           }
         }]
       }
@@ -844,12 +844,11 @@
       templateOptions: {
         btnText: 'Add Funding Info',
         fields: [{
-          type: 'typeahead-async',
+          type: 'input',
           key: 'funding_agency',
           templateOptions: {
             label: 'Funding Agency',
             placeholder: 'Enter the funding agency',
-            link: 'https://maps.googleapis.com/maps/api/geocode/json',
             required: true
           }
         }, {
@@ -862,13 +861,78 @@
             required: true
           }
         }]
-      }
-    }];
+      }}, {
+          key: 'bd2k',
+          type: 'repeatSection',
+          templateOptions: {
+            btnText: 'Add BD2K Center',
+            fields: [{
+              type: 'select',
+              key: 'center',
+              templateOptions: {
+                label: 'BD2K Center',
+                options: [{
+                  name: 'LINCS-DCIC',
+                  value: 'LINCS-DCIC'
+                },{
+                  name: 'BDDS Center',
+                  value: 'BDDS'
+                },{
+                  name: 'Center for Big Data in Translational Genomics',
+                  value: 'BDTG'
+                },{
+                  name: 'CCD',
+                  value: 'CCD'
+                },{
+                  name: 'CEDAR',
+                  value: 'CEDAR'
+                },{
+                  name: 'CPCP',
+                  value: 'CPCP'
+                },{
+                  name: 'MD2K',
+                  value: 'MD2K'
+                },{
+                  name: 'ENIGMA',
+                  value: 'ENIGMA'
+                },{
+                  name: 'KnowEng',
+                  value: 'KnowEng'
+                },{
+                  name: 'Mobilize',
+                  value: 'Mobilize'
+                },{
+                  name: 'PICSURE',
+                  value: 'PICSURE'
+                },{
+                  name: 'HeartBD2K',
+                  value: 'HeartBD2K'
+                },
+                {
+                  name: 'Other',
+                  value: 'Other'
+                }]
+              }
+            }, {
+              type: 'input',
+              key: 'other',
+              hideExpression: "model.center!='Other'",
+              templateOptions: {
+                label: 'BD2K Project Title',
+                placeholder: 'Enter the name of the BD2K project',
+                required: true
+              }
+            }]
+          }
+        }];
 
 
 
 
     function onNewSubmit() {
+      $('#recaptcha').hide();
+      $('#submitModal').modal('toggle');
+      $('#MessageModal').modal('toggle');
       var submit = {
         basic: vm.basic,
         authors: vm.authors,
@@ -878,17 +942,37 @@
         version: vm.version,
         io: vm.io,
         license: vm.license,
-        funding: vm.funding
+        funding: vm.funding,
+        recaptcha: $('#g-recaptcha-response').val()
       };
       $.post("/reg", submit)
         .done(function(data) {
-          console.log('Inserted?', data.success)
-          alert("Data Loaded: " + data.message);
+          $('#messageLabel').text(data.message);
+          if(data.status=='success'){
+            var count = 0;
+            $('#messageBody').text('Redirecting to tool page');
+            setInterval(function(){
+                count++;
+                $('#messageBody').append('.  ');
+                if(count > 3){
+                  window.location.href = '/api/tool/'+data.id;
+                }
+              }, 1000);
+          }else{
+            $('#MessageModal').modal({
+              backdrop: 'true',
+              keyboard: 'true'
+            });
+          }
+          // alert("Data Loaded: " + data.message);
         });
       //console.log(JSON.stringify(submit));
     };
 
     function onEditSubmit() {
+      $('#recaptcha').hide();
+      $('#submitModal').modal('toggle');
+      $('#MessageModal').modal('toggle');
       var submit = {
         basic: vm.basic,
         authors: vm.authors,
@@ -903,10 +987,25 @@
       $.ajax({
           url: window.location.pathname,
           type: 'PUT',
-          data: {orig:vm.orig, new: submit}
+          data: {orig:vm.orig, new: submit, recaptcha: $('#g-recaptcha-response').val()}
       }).done(function(data) {
-        console.log('Inserted?', data.success)
-        alert("Data Loaded: " + data.message);
+        $('#messageLabel').text(data.message);
+        if(data.status=='success'){
+          var count = 0;
+          $('#messageBody').text('Redirecting to tool page');
+          setInterval(function(){
+              count++;
+              $('#messageBody').append('.  ');
+              if(count > 2){
+                window.location.href = '/api/tool/'+data.id;
+              }
+            }, 1000);
+        }else{
+          $('#MessageModal').modal({
+            backdrop: 'true',
+            keyboard: 'true'
+          });
+        }
       });
       //console.log(JSON.stringify(submit));
     };
@@ -1151,6 +1250,7 @@
       $('#myModalLabel').text('Submit Information');
       $('#modal-warn').hide();
       $('#modal-submit').show();
+      $('#recaptcha').show();
     };
 
     function suggest(){
@@ -1165,6 +1265,7 @@
         license: vm.license,
         funding: vm.funding
       };
+      console.log($('#g-recaptcha-response').val());
       $('#suggestions').text('');
       if(fields['basic']==undefined || fields['basic']['res_name']==undefined){
         $('#suggestions').text('Please enter the name of the resource.');

@@ -13,10 +13,13 @@ var Version = require('../models/mysql/version.js');
 var License = require('../models/mysql/license.js');
 var Agency = require('../models/mysql/agency.js');
 var Funding = require('../models/mysql/funding.js');
+var Center = require('../models/mysql/center.js');
 var Bookshelf = require('../config/bookshelf.js');
 var logger = require("../config/logger");
 
 var ToolMisc = require('../models/mongo/toolMisc.js');
+var M_version= require('../models/mongo/version.js');
+var M_publication= require('../models/mongo/publication.js');
 
 var changesets = require('diff-json');
 var convert = require('./utilities/convert.js');
@@ -46,6 +49,7 @@ module.exports = {
               .then(function(tool){
                 logger.info("ready to commit %s!", json['toolInfo']['AZID']);
                 tool.institutions().detach();
+                tool.tags().detach();
                 tool.languages().detach();
                 tool.platform().detach();
                 return callbackAsync(null, {toolInfo: tool});
@@ -192,6 +196,68 @@ module.exports = {
               });
             }
           },
+          function(toolData, callbackAsync) { //Save tags
+            var promises = [];
+            var insertTags = [];
+            for(var i = 0; i<json['tags'].length; i++){
+              promises.push(new Promise(function(resolve, reject){
+                async.waterfall([
+                  function(cb){
+                    var currentTag = json['tags'][i];
+                    Tag.forge()
+                      .query({where: {NAME: currentTag.NAME}})
+                      .fetch()
+                      .then(function(tag){
+                        if(tag==null){
+                          return cb(null, currentTag);
+                        }
+                        else{
+                          logger.info('Found existing tag: %s', tag.attributes.NAME);
+                          insertTags.push(tag);
+                          return cb('found');
+                        }
+                      })
+                      .catch(function(err){
+                        logger.info('query tag error');
+                        logger.debug(err);
+                        return cb('error');
+                      })
+                  },
+                  function(newtag, cb){
+                    Tag.forge()
+                      .save(newtag, {transacting: transaction, method: "insert"})
+                      .then(function(tag){
+                        logger.info("ready to commit %s!", tag.attributes.NAME);
+                        insertTags.push(tag);
+                        cb(null);
+                      })
+                      .catch(function(err){
+                        logger.info("need to rollback tags");
+                        logger.debug(err);
+                        cb('error');
+                      });
+                  }
+                ],
+                function(error){
+                  if(error==null || error=='found'){
+                    resolve(0);
+                  }
+                  else{
+                    resolve(-1);
+                  }
+                });
+
+              }));
+            }
+            Promise.all(promises).then(function(values){
+              if(values.indexOf(-1)>-1)
+                return callbackAsync('Error with tags');
+              else{
+                toolData.tags = insertTags;
+                return callbackAsync(null, toolData);
+              }
+            });
+          },
           function(toolData, callbackAsync) { //Save platform
             var promises = [];
             var plat_ids = [];
@@ -284,7 +350,7 @@ module.exports = {
                 });
               })
               .catch(function(err){
-                return callbackAsync('domain query error', null);
+                return callbackAsync('center query error', null);
               });
 
           },
@@ -319,6 +385,74 @@ module.exports = {
                 }
               });
             }
+          },
+          function(toolData, callbackAsync) { //delete centers
+            Center.forge()
+              .where({AZID: toolData['toolInfo']['attributes']['AZID']})
+              .fetchAll({transacting: transaction})
+              .then(function(cen){
+                var promises = [];
+                cen.forEach(function(c){
+                  promises.push(new Promise(function(resolve, reject){
+                    Center.forge()
+                      .where({TB_ID: c.attributes.TB_ID})
+                      .destroy({transacting: transaction})
+                      .then(function(delCen){
+                        logger.info('deleted center %s', delCen.attributes.BD2K_CENTER);
+                        resolve(0);
+                      })
+                      .catch(function(err){
+                        logger.info('error deleting center');
+                        logger.debug(err);
+                        resolve(-1);
+                      });
+                    }));
+                });
+                Promise.all(promises).then(function(values){
+                  logger.debug(values);
+                  if(values.indexOf(-1)>-1)
+                    return callbackAsync('Error with deleting center');
+                  else{
+                    return callbackAsync(null, toolData);
+                  }
+                });
+              })
+              .catch(function(err){
+                return callbackAsync('center query error', null);
+              });
+
+          },
+          function(toolData, callbackAsync) { //Save center
+            var promises = [];
+            if(json['centers']==undefined || json['centers'].length==0){
+              return callbackAsync(null, toolData);
+            }
+            else{
+              for(var i = 0; i<json['centers'].length; i++){
+                json['centers'][i].AZID = toolData.toolInfo.attributes.AZID;
+                promises.push(new Promise(function(resolve, reject){
+                  Center.forge()
+                    .save(json['centers'][i], {transacting: transaction, method: 'insert'})
+                    .then(function(cen){
+                      logger.info("ready to commit %s!", cen.attributes.BD2K_CENTER);
+                      resolve(0);
+                    })
+                    .catch(function(err){
+                      logger.info("need to rollback center");
+                      logger.debug(err);
+                      resolve(-1);
+                    });
+                }));
+              }
+              Promise.all(promises).then(function(values){
+                logger.debug(values);
+                if(values.indexOf(-1)>-1)
+                  return callbackAsync('Error with center');
+                else{
+                  return callbackAsync(null, toolData);
+                }
+              });
+            }
           }
         ],
         function(error, toolData){
@@ -326,8 +460,8 @@ module.exports = {
             logger.info('Error updating: %s', error);
             transaction.rollback();
             res.send({
-              success  : 'error',
-              message   : id+' not updated'
+              status  : 'error',
+              message : id+' not updated'
             });
           }
           else{
@@ -335,6 +469,7 @@ module.exports = {
             toolData.toolInfo.institutions().attach(json['institutions']);
             toolData.toolInfo.platform().attach(toolData.platforms);
             toolData.toolInfo.languages().attach(toolData.languages);
+            toolData.toolInfo.tags().attach(toolData.tags);
           }
         }
       );
@@ -343,7 +478,7 @@ module.exports = {
       ToolMisc.findOne({azid: id}, function(err, misc){
         if (err){
           res.send({
-            success  : 'false',
+            status  : 'error',
             message   : id+' not found in mongo'
           });
         }
@@ -351,27 +486,62 @@ module.exports = {
           misc.authors = obj['new']['authors']['authors'];
           misc.maintainers = obj['new']['authors']['maintainers'];
         }
-        if(obj['new']['publication']!=undefined)
-          misc.publication = obj['new']['publication'];
+        misc.publications = [];
+        if(obj['new']['publication']!=undefined){
+          if(obj['new']['publication']['pub_primary_doi']){
+              var m_pub = new M_publication;
+              m_pub.pub_doi = obj['new']['publication']['pub_primary_doi'];
+              m_pub.primary = true;
+              misc.publications.push(m_pub);
+          }
+
+          for(var i = 0; i<obj['new']['publication']['pub_dois'].length; i++){
+            var m_pub = new M_publication;
+            m_pub.pub_doi = obj['new']['publication']['pub_dois'][i]['pub_doi'];
+            misc.publications.push(m_pub);
+          }
+        }
         if(obj['new']['links']!=undefined)
           misc.links = obj['new']['links']['links'];
-        if(obj['new']['autversionhors']!=undefined)
-          misc.version = obj['new']['version'];
+
+        misc.versions = [];
+        if(obj['new']['version']!=undefined){
+          var m_ver = new M_version;
+          m_ver.version_number = obj['new']['version']['latest_version'];
+          m_ver.version_description = obj['new']['version']['latest_version_desc'];
+          m_ver.version_date = new Date(obj['new']['version']['latest_version_date']);
+          m_ver.latest = true;
+          misc.versions.push(m_ver);
+
+          if(obj['new']['version']['prev_versions']!=undefined){
+            for(var i = 0; i<obj['new']['version']['prev_versions'].length; i++){
+              var prev_ver = new M_version;
+              prev_ver.version_number = obj['new']['version']['prev_versions'][i]['version_number'];
+              prev_ver.version_description = obj['new']['version']['prev_versions'][i]['version_description'];
+              prev_ver.version_date = new Date(obj['new']['version']['prev_versions'][i]['version_date']);
+              misc.versions.push(prev_ver);
+            }
+
+          }
+
+        }
         if(obj['new']['funding']!=undefined)
           misc.funding = obj['new']['funding']['funding'];
         misc.missing_inst = json['m_tool']['missing_inst'];
 
+
         misc.save(function (err) {
           if (err){
             return res.send({
-              success  : 'error',
+              status   : 'error',
               message   : id+' not saved in mongo'
             });
           }
 
           logger.info("%s was successfully updated!", json['toolInfo']['AZID']);
-          response.success = true;
+          response.status = 'success';
           response.message = "Successfully updated resource "+json['toolInfo']['AZID'];
+          response.id = id;
           return res.send(response);
         });
       });

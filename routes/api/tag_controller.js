@@ -1,9 +1,7 @@
 var Bookshelf = require('../../config/bookshelf.js');
 var async = require('async');
-var convert = require('../utilities/convert.js');
-var Tool = require('../../models/mysql/tool.js');
-var ToolMisc = require('../../models/mongo/toolMisc.js');
-var db = require('../utilities/db.js');
+var Tag = require('../../models/mysql/tag.js');
+
 
 var LIMIT_DEFAULT = 10;
 var OFFSET_DEFAULT = 0;
@@ -15,7 +13,6 @@ module.exports = {
     var offExist = false;
     var limExist = false;
 
-
     if(params['limit']!=undefined){
       limit = parseInt(params['limit']);
       limExist = true;
@@ -25,30 +22,17 @@ module.exports = {
       offExist = true;
     }
 
-
-    if(params['name']==undefined){
-      return getAllTools(res, limit, offset, limExist, offExist);
+    if(params['q']==undefined){
+      return getAllLang(res, limit, offset, limExist, offExist);
     }else{
-      var term = params['name'];
+      var term = params['q'];
       return queryDB(res, term, limit, offset, limExist, offExist);
     }
-  },
-  searchByID: function(req, res, next){
-    if(req.params['id']!=undefined && !isNaN(req.params['id'])){
-      return db.searchToolByID(req.params['id'], function(result){
-        res.send(result);
-      });
-    }
-    var response = {
-      status  : 'error',
-      error   : 'Invalid input'
-    };
-    return res.send(response);
   }
 };
 
-function getAllTools(res, lim, off, limExist, offExist){
-  Tool.forge()
+function getAllTags(res, lim, off, limExist, offExist){
+  Tag.forge()
     .query(function (qb) {
       if(offExist){
         qb.offset(off);
@@ -56,11 +40,37 @@ function getAllTools(res, lim, off, limExist, offExist){
       if(limExist){
         qb.limit(lim);
       }
-      qb.orderBy('AZID');
+      qb.orderBy('TAG_ID');
     })
-    .fetchAll({withRelated: ['links', 'domains', 'agency', 'funding', 'license', 'platform', 'version', 'map', 'tags', 'resource_types', 'languages', 'institutions', 'centers']})
+    .fetchAll()
     .then(function(i){
       return res.send(i);
+    })
+    .catch(function(err){
+      var response = {
+        status  : 'error',
+        error   : JSON.stringify(err)
+      }
+      return res.send(response);
+    });
+};
+
+function queryDB(res, term, lim, off, limExist, offExist){
+  Tag.forge()
+    .query(function (qb) {
+      if(limExist){
+        qb.limit(lim);
+      }
+      if(offExist){
+        qb.offset(off);
+      }
+
+      qb.column('NAME');
+    })
+    .where('NAME', 'LIKE', term+'%')
+    .fetchAll()
+    .then(function(tag){
+      return res.send(tag);
     })
     .catch(function(err){
       var response = {

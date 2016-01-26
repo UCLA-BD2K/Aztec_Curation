@@ -13,7 +13,6 @@
     var current_sec = '#part1';
     $(document).ready(function() {
 
-      console.log(2);
       $('#b1next').on('click', function() {
         $('#part1').hide();
         $('#part2').show();
@@ -163,7 +162,7 @@
     </div>
     <div class="col-md-2 col-md-offset-8">
       <button id='save' class="btn btn-primary">Save</button>
-      <button id='submit' class="btn btn-primary" ng-click="vm.checkForm()" data-toggle="modal" data-target="#submitModal">Submit</button>
+      <a href="javascript:grecaptcha.reset();"><button id='submit' class="btn btn-primary" ng-click="vm.checkForm()" data-toggle="modal" data-target="#submitModal">Submit</button></a>
     </div>
   </div>
   <div class="row">
@@ -287,6 +286,7 @@
         <div id='pre-submit'>
         </div>
         <div id='modal-submit' class='modal-footer' style="display: none;">
+          <div id='recaptcha' class="g-recaptcha" data-sitekey="6Lc4DxYTAAAAAHqTlTb1np-XR8JKh6RYvgYvf4NQ"></div>
           <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
           <button type='button' class='btn btn-primary' ng-click='vm.<%=submitFunc%>'>Submit resource</button>
         </div>
@@ -297,6 +297,21 @@
       </div>
     </div>
   </div>
+  <div id="MessageModal" class="modal fade" data-keyboard="false" data-backdrop="static" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="messageLabel"></h4>
+      </div>
+      <div class="modal-body" id="messageBody" style="text-align:center">
+      </div>
+      <div class='modal-footer' >
+        <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
   <script type="text/ng-template" id="repeatSection.html">
     <div>
       <!--loop through each element in model array-->
@@ -345,7 +360,7 @@
   <script type="text/ng-template" id="tags.html">
     <label>{{to.label}}</label>
     <tags-input ng-model="model[options.key]">
-      <auto-complete source="getItems($query, to.link)"></auto-complete>
+      <auto-complete source="getItems($query, to.link, to.attr)"></auto-complete>
     </tags-input>
   </script>
   <script type="text/ng-template" id="error-messages.html">
@@ -386,6 +401,7 @@
 <script src="https://rawgit.com/angular-ui/ui-select/master/dist/select.js"></script>
   <link rel="stylesheet" href="https://rawgit.com/angular-ui/ui-select/master/dist/select.css">
 <script src="<%=editURL%>/javascripts/register/typeahead.js"></script>
+<script src="https://www.google.com/recaptcha/api.js"></script>
 
 <!-- Application Scripts -->
 <script src="<%=editURL%>/javascripts/register/app.js"></script>
