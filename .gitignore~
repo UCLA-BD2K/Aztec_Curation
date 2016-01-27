@@ -4,7 +4,6 @@ node_modules
 # logs
 logs
 *.log
-logs/all-logs.log
 
 # configurations
 config/mysql.js
