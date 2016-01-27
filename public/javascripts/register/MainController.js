@@ -1265,7 +1265,6 @@
         license: vm.license,
         funding: vm.funding
       };
-      console.log($('#g-recaptcha-response').val());
       $('#suggestions').text('');
       if(fields['basic']==undefined || fields['basic']['res_name']==undefined){
         $('#suggestions').text('Please enter the name of the resource.');
@@ -1276,12 +1275,63 @@
         .done(function(data) {
           $('#loading').hide();
           var json = JSON.parse(data);
-          $('#suggestions').html('<strong>Description: </strong>'+
+          $('#suggestions').append('<strong>Pub. Description: </strong>'+
             json['suggestedDescription']+'<br>'+
-            '<strong>URL: </strong>'+
-            json['suggestedUrl']
+            '<strong>Pub. URL: </strong>'+
+            json['suggestedUrl']+'<br>'
           );
         });
+        $.post("/suggest/query?field=res_code_url", fields)
+          .done(function(data) {
+            $('#loading').hide();
+
+            var json = data;
+            $('#suggestions').append('<strong>Github Description: </strong>'+
+              json['suggestedDescription']+'<br>'+
+              '<strong>Github URL: </strong>'+
+              json['suggestedUrl']+'<br>'+
+              '<strong>Github Language: </strong>'+
+              json['suggestedLang']+'<br>'+
+              '<strong>Link: </strong>'+
+              json['suggestedLink']['link_url']+' ('+json['suggestedLink']['link_name']+')<br>'
+            );
+          });
+        if(fields['dev']==undefined || fields['dev']['res_code_url']==undefined){
+          return;
+        }
+        $.post("/suggest/query?field=license", fields)
+          .done(function(data) {
+            $('#loading').hide();
+            var json = JSON.parse(data);
+            if(json['suggestedLicense']!=undefined){
+              $('#suggestions').append('<strong>License: </strong>'+
+                json['suggestedLicense']+'<br>'
+              );
+            }
+          });
+          $.post("/suggest/query?field=versions", fields)
+            .done(function(data) {
+              $('#loading').hide();
+              var json = JSON.parse(data);
+              if(json['suggestedReleases']!=undefined){
+                json['suggestedReleases'].forEach(function(rel){
+                  $('#suggestions').append('<strong>Version: </strong>'+
+                    rel['version_number']+' ('+rel['version_date']+')<br>'
+                  );
+                });
+              }
+            });
+            $.post("/suggest/query?field=maintainers", fields)
+              .done(function(data) {
+                $('#loading').hide();
+
+                var json = JSON.parse(data);
+                if(json['suggestedMaintainer']!=undefined){
+                  $('#suggestions').append('<strong>Maintainer: </strong>'+
+                    json['suggestedMaintainer']['maintainer_name']+' ('+json['suggestedMaintainer']['maintainer_email']+')<br>'
+                  );
+                }
+              });
     };
 
     function init(id){

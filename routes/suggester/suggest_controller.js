@@ -1,5 +1,6 @@
 var Bookshelf = require('../../config/bookshelf.js');
 var suggester = require('./suggester.js');
+var util = require('../utilities/util.js');
 
 module.exports = {
   postQuery: function(req, res, next) {
@@ -13,7 +14,7 @@ module.exports = {
 
       var suggest = function(toolJson){
         console.log('suggesting');
-          suggester.generateSuggestion(toolJson,field,function(actualSuggestion){
+          suggester.generateSuggestion(util.unflatten(toolJson),field,function(actualSuggestion){
                   res.send(actualSuggestion);
           });
         };
