@@ -2,4 +2,9 @@
 node_modules
 
 # logs
+logs
 *.log
+
+# configurations
+config/mysql.js
+config/mongo.js
