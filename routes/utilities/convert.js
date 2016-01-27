@@ -175,14 +175,12 @@ module.exports = {
   },
   convert2mysql: function(obj){
     var toolInfo = {};
-    var authors = [];
     var res_types = [];
     var domains = [];
     var tags = [];
     var links = [];
     var langs = [];
     var platforms = [];
-    var versions = [];
     var license = [];
     var agency = [];
     var funding = [];
@@ -221,8 +219,6 @@ module.exports = {
         if(obj['authors']['authors'][i]['first_name']==undefined || obj['authors']['authors'][i]['author_email']==undefined)
           break;
 
-        var author = {FIRST_NAME: obj['authors']['authors'][i]['first_name'], LAST_NAME: obj['authors']['authors'][i]['last_name'], EMAIL: obj['authors']['authors'][i]['author_email'] };
-        authors.push(author);
         var m_author = new M_author;
         m_author['first_name'] = obj['authors']['authors'][i]['first_name'];
         m_author['last_name'] = obj['authors']['authors'][i]['last_name'];
@@ -296,7 +292,6 @@ module.exports = {
     }
     if(obj['links']!=undefined && obj['links']['links']!=undefined){
       for(var i = 0; i<obj['links']['links'].length; i++){
-        links.push({TYPE:obj['links']['links'][i]['link_name'], URL: obj['links']['links'][i]['link_url']});
         var m_link = new M_link;
         m_link.link_name = obj['links']['links'][i]['link_name'];
         m_link.link_url = obj['links']['links'][i]['link_url'];
@@ -383,15 +378,12 @@ module.exports = {
   return {
     toolInfo: toolInfo,
     m_tool: m_tool,
-    authors: authors,
     institutions: institutions,
     res_types: res_types,
     domains: domains,
     tags: tags,
-    links: links,
     langs: langs,
     platforms: platforms,
-    versions: versions,
     license: license,
     agency: agency,
     funding: funding,

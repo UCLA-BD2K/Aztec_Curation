@@ -2,18 +2,13 @@ var async = require('async');
 var logger = require("../config/logger");
 var util = require('./utilities/util.js');
 var Tool = require('../models/mysql/tool.js');
-var Author = require('../models/mysql/author.js');
 var Resource = require('../models/mysql/resource.js');
 var Tag = require('../models/mysql/tag.js');
-var Link = require('../models/mysql/relatedLinks.js');
 var Domain = require('../models/mysql/domain.js');
 var Agency = require('../models/mysql/agency.js');
 var Language = require('../models/mysql/language.js');
 var Platform = require('../models/mysql/platform.js');
-var Version = require('../models/mysql/version.js');
 var License = require('../models/mysql/license.js');
-var Agency = require('../models/mysql/agency.js');
-var Funding = require('../models/mysql/funding.js');
 var Center = require('../models/mysql/center.js');
 var Bookshelf = require('../config/bookshelf.js');
 var convert = require('./utilities/convert');
@@ -47,7 +42,6 @@ module.exports = {
     var obj = util.unflatten(req.body);
     var json = convert.convert2mysql(obj);
     var toolInfo = json['toolInfo'];
-    var authors = json['authors'];
     var res_types = json['res_types'];
     var domains = json['domains'];
     var tags = json['tags'];
@@ -353,26 +347,25 @@ module.exports = {
               }
             });
           },
-          function(toolData, callbackAsync) { //Save funding
+          function(toolData, callbackAsync) { //Save agency
             var promises = [];
-            var insertFunding = [];
+            var insertAgency = [];
             for(var i = 0; i<agency.length; i++){
               promises.push(new Promise(function(resolve, reject){
                 async.waterfall([
                   function(cb){
                     var currentAgency = agency[i];
-                    var currentFunding = funding[i];
                     Agency.forge()
                       .query({where: {NAME: currentAgency.NAME}})
                       .fetch()
                       .then(function(a){
                         if(a==null){
-                          return cb(null, false, currentAgency, currentFunding);
+                          return cb(null, false, currentAgency);
                         }
                         else{
                           logger.info('Found existing Agency: %s', a.attributes.NAME);
-                          insertFunding.push(a);
-                          return cb(null, true, a, currentFunding);
+                          insertAgency.push(a);
+                          return cb(null, true, a);
                         }
                       })
                       .catch(function(err){
@@ -381,16 +374,16 @@ module.exports = {
                         return cb('error');
                       })
                   },
-                  function(foundAgency, newAgency, newFunding, cb){
+                  function(foundAgency, newAgency, cb){
                     if(foundAgency){
-                      return cb(null, newAgency, newFunding);
+                      return cb(null, newAgency);
                     }
                     Agency.forge()
                       .save(newAgency, {transacting: transaction, method: type})
                       .then(function(a){
                         logger.info("ready to commit %s!", a.attributes.NAME);
-                        insertFunding.push(a);
-                        return cb(null, a, newFunding);
+                        insertAgency.push(a);
+                        return cb(null, a);
                       })
                       .catch(function(err){
                         logger.info("need to rollback agency");
@@ -412,9 +405,9 @@ module.exports = {
             }
             Promise.all(promises).then(function(values){
               if(values.indexOf(-1)>-1)
-                return callbackAsync('Error with funding');
+                return callbackAsync('Error with agency');
               else{
-                toolData.funding = insertFunding;
+                toolData.agency = insertAgency;
                 return callbackAsync(null, toolData);
               }
             });
@@ -490,10 +483,10 @@ module.exports = {
               }
 
               m_tool.azid = toolData.toolInfo.attributes.AZID;
-              for(var i = 0; i<toolData.funding.length; i++){
+              for(var i = 0; i<toolData.agency.length; i++){
 
                 var m_fund = new M_funding;
-                m_fund.agency_id = toolData.funding[i].attributes.AGENCY_ID;
+                m_fund.agency_id = toolData.agency[i].attributes.AGENCY_ID;
                 m_fund.funding_agency = agency[i].NAME;
                 m_fund.funding_grant = funding[i].GRANT_NUM;
                 m_tool.funding.push(m_fund);

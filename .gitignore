@@ -8,3 +8,5 @@ logs
 # configurations
 config/mysql.js
 config/mongo.js
+
+.DS_Store
