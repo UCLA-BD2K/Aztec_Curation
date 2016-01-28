@@ -68,7 +68,7 @@ body {
 #indexcontainer{
 	background-color: #5A7B85;
     margin-top: 10vh;
-    height: 16vh;
+    height: 45vh;
     width: 100vw;
 }
 
@@ -78,6 +78,3 @@ body {
 	font-weight: 100;
 	font-family:  'Open Sans', sans-serif;
 }
-
-
-
