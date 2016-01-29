@@ -932,7 +932,7 @@
 
 
     function onNewSubmit() {
-      $('#recaptcha').hide();
+      $('#submit-recaptcha').hide();
       $('#submitModal').modal('toggle');
       $('#MessageModal').modal('toggle');
       var submit = {
@@ -972,7 +972,7 @@
     };
 
     function onEditSubmit() {
-      $('#recaptcha').hide();
+      $('#submit-recaptcha').hide();
       $('#submitModal').modal('toggle');
       $('#MessageModal').modal('toggle');
       var submit = {
@@ -1252,7 +1252,7 @@
       $('#submitModalLabel').text('Submit Information');
       $('#modal-warn').hide();
       $('#modal-submit').show();
-      $('#recaptcha').show();
+      $('#submit-recaptcha').show();
     };
 
     function suggest(){
