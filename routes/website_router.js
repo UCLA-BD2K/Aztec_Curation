@@ -41,6 +41,8 @@ router.get('/reg', isLoggedIn, login.getReg);
 
 router.post('/reg', register.saveTool);
 
+router.post('/save', login.postSave);
+
 router.get('/edit/:id', login.getEdit);
 
 router.put('/edit/:id', verifyRecaptcha, edit.putEdit);

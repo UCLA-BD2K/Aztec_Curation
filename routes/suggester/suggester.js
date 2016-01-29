@@ -200,9 +200,11 @@ var searchCrossRef = function(toolMetadataJson, callback) {
   var md = toolMetadataJson;
   var name = md.basic.res_name.replace(" ", "+");
   options.url += name;
-  for (var i = 0; i < md.authors.authors.length; i++) {
-    var aname = md.authors.authors[i].author_name.replace(" ", "+");
-    options.url += "+" + aname;
+  if(md.authors.authors!=undefined){
+    for (var i = 0; i < md.authors.authors.length; i++) {
+      var aname = md.authors.authors[i].author_name.replace(" ", "+");
+      options.url += "+" + aname;
+    }
   }
   console.log(options.url);
   request(options, function(error, response, body) {

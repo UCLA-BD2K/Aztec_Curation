@@ -162,7 +162,7 @@
       <h1 class="reg-h1"><%=heading%></h1>
     </div>
     <div class="col-md-4 col-md-offset-4">
-      <button id='save' class="btn btn-primary">Save</button>
+      <button id='save' class="btn btn-primary" ng-click="vm.beforeSaveCheck()" data-toggle="modal" data-target="#saveModal">Save</button>
       <a href="javascript:grecaptcha.reset();"><button id='submit' class="btn btn-primary" ng-click="vm.checkForm()" data-toggle="modal" data-target="#submitModal">Submit</button></a>
     </div>
   </div>
@@ -171,7 +171,7 @@
 
 
   <div class="row">
-    
+
     <!-- The main form -->
     <div class="container col-md-6 col-md-offset-2">
       <form data-toggle="validator" novalidate>
@@ -292,20 +292,18 @@
       <pre id='pre6' style="cursor: pointer;">Version History{{vm.version | json}}</pre>
       <pre id='pre7' style="cursor: pointer;">IO Information{{vm.io | json}}</pre>
       <pre id='pre8' style="cursor: pointer;">License Information{{vm.license | json}}</pre>
-      <pre id='pre9' style="cursor: pointer;">Funding Information{{vm.funding | json}}</pre>  
+      <pre id='pre9' style="cursor: pointer;">Funding Information{{vm.funding | json}}</pre>
     </div>
-     
+
  </div>
-      
+
     </div>
 
 
   </div>
 
-   
 
-
-  <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="saveModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -313,7 +311,32 @@
             <span aria-hidden="true">&times;</span>
           </button>
           <center>
-            <h4 class="modal-title" id="myModalLabel"></h4>
+            <h4 class="modal-title" id="saveModalLabel"></h4>
+          </center>
+        </div>
+        <div id='pre-save'>
+        </div>
+        <div id='modal-save' class='modal-footer' style="display: none;">
+          <div id='recaptcha' class="g-recaptcha" data-sitekey="6Lc4DxYTAAAAAHqTlTb1np-XR8JKh6RYvgYvf4NQ"></div>
+          <button type='button' class='btn btn-primary' ng-click='vm.save'>Yes</button>
+          <button type='button' class='btn btn-default' data-dismiss='modal'>Cancel</button>
+        </div>
+        <div id='modal-save-warn' class='modal-footer' style="display: none;">
+          <button type='button' class='btn btn-default' data-dismiss='modal'>Okay</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <center>
+            <h4 class="modal-title" id="submitModalLabel"></h4>
           </center>
         </div>
         <div id='pre-submit'>
@@ -415,7 +438,7 @@
         </ui-select-choices>
       </ui-select>
     </script>
-</div> 
+</div>
 </body>
 
 

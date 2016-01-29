@@ -13,9 +13,16 @@
   <script src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
   <script src="/javascripts/modal.js"></script>
   <script>
-    $(document).ready(function() {
-      $('#myToolsTable').DataTable();
+  $(document).ready(function() {
+    $('#myToolsTable').DataTable({
+      columns : [
+        { "width": "10%" },
+        { "width": "20%" },
+        { "width": "50%" },
+        { "width": "20%" }
+      ]
     });
+  });
   </script>
 
 </head>
@@ -34,9 +41,8 @@
             <tr>
                 <th>ID</th>
                 <th>NAME</th>
-                <th>LOGO URL</th>
                 <th>DESCRIPTION</th>
-                <th>PUB DOI</th>
+                <th>DATE</th>
             </tr>
         </thead>
         <tbody>
@@ -47,9 +53,8 @@
                   <button class='btn btn-xs' onclick="location.href='/edit/<%=tools[i].attributes.AZID %>'">Edit</button>
               </td>
               <td> <%=tools[i].attributes.NAME %></td>
-              <td> <%=tools[i].attributes.LOGO_LINK %></td>
               <td> <%=tools[i].attributes.DESCRIPTION %></td>
-              <td> <%=tools[i].attributes.PRIMARY_PUB_DOI %></td>
+              <td style="font-size:10px"> <%=tools[i].attributes.SUBMIT_DATE %></td>
             </tr>
           <% } %>
         </tbody>

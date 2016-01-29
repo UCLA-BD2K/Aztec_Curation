@@ -2,6 +2,7 @@ var bcrypt = require('bcrypt-nodejs');
 var passport = require('passport');
 var User  = require('../models/mysql/user.js');
 var Tool  = require('../models/mysql/tool.js');
+var SavedTool  = require('../models/mongo/savedTool.js');
 var util = require('./utilities/util.js');
 var db = require('./utilities/db.js');
 var logger = require("../config/logger");
@@ -137,13 +138,13 @@ module.exports = {
     if(req.isAuthenticated())
       loginName = req.user.attributes.FIRST_NAME;
     Tool.forge()
-      .fetchAll()
+      .fetchAll({withRelated: ['users']})
       .then(function(tool){
         if(tool==null){
           return res.render('all.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: 'not found'});
         }
         else{
-          logger.debug(tool);
+          logger.debug(JSON.stringify(tool));
           return res.render('all.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: tool});
         }
       })
@@ -239,6 +240,24 @@ module.exports = {
         });
       })
 
+  },
+  postSave: function(req, res, next){
+    var tool = req.body;
+    console.log(tool);
+    var saveTool = new SavedTool({ tool: util.unflatten(tool) });
+    saveTool.user = req.user.attributes.EMAIL;
+    console.log(saveTool);
+    saveTool.save(function (err) {
+      if(err){
+        logger.info('mongo error');
+        logger.debug(err);
+      }
+      logger.debug('mongo success');
+    });
+    res.send({
+      status: 'success',
+      message: 'Saved tool'
+    });
   }
 
 };

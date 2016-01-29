@@ -22,6 +22,7 @@ module.exports = {
     basic['res_name'] = json['NAME'];
     basic['res_logo'] = json['LOGO_LINK'];
     basic['res_desc'] = json['DESCRIPTION'];
+    basic['submit_date'] = json['SUBMIT_DATE'];
 
     basic['res_types'] = [];
     if(json['resource_types']!=undefined){

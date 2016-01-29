@@ -210,6 +210,8 @@
     var vm = this;
     vm.onNewSubmit = onNewSubmit;
     vm.onEditSubmit = onEditSubmit;
+    vm.save = save;
+    vm.beforeSaveCheck = beforeSaveCheck;
     vm.suggest = suggest;
     vm.checkForm = checkForm;
     vm.passWarning = passWarning;
@@ -1217,16 +1219,16 @@
       html += message+"</div>";
 
       if(error){
-        $('#myModalLabel').text('Missing Information');
+        $('#submitModalLabel').text('Missing Information');
         html+= "<div class='modal-footer'>"+
                   "<button type='button' class='btn btn-default' data-dismiss='modal'>Okay</button>"+
                 "</div>";
       }else if(warn){
-        $('#myModalLabel').text('Warning');
+        $('#submitModalLabel').text('Warning');
         $('#modal-submit').hide();
         $('#modal-warn').show();
       }else{
-        $('#myModalLabel').text('Submit Information');
+        $('#submitModalLabel').text('Submit Information');
         $('#modal-warn').hide();
         $('#modal-submit').show();
       }
@@ -1247,7 +1249,7 @@
         "<pre id='sub_pre9'>Funding Information"+JSON.stringify(vm.funding, null, 4)+"</pre>"+
         "</div>"
       );
-      $('#myModalLabel').text('Submit Information');
+      $('#submitModalLabel').text('Submit Information');
       $('#modal-warn').hide();
       $('#modal-submit').show();
       $('#recaptcha').show();
@@ -1275,26 +1277,37 @@
         .done(function(data) {
           $('#loading').hide();
           var json = JSON.parse(data);
-          $('#suggestions').append('<strong>Pub. Description: </strong>'+
-            json['suggestedDescription']+'<br>'+
-            '<strong>Pub. URL: </strong>'+
-            json['suggestedUrl']+'<br>'
-          );
+          var text = "";
+          if(json['suggestedDescription']!=undefined)
+            text += '<strong>Pub. Description: </strong>'+
+              json['suggestedDescription']+'<br>';
+          if(json['suggestedUrl']!=undefined)
+            text += '<strong>Pub. URL: </strong>'+
+            json['suggestedUrl']+'<br>';
+
+          $('#suggestions').append(text);
         });
         $.post("/suggest/query?field=res_code_url", fields)
           .done(function(data) {
             $('#loading').hide();
 
             var json = data;
-            $('#suggestions').append('<strong>Github Description: </strong>'+
-              json['suggestedDescription']+'<br>'+
-              '<strong>Github URL: </strong>'+
-              json['suggestedUrl']+'<br>'+
-              '<strong>Github Language: </strong>'+
-              json['suggestedLang']+'<br>'+
-              '<strong>Link: </strong>'+
-              json['suggestedLink']['link_url']+' ('+json['suggestedLink']['link_name']+')<br>'
-            );
+            var text = "";
+
+            if(json['suggestedDescription']!=undefined)
+              text += '<strong>Github Description: </strong>'+
+                json['suggestedDescription']+'<br>';
+            if(json['suggestedUrl']!=undefined)
+              text += '<strong>Github URL: </strong>'+
+              json['suggestedUrl']+'<br>';
+            if(json['suggestedLang']!=undefined)
+              text += '<strong>Github Language: </strong>'+
+              json['suggestedLang']+'<br>';
+            if(json['suggestedLink']!=undefined && json['suggestedLink']['link_url']!=undefined)
+              text += '<strong>Link: </strong>'+
+              json['suggestedLink']['link_url']+' ('+json['suggestedLink']['link_name']+')<br>';
+
+            $('#suggestions').append(text);
           });
         if(fields['dev']==undefined || fields['dev']['res_code_url']==undefined){
           return;
@@ -1303,6 +1316,7 @@
           .done(function(data) {
             $('#loading').hide();
             var json = JSON.parse(data);
+
             if(json['suggestedLicense']!=undefined){
               $('#suggestions').append('<strong>License: </strong>'+
                 json['suggestedLicense']+'<br>'
@@ -1332,6 +1346,52 @@
                   );
                 }
               });
+    };
+
+    function beforeSaveCheck(){
+      if(true){
+        $('#saveModalLabel').text('In Development');
+      }
+      else if(Object.keys(vm['basic']).length==0 ||
+         vm['basic']['res_name']==undefined ||
+         vm['basic']['res_desc']==undefined){
+           $('#saveModalLabel').text('Missing Information');
+           $('#pre-save').html("<center><b>Please enter a name and a description for the resource.</b></center>");
+           $('#modal-save').hide();
+           $('#modal-save-warn').show();
+         }else{
+           $('#saveModalLabel').text('Save');
+           $('#pre-save').html("<center><b>Save resource?</b></center>");
+           $('#modal-save').show();
+           $('#modal-save-warn').hide();
+         }
+    }
+
+    function save(){
+      var submit = {
+        basic: vm.basic,
+        authors: vm.authors,
+        publication: vm.publication,
+        links: vm.links,
+        dev: vm.dev,
+        version: vm.version,
+        io: vm.io,
+        license: vm.license,
+        funding: vm.funding,
+        //recaptcha: $('#g-recaptcha-response').val()
+      };
+      $.post("/save", submit)
+        .done(function(data) {
+          console.log(data);
+          //$('#messageLabel').text(data.message);
+          if(data.status=='success'){
+
+          }else{
+
+          }
+          // alert("Data Loaded: " + data.message);
+        });
+
     };
 
     function init(id){
