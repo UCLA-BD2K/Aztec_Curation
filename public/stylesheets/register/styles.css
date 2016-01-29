@@ -1,7 +1,7 @@
 .container {
 	background-color: #ffffff;
-	border: 1px solid #ccc;
-	padding: 20px;
+	/*border: 1px solid #ccc;
+	padding: 20px;*/
 	top: 20px;
 	/*-webkit-box-shadow: 0 2px 2px 1px rgba(0,0,0,0.2);
 	box-shadow: 0 2px 2px 1px rgba(0,0,0,0.2);*/
@@ -27,6 +27,8 @@
 
 #overall{
 	width: 100vw;
+    height: 78vh; 
+    overflow: hidden;
 }
 
 
@@ -59,3 +61,31 @@ body{
 	    font-family: 'Open Sans', sans-serif;
 
 }
+h1 {
+    font-weight: 100; 
+
+}
+pre{
+    border: none; 
+    border-radius: 0px;
+}
+.col-md-6, .col-md-3 {
+    height: 78vh;
+    overflow: scroll;
+    padding-top: 0vh;
+    padding-bottom: 10vh;
+}
+
+.col-md-3{
+
+    margin-left: 5vw;
+    overflow: hidden;
+}
+::-webkit-scrollbar { 
+    display: none; 
+}
+.tab-pane{
+ height:460px;
+  overflow-y:scroll;
+  width:100%;}
+
