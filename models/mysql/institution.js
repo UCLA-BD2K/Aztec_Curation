@@ -6,9 +6,9 @@ var Alias = require('./inst_alias.js');
 var institutionSchema = Bookshelf.Model.extend({
 
     tableName: 'INSTITUTION',
-    idAttribute: 'INST_ID',
+    idAttribute: 'NAME',
     tools: function() {
-      return this.belongsToMany(Tool, 'TOOL_INSTITUTION', 'AZID', 'INST_ID');
+      return this.belongsToMany(Tool, 'TOOL_INSTITUTION', 'INST_NAME', 'AZID');
     },
     aliases: function() {
       return this.hasMany(Alias);

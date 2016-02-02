@@ -17,6 +17,7 @@ module.exports = {
             }
             return cb(response);
           }
+          console.log(thisTool);
 
           var returnTool = thisTool.toJSON()[0];
 

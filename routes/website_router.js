@@ -4,6 +4,7 @@ var test = require('./test.js');
 var register = require('./register.js');
 var login = require('./login.js');
 var edit = require('./edit.js');
+var util = require('./utilities/util.js');
 
 
 /* GET home page. */
@@ -41,6 +42,8 @@ router.get('/reg', isLoggedIn, login.getReg);
 
 router.post('/reg', register.saveTool);
 
+router.get('/saved/:id', login.getSaved);
+
 router.post('/save', login.postSave);
 
 router.get('/edit/:id', login.getEdit);
@@ -59,7 +62,7 @@ function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return next();
 
-    res.redirect('/');
+    return util.showStatus(req, res, 'error', 'Not logged in')
 }
 
 function verifyRecaptcha(req, res, next){

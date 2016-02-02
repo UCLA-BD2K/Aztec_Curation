@@ -21,6 +21,7 @@ var M_link = require('../models/mongo/link.js');
 var M_publication = require('../models/mongo/publication.js');
 var M_version = require('../models/mongo/version.js');
 
+var SavedTool = require('../models/mongo/savedTool.js');
 
 
 
@@ -458,6 +459,13 @@ module.exports = {
               logger.info("Committing Tool "+toolData.toolInfo.attributes.NAME+"!");
               transaction.commit(toolData.toolInfo);
 
+              if(json['savedID']!=undefined && json['savedID']!=""){
+                SavedTool.remove({_id: json['savedID']}, function(err){
+                  if(err){
+                    logger.debug(err);
+                  }
+                });
+              }
 
               for(var i = 0; i<toolData.tags.length; i++){
                 logger.debug("Committing "+tags[i].NAME+"!");

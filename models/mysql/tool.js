@@ -80,7 +80,7 @@ var toolSchema = Bookshelf.Model.extend({
       return this.belongsToMany(Language, 'TOOL_LANG', 'AZID', 'LANG_ID');
     },
     institutions: function() {
-      return this.belongsToMany(Institution, 'TOOL_INSTITUTION', 'AZID', 'INST_ID');
+      return this.belongsToMany(Institution, 'TOOL_INSTITUTION', 'AZID', 'INST_NAME');
     },
     centers: function(){
       return this.hasMany(Center, 'AZID');

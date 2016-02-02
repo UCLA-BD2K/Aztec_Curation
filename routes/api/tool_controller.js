@@ -38,12 +38,13 @@ module.exports = {
       return db.searchToolByID(req.params['id'], function(result){
         res.send(result);
       });
+    }else{
+      var response = {
+        status  : 'error',
+        error   : 'Invalid input'
+      };
+      return res.send(response);
     }
-    var response = {
-      status  : 'error',
-      error   : 'Invalid input'
-    };
-    return res.send(response);
   }
 };
 

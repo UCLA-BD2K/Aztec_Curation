@@ -118,19 +118,34 @@ module.exports = {
       .fetch({withRelated: ['tools']})
       .then(function(user){
         if(user==null){
-          return res.render('portal.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: 'not found'});
+          return res.render('portal.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: null, saved: null});
         }
         else{
           logger.info('Found existing user: %s', user.attributes.FIRST_NAME);
           logger.debug(user.tools());
-          return res.render('portal.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: user});
+          var email = req.user.attributes.EMAIL;
+          SavedTool.find({user : email}, function(err, tools){
+            if (err || tools == null){
+              return res.render('portal.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: null, saved: null});
+            }
+            else{
+              var savedTools = [];
+              tools.forEach(function(tool){
+                var toolJson = tool.toJSON();
+                toolJson['tool']['id'] = toolJson['_id'];
+                toolJson['tool']['date'] = toolJson['date'];
+                savedTools.push(toolJson['tool']);
+              });
+              return res.render('portal.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: user, saved: savedTools});
+            }
+          });
 
         }
       })
       .catch(function(err){
         logger.info('query user error');
         logger.debug(err);
-        return res.render('portal.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: 'error'});
+        return res.render('portal.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: null, saved: null});
       })
   },
   getAllTools: function(req, res, next) {
@@ -221,16 +236,13 @@ module.exports = {
           var loginName = 'Login';
           if(req.isAuthenticated())
             loginName = req.user.attributes.FIRST_NAME;
-          db.searchToolByID(id, function(result){
-            return res.render('form.ejs', {title: "Edit",
-              heading: "Edit Resource #"+id,
-              name: loginName,
-              loggedIn : req.isAuthenticated(),
-              editURL: "..",
-              submitFunc: "onEditSubmit()",
-              tool: result,
-              init: "data-ng-init=vm.init("+id+")"});
-          });
+          return res.render('form.ejs', {title: "Edit",
+            heading: "Edit Resource #"+id,
+            name: loginName,
+            loggedIn : req.isAuthenticated(),
+            editURL: "..",
+            submitFunc: "onEditSubmit()",
+            init: "data-ng-init=vm.initEdit("+id+")"});
         }
       })
       .catch(function(err){
@@ -241,23 +253,64 @@ module.exports = {
       })
 
   },
+  getSaved: function(req, res, next){
+    var id = req.params.id;
+
+    if(req.isAuthenticated() && req.user!=undefined){
+      SavedTool.findOne({user: req.user.attributes.EMAIL, '_id' : id}, function(err, tool){
+        if(err || tool==null){
+          return util.showStatus(req, res, 'error', 'Resource not found');
+        }else{
+          return res.render('form.ejs', {title: "Register",
+            heading: "Register New Resource",
+            name: req.user.attributes.FIRST_NAME,
+            loggedIn : true,
+            editURL: "..",
+            submitFunc: "onNewSubmit()",
+            init: "data-ng-init=vm.initSaved(\'"+id+"\')"});
+          }
+        });
+    }
+    else{
+      return util.showStatus(req, res, 'error', 'Not logged in');
+    }
+
+  },
   postSave: function(req, res, next){
     var tool = req.body;
-    console.log(tool);
-    var saveTool = new SavedTool({ tool: util.unflatten(tool) });
-    saveTool.user = req.user.attributes.EMAIL;
-    console.log(saveTool);
-    saveTool.save(function (err) {
-      if(err){
-        logger.info('mongo error');
-        logger.debug(err);
-      }
-      logger.debug('mongo success');
-    });
-    res.send({
-      status: 'success',
-      message: 'Saved tool'
-    });
+    logger.debug(tool);
+    if(tool['savedID']!=""){
+      SavedTool.update({_id: tool['savedID']}, {$set: {tool:util.unflatten(tool), date: Date.now()}}, function(err){
+        if(err){
+          logger.info('save error');
+          logger.debug(err);
+          res.send({
+            status: 'error',
+            message: 'Did not save'
+          });
+        }else{
+          res.send({
+            status: 'success',
+            message: 'Saved tool'
+          });
+        }
+      })
+    }
+    else{
+      var saveTool = new SavedTool({ tool: util.unflatten(tool) });
+      saveTool.user = req.user.attributes.EMAIL;
+      saveTool.save(function (err) {
+        if(err){
+          logger.info('mongo error');
+          logger.debug(err);
+        }
+        logger.debug('mongo success');
+      });
+      res.send({
+        status: 'success',
+        message: 'Saved tool'
+      });
+    }
   }
 
 };

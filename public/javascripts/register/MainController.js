@@ -134,14 +134,12 @@
       templateUrl: 'typeahead-async.html',
       controller: ['$scope', '$http', function($scope, $http) {
         $scope.getItems = function(val, url) {
-          console.log($scope.link);
           return $http.get(url, {
             params: {
               q: val
             }
           }).then(function(response) {
             return response.data.map(function(item) {
-              console.log(item);
               return item;
             });
           });
@@ -215,10 +213,11 @@
     vm.suggest = suggest;
     vm.checkForm = checkForm;
     vm.passWarning = passWarning;
-    vm.init = init;
-
+    vm.initEdit = initEdit;
+    vm.initSaved = initSaved;
     // The model object that we reference
     // on the <formly-form> element in index.html
+    vm.savedID = "";
     vm.basic = {};
     $scope.basic = vm.basic;
     vm.authors = {};
@@ -461,17 +460,17 @@
       templateOptions: {
         btnText: 'Add new institution',
         fields: [{
-          key: 'inst_id',
+          key: 'inst_name',
           type: 'ui-select-single-search',
           hideExpression: 'model.missing',
           templateOptions: {
             optionsAttr: 'bs-options',
             ngOptions: 'option[to.valueProp] as option in to.options | filter: $select.search',
             label: 'Institution Name',
-            valueProp: 'INST_ID',
+            valueProp: 'PRIMARY_NAME',
             labelProp: 'ALIAS',
-            otherProp: 'PRIMARY_NAME',
-            placeholder: 'Enter the name of the institution',
+            otherProp: 'inst_name',
+            placeholder: 'Type and select the name of the institution',
             endpoint: '/api/institution',
             options: [],
             refresh: refreshInst,
@@ -482,7 +481,7 @@
           type: 'input',
           templateOptions: {
             type: 'text',
-            label: "Insitution Name",
+            label: "Institution Name",
             placeholder: 'Enter the name of the institution',
             required: false
           },
@@ -936,6 +935,7 @@
       $('#submitModal').modal('toggle');
       $('#MessageModal').modal('toggle');
       var submit = {
+        savedID: vm.savedID,
         basic: vm.basic,
         authors: vm.authors,
         publication: vm.publication,
@@ -966,9 +966,7 @@
               keyboard: 'true'
             });
           }
-          // alert("Data Loaded: " + data.message);
         });
-      //console.log(JSON.stringify(submit));
     };
 
     function onEditSubmit() {
@@ -976,6 +974,7 @@
       $('#submitModal').modal('toggle');
       $('#MessageModal').modal('toggle');
       var submit = {
+        savedID: vm.savedID,
         basic: vm.basic,
         authors: vm.authors,
         publication: vm.publication,
@@ -1003,13 +1002,13 @@
               }
             }, 1000);
         }else{
+          $('#messageBody').text(data.message);
           $('#MessageModal').modal({
             backdrop: 'true',
             keyboard: 'true'
           });
         }
       });
-      //console.log(JSON.stringify(submit));
     };
 
     function refreshAddresses(address, field) {
@@ -1031,7 +1030,6 @@
         });
       }
       return promise.then(function(response) {
-        console.log(response.data.results);
         field.templateOptions.options = response.data.results;
       });
     };
@@ -1144,12 +1142,10 @@
       }
 
       // link section
-      if((Object.keys(vm['links']).length==0 || vm['links']['links']==undefined) &&
+      if((vm['links']==undefined || Object.keys(vm['links']).length==0 || vm['links']['links']==undefined) &&
       (vm['dev']['res_code_url']==undefined || vm['dev']['res_code_url']=="")){
-        console.log(1);
         errorMessages[2].setErr(true);
-      }else if(vm['links']['links']){
-        console.log(JSON.stringify(vm['links']));
+      }else if(vm['links']!=undefined && vm['links']['links']){
         var atLeast1 = false;
         vm['links']['links'].forEach(function(link){
           if(link['link_name']==undefined || link['link_url']==undefined){
@@ -1165,25 +1161,25 @@
       }
 
       // authors section
-      if(Object.keys(vm['authors']).length==0){
+      if(vm['authors']==undefined || Object.keys(vm['authors']).length==0){
         warnMessages[3].setWarning(true);
       }
-      if(Object.keys(vm['publication']).length==0){
+      if(vm['publication']==undefined || Object.keys(vm['publication']).length==0){
         warnMessages[4].setWarning(true);
       }
-      if(Object.keys(vm['dev']).length==0){
+      if(vm['dev']==undefined || Object.keys(vm['dev']).length==0){
         warnMessages[5].setWarning(true);
       }
-      if(Object.keys(vm['version']).length==0){
+      if(vm['version']==undefined || Object.keys(vm['version']).length==0){
         warnMessages[6].setWarning(true);
       }
-      if(Object.keys(vm['io']).length==0){
+      if(vm['io']==undefined || Object.keys(vm['io']).length==0){
         warnMessages[7].setWarning(true);
       }
-      if(Object.keys(vm['license']).length==0){
+      if(vm['license']==undefined || Object.keys(vm['license']).length==0){
         warnMessages[8].setWarning(true);
       }
-      if(Object.keys(vm['funding']).length==0){
+      if(vm['funding']==undefined || Object.keys(vm['funding']).length==0){
         warnMessages[9].setWarning(true);
       }
 
@@ -1349,10 +1345,7 @@
     };
 
     function beforeSaveCheck(){
-      if(true){
-        $('#saveModalLabel').text('In Development');
-      }
-      else if(Object.keys(vm['basic']).length==0 ||
+      if(Object.keys(vm['basic']).length==0 ||
          vm['basic']['res_name']==undefined ||
          vm['basic']['res_desc']==undefined){
            $('#saveModalLabel').text('Missing Information');
@@ -1366,18 +1359,35 @@
            $('#modal-save-warn').hide();
          }
     }
+    function removeHash(json){
+      if(json==undefined)
+        return {};
+      var keys = Object.keys(json);
+      keys.forEach(function(key){
+        if(json[key] instanceof Array){
+          json[key] = json[key].map(function(obj){
+            delete obj['$$hashKey'];
+            return obj;
+          });
+        }
+      })
+      return json;
+    };
 
     function save(){
+      $('#saveModal').modal('toggle');
+      $('#MessageModal').modal('toggle');
       var submit = {
-        basic: vm.basic,
-        authors: vm.authors,
-        publication: vm.publication,
-        links: vm.links,
-        dev: vm.dev,
-        version: vm.version,
-        io: vm.io,
-        license: vm.license,
-        funding: vm.funding,
+        savedID: vm.savedID,
+        basic: removeHash(vm.basic),
+        authors: removeHash(vm.authors),
+        publication: removeHash(vm.publication),
+        links: removeHash(vm.links),
+        dev: removeHash(vm.dev),
+        version: removeHash(vm.version),
+        io: removeHash(vm.io),
+        license: removeHash(vm.license),
+        funding: removeHash(vm.funding)
         //recaptcha: $('#g-recaptcha-response').val()
       };
       $.post("/save", submit)
@@ -1389,12 +1399,14 @@
           }else{
 
           }
+          $('#messageLabel').text(data.status);
+          $('#messageBody').text(data.message);
           // alert("Data Loaded: " + data.message);
         });
 
     };
 
-    function init(id){
+    function initEdit(id){
       $.get("/api/tool/"+id)
         .done(function(data) {
           console.log(data);
@@ -1407,6 +1419,31 @@
             vm.version = data['version'];
             vm.license = data['license'];
             vm.funding = data['funding'];
+            $scope.$apply();
+        });
+    };
+
+    function initSaved(id){
+      $.get("/api/saved/"+id)
+        .done(function(data) {
+          console.log(data);
+            vm.savedID = data['savedID'];
+            vm.orig = JSON.parse(JSON.stringify(data));
+            vm.basic = data['basic'];
+            if(data['authors']!=undefined)
+              vm.authors = data['authors'];
+            if(data['publication']!=undefined)
+              vm.publication = data['publication'];
+            if(data['links']!=undefined)
+              vm.links = data['links'];
+            if(data['dev']!=undefined)
+              vm.dev = data['dev'];
+            if(data['version']!=undefined)
+              vm.version = data['version'];
+            if(data['license']!=undefined)
+              vm.license = data['license'];
+            if(data['funding']!=undefined)
+              vm.funding = data['funding'];
             $scope.$apply();
         });
     }

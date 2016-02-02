@@ -162,7 +162,9 @@
       <h1 class="reg-h1"><%=heading%></h1>
     </div>
     <div class="col-md-4 col-md-offset-4">
-      <button id='save' class="btn btn-primary" ng-click="vm.beforeSaveCheck()" data-toggle="modal" data-target="#saveModal">Save</button>
+      <% if(title=='Register') { %>
+        <button id='save' class="btn btn-primary" ng-click="vm.beforeSaveCheck()" data-toggle="modal" data-target="#saveModal">Save</button>
+      <% } %>
       <a href="javascript:grecaptcha.reset();"><button id='submit' class="btn btn-primary" ng-click="vm.checkForm()" data-toggle="modal" data-target="#submitModal">Submit</button></a>
     </div>
   </div>
@@ -311,14 +313,14 @@
             <span aria-hidden="true">&times;</span>
           </button>
           <center>
-            <h4 class="modal-title" id="saveModalLabel"></h4>
+            <h4 class="modal-title" id="saveModalLabel">Save</h4>
           </center>
         </div>
         <div id='pre-save'>
         </div>
-        <div id='modal-save' class='modal-footer' style="display: none;">
+        <div id='modal-save' class='modal-footer'>
 
-          <button type='button' class='btn btn-primary' ng-click='vm.save'>Yes</button>
+          <button type='button' class='btn btn-default' ng-click='vm.save()'>Yes</button>
           <button type='button' class='btn btn-default' data-dismiss='modal'>Cancel</button>
         </div>
         <div id='modal-save-warn' class='modal-footer' style="display: none;">
@@ -354,10 +356,12 @@
     </div>
   </div>
   <div id="MessageModal" class="modal fade" data-keyboard="false" data-backdrop="static" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="messageLabel"></h4>
+        <center>
+          <h4 class="modal-title" id="messageLabel"></h4>
+        </center>
       </div>
       <div class="modal-body" id="messageBody" style="text-align:center">
       </div>
@@ -429,12 +433,12 @@
       <ui-select data-ng-model="model[options.key]" data-required="{{to.required}}" data-disabled="{{to.disabled}}" theme="bootstrap">
 
         <ui-select-match placeholder="{{to.placeholder}}">
-        {{$select.selected[to.otherProp]|| model[to.otherProp]}} [{{$select.selected[to.labelProp]}}]
+        {{$select.selected[to.valueProp]|| model[to.otherProp]}} [{{$select.selected[to.labelProp]}}]
 
         </ui-select-match>
         <ui-select-choices data-repeat="{{to.ngOptions}}" data-refresh="to.refresh($select.search, options, to.endpoint)" data-refresh-delay="{{to.refreshDelay}}">
           <div ng-bind-html="option[to.labelProp] | highlight: $select.search"></div>
-          <div><small>{{option[to.otherProp]}}</small></div>
+          <div><small>{{option[to.valueProp]}}</small></div>
         </ui-select-choices>
       </ui-select>
     </script>

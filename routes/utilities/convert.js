@@ -63,12 +63,11 @@ module.exports = {
         authors['maintainers'].push({first_name: maintainer['first_name'], last_name: maintainer['last_name'], maintainer_email: maintainer['maintainer_email']});
       });
     }
-
     authors['institution'] = [];
     if(json['institutions']!=undefined){
       json['institutions'].forEach(function(inst){
-        if(inst['INST_ID']!=undefined)
-          authors['institution'].push({inst_id: inst['INST_ID'], PRIMARY_NAME: inst['NAME']});
+        if(inst['NAME']!=undefined)
+          authors['institution'].push({inst_name: inst['NAME']});
         else {
           authors['institution'].push({missing: true, new_institution: inst['new_institution']});
         }
@@ -240,8 +239,8 @@ module.exports = {
     }
     if(obj['authors']!=undefined && obj['authors']['institution']!=undefined){
       for(var i = 0; i<obj['authors']['institution'].length; i++){
-        if(obj['authors']['institution'][i]['inst_id']!=undefined)
-          institutions.push(obj['authors']['institution'][i]['inst_id']);
+        if(obj['authors']['institution'][i]['inst_name']!=undefined)
+          institutions.push(obj['authors']['institution'][i]['inst_name']);
         else {
           m_tool.missing_inst.push({new_institution: obj['authors']['institution'][i]['new_institution']});
         }
@@ -377,6 +376,7 @@ module.exports = {
       }
     }
   return {
+    savedID: obj['savedID'],
     toolInfo: toolInfo,
     m_tool: m_tool,
     institutions: institutions,
