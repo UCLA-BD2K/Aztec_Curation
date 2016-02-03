@@ -52,7 +52,7 @@
     outline: none;
         width: 10%;
     outline: none;
-        margin-left: 36%;
+        margin-left: 33%;
     height: 50%;
     margin-top: 1.8%;
 
@@ -163,4 +163,10 @@ a{
 }
 .tab-pane{
     padding-top: 1.5%;
+}
+#submit{
+
+    margin-left: 19%;
+    margin-top: 33%;
+    width: 168%;
 }

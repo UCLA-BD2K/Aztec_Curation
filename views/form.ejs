@@ -167,6 +167,7 @@
       <% if(title=='Register') { %>
         <button id='save' class="btn btn-primary" ng-click="vm.beforeSaveCheck()" data-toggle="modal" data-target="#saveModal">Save</button>
       <% } %>
+        <a href="javascript:grecaptcha.reset();"><button id='submit' class="btn btn-primary" ng-click="vm.checkForm()" data-toggle="modal" data-target="#submitModal">Submit</button></a>
      </div>
   </div>
 
@@ -256,7 +257,7 @@
           </formly-form>
           <div class="row text-center">
             <button id='b9prev' class="btn btn-success">Prev</button>
-            <a href="javascript:grecaptcha.reset();"><button id='submit' class="btn btn-primary" ng-click="vm.checkForm()" data-toggle="modal" data-target="#submitModal">Submit</button></a>
+          
           </div>
         </div>
       </form>
