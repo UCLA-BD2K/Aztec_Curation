@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var test = require('./test.js');
 var register = require('./register.js');
 var login = require('./login.js');
 var edit = require('./edit.js');
@@ -10,21 +9,6 @@ var util = require('./utilities/util.js');
 /* GET home page. */
 router.get('/', login.getHome);
 
-
-// Tests
-router.get('/testEdit', test.getEdit);
-
-router.post('/testEdit', test.postEdit);
-
-router.get('/testWrite', test.getWrite);
-
-router.get('/testRead', test.getRead);
-
-router.get('/testForm', test.getForm);
-
-router.post('/testForm', test.postForm);
-
-router.get('/testQuery', test.getQuery);
 
 
 // website

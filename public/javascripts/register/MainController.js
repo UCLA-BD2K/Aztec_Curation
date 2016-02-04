@@ -1393,15 +1393,19 @@
       $.post("/save", submit)
         .done(function(data) {
           console.log(data);
-          //$('#messageLabel').text(data.message);
-          if(data.status=='success'){
-
-          }else{
-
-          }
           $('#messageLabel').text(data.status);
           $('#messageBody').text(data.message);
-          // alert("Data Loaded: " + data.message);
+          if(data.status=='success'){
+            var count = 0;
+            setInterval(function(){
+                count++;
+                $('#messageBody').append('.  ');
+                if(count > 2){
+                  window.location.href = '/saved/'+data.id;
+                }
+              }, 1000);
+            }
+
         });
 
     };
