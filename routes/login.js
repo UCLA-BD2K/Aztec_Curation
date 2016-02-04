@@ -9,7 +9,6 @@ var logger = require("../config/logger");
 
 
 function loginPost(req, res, next) {
-    logger.debug(req.body);
     var response = {};
     passport.authenticate('local', function(err, user, info) {
       if(err) {
@@ -68,7 +67,7 @@ module.exports = {
              //****************************************************//
              var password = user.password;
              var hash = bcrypt.hashSync(password);
-             logger.debug(user);
+             logger.debug(user.email);
              var signUpUser = new User({
                EMAIL: user.email,
                FIRST_NAME: user.firstname,
@@ -299,16 +298,22 @@ module.exports = {
     else{
       var saveTool = new SavedTool({ tool: util.unflatten(tool) });
       saveTool.user = req.user.attributes.EMAIL;
-      saveTool.save(function (err) {
+      saveTool.save(function (err, t) {
         if(err){
           logger.info('mongo error');
           logger.debug(err);
+          res.send({
+            status: 'error',
+            message: 'Error saving tool'
+          });
+        }else{
+          logger.debug('mongo success');
+          res.send({
+            status: 'success',
+            message: 'Saved tool',
+            id: t['_id']
+          });
         }
-        logger.debug('mongo success');
-      });
-      res.send({
-        status: 'success',
-        message: 'Saved tool'
       });
     }
   }
