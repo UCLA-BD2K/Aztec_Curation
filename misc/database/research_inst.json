@@ -1,0 +1,3468 @@
+[
+ {
+  "name": "Latin American Social Sciences Institute",
+  "aliases": []
+ },
+ {
+  "name": "Joint Institute for Nuclear Research",
+  "aliases": []
+ },
+ {
+  "name": "Zuse Institute Berlin",
+  "aliases": []
+ },
+ {
+  "name": "CNRS",
+  "aliases": []
+ },
+ {
+  "name": "Aachen Institute for Advanced Study in Computational Engineering Science",
+  "aliases": []
+ },
+ {
+  "name": "Austrian Archaeological Institute",
+  "aliases": []
+ },
+ {
+  "name": "Austrian Institute of Economic Research",
+  "aliases": []
+ },
+ {
+  "name": "Karlsruhe Institute of Technology",
+  "aliases": []
+ },
+ {
+  "name": "Helmholtz-Zentrum Berlin",
+  "aliases": []
+ },
+ {
+  "name": "BESSY",
+  "aliases": []
+ },
+ {
+  "name": "Monumenta Germaniae Historica",
+  "aliases": []
+ },
+ {
+  "name": "German National Library of Economics",
+  "aliases": []
+ },
+ {
+  "name": "Walter Eucken Institut",
+  "aliases": []
+ },
+ {
+  "name": "Museum Witt",
+  "aliases": []
+ },
+ {
+  "name": "Geisenheim Grape Breeding Institute",
+  "aliases": []
+ },
+ {
+  "name": "Fermilab",
+  "aliases": []
+ },
+ {
+  "name": "Nordic Africa Institute",
+  "aliases": []
+ },
+ {
+  "name": "National Institutes of Health",
+  "aliases": []
+ },
+ {
+  "name": "Institut national de recherche et de sécurité",
+  "aliases": []
+ },
+ {
+  "name": "AUTÓKUT",
+  "aliases": []
+ },
+ {
+  "name": "American Academy in Berlin",
+  "aliases": []
+ },
+ {
+  "name": "Physikalisch-Technische Bundesanstalt",
+  "aliases": []
+ },
+ {
+  "name": "German Entomological Institute",
+  "aliases": []
+ },
+ {
+  "name": "NIOD Institute for War, Holocaust and Genocide Studies",
+  "aliases": []
+ },
+ {
+  "name": "Social Science Research Center Berlin",
+  "aliases": []
+ },
+ {
+  "name": "Institute for New Testament Textual Research",
+  "aliases": []
+ },
+ {
+  "name": "Meertens Institute",
+  "aliases": []
+ },
+ {
+  "name": "Korea Institute of Science and Technology",
+  "aliases": []
+ },
+ {
+  "name": "Electric Power Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Korea Aerospace Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Võro Institute",
+  "aliases": []
+ },
+ {
+  "name": "OKB",
+  "aliases": []
+ },
+ {
+  "name": "Royal Netherlands Meteorological Institute",
+  "aliases": []
+ },
+ {
+  "name": "Lawrence Livermore National Laboratory",
+  "aliases": []
+ },
+ {
+  "name": "Fryske Akademy",
+  "aliases": []
+ },
+ {
+  "name": "Alfred Wegener Institute for Polar and Marine Research",
+  "aliases": []
+ },
+ {
+  "name": "Gauss Centre for Supercomputing",
+  "aliases": []
+ },
+ {
+  "name": "Ibero-American Institute",
+  "aliases": []
+ },
+ {
+  "name": "IRCAM",
+  "aliases": []
+ },
+ {
+  "name": "St. Petersburg Department of Steklov Institute of Mathematics of Russian Academy of Sciences",
+  "aliases": []
+ },
+ {
+  "name": "International Center for Agricultural Research in the Dry Areas",
+  "aliases": []
+ },
+ {
+  "name": "Steklov Institute of Mathematics",
+  "aliases": []
+ },
+ {
+  "name": "Bernhard Nocht Institute for Tropical Medicine",
+  "aliases": []
+ },
+ {
+  "name": "Electronics and Telecommunications Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Korea Development Institute",
+  "aliases": []
+ },
+ {
+  "name": "KAERI",
+  "aliases": []
+ },
+ {
+  "name": "ARGE-SH",
+  "aliases": []
+ },
+ {
+  "name": "Gregor Mendel Institute",
+  "aliases": []
+ },
+ {
+  "name": "Helmholtz Zentrum München",
+  "aliases": []
+ },
+ {
+  "name": "Dagstuhl",
+  "aliases": []
+ },
+ {
+  "name": "Heligoland Bird Observatory",
+  "aliases": []
+ },
+ {
+  "name": "Helmholtz Centre for Environmental Research",
+  "aliases": []
+ },
+ {
+  "name": "Helmholtz-Zentrum Dresden-Rossendorf",
+  "aliases": []
+ },
+ {
+  "name": "Bonn-Aachen International Center for Information Technology",
+  "aliases": []
+ },
+ {
+  "name": "Bonn International Center for Conversion",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Occupational Safety and Health",
+  "aliases": []
+ },
+ {
+  "name": "Otto-Suhr-Institut",
+  "aliases": []
+ },
+ {
+  "name": "German Research Centre for Artificial Intelligence",
+  "aliases": []
+ },
+ {
+  "name": "Bremen Institute for Applied Beam Technology",
+  "aliases": []
+ },
+ {
+  "name": "SLAC National Accelerator Laboratory",
+  "aliases": []
+ },
+ {
+  "name": "University of Texas Medical Branch",
+  "aliases": []
+ },
+ {
+  "name": "Institut de radioastronomie millimétrique",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Reference Materials and Measurements",
+  "aliases": []
+ },
+ {
+  "name": "GNS Science",
+  "aliases": []
+ },
+ {
+  "name": "Indian Institute of Science",
+  "aliases": []
+ },
+ {
+  "name": "Nordic Institute for Theoretical Physics",
+  "aliases": []
+ },
+ {
+  "name": "Foundation for Research & Technology – Hellas",
+  "aliases": []
+ },
+ {
+  "name": "Salomon Ludwig Steinheim Institute",
+  "aliases": []
+ },
+ {
+  "name": "European Institute of Innovation and Technology",
+  "aliases": []
+ },
+ {
+  "name": "Federal Institute for Geosciences and Natural Resources",
+  "aliases": []
+ },
+ {
+  "name": "Bundesanstalt für Materialforschung und -prüfung",
+  "aliases": []
+ },
+ {
+  "name": "Bundesanstalt für Züchtungsforschung",
+  "aliases": []
+ },
+ {
+  "name": "Federal Health Agency",
+  "aliases": []
+ },
+ {
+  "name": "Railway Technical Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Care-O-bot",
+  "aliases": []
+ },
+ {
+  "name": "CeNTech",
+  "aliases": []
+ },
+ {
+  "name": "Center for Financial Studies",
+  "aliases": []
+ },
+ {
+  "name": "International Center for Tropical Agriculture",
+  "aliases": []
+ },
+ {
+  "name": "Centre for the Development of Industrial Technology",
+  "aliases": []
+ },
+ {
+  "name": "Centrum Wiskunde & Informatica",
+  "aliases": []
+ },
+ {
+  "name": "Netherlands National Institute for Public Health and the Environment",
+  "aliases": []
+ },
+ {
+  "name": "Mathematical Sciences Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Chengdu Research Base of Giant Panda Breeding",
+  "aliases": []
+ },
+ {
+  "name": "Sino-German Center for Research Promotion",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of Advanced Industrial Science and Technology",
+  "aliases": []
+ },
+ {
+  "name": "Pacific Northwest National Laboratory",
+  "aliases": []
+ },
+ {
+  "name": "Princeton Plasma Physics Laboratory",
+  "aliases": []
+ },
+ {
+  "name": "Institut für die Wissenschaften vom Menschen",
+  "aliases": []
+ },
+ {
+  "name": "Chulabhorn Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "QUEST",
+  "aliases": []
+ },
+ {
+  "name": "Institut Henri Poincaré",
+  "aliases": []
+ },
+ {
+  "name": "Stockholm International Peace Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Hague Academy of International Law",
+  "aliases": []
+ },
+ {
+  "name": "Crown Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Wellcome Trust Sanger Institute",
+  "aliases": ["Sanger Institute","Sanger Centre","Sanger Center"]
+ },
+ {
+  "name": "Oxford Internet Institute",
+  "aliases": []
+ },
+ {
+  "name": "INRIA National Institute for Research in Computer Science and Control",
+  "aliases": []
+ },
+ {
+  "name": "RIKEN",
+  "aliases": []
+ },
+ {
+  "name": "Institut des Hautes Études Scientifiques",
+  "aliases": []
+ },
+ {
+  "name": "ATOMKI",
+  "aliases": []
+ },
+ {
+  "name": "David Florida Laboratory",
+  "aliases": []
+ },
+ {
+  "name": "Santa Fe Institute",
+  "aliases": []
+ },
+ {
+  "name": "German Collection of Microorganisms and Cell Cultures",
+  "aliases": []
+ },
+ {
+  "name": "Deutsches Brennstoffinstitut",
+  "aliases": []
+ },
+ {
+  "name": "German Research Institute for Public Administration",
+  "aliases": []
+ },
+ {
+  "name": "Helmholtz Centre Potsdam GFZ German Research Centre for Geosciences",
+  "aliases": []
+ },
+ {
+  "name": "German Historical Institute Washington D.C.",
+  "aliases": []
+ },
+ {
+  "name": "Deutsches Institut für Internationale Pädagogische Forschung",
+  "aliases": []
+ },
+ {
+  "name": "German Institute for Urbanism",
+  "aliases": []
+ },
+ {
+  "name": "German Primate Center",
+  "aliases": []
+ },
+ {
+  "name": "Archido",
+  "aliases": []
+ },
+ {
+  "name": "Naturalis",
+  "aliases": []
+ },
+ {
+  "name": "Institut Jean Nicod",
+  "aliases": []
+ },
+ {
+  "name": "Diamond Light Source",
+  "aliases": []
+ },
+ {
+  "name": "Mathematical Research Institute of Oberwolfach",
+  "aliases": []
+ },
+ {
+  "name": "Leibniz Institute for Astrophysics Potsdam",
+  "aliases": []
+ },
+ {
+  "name": "Sempach Bird Observatory",
+  "aliases": []
+ },
+ {
+  "name": "National Cancer Institute",
+  "aliases": []
+ },
+ {
+  "name": "Indian Institute of Astrophysics",
+  "aliases": []
+ },
+ {
+  "name": "Robert Koch Institute",
+  "aliases": []
+ },
+ {
+  "name": "European Molecular Biology Laboratory",
+  "aliases": []
+ },
+ {
+  "name": "German Archaeological Institute",
+  "aliases": []
+ },
+ {
+  "name": "Forschungszentrum Jülich",
+  "aliases": []
+ },
+ {
+  "name": "GSI Helmholtz Centre for Heavy Ion Research",
+  "aliases": []
+ },
+ {
+  "name": "Institute of National Remembrance",
+  "aliases": []
+ },
+ {
+  "name": "Australian Institute of Aboriginal and Torres Strait Islander Studies",
+  "aliases": []
+ },
+ {
+  "name": "Austrian Institute of Technology",
+  "aliases": []
+ },
+ {
+  "name": "Innovations for High Performance Microelectronics",
+  "aliases": []
+ },
+ {
+  "name": "Julius Kühn-Institut",
+  "aliases": []
+ },
+ {
+  "name": "Leibniz Institute of Agricultural Development in Central and Eastern Europe",
+  "aliases": []
+ },
+ {
+  "name": "Croatian Publishing and Bibliographic Institute",
+  "aliases": []
+ },
+ {
+  "name": "Max Planck Institute for Psycholinguistics",
+  "aliases": []
+ },
+ {
+  "name": "UNESCO-IHE",
+  "aliases": []
+ },
+ {
+  "name": "Kiepenheuer Institute for Solar Physics",
+  "aliases": []
+ },
+ {
+  "name": "Walther Schücking Institute of International Law",
+  "aliases": []
+ },
+ {
+  "name": "Biblical Archaeological Institute",
+  "aliases": []
+ },
+ {
+  "name": "Johns Hopkins Bloomberg School of Public Health",
+  "aliases": []
+ },
+ {
+  "name": "Bildarchiv Foto Marburg",
+  "aliases": []
+ },
+ {
+  "name": "German Institute of Food Technologies",
+  "aliases": []
+ },
+ {
+  "name": "Leibniz Institute for Baltic Sea Research",
+  "aliases": []
+ },
+ {
+  "name": "Deutsch-Französisches Institut",
+  "aliases": []
+ },
+ {
+  "name": "Telekom Innovation Laboratories",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Sonology",
+  "aliases": []
+ },
+ {
+  "name": "Shanghai Academy of Social Sciences",
+  "aliases": []
+ },
+ {
+  "name": "Lamont–Doherty Earth Observatory",
+  "aliases": []
+ },
+ {
+  "name": "European Organization for Nuclear Research",
+  "aliases": []
+ },
+ {
+  "name": "German Academy of Sciences at Berlin",
+  "aliases": []
+ },
+ {
+  "name": "Naktuinbouw",
+  "aliases": []
+ },
+ {
+  "name": "French Institute of Petroleum",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Museum Research",
+  "aliases": []
+ },
+ {
+  "name": "Isaac Newton Institute",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Physics and Power Engineering",
+  "aliases": []
+ },
+ {
+  "name": "Tata Institute of Fundamental Research",
+  "aliases": []
+ },
+ {
+  "name": "European Southern Observatory",
+  "aliases": []
+ },
+ {
+  "name": "German Aerospace Center",
+  "aliases": []
+ },
+ {
+  "name": "Max Planck Society",
+  "aliases": []
+ },
+ {
+  "name": "Fraunhofer Society",
+  "aliases": []
+ },
+ {
+  "name": "Center of Advanced European Studies and Research",
+  "aliases": []
+ },
+ {
+  "name": "Filatov Institute of Eye Diseases and Tissue Therapy",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of Standards and Technology",
+  "aliases": []
+ },
+ {
+  "name": "Ames Research Center",
+  "aliases": []
+ },
+ {
+  "name": "TsAGI",
+  "aliases": []
+ },
+ {
+  "name": "Zentralinstitut für Kunstgeschichte",
+  "aliases": []
+ },
+ {
+  "name": "Berlin Research Centre on Anti-Semitism",
+  "aliases": []
+ },
+ {
+  "name": "Centre for Historical Research in Berlin",
+  "aliases": []
+ },
+ {
+  "name": "Center for Art and Media Karlsruhe",
+  "aliases": []
+ },
+ {
+  "name": "Zentrum für Medien- und Gesundheitskommunikation",
+  "aliases": []
+ },
+ {
+  "name": "Centre for Contemporary History",
+  "aliases": []
+ },
+ {
+  "name": "Center for Interdisciplinary Research",
+  "aliases": []
+ },
+ {
+  "name": "Lyndon B. Johnson Space Center",
+  "aliases": []
+ },
+ {
+  "name": "Zoologische Staatssammlung München",
+  "aliases": []
+ },
+ {
+  "name": "Lunar and Planetary Institute",
+  "aliases": []
+ },
+ {
+  "name": "Deutsches Geodätisches Forschungsinstitut",
+  "aliases": []
+ },
+ {
+  "name": "Organisation Scientifique et Technique du Vol à Voile",
+  "aliases": []
+ },
+ {
+  "name": "Potsdam Institute for Climate Impact Research",
+  "aliases": []
+ },
+ {
+  "name": "Wuppertal Institute for Climate, Environment and Energy",
+  "aliases": []
+ },
+ {
+  "name": "European Research Center for Information Systems",
+  "aliases": []
+ },
+ {
+  "name": "European Northern Observatory",
+  "aliases": []
+ },
+ {
+  "name": "Ontario Institute for Cancer Research",
+  "aliases": ["OICR"]
+ },
+ {
+  "name": "European University Institute",
+  "aliases": []
+ },
+ {
+  "name": "Research Institute for Operations Management",
+  "aliases": []
+ },
+ {
+  "name": "Fachinformationszentrum Karlsruhe",
+  "aliases": []
+ },
+ {
+  "name": "Woods Hole Oceanographic Institution",
+  "aliases": []
+ },
+ {
+  "name": "Ferdinand-Braun-Institut",
+  "aliases": []
+ },
+ {
+  "name": "Centre for Tropical Marine Ecology",
+  "aliases": []
+ },
+ {
+  "name": "Instituto Nacional de Técnica Aeroespacial",
+  "aliases": []
+ },
+ {
+  "name": "Research Institute of Organic Agriculture",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Theology and Peace",
+  "aliases": []
+ },
+ {
+  "name": "National Ignition Facility",
+  "aliases": []
+ },
+ {
+  "name": "Forsa Institute",
+  "aliases": []
+ },
+ {
+  "name": "German Centre for Integrative Biodiversity Research",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Space and Astronautical Science",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of Polar Research",
+  "aliases": []
+ },
+ {
+  "name": "National Hellenic Research Foundation",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Law and Finance",
+  "aliases": []
+ },
+ {
+  "name": "Swedish National Institute of Public Health",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of Environmental Health Sciences",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Archaeology of Slovak Academy of Sciences",
+  "aliases": []
+ },
+ {
+  "name": "Swiss Federal Institute for Forest, Snow and Landscape Research",
+  "aliases": []
+ },
+ {
+  "name": "Eijkman Institute for Molecular Biology",
+  "aliases": []
+ },
+ {
+  "name": "Université Lille Nord de France",
+  "aliases": []
+ },
+ {
+  "name": "Rothamsted Research",
+  "aliases": []
+ },
+ {
+  "name": "George Eliava Institute",
+  "aliases": []
+ },
+ {
+  "name": "Energy Research Centre of the Netherlands",
+  "aliases": []
+ },
+ {
+  "name": "European Bioinformatics Institute",
+  "aliases": []
+ },
+ {
+  "name": "Envihab",
+  "aliases": []
+ },
+ {
+  "name": "Erasmus Research Institute of Management",
+  "aliases": []
+ },
+ {
+  "name": "Salk Institute for Biological Studies",
+  "aliases": []
+ },
+ {
+  "name": "MIT Computer Science and Artificial Intelligence Laboratory",
+  "aliases": []
+ },
+ {
+  "name": "Royal Netherlands Institute of Sea Research",
+  "aliases": []
+ },
+ {
+  "name": "J. Craig Venter Institute",
+  "aliases": []
+ },
+ {
+  "name": "Frankfurt Institute for Advanced Studies",
+  "aliases": []
+ },
+ {
+  "name": "Fraunhofer innovation clusters",
+  "aliases": []
+ },
+ {
+  "name": "Fraunhofer Institute for Manufacturing Engineering and Automation",
+  "aliases": []
+ },
+ {
+  "name": "Frobenius Institute",
+  "aliases": []
+ },
+ {
+  "name": "Institut National de la Santé et de la Recherche Médicale",
+  "aliases": []
+ },
+ {
+  "name": "Paul-Ehrlich-Institut",
+  "aliases": []
+ },
+ {
+  "name": "GESIS – Leibniz Institute for the Social Sciences",
+  "aliases": []
+ },
+ {
+  "name": "Swedish Institute at Athens",
+  "aliases": []
+ },
+ {
+  "name": "United States Naval Research Laboratory",
+  "aliases": []
+ },
+ {
+  "name": "Gembloux Agro-Bio Tech",
+  "aliases": []
+ },
+ {
+  "name": "Joint Research Centre",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Vertebrate Paleontology and Paleoanthropology",
+  "aliases": []
+ },
+ {
+  "name": "NIKHEF",
+  "aliases": []
+ },
+ {
+  "name": "Institut Laue–Langevin",
+  "aliases": []
+ },
+ {
+  "name": "Space Telescope Science Institute",
+  "aliases": []
+ },
+ {
+  "name": "Graduate School of North American Studies",
+  "aliases": []
+ },
+ {
+  "name": "Centre for British Studies",
+  "aliases": []
+ },
+ {
+  "name": "Heidelberg Institute for Theoretical Studies",
+  "aliases": []
+ },
+ {
+  "name": "Socio-Economic Panel",
+  "aliases": []
+ },
+ {
+  "name": "Hannah Arendt Institute for the Research on Totalitarianism",
+  "aliases": []
+ },
+ {
+  "name": "JILA",
+  "aliases": []
+ },
+ {
+  "name": "Hausdorff Center for Mathematics",
+  "aliases": []
+ },
+ {
+  "name": "Heinrich Pette Institute",
+  "aliases": []
+ },
+ {
+  "name": "Helmholtz Institute Jena",
+  "aliases": []
+ },
+ {
+  "name": "Helmholtz Graduate School Environmental Health",
+  "aliases": []
+ },
+ {
+  "name": "Herzberg Institute of Astrophysics",
+  "aliases": []
+ },
+ {
+  "name": "Peace Research Institute Frankfurt",
+  "aliases": []
+ },
+ {
+  "name": "Polish Polar Station, Hornsund",
+  "aliases": []
+ },
+ {
+  "name": "National Human Genome Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of Amazonian Research",
+  "aliases": []
+ },
+ {
+  "name": "IBM Almaden Research Center",
+  "aliases": []
+ },
+ {
+  "name": "Telecooperation Office",
+  "aliases": []
+ },
+ {
+  "name": "Dresden High Magnetic Field Laboratory",
+  "aliases": []
+ },
+ {
+  "name": "IDS – Institute of German Language",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Energy",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Peace Research and Security Policy at the University of Hamburg",
+  "aliases": []
+ },
+ {
+  "name": "Institute for International Law of Peace and Armed Conflict",
+  "aliases": []
+ },
+ {
+  "name": "Institute for High Energy Physics",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Molecular Biology",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Nanotechnology",
+  "aliases": []
+ },
+ {
+  "name": "IPHT Jena",
+  "aliases": []
+ },
+ {
+  "name": "Institut für Rundfunktechnik",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Saxon History and Ethnography",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Technology Assessment and Systems Analysis",
+  "aliases": []
+ },
+ {
+  "name": "Bioforsk",
+  "aliases": []
+ },
+ {
+  "name": "Kurchatov Institute",
+  "aliases": []
+ },
+ {
+  "name": "Royal Tropical Institute",
+  "aliases": []
+ },
+ {
+  "name": "L3S",
+  "aliases": []
+ },
+ {
+  "name": "Laboratory of Nano and Quantum Engineering",
+  "aliases": []
+ },
+ {
+  "name": "Landcare Research",
+  "aliases": []
+ },
+ {
+  "name": "State Research Center for Optics and Material Sciences",
+  "aliases": []
+ },
+ {
+  "name": "AlbaNova",
+  "aliases": []
+ },
+ {
+  "name": "Laser- und Medizin-Technologie Berlin",
+  "aliases": []
+ },
+ {
+  "name": "Lawson Health Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Lebedev Physical Institute",
+  "aliases": []
+ },
+ {
+  "name": "Leibniz-Institut für Atmosphärenphysik",
+  "aliases": []
+ },
+ {
+  "name": "Institut für Kristallzüchtung",
+  "aliases": []
+ },
+ {
+  "name": "Leibniz-Institut für Molekulare Pharmakologie",
+  "aliases": []
+ },
+ {
+  "name": "Netherlands Institute for Space Research",
+  "aliases": []
+ },
+ {
+  "name": "Mittag-Leffler Institute",
+  "aliases": []
+ },
+ {
+  "name": "NLR Air Transport Safety Institute",
+  "aliases": []
+ },
+ {
+  "name": "Flemish Institute for Technological Research",
+  "aliases": []
+ },
+ {
+  "name": "Netherlands Organisation for Applied Scientific Research",
+  "aliases": []
+ },
+ {
+  "name": "Lokomotiv-Versuchsamt Grunewald",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Tropical Medicine Antwerp",
+  "aliases": []
+ },
+ {
+  "name": "Netherlands Institute for Military History",
+  "aliases": []
+ },
+ {
+  "name": "Institute of World Economy and International Relations",
+  "aliases": []
+ },
+ {
+  "name": "Halle Institute for Economic Research",
+  "aliases": []
+ },
+ {
+  "name": "Institut für angewandte Arbeitswissenschaft",
+  "aliases": []
+ },
+ {
+  "name": "Institut National de la Recherche Agronomique",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Study of the Jewish Question",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Defense Analyses",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Environmental Science and Research",
+  "aliases": []
+ },
+ {
+  "name": "Institute of High Energy Physics",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Noetic Sciences",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Science and Technology, Austria",
+  "aliases": []
+ },
+ {
+  "name": "Huygens Institute for Dutch History",
+  "aliases": []
+ },
+ {
+  "name": "Interdisciplinary Center for Scientific Computing",
+  "aliases": []
+ },
+ {
+  "name": "International Livestock Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "International Max Planck Research School for Organismal Biology",
+  "aliases": []
+ },
+ {
+  "name": "Monrepos Archäologisches Forschungszentrum",
+  "aliases": []
+ },
+ {
+  "name": "International Institute of Social History",
+  "aliases": []
+ },
+ {
+  "name": "Internationales Kolleg für Kulturtechnikforschung und Medienphilosophie",
+  "aliases": []
+ },
+ {
+  "name": "Smithsonian Tropical Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Israel Institute for Biological Research",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of Geophysics and Volcanology",
+  "aliases": []
+ },
+ {
+  "name": "Istituto Nazionale di Fisica Nucleare",
+  "aliases": []
+ },
+ {
+  "name": "Leibniz Institute for Psychology Information",
+  "aliases": []
+ },
+ {
+  "name": "Japan Agency for Marine-Earth Science and Technology",
+  "aliases": []
+ },
+ {
+  "name": "Johann Heinrich von Thünen-Institut",
+  "aliases": []
+ },
+ {
+  "name": "John F. Kennedy-Institute for North American Studies",
+  "aliases": []
+ },
+ {
+  "name": "Translational Centre for Regenerative Medicine",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Energy Technology",
+  "aliases": []
+ },
+ {
+  "name": "Royal Netherlands Institute of Southeast Asian and Caribbean Studies",
+  "aliases": []
+ },
+ {
+  "name": "Maritime Research Institute Netherlands",
+  "aliases": []
+ },
+ {
+  "name": "Archon",
+  "aliases": []
+ },
+ {
+  "name": "State Institute for Music Research",
+  "aliases": []
+ },
+ {
+  "name": "Center for research on Children, Adolescents, and the Media",
+  "aliases": []
+ },
+ {
+  "name": "Netherlands Institute for Advanced Study",
+  "aliases": []
+ },
+ {
+  "name": "Netherlands Institute of International Relations Clingendael",
+  "aliases": []
+ },
+ {
+  "name": "German National Library of Science and Technology",
+  "aliases": []
+ },
+ {
+  "name": "NKI",
+  "aliases": []
+ },
+ {
+  "name": "Swedish Defence Research Agency",
+  "aliases": []
+ },
+ {
+  "name": "Curie Institute",
+  "aliases": []
+ },
+ {
+  "name": "Vlaams Instituut voor Biotechnologie",
+  "aliases": []
+ },
+ {
+  "name": "Netherlands Forensic Institute",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Plant Industry",
+  "aliases": []
+ },
+ {
+  "name": "United States Army Medical Research Institute of Infectious Diseases",
+  "aliases": []
+ },
+ {
+  "name": "Moss Landing Marine Laboratories",
+  "aliases": []
+ },
+ {
+  "name": "DTU Space",
+  "aliases": []
+ },
+ {
+  "name": "Roosevelt Study Center",
+  "aliases": []
+ },
+ {
+  "name": "Max Delbrück Center for Molecular Medicine",
+  "aliases": []
+ },
+ {
+  "name": "Monterey Bay Aquarium Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Stichting voor Fundamenteel Onderzoek der Materie",
+  "aliases": []
+ },
+ {
+  "name": "Society for the Promotion of the Physical Exploration of the Dutch Colonies",
+  "aliases": []
+ },
+ {
+  "name": "Nanosystems Initiative Munich",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of Mental Health",
+  "aliases": []
+ },
+ {
+  "name": "Arctic and Antarctic Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "New England Complex Systems Institute",
+  "aliases": []
+ },
+ {
+  "name": "Perimeter Institute for Theoretical Physics",
+  "aliases": []
+ },
+ {
+  "name": "OFFIS",
+  "aliases": []
+ },
+ {
+  "name": "Office National d'Études et de Recherches Aérospatiales",
+  "aliases": []
+ },
+ {
+  "name": "Rathenau Institute",
+  "aliases": []
+ },
+ {
+  "name": "Netherlands Heart Institute",
+  "aliases": []
+ },
+ {
+  "name": "National Aerospace Laboratory",
+  "aliases": []
+ },
+ {
+  "name": "Primate Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Computing Technology, Chinese Academy of Sciences",
+  "aliases": []
+ },
+ {
+  "name": "Papal Institute for Christian Archeology",
+  "aliases": []
+ },
+ {
+  "name": "Rathgen Research Laboratory",
+  "aliases": []
+ },
+ {
+  "name": "Microgravity User Support Center",
+  "aliases": []
+ },
+ {
+  "name": "RWI Essen",
+  "aliases": []
+ },
+ {
+  "name": "Rudolf Virchow Center",
+  "aliases": []
+ },
+ {
+  "name": "Afrika-Studiecentrum, Leiden",
+  "aliases": []
+ },
+ {
+  "name": "IMinds",
+  "aliases": []
+ },
+ {
+  "name": "Huygens Institute for the History of the Netherlands",
+  "aliases": []
+ },
+ {
+  "name": "Jawaharlal Institute of Postgraduate Medical Education and Research",
+  "aliases": []
+ },
+ {
+  "name": "Nara National Research Institute for Cultural Properties",
+  "aliases": []
+ },
+ {
+  "name": "National Research Institute for Cultural Properties",
+  "aliases": []
+ },
+ {
+  "name": "Minatec",
+  "aliases": []
+ },
+ {
+  "name": "Institute for the Languages of Finland",
+  "aliases": []
+ },
+ {
+  "name": "Statens Serum Institut",
+  "aliases": []
+ },
+ {
+  "name": "Swedish Institute for International Affairs",
+  "aliases": []
+ },
+ {
+  "name": "Western Norway Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Sōryokusen Kenkyūjo",
+  "aliases": []
+ },
+ {
+  "name": "Council of Scientific and Industrial Research",
+  "aliases": []
+ },
+ {
+  "name": "Vikram Sarabhai Space Centre",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of Oceanography",
+  "aliases": []
+ },
+ {
+  "name": "Villa I Tatti",
+  "aliases": []
+ },
+ {
+  "name": "National Centre of Scientific Research \"DEMOKRITOS\"",
+  "aliases": []
+ },
+ {
+  "name": "Swedish National Road and Transport Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "National Botanical Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Yad Ben Zvi",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of Mental Health and Neurosciences",
+  "aliases": []
+ },
+ {
+  "name": "Central Food Technological Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Sam Higginbottom Institute of Agriculture, Technology and Sciences",
+  "aliases": []
+ },
+ {
+  "name": "Central Institute of Medicinal and Aromatic Plants",
+  "aliases": []
+ },
+ {
+  "name": "Central Drug Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "CRS4",
+  "aliases": []
+ },
+ {
+  "name": "Boston Psychoanalytic Society and Institute",
+  "aliases": []
+ },
+ {
+  "name": "Euro-Mediterranean Center for Climate Change",
+  "aliases": []
+ },
+ {
+  "name": "Italian Aerospace Research Centre",
+  "aliases": []
+ },
+ {
+  "name": "Edmund Mach Foundation",
+  "aliases": []
+ },
+ {
+  "name": "Fondazione Eni Enrico Mattei",
+  "aliases": []
+ },
+ {
+  "name": "ICFO",
+  "aliases": []
+ },
+ {
+  "name": "Wildlife Institute of India",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Quantum Computing",
+  "aliases": []
+ },
+ {
+  "name": "Istituto Superiore Mario Boella",
+  "aliases": []
+ },
+ {
+  "name": "Istituto di Scienza e Tecnologie dell'Informazione",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Health and Consumer Protection",
+  "aliases": []
+ },
+ {
+  "name": "Swedish Institute in Rome",
+  "aliases": []
+ },
+ {
+  "name": "Centre for Bhutan Studies",
+  "aliases": []
+ },
+ {
+  "name": "Henry A. Wallace Beltsville Agricultural Research Center",
+  "aliases": []
+ },
+ {
+  "name": "Stazione Sperimentale del Vetro",
+  "aliases": []
+ },
+ {
+  "name": "Stazione Sperimentale per l'Industria delle Pelli e delle Materie Concianti",
+  "aliases": []
+ },
+ {
+  "name": "Texas Biomedical Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Toyota Central R&D Labs., Inc.",
+  "aliases": []
+ },
+ {
+  "name": "Australian Institute of Criminology",
+  "aliases": []
+ },
+ {
+  "name": "Forschungsinstitut für Musiktheater",
+  "aliases": []
+ },
+ {
+  "name": "Instituto Biológico",
+  "aliases": []
+ },
+ {
+  "name": "State Research Center of Virology and Biotechnology VECTOR",
+  "aliases": []
+ },
+ {
+  "name": "Wistar Institute",
+  "aliases": []
+ },
+ {
+  "name": "Space Research and Technology Institute",
+  "aliases": []
+ },
+ {
+  "name": "Centraalbureau voor Schimmelcultures",
+  "aliases": []
+ },
+ {
+  "name": "HCSS",
+  "aliases": []
+ },
+ {
+  "name": "Centre de Recerca Matemàtica",
+  "aliases": []
+ },
+ {
+  "name": "Botanical Research Institute of Texas",
+  "aliases": []
+ },
+ {
+  "name": "Biomedical Primate Research Centre",
+  "aliases": []
+ },
+ {
+  "name": "International Institute of Social Studies",
+  "aliases": []
+ },
+ {
+  "name": "African Institute for Mathematical Sciences",
+  "aliases": []
+ },
+ {
+  "name": "Agricultural Research Service",
+  "aliases": []
+ },
+ {
+  "name": "Netherlands Proteomics Centre",
+  "aliases": []
+ },
+ {
+  "name": "Asia Centre",
+  "aliases": []
+ },
+ {
+  "name": "Central Research Institute of Electric Power Industry",
+  "aliases": []
+ },
+ {
+  "name": "Centre d'Etudes Prospectives et d'Informations Internationales",
+  "aliases": []
+ },
+ {
+  "name": "American Research Center in Egypt",
+  "aliases": []
+ },
+ {
+  "name": "Center for Research and Restoration of Museums of France",
+  "aliases": []
+ },
+ {
+  "name": "Scientific and Technical Centre for Building",
+  "aliases": []
+ },
+ {
+  "name": "China Institute of Atomic Energy",
+  "aliases": []
+ },
+ {
+  "name": "Cooperative Institute for Meteorological Satellite Studies",
+  "aliases": []
+ },
+ {
+  "name": "French Institute of Pondicherry",
+  "aliases": []
+ },
+ {
+  "name": "Hadley Centre for Climate Prediction and Research",
+  "aliases": []
+ },
+ {
+  "name": "Human Frontier Science Program",
+  "aliases": []
+ },
+ {
+  "name": "Institut Pasteur de Lille",
+  "aliases": []
+ },
+ {
+  "name": "Institut d'astrophysique de Paris",
+  "aliases": []
+ },
+ {
+  "name": "Industrial Economics Institute",
+  "aliases": []
+ },
+ {
+  "name": "Lille institute for electronics micro-electronics and nanotechnologies",
+  "aliases": []
+ },
+ {
+  "name": "Institut de l'information scientifique et technique",
+  "aliases": []
+ },
+ {
+  "name": "Vision Institute",
+  "aliases": []
+ },
+ {
+  "name": "Institut de physique du globe de Paris",
+  "aliases": []
+ },
+ {
+  "name": "Institut de recherche Robert-Sauvé en santé et en sécurité du travail",
+  "aliases": []
+ },
+ {
+  "name": "institut des maladies génétiques Imagine",
+  "aliases": []
+ },
+ {
+  "name": "Institut des nanotechnologies de Lyon",
+  "aliases": []
+ },
+ {
+  "name": "Institut français des relations internationales",
+  "aliases": []
+ },
+ {
+  "name": "Institut national d'histoire de l'art",
+  "aliases": []
+ },
+ {
+  "name": "Swiss Institute of Bioinformatics",
+  "aliases": []
+ },
+ {
+  "name": "Venezuelan Institute for Scientific Research",
+  "aliases": []
+ },
+ {
+  "name": "Joint Genome Institute",
+  "aliases": []
+ },
+ {
+  "name": "Donostia International Physics Center",
+  "aliases": []
+ },
+ {
+  "name": "Space Research Centre",
+  "aliases": []
+ },
+ {
+  "name": "Head Educational Research and Methodology Centre",
+  "aliases": []
+ },
+ {
+  "name": "Russian State Hydrological Institute",
+  "aliases": []
+ },
+ {
+  "name": "Yerevan Physics Institute",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Continuous Media Mechanics",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Tropical Medicine",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Physics of the National Academy of Sciences of Ukraine",
+  "aliases": []
+ },
+ {
+  "name": "A.V. Vishnevsky Institute of Surgery",
+  "aliases": []
+ },
+ {
+  "name": "E. O. Paton Electric Welding Institute",
+  "aliases": []
+ },
+ {
+  "name": "United States Army Soldier Systems Center",
+  "aliases": []
+ },
+ {
+  "name": "Piezopribor",
+  "aliases": []
+ },
+ {
+  "name": "NIRFI",
+  "aliases": []
+ },
+ {
+  "name": "National Authority for Remote Sensing and Space Sciences",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of Informatics",
+  "aliases": []
+ },
+ {
+  "name": "National Institute for Health and Welfare",
+  "aliases": []
+ },
+ {
+  "name": "Bekhterev Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "World Institute for Development Economics Research",
+  "aliases": []
+ },
+ {
+  "name": "B Verkin Institute for Low Temperature Physics and Engineering",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Physical Chemistry",
+  "aliases": []
+ },
+ {
+  "name": "Kharkiv Institute of Physics and Technology",
+  "aliases": []
+ },
+ {
+  "name": "Central Scientific Research Institute of Geodesy, Aerial Surveying and Cartography",
+  "aliases": []
+ },
+ {
+  "name": "Swiss Tropical and Public Health Institute",
+  "aliases": []
+ },
+ {
+  "name": "Norwegian Institute for Urban and Regional Research",
+  "aliases": []
+ },
+ {
+  "name": "Norwegian Institute for Social Research",
+  "aliases": []
+ },
+ {
+  "name": "ALS Therapy Development Institute",
+  "aliases": []
+ },
+ {
+  "name": "Ackerman Institute for the Family",
+  "aliases": []
+ },
+ {
+  "name": "Adva Center",
+  "aliases": []
+ },
+ {
+  "name": "Albany Research Center",
+  "aliases": []
+ },
+ {
+  "name": "Alfréd Rényi Institute of Mathematics",
+  "aliases": []
+ },
+ {
+  "name": "Ames Laboratory",
+  "aliases": []
+ },
+ {
+  "name": "Aspen Center for Physics",
+  "aliases": []
+ },
+ {
+  "name": "Australian Institute of Marine Science",
+  "aliases": []
+ },
+ {
+  "name": "Australian Wine Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Old Church Slavonic Institute",
+  "aliases": []
+ },
+ {
+  "name": "Baker IDI Heart and Diabetes Institute",
+  "aliases": []
+ },
+ {
+  "name": "National Institute for Japanese Language and Linguistics",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Statistical Mathematics",
+  "aliases": []
+ },
+ {
+  "name": "Bamfield Marine Sciences Centre",
+  "aliases": []
+ },
+ {
+  "name": "Bangalore Medical College and Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Bangladesh Rice Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Begin-Sadat Center for Strategic Studies",
+  "aliases": []
+ },
+ {
+  "name": "Berkeley APEC Study Center",
+  "aliases": []
+ },
+ {
+  "name": "Berkeley Geochronology Center",
+  "aliases": []
+ },
+ {
+  "name": "Bermuda Institute of Ocean Sciences",
+  "aliases": []
+ },
+ {
+  "name": "Bettis Atomic Power Laboratory",
+  "aliases": []
+ },
+ {
+  "name": "Biodesign Institute",
+  "aliases": []
+ },
+ {
+  "name": "Biological Research Centre",
+  "aliases": []
+ },
+ {
+  "name": "Broad Institute",
+  "aliases": []
+ },
+ {
+  "name": "Buck Institute for Research on Aging",
+  "aliases": []
+ },
+ {
+  "name": "Building Research Establishment",
+  "aliases": []
+ },
+ {
+  "name": "National Aerospace Laboratory of Japan",
+  "aliases": []
+ },
+ {
+  "name": "Geological Survey of Denmark and Greenland",
+  "aliases": []
+ },
+ {
+  "name": "CERETETH",
+  "aliases": []
+ },
+ {
+  "name": "California Center for Innovative Transportation",
+  "aliases": []
+ },
+ {
+  "name": "California Institute for Regenerative Medicine",
+  "aliases": []
+ },
+ {
+  "name": "Camp Ravenna Joint Military Training Center",
+  "aliases": []
+ },
+ {
+  "name": "Canadian Institute for Advanced Research",
+  "aliases": []
+ },
+ {
+  "name": "Cape May Bird Observatory",
+  "aliases": []
+ },
+ {
+  "name": "Carderock Division of the Naval Surface Warfare Center",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Materials Research",
+  "aliases": []
+ },
+ {
+  "name": "Institute for the Physics and Mathematics of the Universe",
+  "aliases": []
+ },
+ {
+  "name": "NHK Science & Technology Research Laboratories",
+  "aliases": []
+ },
+ {
+  "name": "Center for Earth and Planetary Studies",
+  "aliases": []
+ },
+ {
+  "name": "Center for Excellence in Basic Sciences, Mumbai",
+  "aliases": []
+ },
+ {
+  "name": "Center for Information Technology",
+  "aliases": []
+ },
+ {
+  "name": "Center for Technology and Systems Management",
+  "aliases": []
+ },
+ {
+  "name": "Central Leather Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Central Rice Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Central Salt and Marine Chemicals Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Centre d'Immunologie de Marseille-Luminy",
+  "aliases": []
+ },
+ {
+  "name": "Centre for Astrophysics of the University of Porto",
+  "aliases": []
+ },
+ {
+  "name": "Centre for Ecology and Hydrology",
+  "aliases": []
+ },
+ {
+  "name": "Centre for Infectious Disease Research in Zambia",
+  "aliases": []
+ },
+ {
+  "name": "Centre for Modern Oriental Studies",
+  "aliases": []
+ },
+ {
+  "name": "Centre on Sustainable Consumption and Production",
+  "aliases": []
+ },
+ {
+  "name": "Chemical Research Center of the Hungarian Academy of Sciences",
+  "aliases": []
+ },
+ {
+  "name": "Childhood Cancer Research Group",
+  "aliases": []
+ },
+ {
+  "name": "Children's Medical Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "China Academy of Engineering Physics",
+  "aliases": []
+ },
+ {
+  "name": "China Institutes of Contemporary International Relations",
+  "aliases": []
+ },
+ {
+  "name": "Chinese Historical Society of America",
+  "aliases": []
+ },
+ {
+  "name": "Chinese National Human Genome Center, Beijing",
+  "aliases": []
+ },
+ {
+  "name": "Chittaranjan National Cancer Institute",
+  "aliases": []
+ },
+ {
+  "name": "Chr. Michelsen Institute",
+  "aliases": []
+ },
+ {
+  "name": "Cockcroft Institute",
+  "aliases": []
+ },
+ {
+  "name": "Cuban Neuroscience Center",
+  "aliases": []
+ },
+ {
+  "name": "Czech Hydrometeorological Institute",
+  "aliases": []
+ },
+ {
+  "name": "Danish Defence Research Establishment",
+  "aliases": []
+ },
+ {
+  "name": "Data Storage Institute",
+  "aliases": []
+ },
+ {
+  "name": "Defence Institute of Physiology and Allied Sciences",
+  "aliases": []
+ },
+ {
+  "name": "Desert Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Donald Danforth Plant Science Center",
+  "aliases": []
+ },
+ {
+  "name": "Dr. John D. Cooper Archaeological and Paleontological Center",
+  "aliases": []
+ },
+ {
+  "name": "Drexel University College of Information Science and Technology",
+  "aliases": []
+ },
+ {
+  "name": "Eastern Regional Research Center",
+  "aliases": []
+ },
+ {
+  "name": "Economic and Social Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Energy Technologies Institute",
+  "aliases": []
+ },
+ {
+  "name": "Energy and Environmental Research Center",
+  "aliases": []
+ },
+ {
+  "name": "Engineer Research and Development Center",
+  "aliases": []
+ },
+ {
+  "name": "Environmental Research Institute of Michigan",
+  "aliases": []
+ },
+ {
+  "name": "Ernst Ruska-Centre",
+  "aliases": []
+ },
+ {
+  "name": "Estonian Biocentre",
+  "aliases": []
+ },
+ {
+  "name": "Eunice Kennedy Shriver National Institute of Child Health and Human Development",
+  "aliases": []
+ },
+ {
+  "name": "Eyes on the Solar System",
+  "aliases": []
+ },
+ {
+  "name": "Faculty of Aerospace Engineering, Delft University of Technology",
+  "aliases": []
+ },
+ {
+  "name": "Finnish Geodetic Institute",
+  "aliases": []
+ },
+ {
+  "name": "Florida Institute for Human and Machine Cognition",
+  "aliases": []
+ },
+ {
+  "name": "Forest Glen Annex",
+  "aliases": []
+ },
+ {
+  "name": "Forest Research Institute Malaysia",
+  "aliases": []
+ },
+ {
+  "name": "Fort Monmouth",
+  "aliases": []
+ },
+ {
+  "name": "Fox Chase Cancer Center",
+  "aliases": []
+ },
+ {
+  "name": "G. V. Kurdyumov Institute for Metal Physics of the National Academy of Sciences of Ukraine",
+  "aliases": []
+ },
+ {
+  "name": "GVU Center at Georgia Tech",
+  "aliases": []
+ },
+ {
+  "name": "General Applied Science Laboratory",
+  "aliases": []
+ },
+ {
+  "name": "Genome Institute of Singapore",
+  "aliases": []
+ },
+ {
+  "name": "Genomics Institute of the Novartis Research Foundation",
+  "aliases": []
+ },
+ {
+  "name": "Graduate School of Economics, Finance, and Management",
+  "aliases": []
+ },
+ {
+  "name": "Hamburg Institute for Social Research",
+  "aliases": []
+ },
+ {
+  "name": "Razi Vaccine and Serum Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Helen Wills Neuroscience Institute",
+  "aliases": []
+ },
+ {
+  "name": "Hellenic Foundation for European and Foreign Policy",
+  "aliases": []
+ },
+ {
+  "name": "Hong Kong Applied Science and Technology Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Jožef Stefan Institute",
+  "aliases": []
+ },
+ {
+  "name": "Howard Florey Institute",
+  "aliases": []
+ },
+ {
+  "name": "Hydraulics Research Station",
+  "aliases": []
+ },
+ {
+  "name": "Inatel",
+  "aliases": []
+ },
+ {
+  "name": "Indian Centre for Space Physics",
+  "aliases": []
+ },
+ {
+  "name": "Indian Institute of Petroleum",
+  "aliases": []
+ },
+ {
+  "name": "Indian Institute of Toxicology Research",
+  "aliases": []
+ },
+ {
+  "name": "Indian Veterinary Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Indira Gandhi Institute of Development Research",
+  "aliases": []
+ },
+ {
+  "name": "Industrial Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Infectious Disease Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Institut de Ciències de l'Espai",
+  "aliases": []
+ },
+ {
+  "name": "Institut für Weltraumforschung",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Chemical-Physical Processes",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Comparative Research in Human Culture",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Employment Studies",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Environment and Sustainability",
+  "aliases": []
+ },
+ {
+  "name": "Institute for European Environmental Policy",
+  "aliases": []
+ },
+ {
+  "name": "London Centre for Nanotechnology",
+  "aliases": []
+ },
+ {
+  "name": "London Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Lovelace Respiratory Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "MRC Human Nutrition Research",
+  "aliases": []
+ },
+ {
+  "name": "Malawi Liverpool Wellcome Trust",
+  "aliases": []
+ },
+ {
+  "name": "Mammal Research Institute of the Polish Academy of Sciences",
+  "aliases": []
+ },
+ {
+  "name": "Mathematica Policy Research",
+  "aliases": []
+ },
+ {
+  "name": "Mental Health Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Mesa Laboratory",
+  "aliases": []
+ },
+ {
+  "name": "Theodor Bilharz Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Mitsubishi Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Molecular Sciences Institute",
+  "aliases": []
+ },
+ {
+  "name": "Monell Chemical Senses Center",
+  "aliases": []
+ },
+ {
+  "name": "Monterey Institute for Research in Astronomy",
+  "aliases": []
+ },
+ {
+  "name": "Moredun Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Morgridge Institute for Research",
+  "aliases": []
+ },
+ {
+  "name": "Mount Desert Island Biological Laboratory",
+  "aliases": []
+ },
+ {
+  "name": "NExScI",
+  "aliases": []
+ },
+ {
+  "name": "NIANP",
+  "aliases": []
+ },
+ {
+  "name": "Narodowy Instytut Zdrowia Publicznego – Państwowy Zakład Higieny",
+  "aliases": []
+ },
+ {
+  "name": "Nathan Kline Institute for Psychiatric Research",
+  "aliases": []
+ },
+ {
+  "name": "National Biodefense Analysis and Countermeasures Center",
+  "aliases": []
+ },
+ {
+  "name": "National Center for Agricultural Utilization Research",
+  "aliases": []
+ },
+ {
+  "name": "National Center for Research Resources",
+  "aliases": []
+ },
+ {
+  "name": "National Centre for Atmospheric Science",
+  "aliases": []
+ },
+ {
+  "name": "National Centre for Cell Science",
+  "aliases": []
+ },
+ {
+  "name": "National Dairy Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "National Development and Research Institutes",
+  "aliases": []
+ },
+ {
+  "name": "National Environmental Engineering Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "National Evolutionary Synthesis Center",
+  "aliases": []
+ },
+ {
+  "name": "National Heart, Lung, and Blood Institute",
+  "aliases": []
+ },
+ {
+  "name": "National Humanities Center",
+  "aliases": []
+ },
+ {
+  "name": "National Institute for Mathematical and Biological Synthesis",
+  "aliases": []
+ },
+ {
+  "name": "National Institute for Nanotechnology",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of Aerospace",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of Arthritis and Musculoskeletal and Skin Diseases",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of Chemical Physics and Biophysics",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of Economic Research",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of Environmental Research",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of General Medical Sciences",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of Hydrology",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of Information and Communications Technology",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of Nutrition, Hyderabad",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of Nursing Research",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of Public Health of Japan",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of Virology",
+  "aliases": []
+ },
+ {
+  "name": "National Institutes of Natural Sciences, Japan",
+  "aliases": []
+ },
+ {
+  "name": "National Kidney and Transplant Institute",
+  "aliases": []
+ },
+ {
+  "name": "National Marine Life Center",
+  "aliases": []
+ },
+ {
+  "name": "National Measurement Institute, Australia",
+  "aliases": []
+ },
+ {
+  "name": "Institute for International Economic Studies",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Law, Science and Global Security",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Prospective Technological Studies",
+  "aliases": []
+ },
+ {
+  "name": "Institute for the Study of the Ancient World",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Applied Physics and Computational Mathematics",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Atmospheric Physics AS CR",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Automation, Chinese Academy of Sciences",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Aviation, Warsaw",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Bill of Rights Law",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Biophysics, Chinese Academy of Sciences",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Cancer Research",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Chemical Process Fundamentals",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Chemistry, Slovak Academy of Sciences",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Current World Affairs",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Microbial Technology",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Molecular Biology and Genetics of NASU",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Nuclear Medicine & Allied Sciences",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Software, Chinese Academy of Sciences",
+  "aliases": []
+ },
+ {
+  "name": "Instituto Conmemorativo Gorgas de Estudios de la Salud",
+  "aliases": []
+ },
+ {
+  "name": "Instituto Nacional de Engenharia, Tecnologia e Inovação",
+  "aliases": []
+ },
+ {
+  "name": "Instituto Nacional dos Recursos Biológicos",
+  "aliases": []
+ },
+ {
+  "name": "Instituto de Ciencias de la Tierra Jaume Almera",
+  "aliases": []
+ },
+ {
+  "name": "Inter-American Institute for Global Change Research",
+  "aliases": []
+ },
+ {
+  "name": "International Computer Science Institute",
+  "aliases": []
+ },
+ {
+  "name": "International Iberian Nanotechnology Laboratory",
+  "aliases": []
+ },
+ {
+  "name": "International Research Center for Japanese Studies",
+  "aliases": []
+ },
+ {
+  "name": "International Space Science Institute",
+  "aliases": []
+ },
+ {
+  "name": "Istituto Sperimentale per la Zoologia Agraria",
+  "aliases": []
+ },
+ {
+  "name": "James D. Watson Institute of Genome Sciences, Zhejiang University",
+  "aliases": []
+ },
+ {
+  "name": "Japan Institute for Labour Policy and Training",
+  "aliases": []
+ },
+ {
+  "name": "Jisan Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Joint BioEnergy Institute",
+  "aliases": []
+ },
+ {
+  "name": "Kidwai Memorial Institute of Oncology",
+  "aliases": []
+ },
+ {
+  "name": "Korea Carbon Capture & Sequestration R&D Center",
+  "aliases": []
+ },
+ {
+  "name": "Korea Electrotechnology Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Korea Institute of Science & Technology Information",
+  "aliases": []
+ },
+ {
+  "name": "Korea Research Institute of Bioscience and Biotechnology",
+  "aliases": []
+ },
+ {
+  "name": "Korea Research Institute of Standards and Science",
+  "aliases": []
+ },
+ {
+  "name": "Krasnow Institute for Advanced Study",
+  "aliases": []
+ },
+ {
+  "name": "Krell Institute",
+  "aliases": []
+ },
+ {
+  "name": "Kunming Institute of Botany",
+  "aliases": []
+ },
+ {
+  "name": "Kunming Institute of Zoology",
+  "aliases": []
+ },
+ {
+  "name": "Kuwait Institute for Scientific Research",
+  "aliases": []
+ },
+ {
+  "name": "La Jolla Institute for Allergy and Immunology",
+  "aliases": []
+ },
+ {
+  "name": "Lankenau Institute for Medical Research",
+  "aliases": []
+ },
+ {
+  "name": "Norwegian Institute of Marine Research",
+  "aliases": []
+ },
+ {
+  "name": "Leibniz Institute for Neurobiology",
+  "aliases": []
+ },
+ {
+  "name": "Leloir Institute",
+  "aliases": []
+ },
+ {
+  "name": "Livestock Emissions and Abatement Research Network",
+  "aliases": []
+ },
+ {
+  "name": "National Metallurgical Laboratory",
+  "aliases": []
+ },
+ {
+  "name": "National Neuroscience Institute",
+  "aliases": []
+ },
+ {
+  "name": "National Research Centre",
+  "aliases": []
+ },
+ {
+  "name": "UNIK",
+  "aliases": []
+ },
+ {
+  "name": "National Research Institute of Police Science",
+  "aliases": []
+ },
+ {
+  "name": "Neuroscience Research Australia",
+  "aliases": []
+ },
+ {
+  "name": "New York State Judicial Institute",
+  "aliases": []
+ },
+ {
+  "name": "Nizam's Institute of Medical Sciences",
+  "aliases": []
+ },
+ {
+  "name": "Norbert Wiener Center for Harmonic Analysis and Applications",
+  "aliases": []
+ },
+ {
+  "name": "Northern Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Norwegian Centre for Violence and Traumatic Stress Studies",
+  "aliases": []
+ },
+ {
+  "name": "Number Nine Research Laboratory",
+  "aliases": []
+ },
+ {
+  "name": "O. H. Hinsdale Wave Research Laboratory",
+  "aliases": []
+ },
+ {
+  "name": "Office of Population Research",
+  "aliases": []
+ },
+ {
+  "name": "Oklahoma Medical Research Foundation",
+  "aliases": []
+ },
+ {
+  "name": "Oregon Institute of Marine Biology",
+  "aliases": []
+ },
+ {
+  "name": "Oregon Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "PSG Institute of Medical Sciences & Research",
+  "aliases": []
+ },
+ {
+  "name": "Pacific Northwest Diabetes Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Pakistan Institute of Nuclear Science and Technology",
+  "aliases": []
+ },
+ {
+  "name": "Papua New Guinea Institute of Medical Research",
+  "aliases": []
+ },
+ {
+  "name": "Pennington Biomedical Research Center",
+  "aliases": []
+ },
+ {
+  "name": "Planetary Science Institute",
+  "aliases": []
+ },
+ {
+  "name": "PolicyLink",
+  "aliases": []
+ },
+ {
+  "name": "Post Graduate Institute of Medical Education and Research",
+  "aliases": []
+ },
+ {
+  "name": "Punjab Institute of Cardiology",
+  "aliases": []
+ },
+ {
+  "name": "Queensland Institute of Medical Research",
+  "aliases": []
+ },
+ {
+  "name": "RTI International",
+  "aliases": []
+ },
+ {
+  "name": "Rajiv Gandhi Centre for Biotechnology",
+  "aliases": []
+ },
+ {
+  "name": "Rakuten Institute of Technology",
+  "aliases": []
+ },
+ {
+  "name": "Regional Institute of Ophthalmology",
+  "aliases": []
+ },
+ {
+  "name": "Regional Medical Research Center, Bhubaneswar",
+  "aliases": []
+ },
+ {
+  "name": "Renaissance Computing Institute",
+  "aliases": []
+ },
+ {
+  "name": "Research Academic Computer Technology Institute",
+  "aliases": []
+ },
+ {
+  "name": "Research Institute for Nature and Forest",
+  "aliases": []
+ },
+ {
+  "name": "Research Institute for Fragrance Materials",
+  "aliases": []
+ },
+ {
+  "name": "Research Institute of Electronic Communication",
+  "aliases": []
+ },
+ {
+  "name": "Research Institute of Industrial Economics",
+  "aliases": []
+ },
+ {
+  "name": "Research Institute of the Finnish Economy",
+  "aliases": []
+ },
+ {
+  "name": "Research Laboratory of Electronics at MIT",
+  "aliases": []
+ },
+ {
+  "name": "Roskamp Institute",
+  "aliases": []
+ },
+ {
+  "name": "Rowland Institute for Science",
+  "aliases": []
+ },
+ {
+  "name": "Royan Institute",
+  "aliases": []
+ },
+ {
+  "name": "Ruđer Bošković Institute",
+  "aliases": []
+ },
+ {
+  "name": "S.N. Bose National Centre for Basic Sciences",
+  "aliases": []
+ },
+ {
+  "name": "SWOG",
+  "aliases": []
+ },
+ {
+  "name": "Samuel Lunenfeld Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Sarah Cannon Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Savannah River National Laboratory",
+  "aliases": []
+ },
+ {
+  "name": "Scion",
+  "aliases": []
+ },
+ {
+  "name": "Shenyang Institute of Automation",
+  "aliases": []
+ },
+ {
+  "name": "Southeastern Arizona Bird Observatory",
+  "aliases": []
+ },
+ {
+  "name": "Southern California Marine Institute",
+  "aliases": []
+ },
+ {
+  "name": "Southern Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Space Science Institute",
+  "aliases": []
+ },
+ {
+  "name": "Sri Jayadeva Institute of Cardiology",
+  "aliases": []
+ },
+ {
+  "name": "St. Vincent's Institute of Medical Research",
+  "aliases": []
+ },
+ {
+  "name": "Stanford Synchrotron Radiation Lightsource",
+  "aliases": []
+ },
+ {
+  "name": "Stowers Institute for Medical Research",
+  "aliases": []
+ },
+ {
+  "name": "Strategic Studies Institute",
+  "aliases": []
+ },
+ {
+  "name": "Swedish Institute of Computer Science",
+  "aliases": []
+ },
+ {
+  "name": "T.M.C. Asser Instituut",
+  "aliases": []
+ },
+ {
+  "name": "TARKI Social Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Taiwan Livestock Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Tanzania Wildlife Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Telethon Institute for Child Health Research",
+  "aliases": []
+ },
+ {
+  "name": "The Computer and Automation Research Institute, Hungarian Academy of Sciences",
+  "aliases": []
+ },
+ {
+  "name": "The Cyprus Institute",
+  "aliases": []
+ },
+ {
+  "name": "The Institute for Structural Research",
+  "aliases": []
+ },
+ {
+  "name": "The Mind Research Network",
+  "aliases": []
+ },
+ {
+  "name": "The W. Alton Jones Cell Science Center",
+  "aliases": []
+ },
+ {
+  "name": "Torrey Pines Institute for Molecular Studies",
+  "aliases": []
+ },
+ {
+  "name": "U.S. Sheep Experiment Station",
+  "aliases": []
+ },
+ {
+  "name": "Uganda Virus Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Unipress",
+  "aliases": []
+ },
+ {
+  "name": "United States Army Medical Research Unit-Kenya",
+  "aliases": []
+ },
+ {
+  "name": "University of Minnesota Supercomputing Institute",
+  "aliases": []
+ },
+ {
+  "name": "University of Pittsburgh Cancer Institute",
+  "aliases": []
+ },
+ {
+  "name": "Van Andel Institute",
+  "aliases": []
+ },
+ {
+  "name": "Victor Chang Cardiac Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Viewpoints Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Water Environment Research Foundation",
+  "aliases": []
+ },
+ {
+  "name": "Women & Politics Institute",
+  "aliases": []
+ },
+ {
+  "name": "Woods Hole Research Center",
+  "aliases": []
+ },
+ {
+  "name": "Worcester Foundation for Biomedical Research",
+  "aliases": []
+ },
+ {
+  "name": "Wuhan Institute of Hydrobiology",
+  "aliases": []
+ },
+ {
+  "name": "Władysław Szafer Institute of Botany",
+  "aliases": []
+ },
+ {
+  "name": "Włodzimierz Trzebiatowski Institute of Low Temperature and Structure Research",
+  "aliases": []
+ },
+ {
+  "name": "Foundational Questions Institute",
+  "aliases": []
+ },
+ {
+  "name": "Center for Social and Economic Research",
+  "aliases": []
+ },
+ {
+  "name": "Instituto Piaget",
+  "aliases": []
+ },
+ {
+  "name": "Instituto Superior de Ciências da Saúde Egas Moniz",
+  "aliases": []
+ },
+ {
+  "name": "National Institute for Working Life",
+  "aliases": []
+ },
+ {
+  "name": "Industrial Technology Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Swedish Environmental Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Futures Studies",
+  "aliases": []
+ },
+ {
+  "name": "Swedish Institute for Social Research",
+  "aliases": []
+ },
+ {
+  "name": "Jovan Hadži Institute of Biology",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Pathology, Faculty of Medicine",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of Biology",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Advanced Technology in the Humanities",
+  "aliases": []
+ },
+ {
+  "name": "Ithaka Science Center",
+  "aliases": []
+ },
+ {
+  "name": "Trimbos Institute",
+  "aliases": []
+ },
+ {
+  "name": "Therapién",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Biodiagnostics",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Minerals and Materials Technology",
+  "aliases": []
+ },
+ {
+  "name": "SystemX",
+  "aliases": []
+ },
+ {
+  "name": "International Institute for Population Sciences",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Language and Speech Processing",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Mathematics, Physics, and Mechanics",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Physics, Bhubaneswar",
+  "aliases": []
+ },
+ {
+  "name": "Needham Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Chemistry and Biology of the Marine Environment",
+  "aliases": []
+ },
+ {
+  "name": "International Centre for Higher Education Research Kassel",
+  "aliases": []
+ },
+ {
+  "name": "Center for Computer Research in Music and Acoustics",
+  "aliases": []
+ },
+ {
+  "name": "Japan Society for Occupational Health",
+  "aliases": []
+ },
+ {
+  "name": "The Institute for Zen Studies",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Particle and Nuclear Studies",
+  "aliases": []
+ },
+ {
+  "name": "Policy Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "National Agriculture and Food Research Organization",
+  "aliases": []
+ },
+ {
+  "name": "Research Institute for Electromagnetic Materials",
+  "aliases": []
+ },
+ {
+  "name": "Nippon Expressway Research Institute Company Limited",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Hydroengineering PAS",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Mathematics of the PAS",
+  "aliases": []
+ },
+ {
+  "name": "Polish Geological Institute",
+  "aliases": []
+ },
+ {
+  "name": "Military History Institute in Prague",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Hydromechanics of NAS Ukraine",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Mathematics and Informatics",
+  "aliases": []
+ },
+ {
+  "name": "Bijvoet Center for Biomolecular Research",
+  "aliases": []
+ },
+ {
+  "name": "Swedish Institute for Growth Policy Studies",
+  "aliases": []
+ },
+ {
+  "name": "Swedish Geotechnical Institute",
+  "aliases": []
+ },
+ {
+  "name": "National Institute on Deafness and Other Communication Disorders",
+  "aliases": []
+ },
+ {
+  "name": "National Fisheries Research & Development Institute",
+  "aliases": []
+ },
+ {
+  "name": "PLA Academy of Military Medical Sciences",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Economics of the Polish Academy of Sciences",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Solid State Physics",
+  "aliases": []
+ },
+ {
+  "name": "Center for iPS Cell Research and Application, Kyoto University",
+  "aliases": []
+ },
+ {
+  "name": "Sasaki Institute",
+  "aliases": []
+ },
+ {
+  "name": "National Institute for Educational Policy Research",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of Population and Social Security Research",
+  "aliases": []
+ },
+ {
+  "name": "National Institute for Basic Biology, Japan",
+  "aliases": []
+ },
+ {
+  "name": "The Museum",
+  "aliases": []
+ },
+ {
+  "name": "The Tokyo Institute for Municipal Research",
+  "aliases": []
+ },
+ {
+  "name": "Tokugawa Institute for the History of Forestry",
+  "aliases": []
+ },
+ {
+  "name": "Institut Néel",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Nuclear Research and Nuclear Energy",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of Agricultural Botany",
+  "aliases": []
+ },
+ {
+  "name": "Byzantine Institute of the Serbian Academy of Sciences and Arts",
+  "aliases": []
+ },
+ {
+  "name": "Arnold A. Saltzman Institute of War and Peace Studies",
+  "aliases": []
+ },
+ {
+  "name": "Cheney Cardiovascular Institute",
+  "aliases": []
+ },
+ {
+  "name": "The Institute for Information Transmission Problems of Russian Academy of Sciences",
+  "aliases": []
+ },
+ {
+  "name": "Arid Forest Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Life Sciences",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Geochemistry",
+  "aliases": []
+ },
+ {
+  "name": "Cancer Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "Nofer Institute of Occupational Medicine",
+  "aliases": []
+ },
+ {
+  "name": "Cranfield School of Engineering",
+  "aliases": []
+ },
+ {
+  "name": "Huntington Medical Research Institutes",
+  "aliases": []
+ },
+ {
+  "name": "Institut für Mobil- und Satellitenfunktechnik",
+  "aliases": []
+ },
+ {
+  "name": "Heart Research Institute",
+  "aliases": []
+ },
+ {
+  "name": "MIT Center for Information Systems Research",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Human Behaviour and Allied Sciences",
+  "aliases": []
+ },
+ {
+  "name": "Schmidt Ocean Institute",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Medical and Veterinary Science",
+  "aliases": []
+ },
+ {
+  "name": "Institut Pasteur Korea",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Occupational Medicine",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Marine Biology",
+  "aliases": []
+ },
+ {
+  "name": "Martti Ahtisaari Institute of Global Business and Economics",
+  "aliases": []
+ },
+ {
+  "name": "Institut für Rechtspolitik an der Universität Trier",
+  "aliases": []
+ },
+ {
+  "name": "Coriell Institute for Medical Research",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Zoology, Shaanxi Normal University",
+  "aliases": []
+ },
+ {
+  "name": "Strangeways Research Laboratory",
+  "aliases": []
+ },
+ {
+  "name": "GENA",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Himalayan Bioresource Technology",
+  "aliases": []
+ },
+ {
+  "name": "National Institute for Research in Tuberculosis",
+  "aliases": []
+ },
+ {
+  "name": "National Institute of Epidemiology",
+  "aliases": []
+ },
+ {
+  "name": "Research Institute for Geo-Hydrological Protection",
+  "aliases": []
+ },
+ {
+  "name": "Japanese Society for Bioinformatics",
+  "aliases": []
+ },
+ {
+  "name": "Albert Einstein Cancer Center",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Botany",
+  "aliases": []
+ },
+ {
+  "name": "Canadian Research Institute for the Advancement of Women",
+  "aliases": []
+ },
+ {
+  "name": "The Catalan Institute for Water Research",
+  "aliases": []
+ },
+ {
+  "name": "Hidango Experimental Center",
+  "aliases": []
+ },
+ {
+  "name": "Institute for Business and Industrial Statistics",
+  "aliases": []
+ },
+ {
+  "name": "Earth Observation Center",
+  "aliases": []
+ },
+ {
+  "name": "Institute of Information Systems",
+  "aliases": []
+ },
+ {
+  "name": "Hefei Institutes of Physical Science",
+  "aliases": []
+ },
+ {
+  "name": "Astronomical Institute Anton Pannekoek",
+  "aliases": []
+ },
+ {
+  "name": "Finnish Institute of Occupational Health",
+  "aliases": []
+ },
+ {
+  "name": "Norwegian Institute for Water Research",
+  "aliases": []
+ },
+ {
+  "name": "Sage Bionetworks",
+  "aliases": [
+   "Sage",
+   "Sagebase"
+  ]
+ },
+ {
+  "name": "The Scripps Research Institute",
+  "aliases": [
+   "Scripps Research Institute",
+   "Scripps",
+   "SRI",
+   "TSRI"
+  ]
+ },
+ {
+  "name": "Scripps Health",
+  "aliases": [
+   "Scripps"
+  ]
+ },
+ {
+  "name": "Pittsburgh Supercomputing Center",
+  "aliases": [
+   "PSC"
+  ]
+ },
+ {
+  "name": "Mayo Clinic",
+  "aliases": [
+   "Mayo"
+  ]
+ }
+]

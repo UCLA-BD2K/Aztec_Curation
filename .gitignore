@@ -10,4 +10,4 @@ logs/all-logs.log
 config/mysql.js
 config/mongo.js
 
-.DS_Store
+*/.DS_Store

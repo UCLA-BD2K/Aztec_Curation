@@ -348,71 +348,6 @@ module.exports = {
               }
             });
           },
-          function(toolData, callbackAsync) { //Save agency
-            var promises = [];
-            var insertAgency = [];
-            for(var i = 0; i<agency.length; i++){
-              promises.push(new Promise(function(resolve, reject){
-                async.waterfall([
-                  function(cb){
-                    var currentAgency = agency[i];
-                    Agency.forge()
-                      .query({where: {NAME: currentAgency.NAME}})
-                      .fetch()
-                      .then(function(a){
-                        if(a==null){
-                          return cb(null, false, currentAgency);
-                        }
-                        else{
-                          logger.info('Found existing Agency: %s', a.attributes.NAME);
-                          insertAgency.push(a);
-                          return cb(null, true, a);
-                        }
-                      })
-                      .catch(function(err){
-                        logger.info('query agency error');
-                        logger.debug(err);
-                        return cb('error');
-                      })
-                  },
-                  function(foundAgency, newAgency, cb){
-                    if(foundAgency){
-                      return cb(null, newAgency);
-                    }
-                    Agency.forge()
-                      .save(newAgency, {transacting: transaction, method: type})
-                      .then(function(a){
-                        logger.info("ready to commit %s!", a.attributes.NAME);
-                        insertAgency.push(a);
-                        return cb(null, a);
-                      })
-                      .catch(function(err){
-                        logger.info("need to rollback agency");
-                        logger.debug(err);
-                        return cb('error');
-                      });
-                  },
-                ],
-                function(error){
-                  if(error==null || error=='found'){
-                    resolve(0);
-                  }
-                  else{
-                    resolve(-1);
-                  }
-                });
-
-              }));
-            }
-            Promise.all(promises).then(function(values){
-              if(values.indexOf(-1)>-1)
-                return callbackAsync('Error with agency');
-              else{
-                toolData.agency = insertAgency;
-                return callbackAsync(null, toolData);
-              }
-            });
-          },
           function(toolData, callbackAsync) { //Save bd2k centers
             var promises = [];
             for(var i = 0; i<centers.length; i++){
@@ -491,12 +426,17 @@ module.exports = {
               }
 
               m_tool.azid = toolData.toolInfo.attributes.AZID;
-              for(var i = 0; i<toolData.agency.length; i++){
+              for(var i = 0; i<funding.length; i++){
 
                 var m_fund = new M_funding;
-                m_fund.agency_id = toolData.agency[i].attributes.AGENCY_ID;
-                m_fund.funding_agency = agency[i].NAME;
-                m_fund.funding_grant = funding[i].GRANT_NUM;
+                if(funding[i].funding_agency!=undefined)
+                  m_fund.funding_agency = funding[i].funding_agency;
+                if(funding[i].funding_grant!=undefined)
+                  m_fund.funding_grant = funding[i].funding_grant;
+                if(funding[i].missing!=undefined)
+                  m_fund.missing = funding[i].missing;
+                if(funding[i].new_agency!=undefined)
+                  m_fund.new_agency = funding[i].new_agency;
                 m_tool.funding.push(m_fund);
               }
 

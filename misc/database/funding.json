@@ -1,0 +1,250 @@
+[
+	{
+		"name": "European Molecular Biology Laboratory",
+		"country": "International",
+		"aliases": [
+			"EMBL"
+			]
+	},
+	{
+		"name": "Biotechnology and Biological Sciences Research Council",
+		"country": "United Kingdom",
+		"aliases": [
+			"BBSRC"
+			]
+	},
+	{
+		"name": "Centre for Therapeutic Target Validation",
+		"country": "United Kingdom",
+		"aliases": [
+			"CTTV"
+			]
+	},
+	{
+		"name": "EurocanPlatform",
+		"country": "International",
+		"aliases": [
+			"Eurocan",
+			"FP7"
+			]
+	},
+	{
+		"name": "Wellcome Trust",
+		"country": "United Kingdom",
+		"aliases": []
+	},
+	{
+		"name": "National Science Foundation",
+		"country": "United States",
+		"aliases": [
+			"NSF"
+			]
+	},
+	{
+		"name": "National Institutes of Health",
+		"country": "United States",
+		"aliases": [
+			"NIH"
+			]
+	},
+	{
+		"name": "National Cancer Institute",
+		"country": "United States",
+		"aliases": [
+			"NCI"
+			]
+	},
+	{
+		"name": "National Eye Institute",
+		"country": "United States",
+		"aliases": [
+			"NEI"
+			]
+	},
+	{
+		"name": "National Heart, Lung, and Blood Institute",
+		"country": "United States",
+		"aliases": [
+			"NHLBI"
+			]
+	},
+	{
+		"name": "National Human Genome Research Institute",
+		"country": "United States",
+		"aliases": [
+			"NHGRI"
+			]
+	},
+	{
+		"name": "National Institute on Aging",
+		"country": "United States",
+		"aliases": [
+			"NIA"
+			]
+	},
+	{
+		"name": "National Institute on Alcohol Abuse and Alcoholism",
+		"country": "United States",
+		"aliases": [
+			"NIAAA"
+			]
+	},
+	{
+		"name": "National Institute of Allergy and Infectious Diseases",
+		"country": "United States",
+		"aliases": [
+			"NIAID"
+			]
+	},
+	{
+		"name": "National Institute of Arthritis and Musculoskeletal and Skin Diseases",
+		"country": "United States",
+		"aliases": [
+			"NIAMS"
+			]
+	},
+	{
+		"name": "National Institute of Biomedical Imaging and Bioengineering",
+		"country": "United States",
+		"aliases": [
+			"NIBIB"
+			]
+	},
+	{
+		"name": "Eunice Kennedy Shriver National Institute of Child Health and Human Development",
+		"country": "United States",
+		"aliases": [
+			"EKSNICHD",
+			"NICHD",
+			"Eunice Kennedy Shriver Institute",
+			"National Institute of Child Health and Human Development"
+			]
+	},
+	{
+		"name": "National Institute on Deafness and Other Communication Disorders",
+		"country": "United States",
+		"aliases": [
+			"NIDCD"
+			]
+	},
+	{
+		"name": "National Institute of Dental and Craniofacial Research",
+		"country": "United States",
+		"aliases": [
+			"NIDCR"
+			]
+	},
+	{
+		"name": "National Institute of Diabetes and Digestive and Kidney Diseases",
+		"country": "United States",
+		"aliases": [
+			"NIDDK"
+			]
+	},
+	{
+		"name": "National Institute on Drug Abuse",
+		"country": "United States",
+		"aliases": [
+			"NIDA"
+			]
+	},
+	{
+		"name": "National Institute of Environmental Health Sciences",
+		"country": "United States",
+		"aliases": [
+			"NIEHS"
+			]
+	},
+	{
+		"name": "National Institute of General Medical Sciences",
+		"country": "United States",
+		"aliases": [
+			"NIGMS"
+			]
+	},
+	{
+		"name": "National Institute of Mental Health",
+		"country": "United States",
+		"aliases": [
+			"NIMH"
+			]
+	},
+	{
+		"name": "National Institute on Minority Health and Health Disparities",
+		"country": "United States",
+		"aliases": [
+			"NIMHD"
+			]
+	},
+	{
+		"name": "National Institute of Neurological Disorders and Stroke",
+		"country": "United States",
+		"aliases": [
+			"NINDS"
+			]
+	},
+	{
+		"name": "National Institute of Nursing Research",
+		"country": "United States",
+		"aliases": [
+			"NINR"
+			]
+	},
+	{
+		"name": "National Library of Medicine",
+		"country": "United States",
+		"aliases": [
+			"NLM"
+			]
+	},
+	{
+		"name": "American Cancer Society",
+		"country": "United States",
+		"aliases": [
+			"ACS"
+			]
+	},
+	{
+		"name": "American Heart Association",
+		"country": "United States",
+		"aliases": [
+			"AHS"
+			]
+	},
+	{
+		"name": "Cystic Fibrosis Foundation",
+		"country": "United States",
+		"aliases": [
+			"CFF"
+			]
+	},
+	{
+		"name": "Leukemia & Lymphoma Society",
+		"country": "United States",
+		"aliases": [
+			"LLS"
+			]
+	},
+	{
+		"name": "Life Sciences Discovery Fund",
+		"country": "United States",
+		"aliases": [
+			"LSDFA"
+			]
+	},
+	{
+		"name": "Alfred P. Sloan Foundation",
+		"country": "United States",
+		"aliases": [
+			"Sloan Foundation",
+			"APSF"
+			]
+	},
+	{
+		"name": "Children's Tumor Foundation",
+		"country": "United States",
+		"aliases": [
+			"CTF"
+			]
+	}
+]

@@ -5,18 +5,19 @@ var Institution = require('../../models/mysql/institution.js');
 var InstAlias = require('../../models/mysql/inst_alias.js');
 var Language = require('../../models/mysql/language.js');
 var LangAlias = require('../../models/mysql/lang_alias.js');
+var Agency = require('../../models/mysql/agency.js');
+var AgencyAlias = require('../../models/mysql/agency_alias.js');
 var Set = require('collections/set');
 
 module.exports = {
   insertInst: function(req, res, next) {
-    var json = require('../../misc/database/university_aliases.json');
+    var json = require('../../misc/database/institutions_aliases.json');
     var result = [];
 
     var UNIVERSITY_OF_THE = "UNIVERSITY OF THE ";
     var UNIVERSITY_OF = "UNIVERSITY OF ";
 
-    var AliasObj = function(inst_id, primary, alias){
-      this.INST_ID = inst_id;
+    var AliasObj = function(primary, alias){
       this.PRIMARY_NAME = primary;
       this.ALIAS = alias;
     };
@@ -47,27 +48,27 @@ module.exports = {
             return object.ALIAS;
           });
 
-          var alias =  new AliasObj(newInst.attributes.INST_ID, newInst.attributes.NAME, newInst.attributes.NAME);
+          var alias =  new AliasObj(newInst.attributes.NAME, newInst.attributes.NAME);
           aliasSet.add(alias);
 
           if(name.toUpperCase().startsWith(UNIVERSITY_OF_THE)){
-            var newAlias =  new AliasObj(newInst.attributes.INST_ID, newInst.attributes.NAME, newInst.attributes.NAME.substring(UNIVERSITY_OF_THE.length));
+            var newAlias =  new AliasObj(newInst.attributes.NAME, newInst.attributes.NAME.substring(UNIVERSITY_OF_THE.length));
             aliasSet.add(newAlias);
           }else if(name.toUpperCase().startsWith(UNIVERSITY_OF)){
-            var newAlias =  new AliasObj(newInst.attributes.INST_ID, newInst.attributes.NAME, newInst.attributes.NAME.substring(UNIVERSITY_OF.length));
+            var newAlias =  new AliasObj(newInst.attributes.NAME, newInst.attributes.NAME.substring(UNIVERSITY_OF.length));
             aliasSet.add(newAlias);
           }
 
           obj['aliases'].forEach(function(element){
             var aliasName = element;
             if(aliasName.toUpperCase().startsWith(UNIVERSITY_OF_THE)){
-              var newAlias =  new AliasObj(newInst.attributes.INST_ID, newInst.attributes.NAME, aliasName.substring(UNIVERSITY_OF_THE.length));
+              var newAlias =  new AliasObj(newInst.attributes.NAME, aliasName.substring(UNIVERSITY_OF_THE.length));
               aliasSet.add(newAlias);
             }else if(aliasName.toUpperCase().startsWith(UNIVERSITY_OF)){
-              var newAlias =  new AliasObj(newInst.attributes.INST_ID, newInst.attributes.NAME, aliasName.substring(UNIVERSITY_OF.length));
+              var newAlias =  new AliasObj(newInst.attributes.NAME, aliasName.substring(UNIVERSITY_OF.length));
               aliasSet.add(newAlias);
             }
-            var newAlias =  new AliasObj(newInst.attributes.INST_ID, newInst.attributes.NAME, aliasName);
+            var newAlias =  new AliasObj(newInst.attributes.NAME, aliasName);
             aliasSet.add(newAlias);
           });
 
@@ -101,8 +102,7 @@ module.exports = {
     var result = [];
 
 
-    var AliasObj = function(lang_id, primary, alias){
-      this.LANG_ID = lang_id;
+    var AliasObj = function(primary, alias){
       this.PRIMARY_NAME = primary;
       this.ALIAS = alias;
     };
@@ -131,14 +131,14 @@ module.exports = {
           });
 
           var name = newLang.attributes.NAME;
-          var alias =  new AliasObj(newLang.attributes.LANG_ID, name, name);
+          var alias =  new AliasObj(name, name);
           aliasSet.add(alias);
 
           var aliases = json[name]['aliases'];
           //return cb(null);
           if(aliases!=undefined){
             aliases.forEach(function(a){
-              var newAlias =  new AliasObj(newLang.attributes.LANG_ID, name, a);
+              var newAlias =  new AliasObj(name, a);
               aliasSet.add(newAlias);
             })
           }
@@ -166,6 +166,77 @@ module.exports = {
     }
 
     res.send('got it');
+
+  },
+  insertAgency: function(req, res, next){
+    var json = require('../../misc/database/funding.json');
+    var result = [];
+
+
+    var AliasObj = function(primary, alias){
+      this.PRIMARY_NAME = primary;
+      this.ALIAS = alias;
+    };
+
+    // var obj = json[1];
+    json.forEach(function(obj){
+      var name = obj['name'];
+      var country = obj['country'];
+      var agency = {NAME: name, COUNTRY: country};
+      async.waterfall([
+        function(cb){
+          Agency.forge()
+            .save(agency)
+            .then(function(a){
+              logger.debug("Saved agency %s!", name);
+              return cb(null, a);
+            })
+            .catch(function(err){
+              console.log(err);
+              logger.debug("Error for agency %s!", name);
+              return cb(name);
+            });
+        },
+        function(newAgency, cb){
+
+          var aliasSet = new Set(null, function(a, b){
+            return a.ALIAS==b.ALIAS;
+          }, function(object){
+            return object.ALIAS;
+          });
+
+          var alias =  new AliasObj(newAgency.attributes.NAME, newAgency.attributes.NAME);
+          aliasSet.add(alias);
+
+          obj['aliases'].forEach(function(element){
+            var newAlias =  new AliasObj(newAgency.attributes.NAME, element);
+            aliasSet.add(newAlias);
+          });
+
+          var arr = aliasSet.toArray();
+
+          arr.forEach(function(element){
+            AgencyAlias.forge()
+              .save(element)
+              .then(function(a){
+                logger.debug("Saved alias %s!", a.attributes.ALIAS);
+              })
+              .catch(function(err){
+                console.log(err);
+                logger.debug("Error for alias %s!", element.ALIAS);
+              });
+          });
+          return cb(null);
+        }],
+        function(error){
+          if(error!=null)
+            logger.debug("Async Error");
+        }
+      );
+
+    });
+
+    res.send(result);
 
   }
 }

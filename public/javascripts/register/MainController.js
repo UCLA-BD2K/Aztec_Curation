@@ -845,20 +845,47 @@
       templateOptions: {
         btnText: 'Add Funding Info',
         fields: [{
-          type: 'input',
+          type: 'ui-select-single-search',
           key: 'funding_agency',
           templateOptions: {
+            optionsAttr: 'bs-options',
+            ngOptions: 'option[to.valueProp] as option in to.options | filter: $select.search',
             label: 'Funding Agency',
-            placeholder: 'Enter the funding agency',
-            required: true
+            valueProp: 'PRIMARY_NAME',
+            labelProp: 'ALIAS',
+            otherProp: 'funding_agency',
+            placeholder: 'Enter the name of the agency',
+            endpoint: '/api/agency',
+            options: [],
+            refresh: refreshInst,
+            refreshDelay: 500
+          },
+          hideExpression: 'model.missing'
+        }, {
+          key: 'missing',
+          type: 'input',
+          templateOptions: {
+            type: 'checkbox',
+            label: "Can't find the agency?",
+            value: 'false',
+            required: false
           }
+        }, {
+          key: 'new_agency',
+          type: 'input',
+          templateOptions: {
+            type: 'text',
+            label: "Agency Name",
+            placeholder: 'Enter the name of the agency',
+            required: false
+          },
+          hideExpression: '!model.missing',
         }, {
           type: 'input',
           key: 'funding_grant',
           templateOptions: {
             label: 'Grant Number',
             placeholder: 'Enter the grant number',
-            link: 'https://maps.googleapis.com/maps/api/geocode/json',
             required: true
           }
         }]

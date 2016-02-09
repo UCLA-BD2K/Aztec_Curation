@@ -359,10 +359,7 @@ module.exports = {
     }
     // get funding
     if(obj['funding']!=undefined && obj['funding']['funding']!=undefined){
-      for(var i = 0; i<obj['funding']['funding'].length; i++){
-        agency.push({NAME: obj['funding']['funding'][i]['funding_agency']})
-        funding.push({GRANT_NUM: obj['funding']['funding'][i]['funding_grant']});
-      }
+      funding = obj['funding']['funding'];
     }
 
     if(obj['funding']!=undefined && obj['funding']['bd2k']!=undefined){

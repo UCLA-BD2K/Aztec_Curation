@@ -23,7 +23,7 @@ module.exports = {
     }
 
     if(params['q']==undefined){
-      return getAllLang(res, limit, offset, limExist, offExist);
+      return getAllTags(res, limit, offset, limExist, offExist);
     }else{
       var term = params['q'];
       return queryDB(res, term, limit, offset, limExist, offExist);

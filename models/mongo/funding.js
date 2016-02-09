@@ -6,7 +6,10 @@ var fundingSchema = mongoose.Schema({
 
       agency_id       : Number,
       funding_agency  : String,
-      funding_grant   : String
+      new_agency      : String,
+      missing         : Boolean,
+      funding_grant   : String,
+
 
 });
 
