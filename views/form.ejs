@@ -166,8 +166,10 @@
     
       <% if(title=='Register') { %>
         <button id='save' class="btn btn-primary" ng-click="vm.beforeSaveCheck()" data-toggle="modal" data-target="#saveModal">Save</button>
+        <button id='submit' class="btn btn-primary" ng-click="vm.checkForm()" data-toggle="modal" data-target="#submitModal">  <a href="javascript:grecaptcha.reset();">Submit</a></button>
+
       <% } %>
-        <a href="javascript:grecaptcha.reset();"><button id='submit' class="btn btn-primary" ng-click="vm.checkForm()" data-toggle="modal" data-target="#submitModal">Submit</button></a>
+       
      </div>
   </div>
 

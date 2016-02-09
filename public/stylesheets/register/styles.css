@@ -1,3 +1,8 @@
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 .container {
 	background-color: #ffffff;
 	/*border: 1px solid #ccc;
@@ -18,6 +23,12 @@
     height: 5vh;
 }
 
+#overall{
+    width: 100vw;
+    height: 72vh; 
+    overflow: hidden;
+  background-color: rgba(238,238,238,32);
+}
 
 .reg-h1{
 	font-size: 32px;
@@ -26,14 +37,39 @@
     color: #333;
     font-weight: 400;
     text-transform: uppercase; 
+    
 }
 
-#overall{
-	width: 100vw;
-    height: 72vh; 
-    overflow: hidden;
-  background-color: rgba(238,238,238,32);
+@media (min-width: 768px){
+    .reg-h1{
+        margin-right: 4vw;
+    }
+    .btn-primary{
+        margin-top: 1%;
+    }
 }
+
+@media (min-width: 1280px){
+        .reg-h1{
+        margin-right: 30%;
+    }
+    
+}
+
+@media (min-width: 1440px){
+        .reg-h1{
+    margin-right: 33.2%;
+        }
+    
+}
+
+@media (min-width: 1680px){
+        .reg-h1{
+    margin-right: 37.2%;
+            }
+    
+}
+
 
 .btn{
     border-color: rgba(0, 0, 0, 0.26);
@@ -50,11 +86,14 @@
     font-weight: 100;
     /*width: 200px;*/
     outline: none;
-        width: 10%;
+    margin-left: 1%;
+    width: 11%;
+    height: 44px;
+       /* width: 10%;
     outline: none;
         margin-left: 33%;
     height: 50%;
-    margin-top: 1.8%;
+    margin-top: 1.8%;*/
 
 }
 
@@ -106,9 +145,6 @@ pre{
     color: white;
 }
 
-.fstrow{
-    margin-top: 4%;
-}
 .col-md-7, .col-md-3 {
     height: 78vh;
     overflow: scroll;
@@ -159,14 +195,13 @@ padding-bottom: 10vh;
     color: #000;
 }
 a{
-    color: #5A7B85
+    color: white;
 }
 .tab-pane{
     padding-top: 1.5%;
 }
-#submit{
 
-    margin-left: 19%;
-    margin-top: 33%;
-    width: 168%;
+.navbar-fixed-top{
+    position: relative;
+    margin-bottom: auto;
 }
