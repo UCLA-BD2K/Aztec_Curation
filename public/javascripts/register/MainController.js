@@ -314,7 +314,10 @@
               }, {
                 name: 'Module',
                 value: 'Module'
-              },{
+              }, {
+                name: 'Cloud Service ',
+                value: 'Cloud Service'
+              }, {
                 name: 'Other',
                 value: 'Other'
               }]

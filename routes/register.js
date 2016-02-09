@@ -225,7 +225,7 @@ module.exports = {
             var promises = [];
             var insertLangs = [];
             for(var i = 0; i<langs.length; i++){
-              promises.push(new Promise(function(resolve, reject){
+              promises.push(new Promise(function(resolve, reject){ //TODO: save only name
                 async.waterfall([
                   function(cb){
                     var currentLang = langs[i];
@@ -248,7 +248,7 @@ module.exports = {
                         return cb('error');
                       })
                   },
-                  function(newlang, cb){
+                  function(newlang, cb){ // TODO: remove
                     Language.forge()
                       .save(newlang, {transacting: transaction, method: type})
                       .then(function(lang){
