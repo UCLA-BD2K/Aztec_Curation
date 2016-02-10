@@ -78,7 +78,7 @@ module.exports = {
 
 
     var response = {};
-    if(toolInfo.NAME==undefined || toolInfo.DESCRIPTION==undefined || (toolInfo.SOURCE_LINK==undefined && links.length==0)){
+    if(toolInfo.NAME==undefined || toolInfo.DESCRIPTION==undefined || (toolInfo.SOURCE_LINK==undefined && m_tool.links.length==0)){
       response.status = 'error';
       response.message = "Must enter the minimum fields: Resource Name, Description, and Source Code URL or at least 1 link."
       return res.send(response);

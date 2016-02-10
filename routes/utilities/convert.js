@@ -211,6 +211,7 @@ module.exports = {
         toolInfo.TOOL_DOI = obj['publication']['pub_tool_doi'];
       }
     }
+
     if(obj['dev']!=undefined && obj['dev']['res_code_url']!=undefined)
       toolInfo.SOURCE_LINK = obj['dev']['res_code_url'];
     // get author info
