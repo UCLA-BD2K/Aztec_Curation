@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%=title%></title>
   <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <link rel="stylesheet" href="/stylesheets/register/ng-tags-input.min.css">
@@ -141,8 +141,24 @@
         $('#part9').show();
         current_sec = '#part9';
       });
+      var temp = ($(document).width())* 0.024 ;
+      var margin = temp.toString();
+      margin = margin + "%";
+      $("#registerHeading").css("margin-right", margin);
+
+       $(window).resize(function(){
+       var tm = ($(document).width())* 0.024  ;
+      var winm = tm.toString();
+      winm = winm + "%";
+      $("#registerHeading").css("margin-right", winm);
+
+         });
+
+    
 
     });
+  
+
   </script>
   <style>
     pre:hover {
@@ -162,7 +178,7 @@
       <h2> <a href="/home"> HOME </a> > <a href="/reg"> REGISTER NEW RESOURCE </a> >  </h2>
     </div>
     <div class= "titlestuff">
-      <h1 class="reg-h1"><%=heading%></h1>
+      <h1 class="reg-h1" id="registerHeading"><%=heading%></h1>
     
       <% if(title=='Register') { %>
         <button id='save' class="btn btn-primary" ng-click="vm.beforeSaveCheck()" data-toggle="modal" data-target="#saveModal">Save</button>

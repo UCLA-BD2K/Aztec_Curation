@@ -39,8 +39,11 @@ html, body {
     text-transform: uppercase; 
     
 }
+.btn-primary{
+        margin-top: 1%;
+    }
 
-@media (min-width: 768px){
+/*@media (min-width: 768px){
     .reg-h1{
         margin-right: 4vw;
     }
@@ -70,7 +73,7 @@ html, body {
     
 }
 
-
+*/
 .btn{
     border-color: rgba(0, 0, 0, 0.26);
     color: rgba(0, 0, 0, 0.54);
