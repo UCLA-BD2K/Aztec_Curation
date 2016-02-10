@@ -149,7 +149,7 @@ pre{
 }
 
 .col-md-7, .col-md-3 {
-    height: 78vh;
+    height: 70vh;
     overflow: scroll;
     padding-top: 0vh;
     padding-bottom: 18vh;
@@ -207,4 +207,9 @@ a{
 .navbar-fixed-top{
     position: relative;
     margin-bottom: auto;
+}
+#author-repeater{
+    margin-top: -14%;
+    margin-left: -20%;
+    margin-bottom: -14%;
 }

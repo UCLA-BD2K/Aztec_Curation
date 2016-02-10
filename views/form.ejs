@@ -154,8 +154,6 @@
 
          });
 
-    
-
     });
   
 
@@ -308,8 +306,12 @@
       </div>
 
     <div class="tab-pane fade active in" id="summary">
-      <pre id='pre1' style="cursor: pointer;">Basic Information <br> Name : {{vm.basic.res_name}}</pre>
-      <pre id='pre2' style="cursor: pointer;">Author Information{{vm.authors | json}}</pre>
+      <pre id='pre1' style="cursor: pointer;">Basic Information <br>{{vm.basic.res_name}}</pre>
+      <pre id='pre2' style="cursor: pointer;">Author Information
+      <div ng-repeat = "authors in vm.authors.authors track by $index" id = "author-repeater">
+        {{vm.authors.authors[$index].first_name}}, {{vm.authors.authors[$index].last_name}}
+      </div>
+      </pre>
       <pre id='pre3' style="cursor: pointer;">Publication Information{{vm.publication | json}}</pre>
       <pre id='pre4' style="cursor: pointer;">Related Links{{vm.links | json}}</pre>
       <pre id='pre5' style="cursor: pointer;">Development Information{{vm.dev | json}}</pre>
