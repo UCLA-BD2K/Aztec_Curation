@@ -25,7 +25,7 @@ html, body {
 
 #overall{
     width: 100vw;
-    height: 72vh; 
+    height: 72vh;
     overflow: hidden;
   background-color: rgba(238,238,238,32);
 }
@@ -36,8 +36,8 @@ html, body {
     opacity: 0.92;
     color: #333;
     font-weight: 400;
-    text-transform: uppercase; 
-    
+    text-transform: uppercase;
+
 }
 .btn-primary{
         margin-top: 1%;
@@ -56,21 +56,21 @@ html, body {
         .reg-h1{
         margin-right: 30%;
     }
-    
+
 }
 
 @media (min-width: 1440px){
         .reg-h1{
     margin-right: 33.2%;
         }
-    
+
 }
 
 @media (min-width: 1680px){
         .reg-h1{
     margin-right: 37.2%;
             }
-    
+
 }
 
 */
@@ -123,7 +123,7 @@ body{
 
 }
 h1 {
-    font-weight: 100; 
+    font-weight: 100;
 
 }
 h2{
@@ -132,7 +132,7 @@ h2{
     font-weight: 100;
 }
 pre{
-    border: none; 
+    border: none;
     border-radius: 0px;
 }
 
@@ -140,7 +140,7 @@ pre{
     padding-left: 5vw;
     padding-bottom: 0.7%;
     padding-top: 0.2vh;
-    background-image: linear-gradient(#99C0CC 0px, #BBD2DB 100%); 
+    background-image: linear-gradient(#99C0CC 0px, #BBD2DB 100%);
 
 }
 
@@ -166,8 +166,8 @@ pre{
     overflow: hidden;
 
 }
-::-webkit-scrollbar { 
-    display: none; 
+::-webkit-scrollbar {
+    display: none;
 }
 .tab-pane{
  height:460px;
@@ -212,4 +212,13 @@ a{
     margin-top: -14%;
     margin-left: -20%;
     margin-bottom: -14%;
+}
+/*pre styling*/
+/*Authors*/
+pre{
+  cursor: pointer;
+}
+#pub-prim, #pub-sec {
+  margin-bottom: -5%;
+  margin-top: -5%; 
 }
