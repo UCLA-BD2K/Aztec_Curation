@@ -215,6 +215,7 @@
     vm.passWarning = passWarning;
     vm.initEdit = initEdit;
     vm.initSaved = initSaved;
+    vm.checkLink = checkLink;
     // The model object that we reference
     // on the <formly-form> element in index.html
     vm.savedID = "";
@@ -1480,6 +1481,14 @@
               vm.funding = data['funding'];
             $scope.$apply();
         });
+    };
+
+    function checkLink(link){
+      if (!(link.match(/^http/) || link.match(/^https/))) {
+            return "http://"+link;
+        }
+      return link;
+     
     }
 
   }

@@ -154,8 +154,18 @@
 
          });
 
-    });
-
+  });
+  
+     // $('.link-link').hover(function(e) {
+     //    if ($(this).text().match(/^http/) || $(this).text().match(/^https/)) {
+     //        $.noop()
+     //    }
+     //    else {
+     //        // get value from field
+     //        var cur_val = $(this).text(); 
+     //        // do with cur_val
+     //        $(this).text('http://' + cur_val);
+     //    } });
 
   </script>
   <style>
@@ -197,7 +207,7 @@
     <div class="container col-md-7">
       <form data-toggle="validator" novalidate>
         <div id='part1'>
-          <h1>Basic Information</h1>
+          <h1>Description</h1>
           <formly-form model="vm.basic" fields="vm.basicFields" form="vm.basicForm">
           </formly-form>
           <div class="row text-center">
@@ -205,7 +215,7 @@
           </div>
         </div>
         <div id='part2' style='display:none'>
-          <h1>Author Information</h1>
+          <h1>Authors</h1>
           <formly-form model="vm.authors" fields="vm.authorFields" form="vm.authorForm">
           </formly-form>
           <div class="row text-center">
@@ -214,7 +224,7 @@
           </div>
         </div>
         <div id='part3' style='display:none'>
-          <h1>Publication Information</h1>
+          <h1>Publications</h1>
           <formly-form model="vm.publication" fields="vm.pubFields" form="vm.pubForm">
           </formly-form>
           <div class="row text-center">
@@ -223,7 +233,7 @@
           </div>
         </div>
         <div id='part4' style='display:none'>
-          <h1>Related Links</h1>
+          <h1>Links</h1>
           <formly-form model="vm.links" fields="vm.linkFields" form="vm.linksForm">
           </formly-form>
           <div class="row text-center">
@@ -232,7 +242,7 @@
           </div>
         </div>
         <div id='part5' style='display:none'>
-          <h1>Development Information</h1>
+          <h1>Documentation</h1>
           <formly-form model="vm.dev" fields="vm.devFields" form="vm.devForm">
           </formly-form>
           <div class="row text-center">
@@ -250,7 +260,7 @@
           </div>
         </div>
         <div id='part7' style='display:none'>
-          <h1>IO Information (coming soon)</h1>
+          <h1>I/O (coming soon)</h1>
           <formly-form model="vm.io" fields="vm.ioFields" form="vm.ioForm">
           </formly-form>
           <div class="row text-center">
@@ -259,7 +269,7 @@
           </div>
         </div>
         <div id='part8' style='display:none'>
-          <h1>License Information</h1>
+          <h1>Licenses</h1>
           <formly-form model="vm.license" fields="vm.licenseFields" form="vm.licenseForm">
           </formly-form>
           <div class="row text-center">
@@ -268,7 +278,7 @@
           </div>
         </div>
         <div id='part9' style='display:none'>
-          <h1>Funding Information</h1>
+          <h1>Funding</h1>
           <formly-form model="vm.funding" fields="vm.fundingFields" form="vm.fundingForm">
           </formly-form>
           <div class="row text-center">
@@ -296,34 +306,50 @@
   <div class= "tab-content">
 
       <div class="tab-pane fade" id="suggestor">
-          <h1>Suggestions</h1>
          <center><button class="btn btn-default" ng-click="vm.suggest()">Suggest</button></center>
          <div id='loading' style='display:none'>
           <center><img src='/images/magnify.gif'/></center>
          </div>
-         <div id='suggestions' style='word-wrap: break-word;'>
+         <div id='suggestions' style='padding-top:1%; word-wrap: break-word;'>
           </div>
       </div>
 
     <div class="tab-pane fade active in" id="summary">
-      <pre id='pre1'>Basic Information <br>{{vm.basic.res_name}}</pre>
-      <pre id='pre2'>Author Information
-      <div ng-repeat = "authors in vm.authors.authors track by $index" id = "author-repeater">
-        {{vm.authors.authors[$index].first_name}}, {{vm.authors.authors[$index].last_name}}
-      </div>
+      <pre id='pre1'>DESCRIPTION <br>{{vm.basic.res_name}}</pre>
+      <pre id='pre2'>AUTHORS <div ng-repeat = "authors in vm.authors.authors track by $index" id = "author-repeater">{{vm.authors.authors[$index].first_name}}, {{vm.authors.authors[$index].last_name}}</div>
       </pre>
-      <pre id='pre3'>Publication Information <br> Resource DOI: {{vm.publication.pub_tool_doi}}<br>
-        Publication DOI:{{vm.publication.pub_primary_doi}}
-        <div ng-repeat = "pub_dois in vm.publication.pub_dois track by $index" id = "pub-sec">
-        Publication DOI: {{vm.publication.pub_dois[$index].pub_doi}}
+      <pre id='pre3'>PUBLICATIONS <br> Resource DOI: {{vm.publication.pub_tool_doi}}<br> Publication DOI:{{vm.publication.pub_primary_doi}} <div ng-repeat = "pub_dois in vm.publication.pub_dois track by $index" id = "pub-sec"> Publication DOI: {{vm.publication.pub_dois[$index].pub_doi}}</div> 
+      </pre>
+      <pre id='pre4'>LINKS<div ng-repeat = "links in vm.links.links track by $index"> {{vm.links.links[$index].link_name}} <br> URL: <a href="{{vm.checkLink(vm.links.links[$index].link_url)}}" class="link-link">{{vm.links.links[$index].link_url}}</a></div>
+        </pre>
+      <pre id='pre5'>DOCUMENTATION
+        <div ng-repeat="dev_lang in vm.dev.dev_lang track by $index">
+          {{vm.dev.dev_lang[$index].PRIMARY_NAME}}
         </div>
-      </pre>
-      <pre id='pre4'>Related Links{{vm.links | json}}</pre>
-      <pre id='pre5'>Development Information{{vm.dev | json}}</pre>
-      <pre id='pre6'>Version History{{vm.version | json}}</pre>
-      <pre id='pre7'>IO Information{{vm.io | json}}</pre>
-      <pre id='pre8'>License Information{{vm.license | json}}</pre>
-      <pre id='pre9'>Funding Information{{vm.funding | json}}</pre>
+
+        </pre>
+      <pre id='pre6'>VERSIONS<br>Latest Version: {{vm.version.latest_version}}<br>Date: {{vm.version.latest_version_date | date:'mediumDate'}}<br>Description: {{vm.version.latest_version_desc}}
+       <!-- Do this for the rest of the dates -->
+      <div ng-repeat="prev_versions in vm.version.prev_versions track by $index">
+      Previous version {{$index+1}}: {{vm.version.prev_versions[$index].version_number}}
+      Date: {{vm.version.prev_versions[$index].version_date | date:'mediumDate'}}
+      Description:{{vm.version.prev_versions[$index].version_description}}
+      </div>
+    </pre>
+<!--       <pre id='pre7'>IO {{vm.io}}  
+       <div id="wrapper">
+        Dependencies:
+        <div ng-repeat ="dependencies in vm.io.dependencies track by $index" style="display:inline;">
+          {{vm.io.dependencies[$index].text}}
+        </div>
+        </div>
+
+      </pre> -->
+      <pre id='pre8'>LICENSES<div ng-repeat = "licenses in vm.license.licenses track by $index"> License {{$index+1}}: {{vm.license.licenses[$index].license}} </div>
+        </pre>
+      <pre id='pre9'>FUNDING <div ng-repeat="funding in vm.funding.funding track by $index"> Agency: {{(vm.funding.funding[$index].missing == false || vm.funding.funding[$index].missing == undefined)  ? vm.funding.funding[$index].funding_agency : vm.funding.funding[$index].new_agency}} <br> Grant: {{vm.funding.funding[$index].funding_grant}}
+        </div><div ng-repeat="bd2k in vm.funding.bd2k track by $index"> BD2K Center {{$index+1}}: {{vm.funding.bd2k[$index].center}}</div>
+</pre>
     </div>
 
  </div>
