@@ -10,6 +10,17 @@
   <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <link href="/stylesheets/index.css" rel="stylesheet">
   <script src="/javascripts/modal.js"></script>
+  <script>
+    $(document).ready(function() {
+      $.ajax({
+        url: '/api/tool/<%=azid%>',
+        type: 'GET',
+      }).done(function(data) {
+        console.log(data);
+        $('#tool-display').text(JSON.stringify(data, null, 4));
+      });
+    });
+  </script>
 </head>
 
 <body>
@@ -18,9 +29,11 @@
       <%- include ./partials/header.ejs %>
     </div>
 
-    <% var tool = data.toJSON(); %>
-    <center><h1>Tool <%=tool.AZID%>: <%=tool.NAME%></h1></center>
-    <%=JSON.stringify(tool)%>
+
+    <center>
+      <h1>Tool : </h1>
+    </center>
+    <pre id='tool-display'></pre>
     <br>
 
 

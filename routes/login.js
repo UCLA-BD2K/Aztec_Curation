@@ -174,22 +174,8 @@ module.exports = {
       loginName = req.user.attributes.FIRST_NAME;
 
     logger.info('Find tool #%s', req.params.id);
-    Tool.forge()
-      .query({where: {AZID: req.params.id}})
-      .fetch({withRelated: ['authors', 'links', 'domains', 'agency', 'funding', 'license', 'platform', 'version', 'tags', 'users', 'resource_types', 'languages']})
-      .then(function(tool){
-        if(tool==null){
-          return res.render('tool.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: 'not found'});
-        }
-        else{
-          return res.render('tool.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: tool});
-        }
-      })
-      .catch(function(err){
-        logger.info('query tool error');
-        logger.debug(err);
-        return res.render('tool.ejs', {name: loginName, loggedIn : req.isAuthenticated(), data: 'error'});
-      })
+
+    return res.render('tool.ejs', {name: loginName, loggedIn : req.isAuthenticated(), azid: req.params.id});
   },
   getToolByAZID: function(req, res, next) {
     var azid = req.params.azid;

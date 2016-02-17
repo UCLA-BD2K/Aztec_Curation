@@ -155,17 +155,7 @@
          });
 
   });
-  
-     // $('.link-link').hover(function(e) {
-     //    if ($(this).text().match(/^http/) || $(this).text().match(/^https/)) {
-     //        $.noop()
-     //    }
-     //    else {
-     //        // get value from field
-     //        var cur_val = $(this).text(); 
-     //        // do with cur_val
-     //        $(this).text('http://' + cur_val);
-     //    } });
+
 
   </script>
   <style>
@@ -242,7 +232,7 @@
           </div>
         </div>
         <div id='part5' style='display:none'>
-          <h1>Documentation</h1>
+          <h1>Development</h1>
           <formly-form model="vm.dev" fields="vm.devFields" form="vm.devForm">
           </formly-form>
           <div class="row text-center">
@@ -315,19 +305,19 @@
       </div>
 
     <div class="tab-pane fade active in" id="summary">
-      <pre id='pre1'><h2 class="sum_">DESCRIPTION</h2>Name: {{vm.basic.res_name}}</pre>
-      <pre id='pre2'><h2 class="sum_">AUTHORS</h2><div ng-repeat = "authors in vm.authors.authors track by $index" id = "author-repeater">Author {{$index+1}}: {{vm.authors.authors[$index].first_name}}, {{vm.authors.authors[$index].last_name}}</div>
+      <pre id='pre1'><h2 class="sum_">DESCRIPTION</h2>Name: {{vm.basic.res_name}} <br>Tags: <span ng-repeat="tag in vm.basic.tags track by $index">{{($index!=0) ? ", ":""}}{{vm.basic.tags[$index].text}}</span></pre>
+      <pre id='pre2'><h2 class="sum_">AUTHORS</h2><div ng-repeat = "authors in vm.authors.authors track by $index" id = "author-repeater">Author {{$index+1}}: {{vm.authors.authors[$index].last_name}}, {{vm.authors.authors[$index].first_name}} <{{vm.authors.authors[$index].author_email}}> </div>
       </pre>
-      <pre id='pre3'><h2 class="sum_">PUBLICATIONS</h2>Resource DOI: {{vm.publication.pub_tool_doi}}<br>Publication DOI:{{vm.publication.pub_primary_doi}} <div ng-repeat = "pub_dois in vm.publication.pub_dois track by $index" id = "pub-sec">Publication DOI: {{vm.publication.pub_dois[$index].pub_doi}}</div> 
+      <pre id='pre3'><h2 class="sum_">PUBLICATIONS</h2>Resource DOI: {{vm.publication.pub_tool_doi}}<br>Main Pub. DOI:{{vm.publication.pub_primary_doi}} <br> Publication DOIs: <span ng-repeat = "pub_dois in vm.publication.pub_dois track by $index" id = "pub-sec">{{($index!=0) ? ", ":""}}{{vm.publication.pub_dois[$index].pub_doi}}</span>
       </pre>
       <pre id='pre4'><h2 class="sum_">LINKS</h2><div ng-repeat = "links in vm.links.links track by $index">Name: {{vm.links.links[$index].link_name}} <br>URL: <a href="{{vm.checkLink(vm.links.links[$index].link_url)}}" class="link-link">{{vm.links.links[$index].link_url}}</a></div>
         </pre>
-      <pre id='pre5'><h2 class="sum_">DEVELOPMENT</h2>Source: {{vm.dev.res_code_url}}<br>Languages: <div ng-repeat="dev_lang in vm.dev.dev_lang track by $index">{{vm.dev.dev_lang[$index].PRIMARY_NAME}},</div><br>Platforms: <div ng-repeat="dev_platform in vm.dev.dev_platform track by $index">{{vm.dev.dev_platform[$index].platform_name}},</div>
+      <pre id='pre5'><h2 class="sum_">DEVELOPMENT</h2>Source: {{vm.dev.res_code_url}}<br>Languages: <span ng-repeat="dev_lang in vm.dev.dev_lang track by $index">{{($index!=0) ? ", ":""}}{{vm.dev.dev_lang[$index].PRIMARY_NAME}}</span><br>Platforms: <span ng-repeat="dev_platform in vm.dev.dev_platform track by $index">{{($index!=0) ? ", ":""}}{{vm.dev.dev_platform[$index].platform_name}}</span>
 
       </pre>
       <pre id='pre6'><h2 class="sum_">VERSIONS</h2>Latest Version: {{vm.version.latest_version}}<br>Date: {{vm.version.latest_version_date | date:'mediumDate'}}<br>Description: {{vm.version.latest_version_desc}}<div ng-repeat="prev_versions in vm.version.prev_versions track by $index">Previous version {{$index+1}}: {{vm.version.prev_versions[$index].version_number}}<br>Date: {{vm.version.prev_versions[$index].version_date | date:'mediumDate'}}<br>Description:{{vm.version.prev_versions[$index].version_description}}</div>
     </pre>
-<!--       <pre id='pre7'>IO {{vm.io}}  
+<!--       <pre id='pre7'>IO {{vm.io}}
        <div id="wrapper">
         Dependencies:
         <div ng-repeat ="dependencies in vm.io.dependencies track by $index" style="display:inline;">
@@ -339,7 +329,7 @@
       <pre id='pre8'><h2 class="sum_">LICENSES</h2><div ng-repeat = "licenses in vm.license.licenses track by $index">License {{$index+1}}: {{vm.license.licenses[$index].license}} </div>
         </pre>
       <pre id='pre9'><h2 class="sum_">FUNDING</h2><div ng-repeat="funding in vm.funding.funding track by $index"> Agency: {{(vm.funding.funding[$index].missing == false || vm.funding.funding[$index].missing == undefined)  ? vm.funding.funding[$index].funding_agency : vm.funding.funding[$index].new_agency}} <br> Grant: {{vm.funding.funding[$index].funding_grant}}
-        </div><div ng-repeat="bd2k in vm.funding.bd2k track by $index"> BD2K Center {{$index+1}}: {{vm.funding.bd2k[$index].center}}</div>
+      </div>BD2K Center(s): <span ng-repeat="bd2k in vm.funding.bd2k track by $index">{{($index!=0) ? ", ":""}}{{vm.funding.bd2k[$index].center}}</span>
 </pre>
     </div>
 
