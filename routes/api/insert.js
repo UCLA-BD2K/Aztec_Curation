@@ -182,7 +182,22 @@ module.exports = {
     json.forEach(function(obj){
       var name = obj['name'];
       var country = obj['country'];
-      var agency = {NAME: name, COUNTRY: country};
+      var type = null;
+      if(obj['type']!=undefined){
+        if(obj['type']=='pri'){
+          type = 'private';
+        }
+        else if(obj['type']=='gov'){
+          type = 'government';
+        }else{
+          type = obj['type'];
+        }
+      }
+      var subtype = null;
+      if(obj['subtype']!=undefined){
+        subtype = obj['subtype'];
+      }
+      var agency = {NAME: name, COUNTRY: country, TYPE: type, SUBTYPE: subtype};
       async.waterfall([
         function(cb){
           Agency.forge()
