@@ -9,6 +9,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <link href="/stylesheets/index.css" rel="stylesheet">
+  <link href="/stylesheets/tools.css" rel="stylesheet">
   <script src="/javascripts/modal.js"></script>
   <script>
     $(document).ready(function() {
@@ -17,27 +18,38 @@
         type: 'GET',
       }).done(function(data) {
         console.log(data);
+        console.log(data.basic.res_name);
+        console.log(data.authors.authors[0].first_name);
         $('#tool-display').text(JSON.stringify(data, null, 4));
+        $('#toolh1').append(data.basic.res_name);
+        for (var i = (data.authors.authors.length) - 1; i >= 0; i--) {
+          $('#authorname').append(data.authors.authors[i].first_name);
+          $('#authorname').append(' ');
+          $('#authorname').append(data.authors.authors[i].last_name);
+          console.log(data.authors.authors[i].first_name);
+        };
       });
     });
   </script>
 </head>
 
 <body>
-  <div class='container'>
     <div id="header" style="position:relative">
       <%- include ./partials/header.ejs %>
     </div>
+    <div class="breadcrumbs">
+      <h2> <a href="/home"> HOME </a> > <a href="/reg"> TOOLS </a>  </h2>
+    </div>
+   <div class="container">
+    <div class="tooltitle">
+      <h1 id="toolh1"></h1>
+      <h2 id="authorname"></h2>
+    </div>
+   </div>
 
 
-    <center>
-      <h1>Tool : </h1>
-    </center>
-    <pre id='tool-display'></pre>
-    <br>
-
-
-  </div>
+   <!--  <pre id='tool-display'></pre>
+    <br> -->
 </body>
 
 </html>
