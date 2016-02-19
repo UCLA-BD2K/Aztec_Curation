@@ -1,0 +1,43 @@
+.breadcrumbs{
+    padding-left: 5vw;
+    padding-bottom: 0.7%;
+    padding-top: 0.2vh;
+    background-image: linear-gradient(#99C0CC 0px, #BBD2DB 100%);
+
+}
+
+.breadcrumbs a{
+    color: white;
+}
+
+h1 {
+    font-weight: 100;
+    font-size: 31px;
+    /* align-content: center; */
+    text-transform: uppercase;
+
+}
+h2{
+    font-size: 1em;
+    color: white;
+    font-weight: 100;
+}
+body{
+	    font-family: 'Open Sans', sans-serif;
+        background-color: white; /*rgba(238,238,238,32);*/
+        background-image: none;
+        padding-top: 0px;
+       overflow-x: hidden;
+
+}
+.navbar-fixed-top{
+    position: relative;
+    margin-bottom: auto;
+}
+.tooltitle h2{
+	color: black;
+}
+.container{
+    padding-left: 5%;
+    padding-right: 5%;
+}
