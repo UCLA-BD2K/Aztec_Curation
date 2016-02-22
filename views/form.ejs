@@ -12,6 +12,9 @@
 
   <script>
     var current_sec = '#part1';
+    $(window).load(function() {
+	$(".page-loader").fadeOut("slow");
+})
     $(document).ready(function() {
 
       $('#b1next').on('click', function() {
@@ -171,7 +174,9 @@
 
 <body ng-app="Aztec" ng-controller="MainController as vm" <%= init %> >
   <%- include ./partials/header.ejs %>
+
   <div class='fstrow'>
+      <div class="page-loader"></div>
     <div class="breadcrumbs">
       <h2> <a href="/home"> HOME </a> > <a href="/reg"> REGISTER NEW RESOURCE </a> >  </h2>
     </div>
