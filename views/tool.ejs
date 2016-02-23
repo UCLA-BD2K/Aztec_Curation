@@ -19,15 +19,23 @@
       }).done(function(data) {
         console.log(data);
         console.log(data.basic.res_name);
-        console.log(data.authors.authors[0].first_name);
+        console.log(data.authors.authors.length);
         $('#tool-display').text(JSON.stringify(data, null, 4));
         $('#toolh1').append(data.basic.res_name);
+        if (data.authors.authors.length > 0){
         for (var i = (data.authors.authors.length) - 1; i >= 0; i--) {
           $('#authorname').append(data.authors.authors[i].first_name);
           $('#authorname').append(' ');
           $('#authorname').append(data.authors.authors[i].last_name);
+          $('#authorname').append("&nbsp;&nbsp;");
+
           console.log(data.authors.authors[i].first_name);
-        };
+        }
+      }
+
+        $('#tool-desc').append(data.basic.res_desc);
+        console.log(data.basic.res_desc);
+
       });
     });
   </script>
@@ -40,10 +48,45 @@
     <div class="breadcrumbs">
       <h2> <a href="/home"> HOME </a> > <a href="/reg"> TOOLS </a>  </h2>
     </div>
-   <div class="container">
+   <div class="container-fluid">
+    <div class="container">
     <div class="tooltitle">
       <h1 id="toolh1"></h1>
       <h2 id="authorname"></h2>
+    </div>
+    </div>
+    <div class="res_description">
+      <div class="container">
+        <p id="tool-desc"></p>
+      </div>
+    </div>
+    <div class="container-fluid" id="detail">
+      <div class="container">
+      <div class="rect1">
+      </div>
+      <div class="deet-heading">
+        <h1> DETAILS </h1>
+      </div>
+      <div class="rect1">
+      </div>
+
+      <div class="container-fluid" id="deets-body">
+        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
+        s
+        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
+        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
+        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
+        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
+        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
+        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
+        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
+        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
+        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
+        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
+      </div>
+
+      </div>
+
     </div>
    </div>
 

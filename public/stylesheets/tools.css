@@ -37,7 +37,46 @@ body{
 .tooltitle h2{
 	color: black;
 }
+.container-fluid{
+    padding-right: 0px;
+    padding-left: 0px;
+}
 .container{
     padding-left: 5%;
     padding-right: 5%;
+    padding-top: 0.3%;
+
+}
+.res_description p{
+        font-family: 'Open Sans', sans-serif;
+        font-size: 1.2em;
+        color: #000000;
+        font-weight: 100;
+}
+.res_description{
+      background: #F5F5F5;
+  }
+
+#detail{
+    /* Rectangle 2: */
+background: rgba(238,238,238,0.32);
+}
+/*.deets{
+    display: inline-block;
+}*/
+.deet-heading{
+    display: inline-block;
+        padding-left: 12%;
+    padding-right: 12%;
+}
+.rect1{
+     width: 31%;
+    height: 0.7%;
+    background: #979797;
+    border: 1px solid #979797;
+    margin-top: 2%;
+    display: inline-block;
+}
+#deets-body{
+    background: white;
 }
