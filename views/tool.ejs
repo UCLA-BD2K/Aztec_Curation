@@ -34,7 +34,15 @@
       }
 
         $('#tool-desc').append(data.basic.res_desc);
-        console.log(data.basic.res_desc);
+        if(data.basic.res_types.length > 0){
+          $('#toolhead').append('Software Type: ');
+          for (var i = data.basic.res_types.length - 1; i >= 0; i--) {
+            $('#tooldeet').append('<li>'+ data.basic.res_types[i].res_type + '</li>');
+          };
+        } else{
+          $('.tooltype').hide();
+        }
+        console.log(data.basic.res_types[0].res_type);
 
       });
     });
@@ -58,10 +66,13 @@
     <div class="res_description">
       <div class="container">
         <p id="tool-desc"></p>
+        <div class="taggytags">
+        <div class="tagholder"> Tagggytag</div>
+        </div>
       </div>
     </div>
     <div class="container-fluid" id="detail">
-      <div class="container">
+      <div class="container"> 
       <div class="rect1">
       </div>
       <div class="deet-heading">
@@ -71,18 +82,21 @@
       </div>
 
       <div class="container-fluid" id="deets-body">
-        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
-        s
-        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
-        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
-        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
-        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
-        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
-        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
-        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
-        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
-        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
-        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
+       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="detail-content" id="tooltype">
+          <h3 id="toolhead"></h3>
+           <ul id="tooldeet">
+           </ul>
+        </div>
+
+        <div class="detail-content" id="jj">
+          <h3 id="jj"> Whats</h3>
+           <ul id="kk">
+            <li> yop</li>
+           </ul>
+        </div>
+
+       </div>
       </div>
 
       </div>
