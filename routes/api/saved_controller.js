@@ -1,5 +1,4 @@
 var Bookshelf = require('../../config/bookshelf.js');
-var convert = require('../utilities/convert.js');
 var SavedTool = require('../../models/mongo/savedTool.js');
 
 var LIMIT_DEFAULT = 10;

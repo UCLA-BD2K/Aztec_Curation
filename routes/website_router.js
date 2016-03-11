@@ -1,44 +1,40 @@
 var express = require('express');
 var router = express.Router();
-var register = require('./register.js');
-var login = require('./login.js');
-var edit = require('./edit.js');
 var util = require('./utilities/util.js');
+var ToolController = require('../controllers/tool-controller');
+var HomeController = require('../controllers/home-controller');
+var UserController = require('../controllers/user-controller');
+
 
 
 /* GET home page. */
-router.get('/', login.getHome);
-
+router.get('/', HomeController.home);
 
 
 // website
-router.get('/home', isLoggedIn, login.getPortal);
+router.get('/home', isLoggedIn, UserController.home);
 
-router.get('/all', isLoggedIn, login.getAllTools);
+router.get('/all', HomeController.allTools);
 
-router.get('/tool/:id', isLoggedIn, login.getTool);
+router.get('/tool/:id', ToolController.show);
 
-router.get('/id/:azid', login.getToolByAZID);
+router.get('/reg', isLoggedIn, UserController.register);
 
-router.get('/create', isLoggedIn, login.getOldReg);
+router.post('/reg', ToolController.create);
 
-router.get('/reg', isLoggedIn, login.getReg);
+router.get('/saved/:id', UserController.getSaved);
 
-router.post('/reg', register.saveTool);
+router.post('/save', ToolController.save);
 
-router.get('/saved/:id', login.getSaved);
+router.get('/edit/:id', UserController.edit);
 
-router.post('/save', login.postSave);
+router.put('/edit/:id', verifyRecaptcha, ToolController.update);
 
-router.get('/edit/:id', login.getEdit);
+router.post('/login', HomeController.login );
 
-router.put('/edit/:id', verifyRecaptcha, edit.putEdit);
+router.get('/logout', isLoggedIn, HomeController.logout);
 
-router.post('/login', login.postLogin );
-
-router.get('/logout', isLoggedIn, login.getLogout);
-
-router.post('/signup', login.postSignup);
+router.post('/signup', HomeController.signup);
 
 
 // route middleware to ensure user is logged in

@@ -8,9 +8,8 @@ var passport = require('passport');
 var bcrypt = require('bcrypt-nodejs');
 var session = require('express-session');
 var LocalStrategy = require('passport-local').Strategy;
-var mongoose = require('mongoose');
 
-var bookshelf = require('./config/bookshelf.js');
+var mongoose = require('mongoose');
 var configMongo = require('./config/mongo.js');
 mongoose.connect(configMongo.url); // connect to our database
 
@@ -27,12 +26,15 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // Authentication module.
+var Util = require('./utility/generalUtil');
+var config = require('./config/app.json');
 var auth = require('http-auth');
 var basic = auth.basic({
 	realm: "Dev Site",
   skipUser: true,
-  msg401: '401 Error: Authentication Failure.',
-	file: __dirname + "/config/dev.htpasswd"
+  msg401: '401 Error: Authentication Failure.'
+}, function(username, password, callback){
+	callback(username==Util.decrypt('user', config.authUser) && password==Util.decrypt('password',config.authPassword));
 });
 app.use(auth.connect(basic));
 

@@ -1,0 +1,17 @@
+{
+  "serverPort":"3000",
+  "sslPort":"3443",
+  "mysqlHost":"192.168.99.100",
+  "mysqlUser":"42cd90893007e9529ab3c112934c1d92",
+  "mysqlPassword":"3c257ac3e4c0056b9209bcc1161b68dd",
+  "mysqlPort":"3306",
+  "mysqlDB":"AZ_Curation",
+  "connectionPool": "",
+  "mongoHost":"192.168.99.100",
+  "mongoUser":"42cd90893007e9529ab3c112934c1d92",
+  "mongoPassword":"d27c598290522fbb33969316b5465692",
+  "mongoPort":"27017",
+  "mongoDB":"Tool",
+  "authUser":"1e9bb2af178cca5b33b7a70613576f84",
+  "authPassword":"8dce0a6c9a9dd65b9da02c9a6a060878"
+}
