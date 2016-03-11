@@ -34,7 +34,108 @@
       }
 
         $('#tool-desc').append(data.basic.res_desc);
-        console.log(data.basic.res_desc);
+        if(data.basic.res_types.length > 0){
+          $('#toolhead').append('Software Type: ');
+          for (var i = data.basic.res_types.length - 1; i >= 0; i--) {
+            $('#tooldeet').append('<li>'+ data.basic.res_types[i].res_type + '</li>');
+          };
+        } else{
+          $('.tooltype').hide();
+        }
+        console.log(data.basic.res_types[0].res_type);
+        if(data.dev.dev_platform.length > 0){
+          $('#plathead').append('Supported Platforms: ');
+          for (var i = data.dev.dev_platform.length - 1; i >= 0; i--) {
+            $('#platdeet').append('<li>'+ data.dev.dev_platform[i].platform_name + '</li>');
+          };
+        } else{
+          $('.platforms').hide();
+        }
+
+
+         if(data.dev.res_code_url){
+          $('#sourcehead').append('Source Code: ');
+          $('#sourcedeet').append('<a href=\"'+data.dev.res_code_url + '\">' + data.dev.res_code_url + '</a>');
+        } else{
+          $('.source_code').hide();
+        }
+
+         if(data.links.links.length > 0){
+          $('#hphead').append('Home Page URL: ');
+          for (var i = data.links.links.length - 1; i >= 0; i--) {
+            $('#hpdeet').append('<li>'+'<a href=\"'+data.links.links[i].link_url + '\">' + data.links.links[i].link_url + '</a>'+ '</li>');
+          };
+        } else{
+          $('.homepage').hide();
+        }
+
+        if(data.dev.dev_lang.length > 0){
+          $('#langhead').append('Tool Languages: ');
+          for (var i = data.dev.dev_lang.length - 1; i >= 0; i--) {
+            $('#langdeet').append('<li>'+ data.dev.dev_lang[i].PRIMARY_NAME + '</li>');
+          };
+        } else{
+          $('.lang').hide();
+        }
+
+      // when to hide the credits div
+
+      if((data.funding.funding.length == 0) && (data.authors.maintainers.length == 0) && (data.funding.bd2k.length == 0)){
+        $('#credit').remove();
+      }
+
+        if(data.authors.institution.length > 0){
+          $('#insthead').append('Institution: ');
+          for (var i = data.authors.institution.length - 1; i >= 0; i--) {
+            if (data.authors.institution[i].new_institution != undefined){
+            $('#instdeet').append('<li>'+ data.authors.institution[i].new_institution + '</li>');}
+
+            if (data.authors.institution[i].inst_name != undefined){
+            $('#instdeet').append('<li>'+ data.authors.institution[i].inst_name + '</li>');}            
+
+          };
+        } else{
+          $('.funder').hide();
+        }
+
+        if(data.authors.maintainers.length > 0){
+          $('#mainthead').append('Maintainers: ');
+          for (var i = data.authors.maintainers.length - 1; i >= 0; i--) {
+            $('#maintdeet').append('<li>'+ data.authors.maintainers[i].first_name + ' ' + data.authors.maintainers[i].last_name +    
+            '&nbsp'+ '&lt;'+ data.authors.maintainers[i].maintainer_email + '&gt;' +'</li>');
+          };
+        } else{
+          $('.maintain').hide();
+        }
+
+        if(data.funding.funding.length > 0){
+          $('#funhead').append('Funding: ');
+          for (var i = data.funding.funding.length - 1; i >= 0; i--) {
+            if(data.funding.funding[i].funding_agency != undefined){
+            $('#fundeet').append('<li>'+ data.funding.funding[i].funding_agency +'</li>');}
+
+            if(data.funding.funding[i].new_agency != undefined){
+            $('#fundeet').append('<li>'+ data.funding.funding[i].new_agency +'</li>');}            
+
+          };
+        } else{
+          $('#funhead').append('Funding: ');
+          $('#fundeet').append('<li>'+ 'Not Available' +'</li>');
+
+                  }
+        
+        if(data.funding.bd2k.length > 0){
+          $('#bd2khead').append('BD2K: ');
+          for (var i = data.funding.bd2k.length - 1; i >= 0; i--) {
+            $('#bd2kdeet').append('<li>'+ data.funding.bd2k[i].center +'</li>');
+          };
+        } else{
+          $('.bd2k').hide();
+        }
+        
+
+
+
 
       });
     });
@@ -48,7 +149,7 @@
     <div class="breadcrumbs">
       <h2> <a href="/home"> HOME </a> > <a href="/reg"> TOOLS </a>  </h2>
     </div>
-   <div class="container-fluid">
+   <div class="container-fluid" id="main-container">
     <div class="container">
     <div class="tooltitle">
       <h1 id="toolh1"></h1>
@@ -58,10 +159,16 @@
     <div class="res_description">
       <div class="container">
         <p id="tool-desc"></p>
+        <div class="taggytags">
+        <div class="tagholder"> Tagggytag</div>
+        </div>
       </div>
     </div>
+
+
+
     <div class="container-fluid" id="detail">
-      <div class="container">
+      <div class="container"> 
       <div class="rect1">
       </div>
       <div class="deet-heading">
@@ -71,23 +178,108 @@
       </div>
 
       <div class="container-fluid" id="deets-body">
-        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
-        s
-        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
-        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
-        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
-        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
-        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
-        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
-        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
-        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
-        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
-        lskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjldlskdjalksjflksfjglkjflkgjdlfkgjldkfjgldkjflgkdjflkgjdlfkgjld
+       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="detail-content" id="tooltype">
+          <h3 id="toolhead"></h3>
+           <ul id="tooldeet">
+           </ul>
+        </div>
+
+        <div class="detail-content" id="platforms">
+          <h3 id="plathead"></h3>
+           <ul id="platdeet">
+           </ul>
+        </div>
+
+        <div class="detail-content" id="lang">
+          <h3 id="langhead"></h3>
+           <ul id="langdeet">
+           </ul>
+        </div>
+
+
+       </div>
+
+       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="detail-content" id="source_code">
+          <h3 id="sourcehead"></h3>
+           <ul id="sourcedeet">
+           </ul>
+        </div>
+
+        <div class="detail-content" id="homepage">
+          <h3 id="hphead"></h3>
+           <ul id="hpdeet">
+           </ul>
+        </div>
+
+        <div class="detail-content" id="institute">
+          <h3 id="insthead"></h3>
+           <ul id="instdeet">
+           </ul>
+        </div>
+
+       </div>
+
       </div>
 
       </div>
 
     </div>
+
+
+
+    <div class="container-fluid" id="credit">
+      <div class="container"> 
+      <div class="rect1">
+      </div>
+      <div class="deet-heading">
+        <h1> CREDITS </h1>
+      </div>
+      <div class="rect1">
+      </div>
+
+      <div class="container-fluid" id="creds-body">
+       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        
+        <div class="detail-content" id="funder">
+          <h3 id="funhead"></h3>
+           <ul id="fundeet">
+           </ul>
+        </div>      
+
+       </div>
+
+       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="detail-content" id="source_code">
+
+        <div class="detail-content" id="maintain">
+          <h3 id="mainthead"></h3>
+           <ul id="maintdeet">
+           </ul>
+        </div>
+
+        <div class="detail-content" id="bd2k">
+          <h3 id="bd2khead"></h3>
+           <ul id="bd2kdeet">
+           </ul>
+        </div>
+
+
+
+       </div>
+
+
+      </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+
    </div>
 
 

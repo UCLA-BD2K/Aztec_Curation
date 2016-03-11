@@ -312,7 +312,7 @@
       <pre id='pre1'><h2 class="sum_">BASIC</h2>Name: {{vm.basic.res_name}} <br>Tags: <span ng-repeat="tag in vm.basic.tags track by $index">{{($index!=0) ? ", ":""}}{{vm.basic.tags[$index].text}}</span></pre>
       <pre id='pre2'><h2 class="sum_">AUTHORS</h2><div ng-repeat = "authors in vm.authors.authors track by $index" id = "author-repeater">Author {{$index+1}}: {{vm.authors.authors[$index].last_name}}, {{vm.authors.authors[$index].first_name}} <{{vm.authors.authors[$index].author_email}}> </div>
       </pre>
-      <pre id='pre3'><h2 class="sum_">PUBLICATIONS</h2>Resource DOI: {{vm.publication.pub_tool_doi}}<br>Main Pub. DOI:{{vm.publication.pub_primary_doi}} <br> Publication DOIs: <span ng-repeat = "pub_dois in vm.publication.pub_dois track by $index" id = "pub-sec">{{($index!=0) ? ", ":""}}{{vm.publication.pub_dois[$index].pub_doi}}</span>
+      <pre id='pre3'><h2 class="sum_">PUBLICATIONS</h2>Resource DOI: {{vm.publication.pub_tool_doi}}<br>Main Pub. DOI:{{vm.publication.pub_primary_doi}} <br>Publication DOIs: <span ng-repeat = "pub_dois in vm.publication.pub_dois track by $index" id = "pub-sec">{{($index!=0) ? ", ":""}}{{vm.publication.pub_dois[$index].pub_doi}}</span>
       </pre>
       <pre id='pre4'><h2 class="sum_">LINKS</h2><div ng-repeat = "links in vm.links.links track by $index">Name: {{vm.links.links[$index].link_name}} <br>URL: <a href="{{vm.checkLink(vm.links.links[$index].link_url)}}" class="link-link">{{vm.links.links[$index].link_url}}</a></div>
         </pre>
