@@ -1,6 +1,6 @@
 var passport = require('passport');
 var logger = require("../config/logger");
-var util = require('../routes/utilities/util.js');
+var util = require('../utility/generalUtil.js');
 var User  = require('../models/mysql/user.js');
 var Tool  = require('../models/mysql/tool.js');
 var SavedTool  = require('../models/mongo/savedTool.js');
@@ -13,6 +13,8 @@ function UserController(){
   this.register = function(req, res){ self._register(self, req, res); };
   this.edit = function(req, res){self._edit(self, req, res); };
   this.getSaved = function(req, res){self._getSaved(self, req, res); };
+  this.getSavedAPI = function(req, res){self._getSavedAPI(self, req, res); };
+  this.getAllSaved = function(req, res){self._getAllSaved(self, req, res); };
 
 }
 
@@ -136,7 +138,72 @@ UserController.prototype._getSaved = function(self, req, res){
   }
 };
 
+UserController.prototype._getSavedAPI = function(self, req, res){
+  if(!req.isAuthenticated()){
+    var response = {
+      status  : 'error',
+      error   : 'Not logged in'
+    };
+    return res.send(response);
+  }
+  else if(req.params['id']!=undefined && req.params['id'].length==24){
+    var ObjectId = (require('mongoose').Types.ObjectId);
+    var id = new ObjectId(req.params['id']);
+    var user = req.user.attributes.EMAIL;
+    SavedTool.findOne({user: user, '_id' : id}, function(err, tool){
+      if (err || tool == null){
+        var response = {
+          status  : 'error',
+          error   : 'Tool not found'
+        };
+        return res.send(response);
+      }else{
+        var sendTool = tool.toJSON();
+        sendTool['tool']['savedID'] = id;
+        return res.send(sendTool['tool']);
+      }
+    });
+  }
+  else{
+    var response = {
+      status  : 'error',
+      error   : 'Invalid input'
+    };
+    return res.send(response);
+  }
+}
 
+UserController.prototype._getAllSaved = function(self, req, res){
+  if(!req.isAuthenticated()){
+    var response = {
+      status  : 'error',
+      error   : 'Not logged in'
+    };
+    return res.send(response);
+  }
+  else{
+    var user = req.user.attributes.EMAIL;
+    SavedTool.find({user : user}, function(err, tools){
+      if (err || tools == null){
+        var response = {
+          status  : 'error',
+          error   : 'Tools not found'
+        };
+        return res.send(response);
+      }
+      else{
+        var sendTools = [];
+        tools.forEach(function(tool){
+          var toolJson = tool.toJSON();
+          toolJson['tool']['basic']['id'] = toolJson['_id'];
+          toolJson['tool']['basic']['date'] = toolJson['date'];
+          sendTools.push(toolJson['tool']['basic']);
+        });
+        return res.send(sendTools);
+      }
+    });
+  }
+}
 
 
 module.exports = new UserController();

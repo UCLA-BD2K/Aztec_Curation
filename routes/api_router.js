@@ -1,28 +1,25 @@
 var express = require('express');
 var router = express.Router();
-var insert = require('./api/insert.js');
-var APIcontroller = require('./api/api_controller.js');
 
 var Institution = require('../models/mysql/institution.js');
 var InstAlias = require('../models/mysql/inst_alias.js');
-var InstController = require('./api/query_controller.js')(Institution, InstAlias);
+var InstController = new (require('../controllers/query-controller.js'))(Institution, InstAlias);
 
 var Language = require('../models/mysql/language.js');
 var LangAlias = require('../models/mysql/lang_alias.js');
-var LangController = require('./api/query_controller.js')(Language, LangAlias);
+var LangController = new (require('../controllers/query-controller.js'))(Language, LangAlias);
 
 var Agency = require('../models/mysql/agency.js');
 var AgencyAlias = require('../models/mysql/agency_alias.js');
-var AgencyController = require('./api/query_controller.js')(Agency, AgencyAlias);
+var AgencyController = new (require('../controllers/query-controller.js'))(Agency, AgencyAlias);
 
 var Tag = require('../models/mysql/tag.js');
-var TagController = require('./api/query_controller.js')(Tag);
+var TagController = new (require('../controllers/query-controller.js'))(Tag);
 
-var ToolController = require('./api/tool_controller.js');
-var SavedController = require('./api/saved_controller.js');
+var ToolController = require('../controllers/tool-controller');
+var UserController = require('../controllers/user-controller.js');
+var InsertController = require('../controllers/insert-controller');
 
-
-router.get('/', APIcontroller.getHome);
 
 router.get('/institution', InstController.search);
 
@@ -32,20 +29,19 @@ router.get('/agency', AgencyController.search);
 
 router.get('/tag', TagController.search);
 
-router.get('/institution/insert', insert.insertInst);
+router.get('/institution/insert', InsertController.institution);
 
-router.get('/language/insert', insert.insertLang);
+router.get('/language/insert', InsertController.language);
 
-router.get('/agency/insert', insert.insertAgency);
+router.get('/agency/insert', InsertController.agency);
 
+router.get('/tool/:id', ToolController.api);
 
-router.get('/tool/:id', ToolController.searchByID);
+router.get('/tool', ToolController.showAll);
 
-router.get('/tool', ToolController.search);
+router.get('/saved/:id', UserController.getSavedAPI);
 
-router.get('/saved/:id', SavedController.searchByID);
-
-router.get('/saved', SavedController.getAllTools);
+router.get('/saved', UserController.getAllSaved);
 
 
 

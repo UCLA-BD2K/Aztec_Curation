@@ -25,23 +25,31 @@ var SavedTool = require('./mongo/savedTool.js');
 function Tool() {
   var self = this;
 
-  this.add = function(user, body, res) {
-    return self._add(self, user, body, res);
+  this.add = function(user, body, cb) {
+    return self._add(self, user, body, cb);
   };
 
-  this.update = function(id, body, res) {
-    return self._update(self, id, body, res);
+  this.update = function(id, body, cb) {
+    return self._update(self, id, body, cb);
   };
 
-  this.save = function(user, body, res) {
-    return self._save(self, user, body, res);
+  this.save = function(user, body, cb) {
+    return self._save(self, user, body, cb);
+  }
+
+  this.show = function(id, cb){
+    return self._show(self, id, cb);
+  }
+
+  this.showAll = function(cb){
+    return self._showAll(self, cb);
   }
 
 
 }
 
 
-Tool.prototype._add = function(self, user, body, res) {
+Tool.prototype._add = function(self, user, body, cb) {
   var obj = ToolUtils.unflatten(body);
   var json = ToolUtils.rest2mysql(obj);
   var toolInfo = json['toolInfo'];
@@ -66,7 +74,7 @@ Tool.prototype._add = function(self, user, body, res) {
   if (toolInfo.NAME == undefined || toolInfo.DESCRIPTION == undefined || (toolInfo.SOURCE_LINK == undefined && m_tool.links.length == 0)) {
     response.status = 'error';
     response.message = "Must enter the minimum fields: Resource Name, Description, and Source Code URL or at least 1 link."
-    return res.send(response);
+    return cb(response);
   }
 
   var type = 'insert'; //'insert' or 'update'
@@ -398,7 +406,7 @@ Tool.prototype._add = function(self, user, body, res) {
           logger.info('Finished rollback');
           response.status = 'error';
           response.message = "Error inserting metadata into database";
-          return res.send(response);
+          return cb(response);
         } else {
           resID = parseInt(toolData.toolInfo.attributes.AZID);
           logger.info("Committing Tool " + toolData.toolInfo.attributes.NAME + "!");
@@ -472,14 +480,14 @@ Tool.prototype._add = function(self, user, body, res) {
     response.status = 'success';
     response.message = "Successfully inserted " + toolInfo.NAME;
     response.id = resID;
-    return res.send(response);
+    return cb(response);
   }).catch(function(err) {
     console.log('error');
     logger.debug(err);
   });
 };
 
-Tool.prototype._update = function(self, id, body, res){
+Tool.prototype._update = function(self, id, body, cb){
 
   var obj = ToolUtils.unflatten(body);
   var json = ToolUtils.rest2mysql(obj['new']);
@@ -907,7 +915,7 @@ Tool.prototype._update = function(self, id, body, res){
         if(error!=null){
           logger.info('Error updating: %s', error);
           transaction.rollback();
-          res.send({
+          cb({
             status  : 'error',
             message : id+' not updated'
           });
@@ -925,7 +933,7 @@ Tool.prototype._update = function(self, id, body, res){
     var response = {};
     M_tool.findOne({azid: id}, function(err, misc){
       if (err){
-        res.send({
+        cb({
           status  : 'error',
           message   : id+' not found in mongo'
         });
@@ -985,7 +993,7 @@ Tool.prototype._update = function(self, id, body, res){
 
       misc.save(function (err) {
         if (err){
-          return res.send({
+          return cb({
             status   : 'error',
             message   : id+' not saved in mongo'
           });
@@ -995,7 +1003,7 @@ Tool.prototype._update = function(self, id, body, res){
         response.status = 'success';
         response.message = "Successfully updated resource "+json['toolInfo']['AZID'];
         response.id = json['toolInfo']['AZID'];
-        return res.send(response);
+        return cb(response);
       });
     });
   }).catch(function(err){
@@ -1004,7 +1012,7 @@ Tool.prototype._update = function(self, id, body, res){
 
 };
 
-Tool.prototype._save = function(self, user, json, res){
+Tool.prototype._save = function(self, user, json, cb){
   var tool = json;
   logger.debug(tool);
   if(tool['savedID']!=""){
@@ -1012,12 +1020,12 @@ Tool.prototype._save = function(self, user, json, res){
       if(err){
         logger.info('save error');
         logger.debug(err);
-        res.send({
+        cb({
           status: 'error',
           message: 'Did not save'
         });
       }else{
-        res.send({
+        cb({
           status: 'success',
           message: 'Saved tool'
         });
@@ -1031,13 +1039,13 @@ Tool.prototype._save = function(self, user, json, res){
       if(err){
         logger.info('mongo error');
         logger.debug(err);
-        res.send({
+        cb({
           status: 'error',
           message: 'Error saving tool'
         });
       }else{
         logger.debug('mongo success');
-        res.send({
+        cb({
           status: 'success',
           message: 'Saved tool',
           id: t['_id']
@@ -1045,5 +1053,71 @@ Tool.prototype._save = function(self, user, json, res){
       }
     });
   }
-}
+};
+
+Tool.prototype._show = function(self, id, cb){
+  ToolInfo.forge()
+    .where({AZID: id})
+    .fetchAll({withRelated: ['domains', 'license', 'platform', 'tags', 'resource_types', 'languages', 'institutions', 'centers']})
+    .then(function(thisTool){
+      M_tool.findOne({azid: id}, function(err, misc){
+        if (err || thisTool.length==0){
+          var response = {
+            status  : 'error',
+            error   : id+' not found'
+          }
+          return cb(response);
+        }
+
+        var returnTool = thisTool.toJSON()[0];
+
+        //console.log('tool',thisTool.toJSON());
+
+        if(misc!=undefined && misc!=null){
+          //console.log('misc', misc);
+
+          returnTool.authors = misc.authors;
+          returnTool.maintainers = misc.maintainers;
+          returnTool.links = misc.links;
+          returnTool.funding = misc.funding;
+          returnTool.version = misc.versions;
+          returnTool.publications = misc.publications;
+
+          misc.missing_inst.forEach(function(inst){
+            returnTool.institutions.push(inst);
+          });
+        }
+        var result = ToolUtils.mysql2rest(returnTool);
+        return cb(result);
+      });
+    })
+    .catch(function(err){
+      console.log(err);
+      var response = {
+        status  : 'error',
+        error   : JSON.stringify(err)
+      }
+      return cb(response);
+    });
+};
+
+Tool.prototype._showAll = function(self, cb){
+  ToolInfo.forge()
+    .query(function (qb) {
+      qb.orderBy('AZID');
+    })
+    .fetchAll({withRelated: [ 'domains', 'license', 'platform', 'tags', 'resource_types', 'languages', 'institutions', 'centers']})
+    .then(function(i){
+      return cb(i);
+    })
+    .catch(function(err){
+      console.log(err);
+      var response = {
+        status  : 'error',
+        error   : JSON.stringify(err)
+      }
+      return cb(response);
+    });
+};
+
 module.exports = Tool;

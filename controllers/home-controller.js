@@ -1,6 +1,5 @@
 var passport = require('passport');
 var logger = require("../config/logger");
-var util = require('../routes/utilities/util.js');
 var User  = require('../models/mysql/user.js');
 var Tool  = require('../models/mysql/tool.js');
 

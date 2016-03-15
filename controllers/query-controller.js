@@ -1,12 +1,20 @@
-var Bookshelf = require('../../config/bookshelf.js');
+var Bookshelf = require('../config/bookshelf.js');
 var async = require('async');
 var Set = require('collections/set');
 
 var LIMIT_DEFAULT = 10;
 var OFFSET_DEFAULT = 0;
-module.exports = function(Model, Alias){
-  var module = {};
-  module.search = function(req, res, next) {
+
+function QueryController(model, alias) {
+  var self = this;
+  this.m_model = model;
+  this.m_alias = alias;
+  this.search = function(req, res) {
+    self._search(self, req, res);
+  };
+}
+
+QueryController.prototype._search = function(self, req, res) {
     var params = req.query;
     var limit = LIMIT_DEFAULT;
     var offset = OFFSET_DEFAULT;
@@ -23,19 +31,19 @@ module.exports = function(Model, Alias){
     }
 
     if(params['q']==undefined){
-      return getAll(res, limit, offset, limExist, offExist);
+      return self._getAll(self, res, limit, offset, limExist, offExist);
     }else{
       var term = params['q'];
-      if(Alias!=undefined || Alias!=null)
-        return queryAlias(res, term, limit, offset, limExist, offExist);
+      if(self.m_alias!=undefined || self.m_alias!=null)
+        return self._queryAlias(self, res, term, limit, offset, limExist, offExist);
       else {
-        return queryDB(res, term, limit, offset, limExist, offExist);
+        return self._queryDB(self, res, term, limit, offset, limExist, offExist);
       }
     }
   };
 
-  function getAll(res, lim, off, limExist, offExist){
-    Model.forge()
+  QueryController.prototype._getAll = function(self, res, lim, off, limExist, offExist){
+    self.m_model.forge()
       .query(function (qb) {
         if(offExist){
           qb.offset(off);
@@ -46,8 +54,8 @@ module.exports = function(Model, Alias){
         qb.orderBy('NAME');
       })
       .fetchAll()
-      .then(function(i){
-        return res.send(i);
+      .then(function(result){
+        return res.send(result);
       })
       .catch(function(err){
         var response = {
@@ -58,8 +66,8 @@ module.exports = function(Model, Alias){
       });
   };
 
-  function queryAlias(res, term, lim, off, limExist, offExist){
-    Alias.forge()
+QueryController.prototype._queryAlias = function(self, res, term, lim, off, limExist, offExist){
+    self.m_alias.forge()
       .query(function (qb) {
         if(limExist){
           qb.limit(lim);
@@ -73,8 +81,8 @@ module.exports = function(Model, Alias){
       })
       .where('ALIAS', 'LIKE', term+'%')
       .fetchAll()
-      .then(function(a){
-        return res.send(a);
+      .then(function(result){
+        return res.send(result);
       })
       .catch(function(err){
         var response = {
@@ -85,8 +93,8 @@ module.exports = function(Model, Alias){
       });
   };
 
-  function queryDB(res, term, lim, off, limExist, offExist){
-    Model.forge()
+QueryController.prototype._queryDB = function(self, res, term, lim, off, limExist, offExist){
+    self.m_model.forge()
       .query(function (qb) {
         if(limExist){
           qb.limit(lim);
@@ -99,8 +107,8 @@ module.exports = function(Model, Alias){
       })
       .where('NAME', 'LIKE', term+'%')
       .fetchAll()
-      .then(function(tag){
-        return res.send(tag);
+      .then(function(result){
+        return res.send(result);
       })
       .catch(function(err){
         var response = {
@@ -111,5 +119,4 @@ module.exports = function(Model, Alias){
       });
   };
 
-  return module;
-};
+module.exports = QueryController;

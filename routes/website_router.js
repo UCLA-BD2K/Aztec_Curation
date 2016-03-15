@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var util = require('./utilities/util.js');
+var util = require('../utility/generalUtil.js');
 var ToolController = require('../controllers/tool-controller');
 var HomeController = require('../controllers/home-controller');
 var UserController = require('../controllers/user-controller');
