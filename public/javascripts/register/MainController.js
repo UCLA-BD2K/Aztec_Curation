@@ -590,7 +590,7 @@
             valueProp: 'PRIMARY_NAME',
             labelProp: 'ALIAS',
             otherProp: 'PRIMARY_NAME',
-            placeholder: 'Enter the name of the language',
+            placeholder: 'Enter the language and select a value',
             endpoint: '/api/language',
             options: [],
             refresh: refreshInst,

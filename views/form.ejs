@@ -156,6 +156,11 @@
       $("#registerHeading").css("margin-right", winm);
 
          });
+      <% if(title  !='Register') { %>
+        // $('#save').css("color", "transparent");
+        // $('#save').css("background-color", "transparen/t");
+        $('#save').css("visibility", "hidden");
+      <% } %>
 
   });
 
@@ -183,9 +188,8 @@
     <div class= "titlestuff">
       <h1 class="reg-h1" id="registerHeading"><%=heading%></h1>
 
-      <% if(title=='Register') { %>
         <button id='save' class="btn btn-primary" ng-click="vm.beforeSaveCheck()" data-toggle="modal" data-target="#saveModal">Save</button>
-      <% } %>
+
         <button id='submit' class="btn btn-primary" ng-click="vm.checkForm()" data-toggle="modal" data-target="#submitModal">  <a href="javascript:grecaptcha.reset();">Submit</a></button>
 
      </div>
@@ -386,11 +390,11 @@
         <div id='modal-submit' class='modal-footer' style="display: none;">
           <div id='submit-recaptcha' class="g-recaptcha" data-sitekey="6Lc4DxYTAAAAAHqTlTb1np-XR8JKh6RYvgYvf4NQ"></div>
           <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-          <button type='button' class='btn btn-primary' ng-click='vm.<%=submitFunc%>'>Submit resource</button>
+          <button type='button' class='btn btn-default' ng-click='vm.<%=submitFunc%>'>Submit resource</button>
         </div>
         <div id='modal-warn' class='modal-footer' style="display: none;">
           <button type='button' class='btn btn-default' data-dismiss='modal'>Okay</button>
-          <button type='button' class='btn btn-primary' ng-click='vm.passWarning()'>Continue</button>
+          <button type='button' class='btn btn-default' ng-click='vm.passWarning()'>Continue</button>
         </div>
       </div>
     </div>
@@ -499,8 +503,13 @@
 <script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
 <script src="https://rawgit.com/angular/bower-angular-messages/v1.4.4/angular-messages.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-sanitize.js"></script>
-<script src="https://rawgit.com/angular-ui/ui-select/master/dist/select.js"></script>
-  <link rel="stylesheet" href="https://rawgit.com/angular-ui/ui-select/master/dist/select.css">
+
+
+<script src="/javascripts/select.js"></script>
+<link rel="stylesheet" href="/stylesheets/select.css">
+
+
+
 <script src="<%=editURL%>/javascripts/register/typeahead.js"></script>
 <script src="https://www.google.com/recaptcha/api.js"></script>
 

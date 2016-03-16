@@ -150,6 +150,7 @@ pre{
     border-radius: 0px;
     font-family: "Open Sans", sans-serif;
     font-size: 12px;
+    white-space: inherit;
 }
 .breadcrumbs{
     padding-left: 5vw;
