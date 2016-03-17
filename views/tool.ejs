@@ -92,7 +92,6 @@
 
             if (data.authors.institution[i].inst_name != undefined){
             $('#instdeet').append('<li>'+ data.authors.institution[i].inst_name + '</li>');}            
-
           };
         } else{
           $('.funder').hide();
@@ -133,6 +132,16 @@
           $('.bd2k').hide();
         }
         
+        //
+        if(data.basic.tags.length > 0){
+          //$('.tagholder').append('');
+          for (var i = data.basic.tags.length - 1; i >= 0; i--) {
+            $('.taggytags').append('<div class="tagholder">'+ data.basic.tags[i].text +'</div>');
+          };
+        } else{
+          $('.taggytags').hide();
+        }
+        
 
 
 
@@ -153,14 +162,18 @@
     <div class="container">
     <div class="tooltitle">
       <h1 id="toolh1"></h1>
+      <div class="cost-stuff">Cite</div>
       <h2 id="authorname"></h2>
+       <div class="cost-stuff"></div>
+       <div class="cost-stuff"></div>
+       
     </div>
     </div>
     <div class="res_description">
       <div class="container">
         <p id="tool-desc"></p>
         <div class="taggytags">
-        <div class="tagholder"> Tagggytag</div>
+       <!--  <div class="tagholder"></div> -->
         </div>
       </div>
     </div>

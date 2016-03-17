@@ -123,6 +123,9 @@ padding-bottom: 2px;
 padding-right: 15px;
 padding-left: 15px;
 /*width: 115%;*/
+    display: inline-block;
+    margin-right: 6px;
+
 }
 
 #creds-body{
@@ -134,7 +137,21 @@ background: rgba(238,238,238,0.32);
 padding-bottom: 6%;
 }
 
-
+.cost-stuff{
+    /* Rectangle 3: */
+background: #5A7B85;
+    /*border-radius: 10px;*/
+    color: white;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-right: 20px;
+    padding-left: 20px;
+    /* width: 115%; */
+    display: block;
+    float: right;
+    margin-right: 6px;
+    font-weight: 100;
+}
 
 
 /*
