@@ -196,6 +196,10 @@ background: #5A7B85;
     word-break: break-word;
     word-wrap: break-word;
 }
+#license{
+    background: #FFE2C6;
+    color: black;
+}
 /*
 font-family: OpenSans;
 font-size: 14px;

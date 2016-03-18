@@ -136,14 +136,32 @@
         if(data.basic.tags.length > 0){
           //$('.tagholder').append('');
           for (var i = data.basic.tags.length - 1; i >= 0; i--) {
-            $('.taggytags').append('<div class="tagholder">'+ data.basic.tags[i].text +'</div>');
-          };
+            $('.taggytags').append('<div class="tagholder">'+ data.basic.tags[i].text +'</div>' + ' ');
+          }
         } else{
           $('.taggytags').hide();
         }
-        
+       var a = true;
+        if(data.license.licenses != 0)
+        {
+          for (var i = data.license.licenses.length - 1; i >= 0; i--) {
+            if (data.license.licenses[i].license == "Proprietary"){
+              a = false;
+              break; 
+            }
 
-
+          };
+          $('#license').append(data.license.licenses[0].license);
+        }
+        else{
+          $('#license').append("No License");
+        }
+        if(a){
+          $("#cost").append("Free");
+        }
+        else{
+           $("#cost").append("Proprietary");
+        }
 
 
       });
@@ -161,12 +179,11 @@
    <div class="container-fluid" id="main-container">
     <div class="container">
     <div class="tooltitle">
+      <div class="cost-stuff" id="cost"></div>
       <h1 id="toolh1"></h1>
-      <div class="cost-stuff">Cite</div>
+      <div class="cost-stuff" id="license"></div>
       <h2 id="authorname"></h2>
-       <div class="cost-stuff"></div>
-       <div class="cost-stuff"></div>
-       
+       <div class="cost-stuff">Cite</div>
     </div>
     </div>
     <div class="res_description">
