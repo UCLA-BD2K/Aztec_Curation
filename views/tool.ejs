@@ -31,6 +31,8 @@
 
           console.log(data.authors.authors[i].first_name);
         }
+      } else{
+        $('#authorname').append("Author Unavailable");
       }
 
         $('#tool-desc').append(data.basic.res_desc);
@@ -125,6 +127,7 @@
         
         if(data.funding.bd2k.length > 0){
           $('#bd2khead').append('BD2K: ');
+          $('#toolh1').append(' <sup>BD2K</sup>');
           for (var i = data.funding.bd2k.length - 1; i >= 0; i--) {
             $('#bd2kdeet').append('<li>'+ data.funding.bd2k[i].center +'</li>');
           };
@@ -183,7 +186,7 @@
       <h1 id="toolh1"></h1>
       <div class="cost-stuff" id="license"></div>
       <h2 id="authorname"></h2>
-       <div class="cost-stuff">Cite</div>
+       <div class="cost-stuff" id="cite">Cite</div>
     </div>
     </div>
     <div class="res_description">

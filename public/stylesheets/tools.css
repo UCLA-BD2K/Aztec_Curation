@@ -181,8 +181,8 @@ background: #5A7B85;
     color: white;
     padding-top: 2px;
     padding-bottom: 2px;
-    padding-right: 20px;
-    padding-left: 20px;
+    padding-right: 26px;
+    padding-left: 26px;
     /* width: 115%; */
     display: block;
     float: right;
@@ -199,6 +199,12 @@ background: #5A7B85;
 #license{
     background: #FFE2C6;
     color: black;
+     margin-top: -1%;
+}
+
+#cite{
+    margin-top: -1%;
+    margin-bottom: 1%;
 }
 /*
 font-family: OpenSans;
