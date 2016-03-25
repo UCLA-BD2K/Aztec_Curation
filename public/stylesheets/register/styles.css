@@ -292,4 +292,57 @@ tags-input .tags:active, tags-input .tags.focused{
     margin-top: 0px;
     margin-bottom: 3px;
 }
+
+
+#uploadBtn{
+    width: 100%;
+     color: #fff;
+    background-color: #5A7B85;
+     border-color: transparent;
+    border-radius: 0px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 100;
+    /*width: 200px;*/
+    outline: none;
+    margin-left: 1%;
+    height: 44px;
+    margin-top: 5%
+}
+#uploaderSlct{
+    font-weight: 100;
+}
+
+#suggestBtn{
+    width: 100%;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+  width: 100%
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  background: red;
+  cursor: inherit;
+  display: block;
+
+}
+input[readonly] {
+  background-color: white !important;
+  cursor: text !important;
+  height: 44px;
+  margin-top: 0.4%;
+}
+
+.nav-tabs{
+    font-size: 1vw;
 }

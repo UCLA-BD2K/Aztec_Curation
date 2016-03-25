@@ -11,6 +11,18 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/register/styles.css">
 
   <script>
+  // This is for file upload 
+   $(document).on('change', '.btn-file :file', function() {
+    console.log("Document on function triggered");
+  var input = $(this),
+      numFiles = input.get(0).files ? input.get(0).files.length : 1,
+      label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+  input.trigger('fileselect', [numFiles, label]);
+  console.log("file uploaded");
+  console.log(numFiles);
+  console.log(label);
+});
+
     var current_sec = '#part1';
     $(window).load(function() {
 	$(".page-loader").fadeOut("slow");
@@ -162,9 +174,24 @@
         $('#save').css("visibility", "hidden");
       <% } %>
 
+      $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+        
+        var input = $(this).parents('.input-group').find(':text'),
+            log = numFiles > 1 ? numFiles + ' files selected' : label;
+        
+        if( input.length ) {
+            input.val(log);
+        } else {
+            if( log ) alert(log);
+        }
+        
+     });    
+
+
+
  });
 
-    // End of Jquery 
+    // End of Jquery - copy to clipboard attempt
   document.getElementById("copyButton").addEventListener("click", function() {
     copyToClipboard(document.getElementById("copyTarget"));
 });
@@ -218,6 +245,7 @@ function copyToClipboard(elem) {
     }
     return succeed;
 }
+
 
   </script>
   <style>
@@ -353,12 +381,18 @@ function copyToClipboard(elem) {
             Suggest
            </a>
         </li>
+
+        <li>
+           <a href="#upload" role="tab" data-toggle="tab">
+            Upload
+           </a>
+        </li>
       </ul>
            <!---Tabbed stuff-->
   <div class= "tab-content">
 
       <div class="tab-pane fade" id="suggestor">
-         <center><button class="btn btn-default" ng-click="vm.suggest()">Suggest</button></center>
+         <center><button class="btn btn-primary" ng-click="vm.suggest()" id="suggestBtn">Suggest</button></center>
          <div id='loading' style='display:none'>
           <center><img src='/images/magnify.gif'/></center>
          </div>
@@ -394,6 +428,22 @@ function copyToClipboard(elem) {
       </div>BD2K Center(s): <span ng-repeat="bd2k in vm.funding.bd2k track by $index">{{($index!=0) ? ", ":""}}{{vm.funding.bd2k[$index].center}}</span>
 </pre>
     </div>
+
+
+      <div class="tab-pane fade" id="upload">
+      <center>
+        <p id="uploaderSlct">Select a file to upload</p>
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <span class="btn btn-primary btn-file">
+                        Choose File&hellip; <input type="file" multiple>
+                    </span>
+                </span>
+                <input type="text" class="form-control" readonly>
+            </div>        
+        <input type="submit" value="Upload" name="submit" id="uploadBtn">
+      </center>
+      </div>  
 
  </div>
 
