@@ -187,8 +187,36 @@
             if( log ) alert(log);
         }
         
-     });    
+     });   
 
+$("#pdf-form").submit(function(e)
+{
+ 
+    var formObj = $(this);
+    var formURL = formObj.attr("action");
+    var formData = new FormData(this);
+    $.ajax({
+      url: formURL,
+      type: 'POST',
+      data:  formData,
+      mimeType:"multipart/form-data",
+      contentType: false,
+      cache: false,
+      processData:false,
+    success: function(data, textStatus, jqXHR)
+    {
+      console.log(data);
+      var obj = $.parseJSON(data);
+      console.log(obj);
+      $("#pdf-data").append("Name: " + obj.name);
+    },
+     error: function(jqXHR, textStatus, errorThrown) 
+     {
+     }          
+    });
+    e.preventDefault(); //Prevent Default action. 
+    e.unbind();
+}); 
 
 
  });
@@ -433,8 +461,9 @@ function copyToClipboard(elem) {
 
 
       <div class="tab-pane fade" id="upload">
-      <center>
-        <form role ="form" action="/pdf-upload" method="post" enctype="multipart/form-data">
+      <center>    
+        <!-- enctype="multipart/form-data" -->
+        <form name ="pdf-form" id ="pdf-form" action="/pdf-upload" method="post">
 
         <p id="uploaderSlct">Select a file to upload</p>
             <div class="input-group">
@@ -447,7 +476,8 @@ function copyToClipboard(elem) {
             </div>        
         <input type="submit" value="Upload" name="submit" id="uploadBtn">
       </form>
-
+      <div id="pdf-data">
+      </div>
 
       </center>
       </div>  

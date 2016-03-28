@@ -4,8 +4,9 @@ var util = require('../utility/generalUtil.js');
 var ToolController = require('../controllers/tool-controller');
 var HomeController = require('../controllers/home-controller');
 var UserController = require('../controllers/user-controller');
-
-
+var multer  = require('multer');
+var upload = multer({dest: 'uploads/'});
+var PdfController = require('../controllers/pdf-controller.js');
 
 /* GET home page. */
 router.get('/', HomeController.home);
@@ -36,7 +37,7 @@ router.get('/logout', isLoggedIn, HomeController.logout);
 
 router.post('/signup', HomeController.signup);
 
-
+router.post('/pdf-upload', upload.single('pdf'), PdfController.upload);
 // route middleware to ensure user is logged in
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
