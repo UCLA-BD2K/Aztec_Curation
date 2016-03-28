@@ -8,6 +8,8 @@
   <link href="/stylesheets/index.css" rel="stylesheet">
   <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="/javascripts/register/validator.js"></script>
+ <script src="/javascripts/register/validator.js"></script>
+
     <link rel="stylesheet" type="text/css" href="/stylesheets/register/styles.css">
 
   <script>
@@ -432,16 +434,21 @@ function copyToClipboard(elem) {
 
       <div class="tab-pane fade" id="upload">
       <center>
+        <form role ="form" action="/pdf-upload" method="post" enctype="multipart/form-data">
+
         <p id="uploaderSlct">Select a file to upload</p>
             <div class="input-group">
                 <span class="input-group-btn">
                     <span class="btn btn-primary btn-file">
-                        Choose File&hellip; <input type="file" multiple>
+                        Choose File&hellip; <input type="file" name="pdf" accept="application/pdf">
                     </span>
                 </span>
                 <input type="text" class="form-control" readonly>
             </div>        
         <input type="submit" value="Upload" name="submit" id="uploadBtn">
+      </form>
+
+
       </center>
       </div>  
 
