@@ -18,63 +18,61 @@
         type: 'GET',
       }).done(function(data) {
         console.log(data);
-        console.log(data.basic.res_name);
-        console.log(data.authors.authors.length);
+        console.log(data.basic_section.name);
+        console.log(data.author_section.authors.length);
         $('#tool-display').text(JSON.stringify(data, null, 4));
-        $('#toolh1').append(data.basic.res_name);
-        if (data.authors.authors.length > 0){
-        for (var i = (data.authors.authors.length) - 1; i >= 0; i--) {
-          $('#authorname').append(data.authors.authors[i].first_name);
+        $('#toolh1').append(data.basic_section.name);
+        if (data.author_section.authors.length > 0){
+        for (var i = (data.author_section.authors.length) - 1; i >= 0; i--) {
+          $('#authorname').append(data.author_section.authors[i].first_name);
           $('#authorname').append(' ');
-          $('#authorname').append(data.authors.authors[i].last_name);
+          $('#authorname').append(data.author_section.authors[i].last_name);
           $('#authorname').append("&nbsp;&nbsp;");
 
-          console.log(data.authors.authors[i].first_name);
         }
       } else{
         $('#authorname').append("Author Unavailable");
       }
 
-        $('#tool-desc').append(data.basic.res_desc);
-        if(data.basic.res_types.length > 0){
+        $('#tool-desc').append(data.basic_section.description);
+        if(data.basic_section.resource_types.length > 0){
           $('#toolhead').append('Software Type: ');
-          for (var i = data.basic.res_types.length - 1; i >= 0; i--) {
-            $('#tooldeet').append('<li>'+ data.basic.res_types[i].res_type + '</li>');
+          for (var i = data.basic_section.resource_types.length - 1; i >= 0; i--) {
+            $('#tooldeet').append('<li>'+ data.basic_section.resource_types[i].type + '</li>');
           };
         } else{
           $('.tooltype').hide();
         }
-        console.log(data.basic.res_types[0].res_type);
-        if(data.dev.dev_platform.length > 0){
+        if(data.dev_section.platform.length > 0){
           $('#plathead').append('Supported Platforms: ');
-          for (var i = data.dev.dev_platform.length - 1; i >= 0; i--) {
-            $('#platdeet').append('<li>'+ data.dev.dev_platform[i].platform_name + '</li>');
+          for (var i = data.dev_section.platform.length - 1; i >= 0; i--) {
+            $('#platdeet').append('<li>'+ data.dev_section.platform[i].name + '</li>');
           };
         } else{
           $('.platforms').hide();
         }
 
 
-         if(data.dev.res_code_url){
+         if(data.dev_section.code_url){
           $('#sourcehead').append('Source Code: ');
-          $('#sourcedeet').append('<a href=\"'+data.dev.res_code_url + '\">' + data.dev.res_code_url + '</a>');
+          $('#sourcedeet').append('<a href=\"'+data.dev_section.code_url + '\">' + data.dev_section.code_url + '</a>');
         } else{
           $('.source_code').hide();
         }
 
-         if(data.links.links.length > 0){
+         if(data.link_section.links.length > 0){
           $('#hphead').append('Home Page URL: ');
-          for (var i = data.links.links.length - 1; i >= 0; i--) {
-            $('#hpdeet').append('<li>'+'<a href=\"'+data.links.links[i].link_url + '\">' + data.links.links[i].link_url + '</a>'+ '</li>');
+          for (var i = data.link_section.links.length - 1; i >= 0; i--) {
+            $('#hpdeet').append('<li>'+'<a href=\"'+data.link_section.links[i].url + '\">' + data.link_section.links[i].url + '</a>'+ '</li>');
           };
         } else{
           $('.homepage').hide();
         }
 
-        if(data.dev.dev_lang.length > 0){
+        if(data.dev_section.language.length > 0){
           $('#langhead').append('Tool Languages: ');
-          for (var i = data.dev.dev_lang.length - 1; i >= 0; i--) {
-            $('#langdeet').append('<li>'+ data.dev.dev_lang[i].PRIMARY_NAME + '</li>');
+          for (var i = data.dev_section.language.length - 1; i >= 0; i--) {
+            $('#langdeet').append('<li>'+ data.dev_section.language[i].PRIMARY_NAME + '</li>');
           };
         } else{
           $('.lang').hide();
@@ -82,41 +80,41 @@
 
       // when to hide the credits div
 
-      if((data.funding.funding.length == 0) && (data.authors.maintainers.length == 0) && (data.funding.bd2k.length == 0)){
+      if((data.funding_section.funding.length == 0) && (data.author_section.maintainers.length == 0) && (data.funding_section.bd2k.length == 0)){
         $('#credit').remove();
       }
 
-        if(data.authors.institution.length > 0){
+        if(data.author_section.affiliation.length > 0){
           $('#insthead').append('Institution: ');
-          for (var i = data.authors.institution.length - 1; i >= 0; i--) {
-            if (data.authors.institution[i].new_institution != undefined){
-            $('#instdeet').append('<li>'+ data.authors.institution[i].new_institution + '</li>');}
+          for (var i = data.author_section.affiliation.length - 1; i >= 0; i--) {
+            if (data.author_section.affiliation[i].new_institution != undefined){
+            $('#instdeet').append('<li>'+ data.author_section.affiliation[i].new_institution + '</li>');}
 
-            if (data.authors.institution[i].inst_name != undefined){
-            $('#instdeet').append('<li>'+ data.authors.institution[i].inst_name + '</li>');}            
+            if (data.author_section.affiliation[i].inst_name != undefined){
+            $('#instdeet').append('<li>'+ data.author_section.affiliation[i].inst_name + '</li>');}
           };
         } else{
           $('.funder').hide();
         }
 
-        if(data.authors.maintainers.length > 0){
+        if(data.author_section.maintainers.length > 0){
           $('#mainthead').append('Maintainers: ');
-          for (var i = data.authors.maintainers.length - 1; i >= 0; i--) {
-            $('#maintdeet').append('<li>'+ data.authors.maintainers[i].first_name + ' ' + data.authors.maintainers[i].last_name +    
-            '&nbsp'+ '&lt;'+ data.authors.maintainers[i].maintainer_email + '&gt;' +'</li>');
+          for (var i = data.author_section.maintainers.length - 1; i >= 0; i--) {
+            $('#maintdeet').append('<li>'+ data.author_section.maintainers[i].first_name + ' ' + data.author_section.maintainers[i].last_name +
+            '&nbsp'+ '&lt;'+ data.author_section.maintainers[i].email + '&gt;' +'</li>');
           };
         } else{
           $('.maintain').hide();
         }
 
-        if(data.funding.funding.length > 0){
+        if(data.funding_section.funding.length > 0){
           $('#funhead').append('Funding: ');
-          for (var i = data.funding.funding.length - 1; i >= 0; i--) {
-            if(data.funding.funding[i].funding_agency != undefined){
-            $('#fundeet').append('<li>'+ data.funding.funding[i].funding_agency +'</li>');}
+          for (var i = data.funding_section.funding.length - 1; i >= 0; i--) {
+            if(data.funding_section.funding[i].agency != undefined){
+            $('#fundeet').append('<li>'+ data.funding_section.funding[i].agency +': '+data.funding_section.funding[i].grant+'</li>');}
 
-            if(data.funding.funding[i].new_agency != undefined){
-            $('#fundeet').append('<li>'+ data.funding.funding[i].new_agency +'</li>');}            
+            if(data.funding_section.funding[i].new_agency != undefined){
+            $('#fundeet').append('<li>'+ data.funding_section.funding[i].new_agency +': '+data.funding_section.funding[i].grant+ '</li>');}
 
           };
         } else{
@@ -124,37 +122,33 @@
           $('#fundeet').append('<li>'+ 'Not Available' +'</li>');
 
                   }
-        
-        if(data.funding.bd2k.length > 0){
+
+        if(data.funding_section.bd2k.length > 0){
           $('#bd2khead').append('BD2K: ');
           $('#toolh1').append(' <sup>BD2K</sup>');
-          for (var i = data.funding.bd2k.length - 1; i >= 0; i--) {
-            $('#bd2kdeet').append('<li>'+ data.funding.bd2k[i].center +'</li>');
+          for (var i = data.funding_section.bd2k.length - 1; i >= 0; i--) {
+            $('#bd2kdeet').append('<li>'+ data.funding_section.bd2k[i].center +'</li>');
           };
         } else{
           $('.bd2k').hide();
         }
-        
+
         //
-        if(data.basic.tags.length > 0){
+        if(data.basic_section.tags.length > 0){
           //$('.tagholder').append('');
-          for (var i = data.basic.tags.length - 1; i >= 0; i--) {
-            $('.taggytags').append('<div class="tagholder">'+ data.basic.tags[i].text +'</div>' + ' ');
+          for (var i = data.basic_section.tags.length - 1; i >= 0; i--) {
+            $('.taggytags').append('<div class="tagholder">'+ data.basic_section.tags[i].text +'</div>' + ' ');
           }
         } else{
           $('.taggytags').hide();
         }
        var a = true;
-        if(data.license.licenses != 0)
+        if(data.license_section.licenses != 0)
         {
-          for (var i = data.license.licenses.length - 1; i >= 0; i--) {
-            if (data.license.licenses[i].license == "Proprietary"){
+            if (data.license_section.type == "Proprietary" || data.license_section.type == "Other"){
               a = false;
-              break; 
             }
-
-          };
-          $('#license').append(data.license.licenses[0].license);
+          $('#license').append(data.license_section.type);
         }
         else{
           $('#license').append("No License");
@@ -202,7 +196,7 @@
 
 
     <div class="container-fluid" id="detail">
-      <div class="container"> 
+      <div class="container">
       <div class="rect1">
       </div>
       <div class="deet-heading">
@@ -264,7 +258,7 @@
 
 
     <div class="container-fluid" id="credit">
-      <div class="container"> 
+      <div class="container">
       <div class="rect1">
       </div>
       <div class="deet-heading">
@@ -275,12 +269,12 @@
 
       <div class="container-fluid" id="creds-body">
        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-        
+
         <div class="detail-content" id="funder">
           <h3 id="funhead"></h3>
            <ul id="fundeet">
            </ul>
-        </div>      
+        </div>
 
        </div>
 
