@@ -23,6 +23,7 @@
     "knex": "0.8.6",
     "mongoose": "~3.8.1",
     "morgan": "~1.6.1",
+    "multer": "^1.1.0",
     "mysql": "2.9.0",
     "passport": "0.3.2",
     "passport-local": "*",

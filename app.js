@@ -8,17 +8,23 @@ var passport = require('passport');
 var bcrypt = require('bcrypt-nodejs');
 var session = require('express-session');
 var LocalStrategy = require('passport-local').Strategy;
-
 var mongoose = require('mongoose');
 var configMongo = require('./config/mongo.js');
 mongoose.connect(configMongo.url); // connect to our database
-
 var routes = require('./routes/website_router');
 var api = require('./routes/api_router');
 var suggester = require('./routes/suggest_router');
 var User = require('./models/mysql/user.js');
 
+
 var app = express();
+
+// app.post('/pdf-upload', upload.single('pdf'), function (req, res) {
+//   // req.file is the `pdf` file 
+//   // req.body will hold the text fields, if there were any 
+//   // original header had req,res and next. 
+
+// })
 
 
 // view engine setup
@@ -41,6 +47,7 @@ app.use(auth.connect(basic));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+//multer stuff
 logger.debug("Overriding 'Express' logger");
 app.use(require('morgan')({ "stream": logger.stream }));
 app.use(bodyParser.json());

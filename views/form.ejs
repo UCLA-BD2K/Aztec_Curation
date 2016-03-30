@@ -8,9 +8,23 @@
   <link href="/stylesheets/index.css" rel="stylesheet">
   <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="/javascripts/register/validator.js"></script>
+ <script src="/javascripts/register/validator.js"></script>
+
     <link rel="stylesheet" type="text/css" href="/stylesheets/register/styles.css">
 
   <script>
+  // This is for file upload 
+   $(document).on('change', '.btn-file :file', function() {
+    console.log("Document on function triggered");
+  var input = $(this),
+      numFiles = input.get(0).files ? input.get(0).files.length : 1,
+      label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+  input.trigger('fileselect', [numFiles, label]);
+  console.log("file uploaded");
+  console.log(numFiles);
+  console.log(label);
+});
+
     var current_sec = '#part1';
     $(window).load(function() {
 	$(".page-loader").fadeOut("slow");
@@ -162,7 +176,105 @@
         $('#save').css("visibility", "hidden");
       <% } %>
 
+      $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+        
+        var input = $(this).parents('.input-group').find(':text'),
+            log = numFiles > 1 ? numFiles + ' files selected' : label;
+        
+        if( input.length ) {
+            input.val(log);
+        } else {
+            if( log ) alert(log);
+        }
+        
+     });   
+
+$("#pdf-form").submit(function(e)
+{
+ 
+    var formObj = $(this);
+    var formURL = formObj.attr("action");
+    var formData = new FormData(this);
+    $.ajax({
+      url: formURL,
+      type: 'POST',
+      data:  formData,
+      mimeType:"multipart/form-data",
+      contentType: false,
+      cache: false,
+      processData:false,
+    success: function(data, textStatus, jqXHR)
+    {
+      console.log(data);
+      var obj = $.parseJSON(data);
+      console.log(obj);
+      $("#pdf-data").append("Name: " + obj.name);
+    },
+     error: function(jqXHR, textStatus, errorThrown) 
+     {
+     }          
+    });
+    e.preventDefault(); //Prevent Default action. 
+    e.unbind();
+}); 
+
+
  });
+
+    // End of Jquery - copy to clipboard attempt
+  document.getElementById("copyButton").addEventListener("click", function() {
+    copyToClipboard(document.getElementById("copyTarget"));
+});
+
+function copyToClipboard(elem) {
+    // create hidden text element, if it doesn't already exist
+    var targetId = "_hiddenCopyText_";
+    var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+    var origSelectionStart, origSelectionEnd;
+    if (isInput) {
+        // can just use the original source element for the selection and copy
+        target = elem;
+        origSelectionStart = elem.selectionStart;
+        origSelectionEnd = elem.selectionEnd;
+    } else {
+        // must use a temporary form element for the selection and copy
+        target = document.getElementById(targetId);
+        if (!target) {
+            var target = document.createElement("textarea");
+            target.style.position = "absolute";
+            target.style.left = "-9999px";
+            target.style.top = "0";
+            target.id = targetId;
+            document.body.appendChild(target);
+        }
+        target.textContent = elem.textContent;
+    }
+    // select the content
+    var currentFocus = document.activeElement;
+    target.focus();
+    target.setSelectionRange(0, target.value.length);
+    
+    // copy the selection
+    var succeed;
+    try {
+        succeed = document.execCommand("copy");
+    } catch(e) {
+        succeed = false;
+    }
+    // restore original focus
+    if (currentFocus && typeof currentFocus.focus === "function") {
+        currentFocus.focus();
+    }
+    
+    if (isInput) {
+        // restore prior selection
+        elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+    } else {
+        // clear temporary content
+        target.textContent = "";
+    }
+    return succeed;
+}
 
 
   </script>
@@ -299,12 +411,18 @@
             Suggest
            </a>
         </li>
+
+        <li>
+           <a href="#upload" role="tab" data-toggle="tab">
+            Upload
+           </a>
+        </li>
       </ul>
            <!---Tabbed stuff-->
   <div class= "tab-content">
 
       <div class="tab-pane fade" id="suggestor">
-         <center><button class="btn btn-default" ng-click="vm.suggest()">Suggest</button></center>
+         <center><button class="btn btn-primary" ng-click="vm.suggest()" id="suggestBtn">Suggest</button></center>
          <div id='loading' style='display:none'>
           <center><img src='/images/magnify.gif'/></center>
          </div>
@@ -340,6 +458,29 @@
       </div>BD2K Center(s): <span ng-repeat="bd2k in vm.funding_section.bd2k track by $index">{{($index!=0) ? ", ":""}}{{vm.funding_section.bd2k[$index].center}}</span>
 </pre>
     </div>
+
+
+      <div class="tab-pane fade" id="upload">
+      <center>    
+        <!-- enctype="multipart/form-data" -->
+        <form name ="pdf-form" id ="pdf-form" action="/pdf-upload" method="post">
+
+        <p id="uploaderSlct">Select a file to upload</p>
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <span class="btn btn-primary btn-file">
+                        Choose File&hellip; <input type="file" name="pdf" accept="application/pdf">
+                    </span>
+                </span>
+                <input type="text" class="form-control" readonly>
+            </div>        
+        <input type="submit" value="Upload" name="submit" id="uploadBtn">
+      </form>
+      <div id="pdf-data">
+      </div>
+
+      </center>
+      </div>  
 
  </div>
 
