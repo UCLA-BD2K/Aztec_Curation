@@ -6,7 +6,7 @@ var maintainerSchema = mongoose.Schema({
 
       first_name          : String,
       last_name           : String,
-      maintainer_email    : String
+      email               : String
 
 });
 

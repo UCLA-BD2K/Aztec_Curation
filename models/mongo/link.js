@@ -4,8 +4,8 @@ var mongoose = require('mongoose');
 // define the schema for our link model
 var linkSchema = mongoose.Schema({
 
-      link_name         : String,
-      link_url          : String
+      name         : String,
+      url          : String
 
 });
 

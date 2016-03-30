@@ -38,7 +38,11 @@ function Tool() {
   }
 
   this.show = function(id, cb){
-    return self._show(self, id, cb);
+    return self._show(self, id, ToolUtils.mysql2form, cb);
+  }
+
+  this.json = function(id, cb){
+    return self._show(self, id, ToolUtils.mysql2rest, cb);
   }
 
   this.showAll = function(cb){
@@ -69,7 +73,6 @@ Tool.prototype._add = function(self, user, body, cb) {
   var m_tool = json['m_tool'];
 
   var resID = 0;
-
   var response = {};
   if (toolInfo.NAME == undefined || toolInfo.DESCRIPTION == undefined || (toolInfo.SOURCE_LINK == undefined && m_tool.links.length == 0)) {
     response.status = 'error';
@@ -334,35 +337,24 @@ Tool.prototype._add = function(self, user, body, cb) {
           });
         },
         function(toolData, callbackAsync) { //Save license
-          var promises = [];
-          for (var i = 0; i < license.length; i++) {
-            var newLicense = license[i];
-            newLicense.AZID = toolData.toolInfo.attributes.AZID;
-            promises.push(new Promise(function(resolve, reject) {
-              License.forge()
-                .save(newLicense, {
-                  transacting: transaction,
-                  method: type
-                })
-                .then(function(lic) {
-                  logger.info("ready to commit %s!" + lic.attributes.LICENSE_TYPE);
-                  return resolve(0);
-                })
-                .catch(function(err) {
-                  logger.info("need to rollback license");
-                  logger.debug(err);
-                  return resolve(-1);
-                });
-
-            }));
-          }
-          Promise.all(promises).then(function(values) {
-            if (values.indexOf(-1) > -1)
-              return callbackAsync('Error with license');
-            else {
+            if(license==undefined || license==null || license.LICENSE_TYPE==undefined)
               return callbackAsync(null, toolData);
-            }
-          });
+            license.AZID = toolData.toolInfo.attributes.AZID;
+            License.forge()
+              .save(license, {
+                transacting: transaction,
+                method: type
+              })
+              .then(function(lic) {
+                logger.info("ready to commit %s!" + lic.attributes.LICENSE_TYPE);
+                return callbackAsync(null, toolData);
+              })
+              .catch(function(err) {
+                logger.info("need to rollback license");
+                logger.debug(err);
+                return callbackAsync('Error with license');
+              });
+
         },
         function(toolData, callbackAsync) { //Save bd2k centers
           var promises = [];
@@ -446,19 +438,6 @@ Tool.prototype._add = function(self, user, body, cb) {
           }
 
           m_tool.azid = toolData.toolInfo.attributes.AZID;
-          for (var i = 0; i < funding.length; i++) {
-
-            var m_fund = new M_funding;
-            if (funding[i].funding_agency != undefined)
-              m_fund.funding_agency = funding[i].funding_agency;
-            if (funding[i].funding_grant != undefined)
-              m_fund.funding_grant = funding[i].funding_grant;
-            if (funding[i].missing != undefined)
-              m_fund.missing = funding[i].missing;
-            if (funding[i].new_agency != undefined)
-              m_fund.new_agency = funding[i].new_agency;
-            m_tool.funding.push(m_fund);
-          }
 
           logger.debug('attach institutions');
           toolData.toolInfo.institutions().attach(institutions);
@@ -811,36 +790,23 @@ Tool.prototype._update = function(self, id, body, cb){
 
         },
         function(toolData, callbackAsync) { //Save license
-          var promises = [];
-          if(json['license']==undefined || json['license'].length==0){
+          if(json['license']==undefined || json['license']==null){
             return callbackAsync(null, toolData);
           }
           else{
-            for(var i = 0; i<json['license'].length; i++){
-              json['license'][i].AZID = toolData.toolInfo.attributes.AZID;
-              promises.push(new Promise(function(resolve, reject){
-                License.forge()
-                  .save(json['license'][i], {transacting: transaction, method: 'insert'})
-                  .then(function(lic){
-                    logger.info("ready to commit %s!", lic.attributes.LICENSE_TYPE);
-                    resolve(0);
-                  })
-                  .catch(function(err){
-                    logger.info("need to rollback license");
-                    logger.debug(err);
-                    resolve(-1);
-                  });
-              }));
-            }
-            Promise.all(promises).then(function(values){
-              logger.debug(values);
-              if(values.indexOf(-1)>-1)
-                return callbackAsync('Error with license');
-              else{
+            json['license'].AZID = toolData.toolInfo.attributes.AZID;
+            License.forge()
+              .save(json['license'], {transacting: transaction, method: 'insert'})
+              .then(function(lic){
+                logger.info("ready to commit %s!", lic.attributes.LICENSE_TYPE);
                 return callbackAsync(null, toolData);
-              }
-            });
-          }
+              })
+              .catch(function(err){
+                logger.info("need to rollback license");
+                logger.debug(err);
+                return callbackAsync('Error with license');
+              });
+            }
         },
         function(toolData, callbackAsync) { //delete centers
           Center.forge()
@@ -938,13 +904,14 @@ Tool.prototype._update = function(self, id, body, cb){
           message   : id+' not found in mongo'
         });
       }
+      if(misc==undefined || misc ==null){
+        misc = new M_tool;
+      }
       if(obj['new']['authors']!=undefined){
         misc.authors = obj['new']['authors']['authors'];
         misc.maintainers = obj['new']['authors']['maintainers'];
       }
-      if(misc==undefined || misc ==null){
-        misc = new M_tool;
-      }
+
       misc.publications = [];
       if(obj['new']['publication']!=undefined){
         if(obj['new']['publication']['pub_primary_doi']){
@@ -1055,10 +1022,10 @@ Tool.prototype._save = function(self, user, json, cb){
   }
 };
 
-Tool.prototype._show = function(self, id, cb){
+Tool.prototype._show = function(self, id, format, cb){
   ToolInfo.forge()
     .where({AZID: id})
-    .fetchAll({withRelated: ['domains', 'license', 'platform', 'tags', 'resource_types', 'languages', 'institutions', 'centers']})
+    .fetchAll({withRelated: ['domains', 'license', 'platform', 'tags', 'resource_types', 'languages', 'centers', 'institutions']})
     .then(function(thisTool){
       M_tool.findOne({azid: id}, function(err, misc){
         if (err || thisTool.length==0){
@@ -1074,7 +1041,7 @@ Tool.prototype._show = function(self, id, cb){
         //console.log('tool',thisTool.toJSON());
 
         if(misc!=undefined && misc!=null){
-          //console.log('misc', misc);
+          console.log('misc', misc);
 
           returnTool.authors = misc.authors;
           returnTool.maintainers = misc.maintainers;
@@ -1082,12 +1049,13 @@ Tool.prototype._show = function(self, id, cb){
           returnTool.funding = misc.funding;
           returnTool.version = misc.versions;
           returnTool.publications = misc.publications;
-
+          if(returnTool.institutions==undefined || returnTool.institutions==null)
+            returnTool.institutions = [];
           misc.missing_inst.forEach(function(inst){
             returnTool.institutions.push(inst);
           });
         }
-        var result = ToolUtils.mysql2rest(returnTool);
+        var result = format(returnTool);
         return cb(result);
       });
     })

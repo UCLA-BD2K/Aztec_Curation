@@ -10,7 +10,8 @@ function ToolController(){
   this.update = function(req, res){ self._update(self, req, res); };
   this.edit = function(req, res){ self._edit(self, req, res); };
   this.save = function(req, res){ self._save(self, req, res); };
-  this.api = function(req, res){ self._api(self, req, res); };
+  this.formApi = function(req, res){ self._formApi(self, req, res); };
+  this.restApi = function(req, res){ self._restApi(self, req, res); };
 }
 
 ToolController.prototype._showAll = function(self, req, res){
@@ -55,10 +56,25 @@ ToolController.prototype._save = function(self, req, res){
   });
 };
 
-ToolController.prototype._api = function(self, req, res){
+ToolController.prototype._formApi = function(self, req, res){
   if(req.params['id']!=undefined && !isNaN(req.params['id'])){
     var tool = new ToolModel();
     return tool.show(req.params['id'], function(t){
+      res.send(t);
+    });
+  }else{
+    var response = {
+      status  : 'error',
+      error   : 'Invalid input'
+    };
+    return res.send(response);
+  }
+};
+
+ToolController.prototype._restApi = function(self, req, res){
+  if(req.params['id']!=undefined && !isNaN(req.params['id'])){
+    var tool = new ToolModel();
+    return tool.json(req.params['id'], function(t){
       res.send(t);
     });
   }else{

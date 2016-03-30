@@ -5,10 +5,10 @@ var mongoose = require('mongoose');
 var fundingSchema = mongoose.Schema({
 
       agency_id       : Number,
-      funding_agency  : String,
+      agency          : String,
       new_agency      : String,
       missing         : Boolean,
-      funding_grant   : String,
+      grant           : String,
 
 
 });

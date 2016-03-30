@@ -35,7 +35,9 @@ router.get('/language/insert', InsertController.language);
 
 router.get('/agency/insert', InsertController.agency);
 
-router.get('/tool/:id', ToolController.api);
+router.get('/tool/:id', ToolController.formApi);
+
+router.get('/tool/v1/:id', ToolController.restApi);
 
 router.get('/tool', ToolController.showAll);
 

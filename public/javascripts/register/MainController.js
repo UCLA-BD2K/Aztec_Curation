@@ -219,17 +219,17 @@
     // The model object that we reference
     // on the <formly-form> element in index.html
     vm.savedID = "";
-    vm.basic = {};
-    $scope.basic = vm.basic;
-    vm.authors = {};
-    vm.publication = {};
-    vm.links = {};
-    vm.dev = {};
-    vm.version = {};
+    vm.basic_section = {};
+    $scope.basic = vm.basic_section;
+    vm.author_section = {};
+    vm.pub_section = {};
+    vm.link_section = {};
+    vm.dev_section = {};
+    vm.version_section = {};
     vm.versionOptions = {};
     vm.io = {};
-    vm.license = {};
-    vm.funding = {};
+    vm.license_section = {};
+    vm.funding_section = {};
 
     //validators
 
@@ -247,7 +247,7 @@
     // and options set. We make reference to this in
     // the 'fields' attribute on the <formly-form> element
     vm.basicFields = [{
-        key: 'res_name',
+        key: 'name',
         type: 'input',
         templateOptions: {
           type: 'text',
@@ -256,7 +256,7 @@
           required: true
         }
       }, {
-        key: 'res_logo',
+        key: 'logo_url',
         type: 'input',
         templateOptions: {
           type: 'text',
@@ -265,7 +265,7 @@
           required: false
         }
       }, {
-        key: 'res_desc',
+        key: 'description',
         type: 'textarea',
         templateOptions: {
           label: 'Description',
@@ -274,12 +274,12 @@
           required: true
         }
       }, {
-        key: 'res_types',
+        key: 'resource_types',
         type: 'repeatSection',
         templateOptions: {
           btnText: 'Add Resource Type',
           fields: [{
-            key: 'res_type',
+            key: 'type',
             type: 'select',
             templateOptions: {
               label: 'Resource Type',
@@ -324,23 +324,23 @@
               }]
             }
           }, {
-            key: 'res_type_other',
+            key: 'other',
             type: 'input',
             templateOptions: {
               label: 'Specify Resource Type',
               type: 'text',
               required: true
             },
-            hideExpression: "model.res_type==null || model.res_type!='Other'"
+            hideExpression: "model.type==null || model.type!='Other'"
           }]
         }
       }, {
-        key: 'bio_domains',
+        key: 'domains',
         type: 'repeatSection',
         templateOptions: {
           btnText: 'Add Biological/Clinical Domain',
           fields: [{
-            key: 'bio_domain',
+            key: 'domain',
             type: 'select',
             templateOptions: {
               label: 'Biological/Clinical Domain',
@@ -410,7 +410,7 @@
           }
         }, {
           type: 'input',
-          key: 'author_email',
+          key: 'email',
           validators: {
             emailAddr: emailValidator
           },
@@ -447,7 +447,7 @@
           }
         }, {
           type: 'input',
-          key: 'maintainer_email',
+          key: 'email',
           templateOptions: {
             label: 'Maintainer\'s Email',
             type: 'email',
@@ -459,7 +459,7 @@
         }]
       }
     }, {
-      key: 'institution',
+      key: 'affiliation',
       type: 'repeatSection',
       templateOptions: {
         btnText: 'Add new institution',
@@ -503,7 +503,7 @@
       }
     }];
     vm.pubFields = [{
-      key: 'pub_tool_doi',
+      key: 'resource_doi',
       type: 'input',
       templateOptions: {
         type: 'text',
@@ -513,7 +513,7 @@
         required: false
       }
     }, {
-      key: 'pub_primary_doi',
+      key: 'primary_pub_doi',
       type: 'input',
       templateOptions: {
         type: 'text',
@@ -545,7 +545,7 @@
         btnText: 'Add new link',
         fields: [{
           type: 'typeahead',
-          key: 'link_name',
+          key: 'name',
           templateOptions: {
             label: 'Link Title',
             placeholder: 'Homepage',
@@ -554,7 +554,7 @@
           }
         }, {
           type: 'input',
-          key: 'link_url',
+          key: 'url',
           templateOptions: {
             label: 'Link URL',
             placeholder: 'http://www.homepage.com',
@@ -567,7 +567,7 @@
     }];
 
     vm.devFields = [{
-      key: 'res_code_url',
+      key: 'code_url',
       type: 'input',
       templateOptions: {
         type: 'text',
@@ -576,7 +576,7 @@
         required: false
       }
     }, {
-      key: 'dev_lang',
+      key: 'language',
       type: 'repeatSection',
       templateOptions: {
         btnText: 'Add Programming Language',
@@ -599,13 +599,13 @@
         }]
       }
     }, {
-      key: 'dev_platform',
+      key: 'platform',
       type: 'repeatSection',
       templateOptions: {
         btnText: 'Add Platform',
         fields: [{
           type: 'select',
-          key: 'platform_name',
+          key: 'name',
           templateOptions: {
             label: 'Platform',
             placeholder: 'Enter the platform',
@@ -659,7 +659,7 @@
         btnText: 'Add previous version',
         fields: [{
           type: 'input',
-          key: 'version_number',
+          key: 'version',
           templateOptions: {
             label: 'Version Number',
             placeholder: 'Enter the version number',
@@ -742,104 +742,96 @@
     }];
 
     vm.licenseFields = [{
-      key: 'licenses',
-      type: 'repeatSection',
-      className: 'repeat_section',
+      key: 'type',
+      type: 'select',
       templateOptions: {
-        btnText: 'Add License',
-        fields:[{
-          key: 'license',
-          type: 'select',
-          templateOptions: {
-            label: 'License',
-            options: [{
-              name: 'Apache',
-              value: 'Apache'
-            }, {
-              name: 'GNU Affero General Public License v3.0',
-              value: 'GNU Affero General Public License v3.0'
-            }, {
-              name: 'GNU General Public License v2.0',
-              value: 'GNU General Public License v2.0'
-            }, {
-              name: 'GNU General Public License v3.0',
-              value: 'GNU General Public License v3.0'
-            }, {
-              name: 'MIT License',
-              value: 'MIT License'
-            }, {
-              name: 'Artistic License 2.0',
-              value: 'Artistic License 2.0'
-            }, {
-              name: 'Eclipse Public License 1.0',
-              value: 'Eclipse Public License 1.0'
-            }, {
-              name: 'Simplified BSD',
-              value: 'Simplified BSD'
-            }, {
-              name: 'New BSD',
-              value: 'New BSD'
-            }, {
-              name: 'ISC License',
-              value: 'ISC License'
-            }, {
-              name: 'GNU Lesser General Public License v2.1',
-              value: 'GNU Lesser General Public License v2.1'
-            }, {
-              name: 'GNU Lesser General Public License v3.0',
-              value: 'GNU Lesser General Public License v3.0'
-            }, {
-              name: 'Mozilla Public License 2.0',
-              value: 'Mozilla Public License 2.0'
-            }, {
-              name: 'No License',
-              value: 'No License'
-            }, {
-              name: 'Creative Commons Zero v1.0 Universal',
-              value: 'Creative Commons Zero v1.0 Universal'
-            }, {
-              name: 'The Unlicense',
-              value: 'The Unlicense'
-            }, {
-              name: 'Proprietary',
-              value: 'Proprietary'
-            }, {
-              name: 'Other',
-              value: 'Other'
-            }]
-          }
+        label: 'License',
+        options: [{
+          name: 'Apache',
+          value: 'Apache'
         }, {
-          key: 'other_license',
-          type: 'input',
-          templateOptions: {
-            type: 'text',
-            label: 'Name of License',
-            placeholder: 'Enter the name of your license',
-            required: true
-          },
-          hideExpression: "(model.license!='Other' && model.license!='Proprietary')"
+          name: 'GNU Affero General Public License v3.0',
+          value: 'GNU Affero General Public License v3.0'
         }, {
-          key: 'other_license_link',
-          type: 'input',
-          templateOptions: {
-            type: 'text',
-            label: 'Link to License',
-            placeholder: 'Enter the link to the license',
-            required: false
-          },
-          hideExpression: "(model.license!='Other' && model.license!='Proprietary')"
-        },
-        {
-          key: 'other_license_desc',
-          type: 'textarea',
-          templateOptions: {
-            label: 'Description of license',
-            placeholder: 'Enter the description of the license (optional)',
-            required: false
-          },
-          hideExpression: "(model.license!='Other' && model.license!='Proprietary')"
+          name: 'GNU General Public License v2.0',
+          value: 'GNU General Public License v2.0'
+        }, {
+          name: 'GNU General Public License v3.0',
+          value: 'GNU General Public License v3.0'
+        }, {
+          name: 'MIT License',
+          value: 'MIT License'
+        }, {
+          name: 'Artistic License 2.0',
+          value: 'Artistic License 2.0'
+        }, {
+          name: 'Eclipse Public License 1.0',
+          value: 'Eclipse Public License 1.0'
+        }, {
+          name: 'Simplified BSD',
+          value: 'Simplified BSD'
+        }, {
+          name: 'New BSD',
+          value: 'New BSD'
+        }, {
+          name: 'ISC License',
+          value: 'ISC License'
+        }, {
+          name: 'GNU Lesser General Public License v2.1',
+          value: 'GNU Lesser General Public License v2.1'
+        }, {
+          name: 'GNU Lesser General Public License v3.0',
+          value: 'GNU Lesser General Public License v3.0'
+        }, {
+          name: 'Mozilla Public License 2.0',
+          value: 'Mozilla Public License 2.0'
+        }, {
+          name: 'No License',
+          value: 'No License'
+        }, {
+          name: 'Creative Commons Zero v1.0 Universal',
+          value: 'Creative Commons Zero v1.0 Universal'
+        }, {
+          name: 'The Unlicense',
+          value: 'The Unlicense'
+        }, {
+          name: 'Proprietary',
+          value: 'Proprietary'
+        }, {
+          name: 'Other',
+          value: 'Other'
         }]
       }
+    }, {
+      key: 'name',
+      type: 'input',
+      templateOptions: {
+        type: 'text',
+        label: 'Name of License',
+        placeholder: 'Enter the name of your license',
+        required: true
+      },
+      hideExpression: "(model.type!='Other' && model.type!='Proprietary')"
+    }, {
+      key: 'link',
+      type: 'input',
+      templateOptions: {
+        type: 'text',
+        label: 'Link to License',
+        placeholder: 'Enter the link to the license',
+        required: false
+      },
+      hideExpression: "(model.type!='Other' && model.type!='Proprietary')"
+    },
+    {
+      key: 'description',
+      type: 'textarea',
+      templateOptions: {
+        label: 'Description of license',
+        placeholder: 'Enter the description of the license (optional)',
+        required: false
+      },
+      hideExpression: "(model.type!='Other' && model.type!='Proprietary')"
     }];
 
 
@@ -850,7 +842,7 @@
         btnText: 'Add Funding Info',
         fields: [{
           type: 'ui-select-single-search',
-          key: 'funding_agency',
+          key: 'agency',
           templateOptions: {
             optionsAttr: 'bs-options',
             ngOptions: 'option[to.valueProp] as option in to.options | filter: $select.search',
@@ -886,7 +878,7 @@
           hideExpression: '!model.missing',
         }, {
           type: 'input',
-          key: 'funding_grant',
+          key: 'grant',
           templateOptions: {
             label: 'Grant Number',
             placeholder: 'Enter the grant number',
@@ -947,7 +939,7 @@
               }
             }, {
               type: 'input',
-              key: 'other',
+              key: 'title',
               hideExpression: "model.center!='Other'",
               templateOptions: {
                 label: 'BD2K Project Title',
@@ -967,15 +959,15 @@
       $('#MessageModal').modal('toggle');
       var submit = {
         savedID: vm.savedID,
-        basic: vm.basic,
-        authors: vm.authors,
-        publication: vm.publication,
-        links: vm.links,
-        dev: vm.dev,
-        version: vm.version,
+        basic: vm.basic_section,
+        authors: vm.author_section,
+        publication: vm.pub_section,
+        links: vm.link_section,
+        dev: vm.dev_section,
+        version: vm.version_section,
         io: vm.io,
-        license: vm.license,
-        funding: vm.funding,
+        license: vm.license_section,
+        funding: vm.funding_section,
         recaptcha: $('#g-recaptcha-response').val()
       };
       $.post("/reg", submit)
@@ -988,7 +980,7 @@
                 count++;
                 $('#messageBody').append('.  ');
                 if(count > 3){
-                  window.location.href = '/api/tool/'+data.id;
+                  window.location.href = '/tool/'+data.id;
                 }
               }, 1000);
           }else{
@@ -1006,15 +998,15 @@
       $('#MessageModal').modal('toggle');
       var submit = {
         savedID: vm.savedID,
-        basic: vm.basic,
-        authors: vm.authors,
-        publication: vm.publication,
-        links: vm.links,
-        dev: vm.dev,
-        version: vm.version,
+        basic: vm.basic_section,
+        authors: vm.author_section,
+        publication: vm.pub_section,
+        links: vm.link_section,
+        dev: vm.dev_section,
+        version: vm.version_section,
         io: vm.io,
-        license: vm.license,
-        funding: vm.funding
+        license: vm.license_section,
+        funding: vm.funding_section
       };
       $.ajax({
           url: window.location.pathname,
@@ -1029,7 +1021,7 @@
               count++;
               $('#messageBody').append('.  ');
               if(count > 2){
-                window.location.href = '/api/tool/'+data.id;
+                window.location.href = '/tool/'+data.id;
               }
             }, 1000);
         }else{
@@ -1133,38 +1125,38 @@
       // check for errors and warnings
 
       // basic section
-      if(Object.keys(vm['basic']).length==0){
+      if(Object.keys(vm['basic_section']).length==0){
         errorMessages[0].setErr(true);
         errorMessages[1].setErr(true);
       }else{
-        if(vm['basic']['res_name']==undefined){
+        if(vm['basic_section']['name']==undefined){
           errorMessages[0].setErr(true);
         }
-        if(vm['basic']['res_desc']==undefined){
+        if(vm['basic_section']['description']==undefined){
           errorMessages[1].setErr(true);
         }
-        if(vm['basic']['res_types']==undefined){
+        if(vm['basic_section']['resource_types']==undefined){
           warnMessages[0].setWarning(true);
         }else{
-          vm['basic']['res_types'].forEach(function(type){
-            if(type['res_type']==undefined || type['res_type']==null){
+          vm['basic_section']['resource_types'].forEach(function(type){
+            if(type['type']==undefined || type['type']==null){
               errorMessages[4].setErr(true);
             }
           });
         }
-        if(vm['basic']['bio_domains']==undefined){
+        if(vm['basic_section']['domains']==undefined){
           warnMessages[1].setWarning(true);
         }else{
-          vm['basic']['bio_domains'].forEach(function(domain){
-            if(domain['bio_domain']==undefined || domain['bio_domain']==null){
+          vm['basic_section']['domains'].forEach(function(domain){
+            if(domain['domain']==undefined || domain['domain']==null){
               errorMessages[5].setErr(true);
             }
           });
         }
-        if(vm['basic']['tags']==undefined){
+        if(vm['basic_section']['tags']==undefined){
           warnMessages[2].setWarning(true);
         }else{
-          vm['basic']['tags'].forEach(function(tag){
+          vm['basic_section']['tags'].forEach(function(tag){
             if(tag['text']==undefined){
               warnMessages[2].setWarning(true);
             }
@@ -1173,13 +1165,13 @@
       }
 
       // link section
-      if((vm['links']==undefined || Object.keys(vm['links']).length==0 || vm['links']['links']==undefined) &&
-      (vm['dev']['res_code_url']==undefined || vm['dev']['res_code_url']=="")){
+      if((vm['link_section']==undefined || Object.keys(vm['link_section']).length==0 || vm['link_section']['links']==undefined) &&
+      (vm['dev_section']['code_url']==undefined || vm['dev_section']['code_url']=="")){
         errorMessages[2].setErr(true);
-      }else if(vm['links']!=undefined && vm['links']['links']){
+      }else if(vm['link_section']!=undefined && vm['link_section']['links']){
         var atLeast1 = false;
-        vm['links']['links'].forEach(function(link){
-          if(link['link_name']==undefined || link['link_url']==undefined){
+        vm['link_section']['links'].forEach(function(link){
+          if(link['name']==undefined || link['url']==undefined){
             if(atLeast1){
               errorMessages[3].setErr(true);
             } else {
@@ -1192,25 +1184,25 @@
       }
 
       // authors section
-      if(vm['authors']==undefined || Object.keys(vm['authors']).length==0){
+      if(vm['author_section']==undefined || Object.keys(vm['author_section']).length==0){
         warnMessages[3].setWarning(true);
       }
-      if(vm['publication']==undefined || Object.keys(vm['publication']).length==0){
+      if(vm['pub_section']==undefined || Object.keys(vm['pub_section']).length==0){
         warnMessages[4].setWarning(true);
       }
-      if(vm['dev']==undefined || Object.keys(vm['dev']).length==0){
+      if(vm['dev_section']==undefined || Object.keys(vm['dev_section']).length==0){
         warnMessages[5].setWarning(true);
       }
-      if(vm['version']==undefined || Object.keys(vm['version']).length==0){
+      if(vm['version_section']==undefined || Object.keys(vm['version_section']).length==0){
         warnMessages[6].setWarning(true);
       }
       if(vm['io']==undefined || Object.keys(vm['io']).length==0){
         warnMessages[7].setWarning(true);
       }
-      if(vm['license']==undefined || Object.keys(vm['license']).length==0){
+      if(vm['license_section']==undefined || Object.keys(vm['license_section']).length==0){
         warnMessages[8].setWarning(true);
       }
-      if(vm['funding']==undefined || Object.keys(vm['funding']).length==0){
+      if(vm['funding_section']==undefined || Object.keys(vm['funding_section']).length==0){
         warnMessages[9].setWarning(true);
       }
 
@@ -1232,15 +1224,15 @@
       if(error || warn){
         message = "<ul>"+message+"</ul>";
       }else{
-        message = "<pre id='sub_pre1'>Basic Information"+JSON.stringify(vm.basic, null, 4)+"</pre>"+
-        "<pre id='sub_pre2'>Author Information"+JSON.stringify(vm.authors, null, 4)+"</pre>"+
-        "<pre id='sub_pre3'>Publication Information"+JSON.stringify(vm.publication, null, 4)+"</pre>"+
-        "<pre id='sub_pre4'>Related Links"+JSON.stringify(vm.links, null, 4)+"</pre>"+
-        "<pre id='sub_pre5'>Development Information"+JSON.stringify(vm.dev, null, 4)+"</pre>"+
-        "<pre id='sub_pre6'>Version History"+JSON.stringify(vm.version, null, 4)+"</pre>"+
+        message = "<pre id='sub_pre1'>Basic Information"+JSON.stringify(vm.basic_section, null, 4)+"</pre>"+
+        "<pre id='sub_pre2'>Author Information"+JSON.stringify(vm.author_section, null, 4)+"</pre>"+
+        "<pre id='sub_pre3'>Publication Information"+JSON.stringify(vm.pub_section, null, 4)+"</pre>"+
+        "<pre id='sub_pre4'>Related Links"+JSON.stringify(vm.link_section, null, 4)+"</pre>"+
+        "<pre id='sub_pre5'>Development Information"+JSON.stringify(vm.dev_section, null, 4)+"</pre>"+
+        "<pre id='sub_pre6'>Version History"+JSON.stringify(vm.version_section, null, 4)+"</pre>"+
         "<pre id='sub_pre7'>IO Information"+JSON.stringify(vm.io, null, 4)+"</pre>"+
-        "<pre id='sub_pre8'>License Information"+JSON.stringify(vm.license, null, 4)+"</pre>"+
-        "<pre id='sub_pre9'>Funding Information"+JSON.stringify(vm.funding, null, 4)+"</pre>";
+        "<pre id='sub_pre8'>License Information"+JSON.stringify(vm.license_section, null, 4)+"</pre>"+
+        "<pre id='sub_pre9'>Funding Information"+JSON.stringify(vm.funding_section, null, 4)+"</pre>";
       }
 
       html += message+"</div>";
@@ -1265,15 +1257,15 @@
     function passWarning() {
       $('#pre-submit').html(
         "<div class='modal-body' style='height:75vh;overflow: auto'>"+
-        "<pre id='sub_pre1'>Basic Information"+JSON.stringify(vm.basic, null, 4)+"</pre>"+
-        "<pre id='sub_pre2'>Author Information"+JSON.stringify(vm.authors, null, 4)+"</pre>"+
-        "<pre id='sub_pre3'>Publication Information"+JSON.stringify(vm.publication, null, 4)+"</pre>"+
-        "<pre id='sub_pre4'>Related Links"+JSON.stringify(vm.links, null, 4)+"</pre>"+
-        "<pre id='sub_pre5'>Development Information"+JSON.stringify(vm.dev, null, 4)+"</pre>"+
-        "<pre id='sub_pre6'>Version History"+JSON.stringify(vm.version, null, 4)+"</pre>"+
+        "<pre id='sub_pre1'>Basic Information"+JSON.stringify(vm.basic_section, null, 4)+"</pre>"+
+        "<pre id='sub_pre2'>Author Information"+JSON.stringify(vm.author_section, null, 4)+"</pre>"+
+        "<pre id='sub_pre3'>Publication Information"+JSON.stringify(vm.pub_section, null, 4)+"</pre>"+
+        "<pre id='sub_pre4'>Related Links"+JSON.stringify(vm.link_section, null, 4)+"</pre>"+
+        "<pre id='sub_pre5'>Development Information"+JSON.stringify(vm.dev_section, null, 4)+"</pre>"+
+        "<pre id='sub_pre6'>Version History"+JSON.stringify(vm.version_section, null, 4)+"</pre>"+
         "<pre id='sub_pre7'>IO Information"+JSON.stringify(vm.io, null, 4)+"</pre>"+
-        "<pre id='sub_pre8'>License Information"+JSON.stringify(vm.license, null, 4)+"</pre>"+
-        "<pre id='sub_pre9'>Funding Information"+JSON.stringify(vm.funding, null, 4)+"</pre>"+
+        "<pre id='sub_pre8'>License Information"+JSON.stringify(vm.license_section, null, 4)+"</pre>"+
+        "<pre id='sub_pre9'>Funding Information"+JSON.stringify(vm.funding_section, null, 4)+"</pre>"+
         "</div>"
       );
       $('#submitModalLabel').text('Submit Information');
@@ -1284,15 +1276,15 @@
 
     function suggest(){
       var fields = {
-        basic: vm.basic,
-        authors: vm.authors,
-        publication: vm.publication,
-        links: vm.links,
-        dev: vm.dev,
-        version: vm.version,
+        basic: vm.basic_section,
+        authors: vm.author_section,
+        publication: vm.pub_section,
+        links: vm.link_section,
+        dev: vm.dev_section,
+        version: vm.version_section,
         io: vm.io,
-        license: vm.license,
-        funding: vm.funding
+        license: vm.license_section,
+        funding: vm.funding_section
       };
       $('#suggestions').text('');
       if(fields['basic']==undefined || fields['basic']['res_name']==undefined){
@@ -1410,15 +1402,15 @@
       $('#MessageModal').modal('toggle');
       var submit = {
         savedID: vm.savedID,
-        basic: removeHash(vm.basic),
-        authors: removeHash(vm.authors),
-        publication: removeHash(vm.publication),
-        links: removeHash(vm.links),
-        dev: removeHash(vm.dev),
-        version: removeHash(vm.version),
+        basic: removeHash(vm.basic_section),
+        authors: removeHash(vm.author_section),
+        publication: removeHash(vm.pub_section),
+        links: removeHash(vm.link_section),
+        dev: removeHash(vm.dev_section),
+        version: removeHash(vm.version_section),
         io: removeHash(vm.io),
-        license: removeHash(vm.license),
-        funding: removeHash(vm.funding)
+        license: removeHash(vm.license_section),
+        funding: removeHash(vm.funding_section)
         //recaptcha: $('#g-recaptcha-response').val()
       };
       $.post("/save", submit)
@@ -1446,14 +1438,14 @@
         .done(function(data) {
           console.log(data);
             vm.orig = JSON.parse(JSON.stringify(data));
-            vm.basic = data['basic'];
-            vm.authors = data['authors'];
-            vm.publication = data['publication'];
-            vm.links = data['links'];
-            vm.dev = data['dev'];
-            vm.version = data['version'];
-            vm.license = data['license'];
-            vm.funding = data['funding'];
+            vm.basic_section = data['basic_section'];
+            vm.author_section = data['author_section'];
+            vm.pub_section = data['pub_section'];
+            vm.link_section = data['link_section'];
+            vm.dev_section = data['dev_section'];
+            vm.version_section = data['version_section'];
+            vm.license_section = data['license_section'];
+            vm.funding_section = data['funding_section'];
             $scope.$apply();
         });
     };
@@ -1464,31 +1456,33 @@
           console.log(data);
             vm.savedID = data['savedID'];
             vm.orig = JSON.parse(JSON.stringify(data));
-            vm.basic = data['basic'];
+            vm.basic_section = data['basic'];
             if(data['authors']!=undefined)
-              vm.authors = data['authors'];
+              vm.author_section = data['authors'];
             if(data['publication']!=undefined)
-              vm.publication = data['publication'];
+              vm.pub_section = data['publication'];
             if(data['links']!=undefined)
-              vm.links = data['links'];
+              vm.link_section = data['links'];
             if(data['dev']!=undefined)
-              vm.dev = data['dev'];
+              vm.dev_section = data['dev'];
             if(data['version']!=undefined)
-              vm.version = data['version'];
+              vm.version_section = data['version'];
             if(data['license']!=undefined)
-              vm.license = data['license'];
+              vm.license_section = data['license'];
             if(data['funding']!=undefined)
-              vm.funding = data['funding'];
+              vm.funding_section = data['funding'];
             $scope.$apply();
         });
     };
 
     function checkLink(link){
+      if(link==undefined || link==null)
+        return "";
       if (!(link.match(/^http/) || link.match(/^https/))) {
             return "http://"+link;
         }
       return link;
-     
+
     }
 
   }

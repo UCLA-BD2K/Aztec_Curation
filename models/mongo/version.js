@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 // define the schema for our version model
 var versionSchema = mongoose.Schema({
 
-      version_number        : String,
+      version               : String,
       version_date          : Date,
       version_description   : String,
       latest                : {type: Boolean, default: false}
