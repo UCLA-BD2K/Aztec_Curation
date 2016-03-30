@@ -121,37 +121,45 @@ ToolUtils.prototype._mysql2rest = function(self, json) {
   }
 
   if(json['links']!=undefined){
-    resource['links'] = [];
-    json['links'].forEach(function(link){
-      resource['links'].push({name: link['name'], url: link['url']});
-    });
+    if(json['links'].length>0){
+      resource['links'] = [];
+      json['links'].forEach(function(link){
+        resource['links'].push({name: link['name'], url: link['url']});
+      });
+    }
   }
+  if(json['SOURCE_LINK'])
+    resource['source_code_url'] = json['SOURCE_LINK'];
 
-  resource['source_code_url'] = json['SOURCE_LINK'];
-
-  resource['languages'] = [];
   if (json['languages'] != undefined) {
-    json['languages'].forEach(function(lang) {
-      resource['languages'].push(lang['NAME']);
-    });
+    if(json['languages'].length>0){
+      resource['languages'] = [];
+      json['languages'].forEach(function(lang) {
+        resource['languages'].push(lang['NAME']);
+      });
+    }
   }
 
-  resource['platforms'] = [];
   if (json['platform'] != undefined) {
-    json['platform'].forEach(function(plat) {
-      resource['platforms'].push(plat['NAME']);
-    });
+    if(json['platform'].length>0){
+      resource['platforms'] = [];
+      json['platform'].forEach(function(plat) {
+        resource['platforms'].push(plat['NAME']);
+      });
+    }
   }
 
-  resource['versions'] = [];
   if (json['version'] != undefined) {
-    json['version'].forEach(function(ver) {
-      resource['versions'].push({
-        version: ver['version'],
-        version_date: ver['version_date'],
-        version_description: ver['version_description']
-      })
-    });
+    if(json['version'].length>0){
+      resource['versions'] = [];
+      json['version'].forEach(function(ver) {
+        resource['versions'].push({
+          version: ver['version'],
+          version_date: ver['version_date'],
+          version_description: ver['version_description']
+        })
+      });
+    }
   }
 
   if (json['license'] != undefined && json['license'].length>0) {
@@ -165,19 +173,21 @@ ToolUtils.prototype._mysql2rest = function(self, json) {
       resource['license']['description'] = json['license'][0]['DESCRIPTION'];
   }
 
-  resource['funding'] = []
-  json['funding'].forEach(function(source){
-    var funding = {};
-    if(source['agency'])
-      funding['agency'] = source['agency'];
-    else if(source['new_agency'])
-      funding['agency'] = source['new_agency'];
-    if(source['grant'])
-      funding['grant'] = source['grant'];
-    resource['funding'].push(funding);
-  });
+  if(json['funding'] && json['funding'].length>0){
+    resource['funding'] = []
+    json['funding'].forEach(function(source){
+      var funding = {};
+      if(source['agency'])
+        funding['agency'] = source['agency'];
+      else if(source['new_agency'])
+        funding['agency'] = source['new_agency'];
+      if(source['grant'])
+        funding['grant'] = source['grant'];
+      resource['funding'].push(funding);
+    });
+  }
 
-  if (json['centers'] != undefined) {
+  if (json['centers'] && json['centers'].length > 0) {
     resource['bd2k_affiliation'] = [];
     json['centers'].forEach(function(center) {
       if(center['BD2K_CENTER'] && center['BD2K_CENTER']!='Other')
