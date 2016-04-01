@@ -346,3 +346,25 @@ input[readonly] {
 .nav-tabs{
     font-size: 1vw;
 }
+#pdf-data{
+border: 1px solid #D8D8D8;
+margin-top: 6%;
+visibility: collapse;
+}
+.pdf-name{
+  /* Publication Title: */
+font-weight: 100;
+font-size: 17px;
+text-transform: none;
+}
+.pdf-nm-dt{
+  font-weight: 100;
+}
+#ld-img{
+  visibility: collapse;
+}
+
+#load-image{
+  padding-top: 10%;
+  width: 20%;
+}

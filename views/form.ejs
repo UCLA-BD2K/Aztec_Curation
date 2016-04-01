@@ -195,6 +195,7 @@ $("#pdf-form").submit(function(e)
     var formObj = $(this);
     var formURL = formObj.attr("action");
     var formData = new FormData(this);
+    $("#ld-img").css("visibility","visible");
     $.ajax({
       url: formURL,
       type: 'POST',
@@ -205,10 +206,28 @@ $("#pdf-form").submit(function(e)
       processData:false,
     success: function(data, textStatus, jqXHR)
     {
+      $("#ld-img").hide();
       console.log(data);
       var obj = $.parseJSON(data);
       console.log(obj);
-      $("#pdf-data").append("Name: " + obj.name);
+      $("#pdf-data").css("visibility", "visible");
+      $("#nm-dt").append(obj.name);
+      for (var i = obj.authors.length - 1; i >= 0; i--) {
+        $("#auth-dt").append(obj.authors[i]);
+        $("#auth-dt").append("<br>");
+      };
+      $("#sc-dt").append(obj.source_code);
+      for (var i = obj.funding.length - 1; i >= 0; i--) {
+        $("#fd-dt").append(obj.funding[i]);
+        $("#fd-dt").append("<br>");
+      };
+
+      for (var i = obj.keywords.length - 1; i >= 0; i--) {
+        $("#kw-dt").append(obj.keywords[i]);
+        $("#kw-dt").append("<br>");
+      };
+
+
     },
      error: function(jqXHR, textStatus, errorThrown) 
      {
@@ -476,7 +495,26 @@ function copyToClipboard(elem) {
             </div>        
         <input type="submit" value="Upload" name="submit" id="uploadBtn">
       </form>
+
+      <div id='load-pdf'>
+          <center><div id="ld-img"><img id="load-image" src='/images/page-loader.gif'/></div></center>
+      </div>      
       <div id="pdf-data">
+        <h1 class="pdf-name">Name</h1>
+        <div class="pdf-nm-dt" id="nm-dt"> 
+        </div>
+        <h1 class= "pdf-name" id="auth">Authors</h1>
+        <div class="pdf-nm-dt" id="auth-dt"> 
+        </div>        
+        <h1 class= "pdf-name" id ="sc">Source Code</h1>
+        <div class="pdf-nm-dt" id="sc-dt"> 
+        </div>        
+        <h1 class="pdf-name" id ="fd">Funding </h1>
+        <div class="pdf-nm-dt" id="fd-dt"> 
+        </div>        
+        <h1 class="pdf-name" id="kw">Keywords</h1>
+        <div class="pdf-nm-dt" id="kw-dt"> 
+        </div>
       </div>
 
       </center>
