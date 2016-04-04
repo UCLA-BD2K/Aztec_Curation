@@ -88,10 +88,16 @@
           $('#insthead').append('Institution: ');
           for (var i = data.author_section.affiliation.length - 1; i >= 0; i--) {
             if (data.author_section.affiliation[i].new_institution != undefined){
-            $('#instdeet').append('<li>'+ data.author_section.affiliation[i].new_institution + '</li>');}
-
-            if (data.author_section.affiliation[i].inst_name != undefined){
-            $('#instdeet').append('<li>'+ data.author_section.affiliation[i].inst_name + '</li>');}
+              if(i<2)
+                $('#affiliation').append('<u>'+data.author_section.affiliation[i].new_institution+'</u>');
+              $('#instdeet').append('<li>'+ data.author_section.affiliation[i].new_institution + '</li>');
+            }
+            else if (data.author_section.affiliation[i].inst_name != undefined){
+              if(i<2)
+                $('#affiliation').append('<u>'+data.author_section.affiliation[i].inst_name+'</u>');
+                $('#instdeet').append('<li>'+ data.author_section.affiliation[i].inst_name + '</li>');
+              }
+              $('#affiliation').append("&nbsp;&nbsp;");
           };
         } else{
           $('.funder').hide();
@@ -110,11 +116,15 @@
         if(data.funding_section.funding.length > 0){
           $('#funhead').append('Funding: ');
           for (var i = data.funding_section.funding.length - 1; i >= 0; i--) {
+            var grant = '';
+            if(data.funding_section.funding[i].grant)
+              grant =  data.funding_section.funding[i].grant;
+
             if(data.funding_section.funding[i].agency != undefined){
-            $('#fundeet').append('<li>'+ data.funding_section.funding[i].agency +': '+data.funding_section.funding[i].grant+'</li>');}
+            $('#fundeet').append('<li>'+ data.funding_section.funding[i].agency +grant+'</li>');}
 
             if(data.funding_section.funding[i].new_agency != undefined){
-            $('#fundeet').append('<li>'+ data.funding_section.funding[i].new_agency +': '+data.funding_section.funding[i].grant+ '</li>');}
+            $('#fundeet').append('<li>'+ data.funding_section.funding[i].new_agency +grant+ '</li>');}
 
           };
         } else{
@@ -182,6 +192,7 @@
       <div class="cost-stuff" id="license"></div>
       <h2 id="authorname"></h2>
        <div class="cost-stuff" id="cite">Cite</div>
+       <h2 id="affiliation"></h2>
     </div>
     </div>
     <div class="res_description">

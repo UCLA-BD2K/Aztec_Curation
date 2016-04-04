@@ -8,7 +8,7 @@ module.exports = {
       //var azid = req.query.AZID;
       var field = req.query.field;
       console.log(JSON.stringify(query), field);
-      console.log(query['basic[res_name]']);
+      console.log(query['basic[name]']);
 
       //console.log("field is " + field);
 

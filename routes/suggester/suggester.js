@@ -125,13 +125,13 @@ var getSourceUrlFromGitHub = function(toolMetadataJson, callback) {
     }
   };
   var langs = [];
-  if (toolMetadataJson.dev != undefined && toolMetadataJson.dev.dev_lang != undefined)
-    langs = toolMetadataJson.dev.dev_lang;
+  if (toolMetadataJson.dev != undefined && toolMetadataJson.dev.language != undefined)
+    langs = toolMetadataJson.dev.language;
 
   var langAddOn = "";
   if (langs.length > 0)
     langAddOn += "+language:" + langs[0].PRIMARY_NAME;
-  var tool_name = toolMetadataJson.basic.res_name;
+  var tool_name = toolMetadataJson.basic.name;
 
   options.url = "https://api.github.com/search/repositories?q=" + tool_name + langAddOn;
   request(options, function(error, response, body) {
@@ -198,11 +198,11 @@ var searchCrossRef = function(toolMetadataJson, callback) {
   var options = {};
   options.url = "http://search.crossref.org/dois?q=";
   var md = toolMetadataJson;
-  var name = md.basic.res_name.replace(" ", "+");
+  var name = md.basic.name.replace(" ", "+");
   options.url += name;
   if(md.authors.authors!=undefined){
     for (var i = 0; i < md.authors.authors.length; i++) {
-      var aname = md.authors.authors[i].author_name.replace(" ", "+");
+      var aname = md.authors.authors[i].first_name.replace(" ", "+")+'+'+md.authors.authors[i].last_name.replace(" ", "+");
       options.url += "+" + aname;
     }
   }
@@ -223,7 +223,7 @@ var searchCrossRef = function(toolMetadataJson, callback) {
 
       for (var i = 0; i < crossrefMD.length; i++) {
         if (crossrefMD[i].title.indexOf(":") >= 0)
-          if (crossrefMD[i].title.split(":")[0].toUpperCase() === toolMetadataJson.basic.res_name.toUpperCase()) {
+          if (crossrefMD[i].title.split(":")[0].toUpperCase() === toolMetadataJson.basic.name.toUpperCase()) {
             console.log("Found an article that starts with the tool name.");
             console.log(crossrefMD[i].title);
             bestGuess = i;
@@ -254,8 +254,8 @@ var getPublicationInfoFromPubmed = function(toolMetadataJson, callback) {
     url: 'url'
   };
   //http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=tophat&field=title&retmode=json
-  console.log("lets search for " + toolMetadataJson.basic.res_name);
-  options.url = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=" + toolMetadataJson.basic.res_name + "&field=title&retmode=json";
+  console.log("lets search for " + toolMetadataJson.basic.name);
+  options.url = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=" + toolMetadataJson.basic.name + "&field=title&retmode=json";
   console.log(options.url);
   //options.url = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=RchyOptimyx&field=title";
   request(options, function(error, response, body) {
@@ -291,7 +291,7 @@ var getPublicationInfoFromPubmed = function(toolMetadataJson, callback) {
           for (var i = 0; i < UIDs.length; i++) {
             //console.log(UIDs[i].title);
             if (responseAsJson.result[UIDs[i]].title.indexOf(":") >= 0)
-              if (responseAsJson.result[UIDs[i]].title.split(":")[0].toUpperCase() === toolMetadataJson.basic.res_name.toUpperCase()) {
+              if (responseAsJson.result[UIDs[i]].title.split(":")[0].toUpperCase() === toolMetadataJson.basic.name.toUpperCase()) {
                 console.log("Found an article that starts with the tool name.");
                 shortList.push(UIDs[i]);
               }
@@ -406,7 +406,7 @@ module.exports = {
         callback(null); //name will never change in current implementation
         break;
       case "license":
-        var githubRepoName = toolMetadataJson.dev.res_code_url;
+        var githubRepoName = toolMetadataJson.dev.code_url;
         if (githubRepoName != null) {
           githubRepoName = githubRepoName.split("/");
           githubRepoName = githubRepoName[3] + '/' + githubRepoName[4];
@@ -436,7 +436,7 @@ module.exports = {
         }
         break;
       case "versions":
-        var githubRepoName = toolMetadataJson.dev.res_code_url;
+        var githubRepoName = toolMetadataJson.dev.code_url;
         if (githubRepoName != null) {
           githubRepoName = githubRepoName.split("/");
           githubRepoName = githubRepoName[3] + '/' + githubRepoName[4];
@@ -467,7 +467,7 @@ module.exports = {
         break;
       case "maintainers":
 
-        var githubUserName = toolMetadataJson.dev.res_code_url;
+        var githubUserName = toolMetadataJson.dev.code_url;
         if (githubUserName != null) {
           githubUserName = githubUserName.split("/");
           githubUserName.pop();
