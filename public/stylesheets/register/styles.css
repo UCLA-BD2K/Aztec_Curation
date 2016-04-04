@@ -368,3 +368,34 @@ text-transform: none;
   padding-top: 10%;
   width: 20%;
 }
+
+.suggestions{
+  padding-top: 7%;
+}
+
+.pub-title{
+  /* Publication Title: */
+font-weight: 100;
+font-size: 17px;
+color: #000000;
+line-height: 23px;
+text-align: center;
+padding-top: 2%;
+}
+
+.pub-rect{ 
+  /* Rectangle 2: */
+  border: 1px solid #D8D8D8;
+  padding: 2%;
+  text-align: center;
+}
+
+.ion-ios-copy-outline{
+  padding-left: 1%;
+    padding-right: 1%;
+    /* width: 127%; */
+    /* height: 90%; */
+    border-width: 41%;
+    border: 2px solid #D8D8D8;
+}
+

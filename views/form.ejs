@@ -6,6 +6,7 @@
   <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <link rel="stylesheet" href="/stylesheets/register/ng-tags-input.min.css">
   <link href="/stylesheets/index.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="/javascripts/register/validator.js"></script>
  <script src="/javascripts/register/validator.js"></script>
@@ -445,7 +446,34 @@ $("#pdf-form").submit(function(e)
          <div id='loading' style='display:none'>
           <center><img src='/images/magnify.gif'/></center>
          </div>
-         <div id='suggestions' style='padding-top:1%; word-wrap: break-word;'>
+         <div class='suggestions' style='word-wrap: break-word;'>
+          <div class="pub-title" id="pubTitle">
+            Publication Title
+          </div>
+          <div class="pub-rect">
+            TopHat: discovering splice junctions with RNA-Seq.
+          </div>
+          <div class="pub-title" id="pubURL">
+           <i class="ion-ios-copy-outline"> </i> Publication URL 
+          </div>
+          <div class="pub-rect">
+            http://www.ncbi.nlm.nih.gov/pubmed/19289445
+          </div>
+          <div class="pub-title" id="gitDisc">
+            Github Description
+          </div>
+          <div class="pub-rect">
+            Spliced read mapper for RNA-Seq 
+           </div>
+          <div class="pub-title" id="gitURL">
+            Github URL
+          </div>
+          <div class="pub-rect">
+            Spliced read mapper for RNA-Seq 
+           </div>
+
+
+
           </div>
       </div>
 

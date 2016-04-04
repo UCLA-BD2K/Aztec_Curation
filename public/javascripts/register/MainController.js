@@ -1286,9 +1286,9 @@
         license: vm.license_section,
         funding: vm.funding_section
       };
-      $('#suggestions').text('');
+      $('.suggestions').text('');
       if(fields['basic']==undefined || fields['basic']['name']==undefined){
-        $('#suggestions').text('Please enter the name of the resource.');
+        $('.suggestions').text('Please enter the name of the resource.');
         return;
       }
       $('#loading').show();
@@ -1304,7 +1304,7 @@
             text += '<strong>Pub. URL: </strong>'+
             json['suggestedUrl']+'<br>';
 
-          $('#suggestions').append(text);
+          $('.suggestions').append(text);
         });
         $.post("/suggest/query?field=res_code_url", fields)
           .done(function(data) {
@@ -1326,7 +1326,7 @@
               text += '<strong>Link: </strong>'+
               json['suggestedLink']['link_url']+' ('+json['suggestedLink']['link_name']+')<br>';
 
-            $('#suggestions').append(text);
+            $('.suggestions').append(text);
           });
         if(fields['dev']==undefined || fields['dev']['code_url']==undefined){
           return;
@@ -1337,7 +1337,7 @@
             var json = JSON.parse(data);
 
             if(json['suggestedLicense']!=undefined){
-              $('#suggestions').append('<strong>License: </strong>'+
+              $('.suggestions').append('<strong>License: </strong>'+
                 json['suggestedLicense']+'<br>'
               );
             }
@@ -1348,7 +1348,7 @@
               var json = JSON.parse(data);
               if(json['suggestedReleases']!=undefined){
                 json['suggestedReleases'].forEach(function(rel){
-                  $('#suggestions').append('<strong>Version: </strong>'+
+                  $('.suggestions').append('<strong>Version: </strong>'+
                     rel['version_number']+' ('+rel['version_date']+')<br>'
                   );
                 });
@@ -1360,7 +1360,7 @@
 
                 var json = JSON.parse(data);
                 if(json['suggestedMaintainer']!=undefined){
-                  $('#suggestions').append('<strong>Maintainer: </strong>'+
+                  $('.suggestions').append('<strong>Maintainer: </strong>'+
                     json['suggestedMaintainer']['maintainer_name']+' ('+json['suggestedMaintainer']['maintainer_email']+')<br>'
                   );
                 }
