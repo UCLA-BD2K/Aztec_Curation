@@ -1287,7 +1287,7 @@
         funding: vm.funding_section
       };
       $('#suggestions').text('');
-      if(fields['basic']==undefined || fields['basic']['res_name']==undefined){
+      if(fields['basic']==undefined || fields['basic']['name']==undefined){
         $('#suggestions').text('Please enter the name of the resource.');
         return;
       }
@@ -1328,7 +1328,7 @@
 
             $('#suggestions').append(text);
           });
-        if(fields['dev']==undefined || fields['dev']['res_code_url']==undefined){
+        if(fields['dev']==undefined || fields['dev']['code_url']==undefined){
           return;
         }
         $.post("/suggest/query?field=license", fields)

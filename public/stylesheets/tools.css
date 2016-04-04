@@ -73,7 +73,7 @@ padding-bottom: 6%;
 }*/
 
 
-@media(min-width: 1200px){
+@media(min-width: 1280px){
 .deet-heading{
     display: inline-block;
     padding-left: 12%;
@@ -88,6 +88,25 @@ padding-bottom: 6%;
     margin-top: 2%;
     display: inline-block;
     visibility: visible;
+}
+}
+
+
+@media(min-width: 1280.6px){
+.deet-heading{
+    display: inline-block;
+    padding-left: 12%;
+    padding-right: 12%;
+    padding-bottom: 2%;
+}
+.rect1{
+     width: 32%;
+    height: 0.4%;
+    background: #979797;
+    border: 1px solid #979797;
+    margin-top: 2%;
+    display: inline-block;
+    visibility: collapse;
 }
 }
 
