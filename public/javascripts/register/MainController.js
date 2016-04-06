@@ -1286,47 +1286,47 @@
         license: vm.license_section,
         funding: vm.funding_section
       };
-      $('.suggestions').text('');
+        $('.suggestions').css("visibility","collapse");
+        $('.pub-rect').text('Not Found');
+        $('#invalidSuggestion').text('');
       if(fields['basic']==undefined || fields['basic']['name']==undefined){
-        $('.suggestions').text('Please enter the name of the resource.');
+        $('.suggestions').css("visibility","collapse");
+        $('#invalidSuggestion').text('Please enter the name of the resource.');
         return;
       }
       $('#loading').show();
       $.post("/suggest/query?field=pub_primary_doi", fields)
         .done(function(data) {
           $('#loading').hide();
+          $('.suggestions').css("visibility","visible");
           var json = JSON.parse(data);
           var text = "";
-          if(json['suggestedDescription']!=undefined)
-            text += '<strong>Pub. Description: </strong>'+
-              json['suggestedDescription']+'<br>';
-          if(json['suggestedUrl']!=undefined)
-            text += '<strong>Pub. URL: </strong>'+
-            json['suggestedUrl']+'<br>';
-
-          $('.suggestions').append(text);
+           if(json['suggestedDescription']!=undefined){
+             $('#pubTitle-deet').text(json['suggestedDescription']);
+           }
+           if(json['suggestedUrl']!=undefined){
+            $('#pubURL-deet').text(json['suggestedUrl']);
+           }
         });
         $.post("/suggest/query?field=res_code_url", fields)
           .done(function(data) {
             $('#loading').hide();
+            $('.suggestions').css("visibility","visible");
 
             var json = data;
             var text = "";
-
-            if(json['suggestedDescription']!=undefined)
-              text += '<strong>Github Description: </strong>'+
-                json['suggestedDescription']+'<br>';
-            if(json['suggestedUrl']!=undefined)
-              text += '<strong>Github URL: </strong>'+
-              json['suggestedUrl']+'<br>';
-            if(json['suggestedLang']!=undefined)
-              text += '<strong>Github Language: </strong>'+
-              json['suggestedLang']+'<br>';
-            if(json['suggestedLink']!=undefined && json['suggestedLink']['link_url']!=undefined)
-              text += '<strong>Link: </strong>'+
-              json['suggestedLink']['link_url']+' ('+json['suggestedLink']['link_name']+')<br>';
-
-            $('.suggestions').append(text);
+            if(json['suggestedDescription']!=undefined){
+             $('#gitDisc-deet').text(json['suggestedDescription']); 
+            }
+             if(json['suggestedUrl']!=undefined){
+             $('#gitURL-deet').text(json['suggestedUrl']); 
+             }
+             if(json['suggestedLang']!=undefined){
+              $('#gitLang-deet').text(json['suggestedLang']);
+             }
+             if(json['suggestedLink']!=undefined && json['suggestedLink']['link_url']!=undefined){
+              $('#pubLink-deet').text(json['suggestedLink']['link_url']+' ('+json['suggestedLink']['link_name']+')'); 
+              }             
           });
         if(fields['dev']==undefined || fields['dev']['code_url']==undefined){
           return;
@@ -1334,22 +1334,25 @@
         $.post("/suggest/query?field=license", fields)
           .done(function(data) {
             $('#loading').hide();
-            var json = JSON.parse(data);
+            $('.suggestions').css("visibility","visible");
 
+            var json = JSON.parse(data);
             if(json['suggestedLicense']!=undefined){
-              $('.suggestions').append('<strong>License: </strong>'+
-                json['suggestedLicense']+'<br>'
-              );
+              $('#pubLicense-deet').text(json['suggestedLicense']);              
             }
+            //   $('.suggestions').append('<strong>License: </strong>'+
+            //     json['suggestedLicense']+'<br>'
+            //   );
+            // }
           });
           $.post("/suggest/query?field=versions", fields)
             .done(function(data) {
               $('#loading').hide();
+             $('.suggestions').css("visibility","visible");
               var json = JSON.parse(data);
               if(json['suggestedReleases']!=undefined){
                 json['suggestedReleases'].forEach(function(rel){
-                  $('.suggestions').append('<strong>Version: </strong>'+
-                    rel['version_number']+' ('+rel['version_date']+')<br>'
+                  $('#pubVersion-deet').append(rel['version_number']+' ('+rel['version_date']+')'
                   );
                 });
               }
@@ -1359,11 +1362,13 @@
                 $('#loading').hide();
 
                 var json = JSON.parse(data);
-                if(json['suggestedMaintainer']!=undefined){
-                  $('.suggestions').append('<strong>Maintainer: </strong>'+
-                    json['suggestedMaintainer']['maintainer_name']+' ('+json['suggestedMaintainer']['maintainer_email']+')<br>'
-                  );
-                }
+                 if(json['suggestedMaintainer']!=undefined){
+                  $('#pubMaintainer-deet').append(json['suggestedMaintainer']['maintainer_name']+' ('+json['suggestedMaintainer']['maintainer_email']+')');
+                 }
+                //   $('.suggestions').append('<strong>Maintainer: </strong>'+
+                //     json['suggestedMaintainer']['maintainer_name']+' ('+json['suggestedMaintainer']['maintainer_email']+')<br>'
+                //   );
+                // }
               });
     };
 
