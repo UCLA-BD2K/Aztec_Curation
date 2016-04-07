@@ -239,62 +239,89 @@ $("#pdf-form").submit(function(e)
 }); 
 
 
+
+  document.getElementById("titlebtn").addEventListener("click", function() {
+    copyToClipboard(document.getElementById("pubTitle-deet"));
+    });
+  document.getElementById("pubUrlbtn").addEventListener("click", function() {
+    copyToClipboard(document.getElementById("pubURL-deet"));
+    });
+  document.getElementById("gitDisbtn").addEventListener("click", function() {
+    copyToClipboard(document.getElementById("gitDisc-deet"));
+    });
+  document.getElementById("gitlangbtn").addEventListener("click", function() {
+    copyToClipboard(document.getElementById("gitLang-deet"));
+    });      
+  document.getElementById("gurlbtn").addEventListener("click", function() {
+    copyToClipboard(document.getElementById("gitURL-deet"));
+    });  
+  document.getElementById("publinkbtn").addEventListener("click", function() {
+    copyToClipboard(document.getElementById("pubLink-deet"));
+    });
+  document.getElementById("licensebtn").addEventListener("click", function() {
+    copyToClipboard(document.getElementById("pubLicense-deet"));
+    });
+  document.getElementById("maintainerbtn").addEventListener("click", function() {
+    copyToClipboard(document.getElementById("pubMaintainer-deet"));
+    });
+  document.getElementById("versionbtn").addEventListener("click", function() {
+    copyToClipboard(document.getElementById("pubVersion-deet"));
+    });  
+
+function copyToClipboard(elem) {
+    // create hidden text element, if it doesn't already exist
+    var targetId = "_hiddenCopyText_";
+    var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+    var origSelectionStart, origSelectionEnd;
+    if (isInput) {
+        // can just use the original source element for the selection and copy
+        target = elem;
+        origSelectionStart = elem.selectionStart;
+        origSelectionEnd = elem.selectionEnd;
+    } else {
+        // must use a temporary form element for the selection and copy
+        target = document.getElementById(targetId);
+        if (!target) {
+            var target = document.createElement("textarea");
+            target.style.position = "absolute";
+            target.style.left = "-9999px";
+            target.style.top = "0";
+            target.id = targetId;
+            document.body.appendChild(target);
+        }
+        target.textContent = elem.textContent;
+    }
+    // select the content
+    var currentFocus = document.activeElement;
+    target.focus();
+    target.setSelectionRange(0, target.value.length);
+    
+    // copy the selection
+    var succeed;
+    try {
+        succeed = document.execCommand("copy");
+    } catch(e) {
+        succeed = false;
+    }
+    // restore original focus
+    if (currentFocus && typeof currentFocus.focus === "function") {
+        currentFocus.focus();
+    }
+    
+    if (isInput) {
+        // restore prior selection
+        elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+    } else {
+        // clear temporary content
+        target.textContent = "";
+    }
+    return succeed;
+}
+
  });
 
-//     // End of Jquery - copy to clipboard attempt
-//   document.getElementById("copyButton").addEventListener("click", function() {
-//     copyToClipboard(document.getElementById("copyTarget"));
-// });
+    // End of Jquery - copy to clipboard attempt
 
-// function copyToClipboard(elem) {
-//     // create hidden text element, if it doesn't already exist
-//     var targetId = "_hiddenCopyText_";
-//     var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
-//     var origSelectionStart, origSelectionEnd;
-//     if (isInput) {
-//         // can just use the original source element for the selection and copy
-//         target = elem;
-//         origSelectionStart = elem.selectionStart;
-//         origSelectionEnd = elem.selectionEnd;
-//     } else {
-//         // must use a temporary form element for the selection and copy
-//         target = document.getElementById(targetId);
-//         if (!target) {
-//             var target = document.createElement("textarea");
-//             target.style.position = "absolute";
-//             target.style.left = "-9999px";
-//             target.style.top = "0";
-//             target.id = targetId;
-//             document.body.appendChild(target);
-//         }
-//         target.textContent = elem.textContent;
-//     }
-//     // select the content
-//     var currentFocus = document.activeElement;
-//     target.focus();
-//     target.setSelectionRange(0, target.value.length);
-    
-//     // copy the selection
-//     var succeed;
-//     try {
-//         succeed = document.execCommand("copy");
-//     } catch(e) {
-//         succeed = false;
-//     }
-//     // restore original focus
-//     if (currentFocus && typeof currentFocus.focus === "function") {
-//         currentFocus.focus();
-//     }
-    
-//     if (isInput) {
-//         // restore prior selection
-//         elem.setSelectionRange(origSelectionStart, origSelectionEnd);
-//     } else {
-//         // clear temporary content
-//         target.textContent = "";
-//     }
-//     return succeed;
-// }
 
 
   </script>
@@ -450,62 +477,62 @@ $("#pdf-form").submit(function(e)
 
          <div class='suggestions' style='word-wrap: break-word;'>
           <div class="pub-title" id="pubTitle">
-            <i class="ion-ios-copy-outline"> </i> 
+            <i class="ion-ios-copy-outline" id="titlebtn"> </i> 
             Publication Title
           </div>
           <div class="pub-rect" id="pubTitle-deet">
             Not Found
           </div>
           <div class="pub-title" id="pubURL">
-           <i class="ion-ios-copy-outline"> </i> Publication URL 
+           <i class="ion-ios-copy-outline" id="pubUrlbtn"> </i> Publication URL 
           </div>
           <div class="pub-rect" id="pubURL-deet">
             Not Found
           </div>
           <div class="pub-title" id="gitDisc">
-            <i class="ion-ios-copy-outline"> </i> 
+            <i class="ion-ios-copy-outline" id="gitDisbtn"> </i> 
             Github Description
           </div>
           <div class="pub-rect" id="gitDisc-deet">
             Not Found
            </div>
           <div class="pub-title" id="gitURL">
-            <i class="ion-ios-copy-outline"> </i> 
+            <i class="ion-ios-copy-outline" id="gurlbtn"> </i> 
             Github URL
           </div>
           <div class="pub-rect" id="gitURL-deet">
             Not Found
            </div>
           <div class="pub-title" id="gitLang">
-            <i class="ion-ios-copy-outline"> </i> 
+            <i class="ion-ios-copy-outline" id="gitlangbtn"> </i> 
             Github Language
           </div>
           <div class="pub-rect" id="gitLang-deet">
             Not Found
            </div>
           <div class="pub-title" id="pubLink">
-            <i class="ion-ios-copy-outline"> </i> 
+            <i class="ion-ios-copy-outline" id="publinkbtn"> </i> 
             Link
           </div>
           <div class="pub-rect" id="pubLink-deet">
             Not Found
            </div>
           <div class="pub-title" id="pubLicense">
-            <i class="ion-ios-copy-outline"> </i> 
+            <i class="ion-ios-copy-outline" id="licensebtn"> </i> 
             License
           </div>
           <div class="pub-rect" id="pubLicense-deet">
             Not Found
            </div>
           <div class="pub-title" id="pubVersion">
-            <i class="ion-ios-copy-outline"> </i> 
+            <i class="ion-ios-copy-outline" id="versionbtn"> </i> 
             Version
           </div>
           <div class="pub-rect" id="pubVersion-deet">
             Not Found
            </div>
           <div class="pub-title" id="pubMaintainer">
-            <i class="ion-ios-copy-outline"> </i> 
+            <i class="ion-ios-copy-outline" id="maintainerbtn"> </i> 
             Maintainers
           </div>
           <div class="pub-rect" id="pubMaintainer-deet">
