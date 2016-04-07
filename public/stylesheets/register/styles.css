@@ -370,7 +370,7 @@ text-transform: none;
 }
 
 .suggestions{
-  padding-top: 7%;
+  padding-top: 3%;
   font-weight: 100;
   visibility: collapse;
 }
@@ -398,13 +398,13 @@ padding-top: 2%;
     padding-right: 1%;
     /* width: 127%; */
     /* height: 90%; */
+    cursor: pointer;
+    z-index: 1000;
 }
 
 .ion-ios-copy-outline:hover{
     border: 1px solid #D8D8D8;
     padding-left: 5px;
-        cursor: pointer;
-
 
 }
 
