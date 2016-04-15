@@ -1,0 +1,685 @@
+{
+  "BioGPS.pdf": {
+    "links": [
+      "http://nar.oxfordjournals.org", 
+      "https://bitbucket.org/newgene/genedoc/overview).Plugin", 
+      "http://mygene.info).MyGene.info", 
+      "http://biogps.org/api.Gene", 
+      "http://creativecommons.org/licenses/by-nc/3.0", 
+      "http://mygene.info", 
+      "http://pypi.python.org", 
+      "http://mygene.info/doc", 
+      "http://mygene", 
+      "http://lucene.apache.org", 
+      "http://biogps.org"
+    ], 
+    "sourceLinks": [
+      "http://nar.oxfordjournals.org", 
+      "https://bitbucket.org/newgene/genedoc/overview).Plugin", 
+      "http://biogps.org"
+    ], 
+    "ack": " ", 
+    "abstract": "", 
+    "conclusions": [
+      [], 
+      []
+    ], 
+    "pubTitle": "BioGPS and MyGene.info: organizing online, gene-centric information", 
+    "summary": [], 
+    "affiliations": [
+      " Department of Molecular and Experimental Medicine The Scripps Research Institute ", 
+      " Department of Molecular and Experimental Medicine The Scripps Research Institute ", 
+      " Department of Molecular and Experimental Medicine The Scripps Research Institute "
+    ], 
+    "toolName": "BioGPS.pdf", 
+    "authors": [
+      " Chunlei Wu", 
+      " Ian Macleod", 
+      " Andrew I Su"
+    ], 
+    "keywords": [], 
+    "grants": []
+  }, 
+  "CAVIAR.pdf": {
+    "links": [
+      "http://www.genetics.org/lookup/suppl/doi:10.1534/genetics.114.167908/-/DC1Identifying", 
+      "http://www.genetics.org/lookup/suppl", 
+      "http://genetics.cs.ucla.edu/caviar/.ALTHOUGH"
+    ], 
+    "sourceLinks": [], 
+    "ack": " ", 
+    "abstract": "Although genome-wide association studies have successfully identified thousands of risk loci for complex traits, only a handful of the biologically causal variants, responsible for association at these loci, have been successfully identified. Current statistical methods for identifying causal variants at risk loci either use the strength of the association signal in an iterative conditioning framework or estimate probabilities for variants to be causal. A main drawback of existing methods is that they rely on the simplifying assumption of a single causal variant at each risk locus, which is typically invalid at many risk loci. In this work, we propose a new statistical framework that allows for the possibility of an arbitrary number of causal variants when estimating the posterior probability of a variant being causal. A direct benefit of our approach is that we predict a set of variants for each locus that under reasonable assumptions will contain all of the true causal variants with a high confidence level (e.g., 95%) even when the locus contains multiple causal variants. We use simulations to show that our approach provides 20\u201350% improvement in our ability to identify the causal variants compared to the existing methods at loci harboring multiple causal variants. We validate our approach using empirical data from an expression QTL study of CHI3L2 to identify new causal variants that affect gene expression at this locus. CAVIAR is publicly available online at", 
+    "conclusions": [
+      [], 
+      []
+    ], 
+    "pubTitle": "Identifying Causal Variants at Loci with Multiple Signals of Association A", 
+    "summary": [], 
+    "affiliations": [
+      " Department of Computer Science", 
+      " Department of Computer Science", 
+      " Department of Computer Science", 
+      " ", 
+      " "
+    ], 
+    "toolName": "CAVIAR.pdf", 
+    "authors": [
+      " Farhad Hormozdiari", 
+      " Emrah Kostem", 
+      " Eun Yong Kang", 
+      " Bogdan Pasaniuc", 
+      " Eleazar Eskin"
+    ], 
+    "keywords": [], 
+    "grants": []
+  }, 
+  "CloneView.pdf": {
+    "links": [
+      "http://n2t.net/ark:/87918", 
+      "http://dx.doi.org/10.1016/j.stemcr.2015", 
+      "http://creativecommons.org/licenses/by-nc-nd/4.0/).SUMMARYTime-lapse", 
+      "http://dx.doi.org/10.1016/j.stemcr.2015.08.002", 
+      "http://n2t.net/ark:/87918/d91591.stem", 
+      "http://n2t", 
+      "http://n2t.net/ark"
+    ], 
+    "sourceLinks": [], 
+    "ack": " Portions of this research were supported by the NIH NINDS (R01NS076709). The authors would like to thank the following students who assisted with the validation and correction of the segmentation, tracking, and lineaging results: Shravani Birewar, Hieu Bui, Fenglong Chen, Richard Chen, Thang Dao, Maria Enokian , Adam Freedman, Dhantha Gunarathna, Alexander Keller, Anthony Reed, Shihao Song, Joshua Stern, and Stephen Zachariah. ", 
+    "abstract": "Time-lapse microscopy can capture patterns of development through multiple divisions for an entire clone of proliferating cells. Images are taken every few minutes over many days, generating data too vast to process completely by hand. Computational analysis of this data can benefit from occasional human guidance. Here we combine improved automated algorithms with minimized human validation to produce fully corrected segmentation, tracking, and lineaging results with dramatic reduction in effort. A web-based viewer provides access to data and results. The improved approach allows efficient analysis of large numbers of clones. Using this method, we studied populations of progenitor cells derived from the anterior and posterior embryonic mouse cerebral cortex, each growing in a standardized culture environment. Progenitors from the anterior cortex were smaller, less motile, and produced smaller clones compared to those from the posterior cortex, demonstrating cell-intrinsic differences that may contribute to the areal organization of the cerebral cortex.", 
+    "conclusions": [
+      [], 
+      []
+    ], 
+    "pubTitle": "Stem Cell Reports Ar ticle Computational Image Analysis Reveals Intrinsic Multigenerational Differences between Anterior and Posterior Cerebral Cor tex Neural Progenitor Cells", 
+    "summary": [], 
+    "affiliations": [
+      " Department of Electrical and Computer Engineering Drexel University ", 
+      " Neural Stem Cell Institute", 
+      " Department of Electrical and Computer Engineering Drexel University ", 
+      " Department of Biomedical Engineering and Science Drexel University ", 
+      " Department of Biomedical Engineering and Science Drexel University ", 
+      " Neural Stem Cell Institute", 
+      " Neural Stem Cell Institute", 
+      " Department of Electrical and Computer Engineering Drexel University "
+    ], 
+    "toolName": "CloneView.pdf", 
+    "authors": [
+      " Mark R Winter", 
+      " Mo Liu", 
+      " David Monteleone", 
+      " Justin Melunis", 
+      " Uri Hershberg", 
+      " Susan K Goderie", 
+      " Sally Temple", 
+      " Andrew R Cohen"
+    ], 
+    "keywords": [], 
+    "grants": [
+      " Portions of this research were supported by the NIH NINDS (R01NS076709)."
+    ]
+  }, 
+  "Charge Prediction Machine.pdf": {
+    "links": [
+      "http://www.mono-project.com", 
+      "http://fields.scripps.edu/cpm"
+    ], 
+    "sourceLinks": [
+      "http://www.mono-project.com", 
+      "http://fields.scripps.edu/cpm"
+    ], 
+    "ack": " ", 
+    "abstract": "Electron transfer dissociation (ETD) can dissociate highly charged ions. Efficient analysis of ions dissociated with ETD requires accurate determination of charge states for calculation of molecular weight. We created an algorithm to assign the charge state of ions often used for ETD. The program, Charge Prediction Machine (CPM), uses Baye-sian decision theory to account for different charge reduction processes encountered in ETD and can also handle multiplex spectra. CPM correctly assigned charge states to 98% of the 13 097 MS2 spectra from a combined data set of four experiments. In a comparison between CPM and a competing program, Charger (ThermoFisher), CPM produced half the mistakes. An important element of proteomics is the process of protein identification. A common approach to protein identification involves the use of tandem mass spectrometry (MS/MS). In this process peptide ions are isolated, fragmented using collision-activated dissociation (CAD), and the fragment ions are analyzed to determine their mass to charge ratios (m/z). Tandem mass spectra are analyzed through protein sequence database searching , sequence tag analysis, or de novo interpretation. All of these processes require calculation of an accurate molecular weight for the peptide. 1-3 Peptides generated by trypsin digestion and ionized by elec-trospray ionization produce ions of predominately +2 and +3 charge states. Determining the charge state of peptide ions using CAD spectra and other features has been performed by several groups. 4-7 When the charge state cannot be determined it is common for a database search to be performed with a tandem mass spectrum for which a molecular weight has been calculated with both charge states. The correct answer and therefore the correct molecular weight is then determined by examining the sequence matches. This situation increases the computational burden for database searching and can increase the difficultly of correctly assigning tandem mass spectra to sequences, but in general this approach has worked reasonably well. Electron capture dissociation (ECD) and electron transfer dissociation (ETD) are new methods to dissociate ions in mass spectrometers. A feature common to both of these methods is a preference for highly charged ions, which generally means larger polypeptides or even proteins can be dissociated with these methods. Both methods cleave randomly along the polypeptide backbone and work well when trying to pinpoint the location of posttranslational modifications. When ETD or ECD is used, the charge states of polypeptides observed can run from +2 to +7 and up; thus, the challenge of calculating molecular weight is increased and existing software for CAD cannot be applied. The alternative to accurate calculation of molecular weight of testing all possible calculations for each potential charge state (\" all hypothesis search \") greatly increases the computational overhead associated with the analysis of ETD/ECD spectra and thus is not desirable. Sadygov et al. developed a method (Charger) using linear discriminant analysis with autocorrelation to decipher charge states associated with ETD. 8 In comparison to analysis with the all hypothesis search, we observed 15% fewer identifications suggesting the method was not fully optimized. We developed a new algorithm, Charge Prediction Machine (CPM), to accurately classify the charge states for ETD spectra. This algorithm is based on Bayesian decision theory and introduces a relaxation parameter to solve cases with low confidence and can deal with multiplexed spectra (different cofragmented ion species). CPM is shown to efficiently classify charge states up to +7 while greatly reducing the number of searches as compared to the all hypothesis searches. METHODS AND ALGORITHM Preparation of the Testing (Unlabeled) Data Set.", 
+    "conclusions": [
+      [], 
+      []
+    ], 
+    "pubTitle": "Charge Prediction Machine: Tool for Inferring Precursor Charge States of Electron Transfer Dissociation Tandem Mass Spectra", 
+    "summary": [], 
+    "affiliations": [
+      " Systems Engineering and Computer Science Program, Federal University of Rio de Janeiro. \u2021 The Scripps Research Institute. \u00a7 Biophysics Institute, Federal University", 
+      " ", 
+      " ", 
+      " ", 
+      " ", 
+      " Systems Engineering and Computer Science Program, Federal University of Rio de Janeiro. \u2021 The Scripps Research Institute. \u00a7 Biophysics Institute, Federal University", 
+      " ", 
+      " ", 
+      " Systems Engineering and Computer Science Program Biological Mass Spectrometry Laboratory COPPE Federal University of Rio de Janeiro ", 
+      " Laboratory for Control of Gene Expression The Scripps Research Institute ", 
+      " Biophysics Institute Federal University of Rio de Janeiro "
+    ], 
+    "toolName": "Charge Prediction Machine.pdf", 
+    "authors": [
+      " Paulo C Carvalho", 
+      " Daniel Cociorva", 
+      " Catherine C L Wong", 
+      " Maria Da Gloria", 
+      " C Carvalho", 
+      " Valmir C Barbosa", 
+      " John R Yates", 
+      " Iii ", 
+      " ", 
+      " ", 
+      " "
+    ], 
+    "keywords": [], 
+    "grants": []
+  }, 
+  "BraTumIA (Brain Tumor Image Analysis).pdf": {
+    "links": [
+      "http://www2.imm.dtu.dk", 
+      "http://p3.snf.ch/Project-140958", 
+      "https://wiki.nci.nih.gov/display/CIP/VASARI", 
+      "http://www.istb.unibe.ch/content/research/medical_image"
+    ], 
+    "sourceLinks": [
+      "http://p3.snf.ch/Project-140958", 
+      "http://www.istb.unibe.ch/content/research/medical_image", 
+      "http://www2.imm.dtu.dk"
+    ], 
+    "ack": " We thank the MR technicians of our department for their excellent support. We also greatly appreciate the support of Pietro Ballinari for statistical analyses. Conceived and designed the experiments: SB JS MR RW. Performed the experiments: NP SB RKV RW. Analyzed the data: NP SB. Contributed reagents/materials/analysis tools: SB AP PS JB. Wrote the paper: NP SB MR RW. ", 
+    "abstract": "Background and Purpose: Reproducible segmentation of brain tumors on magnetic resonance images is an important clinical need. This study was designed to evaluate the reliability of a novel fully automated segmentation tool for brain tumor image analysis in comparison to manually defined tumor segmentations.", 
+    "conclusions": [
+      [], 
+      []
+    ], 
+    "pubTitle": "Multi-Modal Glioblastoma Segmentation: Man versus Machine", 
+    "summary": [], 
+    "affiliations": [
+      " ", 
+      " ", 
+      " Department of Radiation Oncology University Hospital Inselspital and University of Bern ", 
+      " Department of Neurosurgery University Hospital Inselspital and University of Bern ", 
+      " Department of Neurosurgery University Hospital Inselspital and University of Bern ", 
+      " Support Center for Advanced Neuroimaging -Institute for Diagnostic and Interventional Neuroradiology University Hospital Inselspital and University of Bern ", 
+      " Support Center for Advanced Neuroimaging -Institute for Diagnostic and Interventional Neuroradiology University Hospital Inselspital and University of Bern ", 
+      " Institute of Surgical Technology and Biomechanics University of Bern ", 
+      " Support Center for Advanced Neuroimaging -Institute for Diagnostic and Interventional Neuroradiology University Hospital Inselspital and University of Bern "
+    ], 
+    "toolName": "BraTumIA (Brain Tumor Image Analysis).pdf", 
+    "authors": [
+      " Nicole Porz", 
+      " Stefan Bauer", 
+      " Alessia Pica", 
+      " Philippe Schucht", 
+      " J\u00fc Rgen Beck", 
+      " Rajeev Kumar Verma", 
+      " Johannes Slotboom", 
+      " Mauricio Reyes", 
+      " Roland Wiest"
+    ], 
+    "keywords": [], 
+    "grants": [
+      "We also greatly appreciate the support of Pietro Ballinari for statistical analyses.", 
+      " We thank the MR technicians of our department for their excellent support."
+    ]
+  }, 
+  "3D Slicer.pdf": {
+    "links": [
+      "http://www.nbirn.net", 
+      "http://www.tcl.tk", 
+      "http://www.ncrr.nih.gov/biotech/btresctr.asp", 
+      "http://www.itk.org", 
+      "http://www.vtk.org", 
+      "http://cisstweb.cs.jhu.edu635", 
+      "http://spl.harvard.edu/pages/projects/grants/nac", 
+      "http://www.kitware.com", 
+      "http://www.slicer.org", 
+      "http://www.cvshome.org"
+    ], 
+    "sourceLinks": [], 
+    "ack": " The authors would like to thank all the past and current Slicer developers. Special thanks to David Gering, Lauren O'Donnell and Nicole Aucoin for significant design and engineering contributions. This investigation was supported by NIH grant P41 RR13218 and the Biomedical Informatics Research Network (www.nbirn.net). ", 
+    "abstract": "To be applied to practical clinical research problems, medical image computing software requires infrastructure including routines to read and write various file formats, manipulate 2D and 3D coordinate systems, and present a consistent user interface paradigm and visualization metaphor. At the same time, research software needs to be flexible to facilitate implementation of new ideas. 3D Slicer is a project that aims to provide a platform for a variety of applications through a community-development model. The resulting system has been used for research in both basic biomedical and clinically applied settings. 3D Slicer is built on a set of powerful and widely used software components (Tcl/Tk, VTK, ITK) to which is added an application layer that makes the system usable by non-programmer end-users. Using this approach, advanced applications including image guided surgery, robotics, brain mapping, and virtual colonoscopy have been implemented as 3D Slicer modules. In this paper we discuss some of the goals of the 3D Slicer project and how the architecture helps support those goals. We also point out some of the practical issues which arise from this approach.", 
+    "conclusions": [
+      [], 
+      []
+    ], 
+    "pubTitle": "3D SLICER", 
+    "summary": [], 
+    "affiliations": [
+      " ", 
+      " Brigham and Women's Hospital Surgical Planning Laboratory ", 
+      " Brigham and Women's Hospital Surgical Planning Laboratory "
+    ], 
+    "toolName": "3D Slicer.pdf", 
+    "authors": [
+      " Steve Pieper", 
+      " Michael Halle", 
+      " Ron Kikinis"
+    ], 
+    "keywords": [], 
+    "grants": [
+      "This investigation was supported by NIH grant P41 RR13218 and the Biomedical Informatics Research Network (www.nbirn.net). "
+    ]
+  }, 
+  "Carimas.pdf": {
+    "links": [], 
+    "sourceLinks": [], 
+    "ack": " ", 
+    "abstract": "Purpose Carimas\u2122 (Cardiac Image Analysis System) is a new software package developed at the Turku PET Centre for the quantitation of PET studies of the heart with a broad range of tracers. The goal of this study was to assess the reproducibility of results the package provides for myocar-dial perfusion (MP) quantitation using 15 O-labelled water. Methods Four observers with various levels of experience in nuclear medicine independently analysed 20 MP studies (10 rest flow: \" rest \" , 10 adenosine-induced hyperaemia: \" stress \"). Each study was analysed twice. The linear mixed model for repeated measures was fitted to the data to calculate intraclass correlation coefficients (ICC), differences between the repeats (the intraobserver differences) and differences between the observers (the interobserver differences). Also, Pearson correlation coefficients (r) were calculated and Bland-Altman plots were drawn. The reproducibility of MP was assessed on global, regional and segmental levels. Thereafter, this analysis was applied in 48 consecutive clinical patients with suspected coronary heart disease (CHD). Results For the experienced observer the Pearson r for all segments was 0.974 at rest and 0.978 at stress (p<0.0001), and the repeatability coefficients were 0.145 ml/g per min (15.5% of the average) and 0.389 ml/g per min (14.9%), correspondingly. The ICC reflected very good overall reproducibility. The intraobserver and interobserver differences were small, and the difference between the most and the least experienced observers at stress was 8.5% for the global MP. The clinical accuracy of the perfusion in the detection of CHD was excellent (positive predictive value 91% and negative predictive value 88%) against invasive angiography. Conclusion The results demonstrate high reproducibility of myocardial perfusion quantitation with 15 O-labelled water PET using Carimas\u2122. The results support the feasibility of robust analysis and good clinical accuracy.", 
+    "conclusions": [
+      [], 
+      []
+    ], 
+    "pubTitle": "Myocardial perfusion quantitation with 15 O-labelled water PET: high reproducibility of the new cardiac analysis software (Carimas\u2122)", 
+    "summary": [], 
+    "affiliations": [
+      " ", 
+      " ", 
+      " ", 
+      " ", 
+      " ", 
+      " ", 
+      " ", 
+      " ", 
+      " ", 
+      " ", 
+      " ", 
+      " ", 
+      " ", 
+      " ", 
+      " ", 
+      " ", 
+      " ", 
+      " ", 
+      " ", 
+      " ", 
+      " ", 
+      " ", 
+      " Turku PET Centre IM Sechenov Institute of Evolutionary Physiology and Biochemistry University of Turku ", 
+      " Department of Clinical Physiology and Nuclear Medicine Russian Academy of Sciences St. Petersburg ", 
+      " Turku University Hospital University of Turku ", 
+      " Department of Biostatistics Haukeland University Hospital University of Bergen ", 
+      " I. Lisinen Research Centre of Applied and Preventive Cardiovascular Medicine University of Turku ", 
+      " Department of Internal Medicine University of Turku ", 
+      " Turku University Hospital"
+    ], 
+    "toolName": "Carimas.pdf", 
+    "authors": [
+      " Sergey V Nesterov", 
+      " Chunlei Han", 
+      " Maija M\u00e4ki", 
+      " Sami Kajander", 
+      " Alexandru G Naum", 
+      " Hans Helenius", 
+      " Irina Lisinen", 
+      " Heikki Ukkonen", 
+      " Mikko Pietil\u00e4", 
+      " Esa Joutsiniemi", 
+      " Juhani Knuuti", 
+      " S V Nesterov", 
+      " C Han", 
+      " S Kajander", 
+      " A G Naum", 
+      " J Knuuti", 
+      " S V Nesterov", 
+      " M M\u00e4ki", 
+      " H Helenius", 
+      " H Ukkonen", 
+      " M Pietil\u00e4", 
+      " E Joutsiniemi", 
+      " ", 
+      " ", 
+      " ", 
+      " ", 
+      " ", 
+      " ", 
+      " "
+    ], 
+    "keywords": [
+      "Myocardial perfusion imaging Freeware", 
+      "Linear mixed models PET", 
+      "Reproducibility Intraclass correlation coefficient"
+    ], 
+    "grants": []
+  }, 
+  "Brainstorm.pdf": {
+    "links": [
+      "http://www.hindawi.comVolume2014International", 
+      "http://www.fil.ion.ucl.ac.uk/spm", 
+      "http://www.hindawi.comVolume", 
+      "http://neuroimage.usc.edu/brainstorm.References[1", 
+      "http://www.vbulletin.com/.[31", 
+      "http://www.hindawi.comInternational", 
+      "http://fieldtrip.fcdonders.nl/.[35", 
+      "http://www", 
+      "http://www.nmr.mgh", 
+      "http://www.hindawi.comAdvancesinArtificial", 
+      "http://moinmo.in/.[30", 
+      "http://surfer.nmr.mgh.harvard.edu/.[34"
+    ], 
+    "sourceLinks": [
+      "http://www.nmr.mgh", 
+      "http://neuroimage.usc.edu/brainstorm.References[1", 
+      "http://www"
+    ], 
+    "ack": " This software was generated primarily with support from the National Institutes of Health under Grants nos. R01- EB002010, R01-EB009048, and R01-EB000473. Primary support also includes permanent site support from the Centre National de la Recherche Scientifique (CNRS, France) for the Cognitive Neuroscience and Brain Imaging Laboratory (LaSalp\u00eatr\u00ec ere Hospital and Pierre and Marie Curie University, Paris, France). Additional support was provided by two grants from the French National Research Agency (ANR) to the Cognitive Neuroscience Unit (Inserm/CEA, Neurospin, France) and to the ViMAGINE project (ANR-08-BLAN-0250), and by the Epilepsy Center in the Cleveland Clinic Neurological Institute. The authors are grateful to all the people who contributed to the conception, the development, or the validation of specific Brainstorm functionalities. In alphabetical order: Charles Aissani, Syed Ashrafulla, Elizabeth Bock, Lucie Charles, Felix Darvas, Ghislaine Dehaene-Lambertz, Claude Delpuech, Belma Dogdas, Antoine Ducorps, Guillaume Dumas, John Ermer, Line Garnero, Alexandre Gramfort , Matti H\u00e4m\u00e4l\u00e4inen, Louis Hovasse, Esen Kucukaltun- Yildirim, Etienne Labyt, Karim N'Diaye, Alexei Ossadtchi, Rey Ramirez, Denis Schwartz, Darren Weber, and Lydia Yahia-Cherif. The software, extensive documentation, tutorial data, user forum, and reference publications are available at http://neuroimage.usc.edu/brainstorm. ", 
+    "abstract": "Brainstorm is a collaborative open-source application dedicated to magnetoencephalography (MEG) and electroencephalography (EEG) data visualization and processing, with an emphasis on cortical source estimation techniques and their integration with anatomical magnetic resonance imaging (MRI) data. The primary objective of the software is to connect MEG/EEG neuroscience investigators with both the best-established and cutting-edge methods through a simple and intuitive graphical user interface (GUI).", 
+    "conclusions": [
+      [], 
+      []
+    ], 
+    "pubTitle": "Brainstorm: A User-Friendly Application for MEG/EEG Analysis", 
+    "summary": [], 
+    "affiliations": [
+      " Signal & Image Processing Institute University of Southern California ", 
+      " Departments of Neurology & Biophysics MEG Program Froedtert & Medical College of Wisconsin ", 
+      " Epilepsy Center Cleveland Clinic Neurological Institute ", 
+      " MEG Lab McGovern Institute for Brain Research Massachusetts Institute of Technology ", 
+      " Signal & Image Processing Institute University of Southern California "
+    ], 
+    "toolName": "Brainstorm.pdf", 
+    "authors": [
+      " Fran\u00e7ois Tadel", 
+      " Sylvain Baillet", 
+      " John C Mosher", 
+      " Dimitrios Pantazis", 
+      " Richard M Leahy"
+    ], 
+    "keywords": [], 
+    "grants": [
+      "Primary support also includes permanent site support from the Centre National de la Recherche Scientifique (CNRS, France) for the Cognitive Neuroscience and Brain Imaging Laboratory (LaSalp\u00eatr\u00ec ere Hospital and Pierre and Marie Curie University, Paris, France).", 
+      " This software was generated primarily with support from the National Institutes of Health under Grants nos.", 
+      "Additional support was provided by two grants from the French National Research Agency (ANR) to the Cognitive Neuroscience Unit (Inserm/CEA, Neurospin, France) and to the ViMAGINE project (ANR-08-BLAN-0250), and by the Epilepsy Center in the Cleveland Clinic Neurological Institute."
+    ]
+  }, 
+  "BRAINScut.pdf": {
+    "links": [
+      "http://www.csie.ntu.edu.tw", 
+      "http://annie.sourceforge.net", 
+      "http://www.psychiatry.uiowa", 
+      "http://www.itk.org"
+    ], 
+    "sourceLinks": [
+      "http://annie.sourceforge.net", 
+      "http://www.itk.org", 
+      "http://www.psychiatry.uiowa"
+    ], 
+    "ack": " ", 
+    "abstract": "The large amount of imaging data collected in several ongoing multi-center studies requires automated methods to delineate brain structures of interest. We have previously reported on using artificial neural networks (ANN) to define subcortical brain structures. Here we present several automated segmentation methods using multidimensional registration. A direct comparison between template, probability, artificial neural network (ANN) and support vector machine (SVM)-based automated segmentation methods is presented. Three metrics for each segmentation method are reported in the delineation of subcortical and cerebellar brain regions. Results show that the machine learning methods outperform the template and probability-based methods. Utilization of these automated segmentation methods may be as reliable as manual raters and require no rater intervention.", 
+    "conclusions": [
+      [], 
+      []
+    ], 
+    "pubTitle": "Registration and machine learning-based automated segmentation of subcortical and cerebellar brain structures", 
+    "summary": [], 
+    "affiliations": [
+      " Department of Radiology The University of Iowa Iowa City ", 
+      " ", 
+      " Department of Psychiatry The University of Iowa Iowa City ", 
+      " Vital Images, Inc", 
+      " Department of Psychiatry The University of Iowa Iowa City ", 
+      " Department of Psychiatry The University of Iowa Iowa City "
+    ], 
+    "toolName": "BRAINScut.pdf", 
+    "authors": [
+      " Stephanie Powell", 
+      " Vincent A Magnotta", 
+      " Hans Johnson", 
+      " Vamsi K Jammalamadaka", 
+      " Ronald Pierson", 
+      " Nancy C Andreasen"
+    ], 
+    "keywords": [
+      "Brain segmentation", 
+      "Registration-based segmentation", 
+      "Support vector machine", 
+      "Artificial neural networks", 
+      "MRI"
+    ], 
+    "grants": []
+  }, 
+  "ASGENSENG.pdf": {
+    "links": [
+      "http://cran.r-project.org/web/packages/ExomeDepth/vignettes", 
+      "http://nar.oxfordjournals.org", 
+      "http://hapmap.ncbi.nlm.nih.gov/downloads/phasing", 
+      "http://creativecommons.org/licenses/by/4.0", 
+      "http://ccr.coriell.org", 
+      "http://www.bios.unc.edu", 
+      "http://gatkforums", 
+      "https://sourceforge.net/projects/asgenseng/.INTRODUCTIONCopy-number", 
+      "https://sourceforge.net/projects", 
+      "https://sourceforge.net/projects/asgenseng.WEB"
+    ], 
+    "sourceLinks": [
+      "http://nar.oxfordjournals.org", 
+      "http://hapmap.ncbi.nlm.nih.gov/downloads/phasing", 
+      "http://www.bios.unc.edu", 
+      "https://sourceforge.net/projects/asgenseng/.INTRODUCTIONCopy-number", 
+      "https://sourceforge.net/projects", 
+      "https://sourceforge.net/projects/asgenseng.WEB"
+    ], 
+    "ack": " We thank the 1000 Genomes Project for providing access to the data used in this study. We also thank two anonymous reviewers for their helpful comments. ", 
+    "abstract": "Copy-number variants (CNVs) are a major form of genetic variation and a risk factor for various human diseases, so it is crucial to accurately detect and characterize them. It is conceivable that allele-specific reads from high-throughput sequencing data could be leveraged to both enhance CNV detection and produce allele-specific copy number (ASCN) calls. Although statistical methods have been developed to detect CNVs using whole-genome sequence (WGS) and/or whole-exome sequence (WES) data, information from allele-specific read counts has not yet been adequately exploited. In this paper , we develop an integrated method, called AS-GENSENG, which incorporates allele-specific read counts in CNV detection and estimates ASCN using either WGS or WES data. To evaluate the performance of AS-GENSENG, we conducted extensive simulations, generated empirical data using existing WGS and WES data sets and validated predicted CNVs using an independent methodology. We conclude that AS-GENSENG not only predicts accurate ASCN calls but also improves the accuracy of total copy number calls, owing to its unique ability to exploit information from both total and allele-specific read counts while accounting for various experimental biases in sequence data. Our novel, user-friendly and computationally efficient method and a complete analytic protocol is freely available at https://sourceforge.net/projects/asgenseng/.", 
+    "conclusions": [
+      [], 
+      []
+    ], 
+    "pubTitle": "Allele-specific copy-number discovery from whole-genome and whole-exome sequencing", 
+    "summary": [], 
+    "affiliations": [
+      " Department of Computer Science University of North Carolina at Chapel Hill ", 
+      " Department of Computer Science University of California ", 
+      " Department of Biostatistics University of North Carolina at Chapel Hill ", 
+      " Department of Genetics University of North Carolina at Chapel Hill ", 
+      " Department of Genetics University of North Carolina at Chapel Hill "
+    ], 
+    "toolName": "ASGENSENG.pdf", 
+    "authors": [
+      " Weibo Wang", 
+      " Wei Wang", 
+      " Wei Sun", 
+      " James J Crowley", 
+      " Jin P Szatkiewicz"
+    ], 
+    "keywords": [], 
+    "grants": []
+  }, 
+  "ASAPRatio.pdf": {
+    "links": [
+      "http://pubs.acs.org.Received", 
+      "http://www.proteomecenter.org/software.php.ACKNOWLEDGMENT"
+    ], 
+    "sourceLinks": [
+      "http://www.proteomecenter.org/software.php.ACKNOWLEDGMENT"
+    ], 
+    "ack": " ", 
+    "abstract": "We describe an algorithm for the automated statistical analysis of protein abundance ratios (ASAPRatio) of proteins contained in two samples. Proteins are labeled with distinct stable-isotope tags and fragmented, and the tagged peptide fragments are separated by liquid chromatography (LC) and analyzed by electrospray ionization (ESI) tandem mass spectrometry (MS/MS). The algorithm utilizes the signals recorded for the different isotopic forms of peptides of identical sequence and numerical and statistical methods, such as Savitzky-Golay smoothing filters, statistics for weighted samples, and Dixon's test for outliers, to evaluate protein abundance ratios and their associated errors. The algorithm also provides a statistical assessment to distinguish proteins of significant abundance changes from a population of proteins of unchanged abundance. To evaluate its performance, two sets of LC-ESI-MS/MS data were analyzed by the ASAPRatio algorithm without human intervention, and the data were related to the expected and manually validated values. The utility of the ASAPRatio program was clearly demonstrated by its speed and the accuracy of the generated protein abundance ratios and by its capability to identify specific core components of the RNA polymerase II transcription complex within a high background of copurifying proteins. Quantitative proteomics plays an increasingly important role in biological and medical research. 1-3 By systematically measuring protein abundance changes in cells, tissues, or body fluids induced by changing environmental or physiological conditions, quantitative proteomics can provide insights into the molecular changes that accompany or induce these conditions. 4,5 In addition, quantitative proteomics can be used to characterize the composition of macromolecular complexes and changes in complex composition and abundance that accompany changes in cell states. 6,7 Protein identification and quantification are two distinct but integrated essentials in quantitative proteomics. Traditionally, proteins from different biological origins were separated by two-dimensional gel electrophoresis (2DE), and quantification was achieved by comparing the staining intensity of the spots representing the same protein in different gels. Selected protein spots were then excised, proteolyzed, and analyzed by mass spectrometry (MS) which led to protein identification. 8 Recently, a second technique was developed that is based on stable isotope tagging of proteins and automated peptide tandem mass spec-trometry (MS/MS). 1 In this method, proteins contained in different samples are labeled with a distinct isotopic signature by metabolic labeling, 9-12 enzymatic reaction, 13,14 or chemical reaction. 15-17 The differentially labeled samples are then combined and concurrently processed and analyzed. In one implementation of this method, the combined labeled sample is digested, and the resulting peptide mixture is analyzed by multidimensional liquid chromatography (LC) and electrospray ionization (ESI) MS/MS. In this way, protein identification and quantification are accomplished by the identification and quantification of the corresponding sibling peptides. Importantly, in this method peptide identification and quantification are determined in a single, automated operation. Ideker, T.; Thorsson, V.; Ranish, J. A.; Christmas, R.; Buhler, J.; Eng, J. K.; Bumgarner, R.; Goodlett, D. R.; Aebersold, R.; Hood, L. Science 2001, 292, 929-934. (5) Han, D. K.; Eng, J.; Zhou, H.; Aebersold, R. Nat. Biotechnol. 2001, 19, 946-951. (6) Ranish, J. A.; Yi, E. C.; Leslie, D. M.; Purvine, S. O.; Goodlett, D. R.; Eng, J.; Aebersold, R. Nat. Genet. 2003, 33, 349-355. (7) Blagoev, B.; Kratchmarova, I.; Ong, S. E.; Nielsen, M.; Foster, L. J.; Mann, M. Nat. Biotechnol. 2003, 21, 315-318. (8) Shevchenko, A.; Jensen, O. N.; Podtelejnikov, A. V.; Sagliocco, F.; Wilm, M.; Vorm, O.; Mortensen, P.; Boucherie, H.; Mann, M. Jensen, P. K.; Anderson, G. A.; Lipton, M. S.; Peden, K. K.; Martinovic, S.; Tolic, N.; Bruce, J. E.; Smith, R. D. J. Am. Chem. Soc. 1999, 121, 7949-7950. (11) Ong, S. E.; Blagoev, B.; Kratchmarova, I.; Kristensen, D. B.; Steen, H.; Pandey, A.; Mann, M. Mol. Cell. Proteomics 2002, 1, 376-386. (12) Washburn, M. P.; Ulaszek, R.; Deciu, C.; Schieltz, D. M.; Yates, J. R., III. Anal. Chem 2002, 74, 1650-1657. (13) Mirgorodskaya, O. A.; Kozmin, Y. P.; Titov, M. I.; Korner, R.; Sonksen, C. P.; Roepstorff, P. Rapid Commun. Mass Spectrom. 2000, 14, 1226-1232. (14) Yao, X.; Freas, A.; Ramirez, J.; Demirev, P. A.; Fenselau, C. Anal. Chem. 2001, 73, 2836-2842. (15) Gygi, S. P.; Rist, B.; Gerber, S. A.; Turecek, F.; Gelb, M. H.; Aebersold, R. Nat. Biotechnol. 1999, 17, 994-999. (16) Goodlett, D. R.; Keller, A.; Watts, J. D.; Newitt, R.; Yi, E. C.; Purvine, S.; Eng, J. K.; von Haller, P.; Aebersold, R.; Kolker, E.", 
+    "conclusions": [
+      [], 
+      []
+    ], 
+    "pubTitle": "Automated Statistical Analysis of Protein Abundance Ratios from Data Generated by Stable-Isotope Dilution and Tandem Mass Spectrometry", 
+    "summary": [], 
+    "affiliations": [
+      " The Institute for Systems Biology", 
+      " The Institute for Systems Biology", 
+      " The Institute for Systems Biology", 
+      " The Institute for Systems Biology"
+    ], 
+    "toolName": "ASAPRatio.pdf", 
+    "authors": [
+      " Xiao-Jun Li", 
+      " Hui Zhang", 
+      " Jeffrey A Ranish", 
+      " Ruedi Aebersold"
+    ], 
+    "keywords": [], 
+    "grants": []
+  }, 
+  "AnalyzeFMRI.pdf": {
+    "links": [
+      "http://www.fil.ion.ucl.ac.uk/spm", 
+      "http://CRAN.R-project.org/doc/Rnews/.Marchini", 
+      "http://CRAN.R-project.org/package=AnalyzeFMRI", 
+      "http://brainvisa.info", 
+      "http://nifm.ujf-grenoble.fr", 
+      "http://www.jstatsoft.org", 
+      "http://www.fmrib.ox.ac.uk/fsl", 
+      "http://CRAN.R-project.org/package=Rniftilib.Henson", 
+      "http://www.nitrc.org/projects/gift", 
+      "http://nipy.sourceforge.net", 
+      "http://www", 
+      "http://CRAN", 
+      "http://www.jstatsoft.org/v44/i14/.Whitcher", 
+      "http://www.fmrib", 
+      "http://www.jstatsoft", 
+      "http://CRAN.R-project.org/view=MedicalImaging.Whitcher", 
+      "http://www.jstatsoft.org/v44/i08", 
+      "http://www.jstatsoft.org/Temporal", 
+      "http://www.MRIcro", 
+      "http://www.amstat.org/Submitted", 
+      "http://www.neurostatistician.eu/Journal", 
+      "http://useR2010.org"
+    ], 
+    "sourceLinks": [
+      "http://nipy.sourceforge.net"
+    ], 
+    "ack": " C\u00e9cile Bordier is recipient of a grant from Institut National de la Sant\u00e9 et de la Recherche Scientifique (INSERM). Pierre Lafaye de Micheaux is recipient of a grant from the Natural Sciences and Engineering Research Council (NSERC) of Canada. The authors would also like to thank Professor Christian Jutten for many helpful comments, as well as the referees and associate editors. ", 
+    "abstract": "For statistical analysis of functional magnetic resonance imaging (fMRI) data sets, we propose a data-driven approach based on independent component analysis (ICA) implemented in a new version of the AnalyzeFMRI R package. For fMRI data sets, spatial dimension being much greater than temporal dimension, spatial ICA is the computa-tionally tractable approach generally proposed. However, for some neuroscientific applications , temporal independence of source signals can be assumed and temporal ICA becomes then an attractive exploratory technique. In this work, we use a classical linear algebra result ensuring the tractability of temporal ICA. We report several experiments on synthetic data and real MRI data sets that demonstrate the potential interest of our R package.", 
+    "conclusions": [
+      [], 
+      []
+    ], 
+    "pubTitle": "Temporal and Spatial Independent Component Analysis for fMRI Data Sets Embedded in the AnalyzeFMRI R Package", 
+    "summary": [], 
+    "affiliations": [
+      " INSERM U836 INSERM U836 Universit\u00e9 de Montr\u00e9al ", 
+      " INSERM U836 INSERM U836 Universit\u00e9 de Montr\u00e9al ", 
+      " INSERM U836 INSERM U836 Universit\u00e9 de Montr\u00e9al "
+    ], 
+    "toolName": "AnalyzeFMRI.pdf", 
+    "authors": [
+      " C\u00e9cile Bordier", 
+      " Michel Dojat", 
+      " Pierre Lafaye De Micheaux"
+    ], 
+    "keywords": [
+      "spatial ICA", 
+      "temporal ICA", 
+      "multivariate analysis", 
+      "magnetic resonance imaging", 
+      "neuroimaging"
+    ], 
+    "grants": [
+      "Pierre Lafaye de Micheaux is recipient of a grant from the Natural Sciences and Engineering Research Council (NSERC) of Canada.", 
+      " C\u00e9cile Bordier is recipient of a grant from Institut National de la Sant\u00e9 et de la Recherche Scientifique (INSERM)."
+    ]
+  }, 
+  "BD2KPubMed.pdf": {
+    "links": [
+      "http://dx.doi.org/10.1016/j.jacc.2015.04.072Please", 
+      "http://www.heartproteome.org"
+    ], 
+    "sourceLinks": [], 
+    "ack": " ", 
+    "abstract": "The human genome consists of more than 20,000 genes; about one-half have been found in microarray experiments to be expressed in the heart. We asked which", 
+    "conclusions": [
+      [], 
+      []
+    ], 
+    "pubTitle": "Letters Prioritizing Proteomics Assay Development for Clinical Translation", 
+    "summary": [], 
+    "affiliations": [], 
+    "toolName": "BD2KPubMed.pdf", 
+    "authors": [], 
+    "keywords": [], 
+    "grants": []
+  }, 
+  "Census.pdf": {
+    "links": [
+      "http://www.nature.com/naturemethodsBRIEF", 
+      "http://npg.nature.com/reprintsandpermissions1", 
+      "http://www.nature.com/naturemethodsa14N-labeled15N-labeledMixb", 
+      "http://www.nature.com/naturemethods", 
+      "http://www.nature.com/naturemethodsA", 
+      "http://fields.scripps.edu"
+    ], 
+    "sourceLinks": [
+      "http://www.nature.com/naturemethodsA", 
+      "http://fields.scripps.edu", 
+      "http://www.nature.com/naturemethods"
+    ], 
+    "ack": " ", 
+    "abstract": "", 
+    "conclusions": [
+      [], 
+      []
+    ], 
+    "pubTitle": "A quantitative analysis software tool for mass spectrometry\u2013based proteomics", 
+    "summary": [], 
+    "affiliations": [
+      " Department of Cell Biology The Scripps Research Institute ", 
+      " Department of Cell Biology The Scripps Research Institute ", 
+      " Department of Cell Biology The Scripps Research Institute ", 
+      " Department of Cell Biology The Scripps Research Institute ", 
+      " Department of Cell Biology The Scripps Research Institute "
+    ], 
+    "toolName": "Census.pdf", 
+    "authors": [
+      " Sung Kyu Park", 
+      " John D Venable", 
+      " Tao Xu", 
+      " John R Yates", 
+      " Iii "
+    ], 
+    "keywords": [], 
+    "grants": []
+  }, 
+  "AITP.pdf": {
+    "links": [], 
+    "sourceLinks": [], 
+    "ack": " ", 
+    "abstract": "\u2014An algorithmic information-theoretic method is presented for object-level summarization of meaningful changes in image sequences. Object extraction and tracking data are represented as an attributed tracking graph (ATG). Time courses of object states are compared using an adaptive information distance measure, aided by a closed-form multidimensional quantization. The notion of meaningful summarization is captured by using the gap statistic to estimate the randomness deficiency from algorithmic statistics. The summary is the clustering result and feature subset that maximize the gap statistic. This approach was validated on four bioimaging applications: 1) It was applied to a synthetic data set containing two populations of cells differing in the rate of growth, for which it correctly identified the two populations and the single feature out of 23 that separated them; 2) it was applied to 59 movies of three types of neuroprosthetic devices being inserted in the brain tissue at three speeds each, for which it correctly identified insertion speed as the primary factor affecting tissue strain; 3) when applied to movies of cultured neural progenitor cells, it correctly distinguished neurons from progenitors without requiring the use of a fixative stain; and 4) when analyzing intracellular molecular transport in cultured neurons undergoing axon specification, it automatically confirmed the role of kinesins in axon specification.", 
+    "conclusions": [
+      [], 
+      []
+    ], 
+    "pubTitle": "Automatic Summarization of Changes in Biological Image Sequences Using Algorithmic Information Theory", 
+    "summary": [], 
+    "affiliations": [
+      " ", 
+      " ", 
+      " ", 
+      " ", 
+      " "
+    ], 
+    "toolName": "AITP.pdf", 
+    "authors": [
+      " Andrew R Cohen", 
+      " Christopher S Bjornsson", 
+      " Sally Temple", 
+      " Gary Banker", 
+      " Badrinath Roysam"
+    ], 
+    "keywords": [
+      "clustering", 
+      "algorithmic information theory", 
+      "information distance", 
+      "algorithmic statistics", 
+      "Index Terms\u2014Image sequence analysis", 
+      "gap statistic"
+    ], 
+    "grants": []
+  }, 
+  "Analysis of Functional NeuroImages (AFNI).pdf": {
+    "links": [], 
+    "sourceLinks": [], 
+    "ack": " The development of the AFNI package was greatly facilitated by feedback and encouragement from many neuroscientists, including J. R. Binder, E. A. DeYoe, J. S. Hyde, S. M. Rao, E. A. Stein, and F. Z. Yetkin. This work was partially supported by the National Institutes of Health Grant MH51358. ", 
+    "abstract": "A package of computer programs for analysis and visualization of three-dimensional human brain functional magnetic resonance imaging (FMRI) results is described. The software can color overlay neural activation maps onto higher resolution anatomical scans. Slices in each cardinal plane can be viewed simultaneously. Manual placement of markers on anatomical landmarks allows transformation of anatomical and functional scans into stereotaxic (Talair-ach\u2013Tournoux) coordinates. The techniques for automatically generating transformed functional data sets from manually labeled anatomical data sets are described. Facilities are provided for several types of statistical analyses of multiple 3D functional data sets. The programs are written in ANSI C and Motif 1.2 to run on Unix workstations.", 
+    "conclusions": [
+      [], 
+      []
+    ], 
+    "pubTitle": "AFNI: Software for Analysis and Visualization of Functional Magnetic Resonance Neuroimages", 
+    "summary": [], 
+    "affiliations": [], 
+    "toolName": "Analysis of Functional NeuroImages (AFNI).pdf", 
+    "authors": [], 
+    "keywords": [], 
+    "grants": [
+      "This work was partially supported by the National Institutes of Health Grant MH51358. "
+    ]
+  }
+}
