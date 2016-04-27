@@ -5,7 +5,7 @@ var ToolController = require('../controllers/tool-controller');
 var HomeController = require('../controllers/home-controller');
 var UserController = require('../controllers/user-controller');
 var multer  = require('multer');
-var upload = multer({dest: 'uploads/'});
+var upload = multer({dest: 'slots-extraction/data/papers/'}); //uploads/
 var PdfController = require('../controllers/pdf-controller.js');
 
 /* GET home page. */

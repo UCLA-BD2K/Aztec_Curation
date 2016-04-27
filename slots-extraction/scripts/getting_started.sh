@@ -9,20 +9,26 @@
 
 clear 
 
-python json_extract.py -source ../data/solrResources.json -USRFilename ../data/userSubmittedRecords.json -USRPubDOIFilename ../data/userSubmittedWithPubDOIs.json
+#python /Users/davidmeng/Desktop/Aztec_Curation/slots-extraction/scripts/json_extract.py -source /Users/davidmeng/Desktop/Aztec_Curation/slots-extraction/data/solrResources.json -USRFilename /Users/davidmeng/Desktop/Aztec_Curation/slots-extraction/data/userSubmittedRecords.json -USRPubDOIFilename /Users/davidmeng/Desktop/Aztec_Curation/slots-extraction/data/userSubmittedWithPubDOIs.json
 
-echo "'Source: User Submitted' records with PublicationDOI filtered out."
+#echo "'Source: User Submitted' records with PublicationDOI filtered out."
 
-python crossref_extract.py -source ../data/userSubmittedWithPubDOIs.json -incorrectsOut ../data/incorrectDOIRecords.json -correctsOut ../data/correctDOIRecords.json -crossrefOut ../data/crossrefRecords.json -journalsOut ../data/journalCounts.json
+#python /Users/davidmeng/Desktop/Aztec_Curation/slots-extraction/scripts/crossref_extract.py -source /Users/davidmeng/Desktop/Aztec_Curation/slots-extraction/data/userSubmittedWithPubDOIs.json -incorrectsOut /Users/davidmeng/Desktop/Aztec_Curation/slots-extraction/data/incorrectDOIRecords.json -correctsOut /Users/davidmeng/Desktop/Aztec_Curation/slots-extraction/data/correctDOIRecords.json -crossrefOut /Users/davidmeng/Desktop/Aztec_Curation/slots-extraction/data/crossrefRecords.json -journalsOut /Users/davidmeng/Desktop/Aztec_Curation/slots-extraction/data/journalCounts.json
 
-echo "CrossRef records for the user submitted tools with PublicationDOI written to file."
+#echo "CrossRef records for the user submitted tools with PublicationDOI written to file."
 
 # For conveniece, "papers" holding some journal pdfs are already given here. 
 # Please See: Albert's code should handle the downloading of the PDFs from actual DOIs. 
-python pdf_extract.py -pdfpath ../data/papers/ -outpathXML ../data/XMLExtracts/ -outpathText ../data/textExtracts/ 
+#parent_path=$( cd "$(dirname "${BASH_SOURCE}")" ; pwd -P )
+#parent_path=$( pwd -P)
+#echo $parent_path
+
+echo "Extracting pdfs now"
+python $PWD/slots-extraction/scripts/pdf_extract.py -pdfpath $PWD/slots-extraction/data/papers/ -outpathXML $PWD/slots-extraction/data/XMLExtracts/ -outpathText $PWD/slots-extraction/data/textExtracts/ 
 
 echo "XML and Raw text of the pdfs of the tools are extracted."
 
-python parse_extracts.py -XMLFiles ../data/XMLExtracts/ -textFiles ../data/textExtracts/ -correctDOIRecords ../data/correctDOIRecords.json -outfile ../data/slotExtracts/slot_extracts.json
+python $PWD/slots-extraction/scripts/parse_extracts.py -XMLFiles $PWD/slots-extraction/data/XMLExtracts/ -textFiles $PWD/slots-extraction/data/textExtracts/ -correctDOIRecords $PWD/slots-extraction/data/correctDOIRecords.json -outfile $PWD/slots-extraction/data/slotExtracts/slot_extracts.json
 
+echo "$PWD/slots-extraction/data/slotExtracts/slot_extracts.json"
 echo "All possible metadata extractions from XMLs DONE."

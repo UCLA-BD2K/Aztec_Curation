@@ -277,7 +277,7 @@ def main():
         authors = getAuthors(dictionary)
         affiliations = getAffiliations(dictionary)
         abstract = getAbstract(dictionary)
-        keywords = getKeywords(dictionary, args.correctDOIRecords, file)
+      #  keywords = getKeywords(dictionary, args.correctDOIRecords, file)
         links = getAllLinks(text)
         sourceLinks = findSourceLinks(links, text)
         ack = getAcknowledgement(dictionary)
@@ -292,7 +292,7 @@ def main():
         publication_extractions[file[:-4]]["pubTitle"] = title
         publication_extractions[file[:-4]]["authors"] = authors
         publication_extractions[file[:-4]]["affiliations"] = affiliations
-        publication_extractions[file[:-4]]["keywords"] = keywords
+       # publication_extractions[file[:-4]]["keywords"] = keywords
         publication_extractions[file[:-4]]["links"] = links
         publication_extractions[file[:-4]]["sourceLinks"] = sourceLinks
         publication_extractions[file[:-4]]["ack"] = ack
@@ -314,9 +314,9 @@ def main():
         print("---")
         print("Abstract: ")
         print(abstract)
-        print("---")
-        print("Keywords: ")
-        print(keywords)
+        #print("---")
+        #print("Keywords: ")
+        #print(keywords)
         print("---")
         print("Links: ")
         print(links)
