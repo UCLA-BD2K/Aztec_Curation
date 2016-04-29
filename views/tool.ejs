@@ -171,6 +171,20 @@
         }
 
 
+
+           if(data.pub_section.primary_pub_doi){
+          $('#pubhead').append('Publication: ');
+          var pub_doi = "dx.doi.org/";
+          pub_doi = pub_doi + data.pub_section.primary_pub_doi ;
+          $('#pubdeet').append('<li>'+ "<a href ="+ pub_doi +'>'+ pub_doi + '</a>'+'</li>');
+        } else{
+          $('#pubhead').append('Publication: ');
+          $('#pubdeet').append('<li>'+ 'Not Available' +'</li>');
+
+                  }
+
+
+
       });
     });
 
@@ -315,6 +329,57 @@
 
     </div>
   </div>
+
+
+    <div class="container-fluid" id="pub">
+      <div class="container">
+      <div class="rect1">
+      </div>
+      <div class="deet-heading">
+        <h1> PUBLICATIONS </h1>
+      </div>
+      <div class="rect1">
+      </div>
+
+      <div class="container-fluid" id="pub-body">
+       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+        <div class="detail-content" id="publication">
+          <h3 id="pubhead"></h3>
+           <ul id="pubdeet">
+           </ul>
+        </div>
+
+       </div>
+
+       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="detail-content" id="xdxd">
+
+        <div class="detail-content" id="xx3x">
+          <h3 id="xx"></h3>
+           <ul id="xxx">
+           </ul>
+        </div>
+
+        <div class="detail-content" id="xx2x">
+          <h3 id="xxxx"></h3>
+           <ul id="x4x">
+           </ul>
+        </div>
+
+
+
+       </div>
+
+
+      </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
 
 
 
