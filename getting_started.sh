@@ -7,7 +7,7 @@
 # title of publication, abstract, conclusions/resulst, acknowledgements, 
 # all links, some predicted source links and grant information. 
 
-clear 
+#clear 
 
 #python /Users/davidmeng/Desktop/Aztec_Curation/slots-extraction/scripts/json_extract.py -source /Users/davidmeng/Desktop/Aztec_Curation/slots-extraction/data/solrResources.json -USRFilename /Users/davidmeng/Desktop/Aztec_Curation/slots-extraction/data/userSubmittedRecords.json -USRPubDOIFilename /Users/davidmeng/Desktop/Aztec_Curation/slots-extraction/data/userSubmittedWithPubDOIs.json
 
@@ -22,13 +22,13 @@ clear
 #parent_path=$( cd "$(dirname "${BASH_SOURCE}")" ; pwd -P )
 #parent_path=$( pwd )
 #echo $parent_path
+#
+#echo "Extracting pdfs now"
+python $PWD/slots-extraction/scripts/pdf_extract.py -pdfpath $PWD/slots-extraction/data/papers/ -outpathXML $PWD/slots-extraction/data/XMLExtracts/ -outpathText $PWD/slots-extraction/data/textExtracts/
 
-echo "Extracting pdfs now"
-python $PWD/slots-extraction/scripts/pdf_extract.py -pdfpath $PWD/slots-extraction/data/papers/ -outpathXML $PWD/slots-extraction/data/XMLExtracts/ -outpathText $PWD/slots-extraction/data/textExtracts/ 
-
-echo "XML and Raw text of the pdfs of the tools are extracted."
+#echo "XML and Raw text of the pdfs of the tools are extracted."
 
 python $PWD/slots-extraction/scripts/parse_extracts.py -XMLFiles $PWD/slots-extraction/data/XMLExtracts/ -textFiles $PWD/slots-extraction/data/textExtracts/ -correctDOIRecords $PWD/slots-extraction/data/correctDOIRecords.json -outfile $PWD/slots-extraction/data/slotExtracts/slot_extracts.json
 
-echo "$PWD/slots-extraction/data/slotExtracts/slot_extracts.json"
-echo "All possible metadata extractions from XMLs DONE."
+#echo "$PWD/slots-extraction/data/slotExtracts/slot_extracts.json"
+#echo "All possible metadata extractions from XMLs DONE."

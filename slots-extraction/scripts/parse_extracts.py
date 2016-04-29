@@ -239,6 +239,8 @@ def writeRecords(records, filename):
     outfile = open(filename, 'w')
     outfile.write(json.dumps(records, indent = 2))
     outfile.close()
+    outfile = open(filename,'r')
+    print outfile.read()
 
 def getAllFiles(path):
     mypath = path
@@ -302,46 +304,47 @@ def main():
 
 
         # ANALYSIS:
-        print("-------")
-        print("Title: ")
-        print(title)
-        print("---")
-        print("Authors: ")
-        print(authors)
-        print("---")
-        print("Affiliations: ")
-        print(affiliations)
-        print("---")
-        print("Abstract: ")
-        print(abstract)
-        #print("---")
-        #print("Keywords: ")
-        #print(keywords)
-        print("---")
-        print("Links: ")
-        print(links)
-        print("---")
-        print("Possible Source links:")
-        print(sourceLinks)
-        print("---")
-        print("Ack: ")  # If exists. Many pubs don't have ack! Eg: HARSH
-        print(ack)
-        if (len(ack) <= 3):
-            count += 1
-        print("---")
-        print(grants)
-        print("---")
-        print("Conclusion: ")
-        heads = conclusions[0]
-        bodies = conclusions[1]
-        for i in range(len(heads)):
-            print("---")
-            print(heads[i] + " :")
-            print(bodies[i])
-        print("-------")
 
-    # ANALYSIS:
-    print("Empty Ack: " + str(count))
+    #     print("-------")
+    #     print("Title: ")
+    #     print(title)
+    #     print("---")
+    #     print("Authors: ")
+    #     print(authors)
+    #     print("---")
+    #     print("Affiliations: ")
+    #     print(affiliations)
+    #     print("---")
+    #     print("Abstract: ")
+    #     print(abstract)
+    #     #print("---")
+    #     #print("Keywords: ")
+    #     #print(keywords)
+    #     print("---")
+    #     print("Links: ")
+    #     print(links)
+    #     print("---")
+    #     print("Possible Source links:")
+    #     print(sourceLinks)
+    #     print("---")
+    #     print("Ack: ")  # If exists. Many pubs don't have ack! Eg: HARSH
+    #     print(ack)
+    #     if (len(ack) <= 3):
+    #         count += 1
+    #     print("---")
+    #     print(grants)
+    #     print("---")
+    #     print("Conclusion: ")
+    #     heads = conclusions[0]
+    #     bodies = conclusions[1]
+    #     for i in range(len(heads)):
+    #         print("---")
+    #         print(heads[i] + " :")
+    #         print(bodies[i])
+    #     print("-------")
+
+    # # ANALYSIS:
+    # print("Empty Ack: " + str(count))
 
     # Write extractions to file:
     writeRecords(publication_extractions, args.outfile)

@@ -208,26 +208,30 @@ $("#pdf-form").submit(function(e)
     success: function(data, textStatus, jqXHR)
     {
       $("#ld-img").hide();
+      console.log("data is ");
       console.log(data);
-      var obj = $.parseJSON(data);
+      var obj = data;
+      console.log(obj);
+      obj = $.parseJSON(obj);
+      console.log("object is");
       console.log(obj);
       $("#pdf-data").css("visibility", "visible");
-      $("#nm-dt").append(obj.name);
-      for (var i = obj.authors.length - 1; i >= 0; i--) {
-        $("#auth-dt").append(obj.authors[i]);
-        $("#auth-dt").append("<br>");
-      };
-      $("#sc-dt").append(obj.source_code);
-      for (var i = obj.funding.length - 1; i >= 0; i--) {
-        $("#fd-dt").append(obj.funding[i]);
-        $("#fd-dt").append("<br>");
-      };
+      console.log(Object.keys(obj)[0])
+      // $("#nm-dt").append(obj.name);
+      // for (var i = obj.authors.length - 1; i >= 0; i--) {
+      //   $("#auth-dt").append(obj.authors[i]);
+      //   $("#auth-dt").append("<br>");
+      // };
+      // $("#sc-dt").append(obj.source_code);
+      // for (var i = obj.funding.length - 1; i >= 0; i--) {
+      //   $("#fd-dt").append(obj.funding[i]);
+      //   $("#fd-dt").append("<br>");
+      // };
 
-      for (var i = obj.keywords.length - 1; i >= 0; i--) {
-        $("#kw-dt").append(obj.keywords[i]);
-        $("#kw-dt").append("<br>");
-      };
-
+      // for (var i = obj.keywords.length - 1; i >= 0; i--) {
+      //   $("#kw-dt").append(obj.keywords[i]);
+      //   $("#kw-dt").append("<br>");
+      // };
 
     },
      error: function(jqXHR, textStatus, errorThrown) 

@@ -23,12 +23,12 @@ clear
 #parent_path=$( pwd -P)
 #echo $parent_path
 
-echo "Extracting pdfs now"
+# echo "Extracting pdfs now"
 python $PWD/slots-extraction/scripts/pdf_extract.py -pdfpath $PWD/slots-extraction/data/papers/ -outpathXML $PWD/slots-extraction/data/XMLExtracts/ -outpathText $PWD/slots-extraction/data/textExtracts/ 
 
-echo "XML and Raw text of the pdfs of the tools are extracted."
+# echo "XML and Raw text of the pdfs of the tools are extracted."
 
 python $PWD/slots-extraction/scripts/parse_extracts.py -XMLFiles $PWD/slots-extraction/data/XMLExtracts/ -textFiles $PWD/slots-extraction/data/textExtracts/ -correctDOIRecords $PWD/slots-extraction/data/correctDOIRecords.json -outfile $PWD/slots-extraction/data/slotExtracts/slot_extracts.json
 
-echo "$PWD/slots-extraction/data/slotExtracts/slot_extracts.json"
-echo "All possible metadata extractions from XMLs DONE."
+# echo "$PWD/slots-extraction/data/slotExtracts/slot_extracts.json"
+# echo "All possible metadata extractions from XMLs DONE."
