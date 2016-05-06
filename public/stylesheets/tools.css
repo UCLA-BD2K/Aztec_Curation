@@ -80,6 +80,13 @@ padding-bottom: 6%;
     padding-right: 12%;
     padding-bottom: 2%;
 }
+
+#pub-deet-heading{
+    padding-left: 8%;
+    padding-right: 7%;
+    padding-bottom: 2%;
+    display: inline-block;
+}
 .rect1{
      width: 32%;
     height: 0.4%;

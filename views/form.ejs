@@ -210,13 +210,25 @@ $("#pdf-form").submit(function(e)
       $("#ld-img").hide();
       console.log("data is ");
       console.log(data);
-      var obj = data;
-      console.log(obj);
-      obj = $.parseJSON(obj);
-      console.log("object is");
-      console.log(obj);
+      // var obj = data;
+      // console.log(obj);
+      obj = $.parseJSON(data);
+      // why is it JSON Stringifying twice?
+      object = $.parseJSON(obj);
       $("#pdf-data").css("visibility", "visible");
-      console.log(Object.keys(obj)[0])
+      console.log(object);
+       // var keys = [];
+      for (var key in object){
+        console.log(key);
+        var parsedObj = object[key];
+        console.log(parsedObj);
+        for (var i = parsedObj.authors.length - 1; i >= 0; i--) {
+          $("#auth-dt").append(parsedObj.authors[i]);
+        };
+        $("#nm-dt").append(parsedObj.pubTitle);
+        
+
+       };
       // $("#nm-dt").append(obj.name);
       // for (var i = obj.authors.length - 1; i >= 0; i--) {
       //   $("#auth-dt").append(obj.authors[i]);

@@ -17,10 +17,12 @@ Uploader.prototype._upload = function(self, req, res){
   if (error) {
     // console.log(error);
   }
-  console.log(stdout);
     // var output = JSON.stringify(stdout);
     // output = JSON.parse(output);
-    res.json(stripAnsi(stdout));
+    var a = JSON.stringify(stripAnsi(stdout), null, 3);
+      console.log(a);
+    res.json(JSON.parse(a));
+
     //  {"name": "This file is completed",
     // "authors": ["John Doe", "Jane Doe"],
     // "source_code": "github.com/test",
