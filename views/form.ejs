@@ -226,8 +226,18 @@ $("#pdf-form").submit(function(e)
           $("#auth-dt").append(parsedObj.authors[i]);
         };
         $("#nm-dt").append(parsedObj.pubTitle);
-        
+        $("#abs-dt").append(parsedObj.abstract);        
+      for (var i = parsedObj.links.length - 1; i >= 0; i--) {
+          $("#lnks-dt").append(parsedObj.links[i]);
+          $("#lnks-dt").append("<br>"); 
 
+        };
+      for (var i = parsedObj.grants.length - 1; i >= 0; i--) {
+          $("#fd-dt").append(parsedObj.grants[i]);
+        };
+      for (var i = parsedObj.affiliations.length - 1; i >= 0; i--) {
+          $("af-dt").append(parsedObj.affiliations[i]);
+        };
        };
       // $("#nm-dt").append(obj.name);
       // for (var i = obj.authors.length - 1; i >= 0; i--) {
@@ -614,17 +624,20 @@ function copyToClipboard(elem) {
         <h1 class="pdf-name">Name</h1>
         <div class="pdf-nm-dt" id="nm-dt"> 
         </div>
+        <h1 class="pdf-name">Abstract</h1>
+        <div class="pdf-nm-dt" id="abs-dt"> 
+        </div>
         <h1 class= "pdf-name" id="auth">Authors</h1>
         <div class="pdf-nm-dt" id="auth-dt"> 
         </div>        
-        <h1 class= "pdf-name" id ="sc">Source Code</h1>
-        <div class="pdf-nm-dt" id="sc-dt"> 
+        <h1 class= "pdf-name" id ="lnks">Links</h1>
+        <div class="pdf-nm-dt" id="lnks-dt"> 
         </div>        
         <h1 class="pdf-name" id ="fd">Funding </h1>
         <div class="pdf-nm-dt" id="fd-dt"> 
         </div>        
-        <h1 class="pdf-name" id="kw">Keywords</h1>
-        <div class="pdf-nm-dt" id="kw-dt"> 
+        <h1 class="pdf-name" id="af">Affiliations</h1>
+        <div class="pdf-nm-dt" id="af-dt"> 
         </div>
       </div>
 
