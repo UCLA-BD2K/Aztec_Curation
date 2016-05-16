@@ -38,6 +38,7 @@ router.get('/logout', isLoggedIn, HomeController.logout);
 router.post('/signup', HomeController.signup);
 
 router.post('/pdf-upload', upload.single('pdf'), PdfController.upload);
+router.post('/pdf-delete', PdfController.delete_file);
 // route middleware to ensure user is logged in
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())

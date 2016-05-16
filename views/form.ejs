@@ -210,14 +210,11 @@ $("#pdf-form").submit(function(e)
       $("#ld-img").hide();
       console.log("data is ");
       console.log(data);
-      // var obj = data;
-      // console.log(obj);
       obj = $.parseJSON(data);
       // why is it JSON Stringifying twice?
       object = $.parseJSON(obj);
       $("#pdf-data").css("visibility", "visible");
       console.log(object);
-       // var keys = [];
       for (var key in object){
         console.log(key);
         var parsedObj = object[key];
@@ -230,7 +227,6 @@ $("#pdf-form").submit(function(e)
       for (var i = parsedObj.links.length - 1; i >= 0; i--) {
           $("#lnks-dt").append(parsedObj.links[i]);
           $("#lnks-dt").append("<br>"); 
-
         };
       for (var i = parsedObj.grants.length - 1; i >= 0; i--) {
           $("#fd-dt").append(parsedObj.grants[i]);
@@ -239,25 +235,23 @@ $("#pdf-form").submit(function(e)
           $("af-dt").append(parsedObj.affiliations[i]);
         };
        };
-      // $("#nm-dt").append(obj.name);
-      // for (var i = obj.authors.length - 1; i >= 0; i--) {
-      //   $("#auth-dt").append(obj.authors[i]);
-      //   $("#auth-dt").append("<br>");
-      // };
-      // $("#sc-dt").append(obj.source_code);
-      // for (var i = obj.funding.length - 1; i >= 0; i--) {
-      //   $("#fd-dt").append(obj.funding[i]);
-      //   $("#fd-dt").append("<br>");
-      // };
+       // another ajax to delete pdf
+       $.ajax({
+        type: 'POST',
+        url:'/pdf-delete' , // I dont know,
+        success: function(data){
+          console.log('pdf has been deleted');
+        }
+        error: function(jqXHR, textStatus, errorThrown){
+          console.log(errorThrown);
+        }
 
-      // for (var i = obj.keywords.length - 1; i >= 0; i--) {
-      //   $("#kw-dt").append(obj.keywords[i]);
-      //   $("#kw-dt").append("<br>");
-      // };
+       });
 
     },
      error: function(jqXHR, textStatus, errorThrown) 
      {
+        alert('Pdf was unable to be uploaded, please refresh and try again.');
      }          
     });
     e.preventDefault(); //Prevent Default action. 
@@ -265,7 +259,7 @@ $("#pdf-form").submit(function(e)
 }); 
 
 
-
+// cache the dom so you only look at it once? 
   document.getElementById("titlebtn").addEventListener("click", function() {
     copyToClipboard(document.getElementById("pubTitle-deet"));
     });

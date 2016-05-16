@@ -13,33 +13,35 @@ Uploader.prototype._upload = function(self, req, res){
   	var exec = require('child_process').exec;
   	var puts = ""; 
   	const execFile = require('child_process').execFile;
+    // make this path relative too.
 	const child = execFile('bash', ['/Users/davidmeng/Desktop/Aztec_Curation/slots-extraction/scripts/getting_started.sh'], (error, stdout, stderr) => {
   if (error) {
     // console.log(error);
   }
-    // var output = JSON.stringify(stdout);
-    // output = JSON.parse(output);
     var a = JSON.stringify(stripAnsi(stdout), null, 3);
       console.log(a);
     res.json(JSON.parse(a));
 
-    //  {"name": "This file is completed",
-    // "authors": ["John Doe", "Jane Doe"],
-    // "source_code": "github.com/test",
-    // "keywords": ["word1", "word2", "word3"],
-    // "funding": ["funding1", "funding2"]
-    // }
-
 });
-	// exec("~/slots-extraction/scripts/getting_started.sh", puts);
-	// console.log("The scripts running now ");
-	// console.log(puts);
-  }	
+}	
 
   
 
 
 
 };
+
+Uploader.prototype._delete_file = function(self, req, res){
+  var exec = require('child_process').exec;
+  const execFile = require('child_process').execFile;
+    const child = execFile('bash', ['/Users/davidmeng/Desktop/Aztec_Curation/slots-extraction/scripts/delete_file.sh'], (error, stdout, stderr) => {
+  if (error) {
+    // console.log(error);
+  }
+      console.log(stdout);
+});  
+
+}
+
 
 module.exports = new Uploader();
