@@ -189,10 +189,14 @@
         }
         
      });   
+var allow_submit = true;
 
 $("#pdf-form").submit(function(e)
 {
- 
+    if(!allow_submit){
+      return false; 
+    }
+    allow_submit = false;
     var formObj = $(this);
     var formURL = formObj.attr("action");
     var formData = new FormData(this);
@@ -208,17 +212,12 @@ $("#pdf-form").submit(function(e)
     success: function(data, textStatus, jqXHR)
     {
       $("#ld-img").hide();
-      console.log("data is ");
-      console.log(data);
       obj = $.parseJSON(data);
       // why is it JSON Stringifying twice?
       object = $.parseJSON(obj);
       $("#pdf-data").css("visibility", "visible");
-      console.log(object);
       for (var key in object){
-        console.log(key);
         var parsedObj = object[key];
-        console.log(parsedObj);
         for (var i = parsedObj.authors.length - 1; i >= 0; i--) {
           $("#auth-dt").append(parsedObj.authors[i]);
         };
@@ -235,13 +234,13 @@ $("#pdf-form").submit(function(e)
           $("af-dt").append(parsedObj.affiliations[i]);
         };
        };
-       // another ajax to delete pdf
+       // make ajax faster using vanillaJS
        $.ajax({
         type: 'POST',
-        url:'/pdf-delete' , // I dont know,
+        url:'/pdf-delete' , 
         success: function(data){
           console.log('pdf has been deleted');
-        }
+        },
         error: function(jqXHR, textStatus, errorThrown){
           console.log(errorThrown);
         }
