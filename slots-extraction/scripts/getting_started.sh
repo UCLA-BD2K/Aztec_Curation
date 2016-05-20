@@ -8,5 +8,9 @@
 # all links, some predicted source links and grant information. 
 
 clear 
-python $PWD/slots-extraction/scripts/pdf_extract.py -pdfpath $PWD/slots-extraction/data/papers/ -outpathXML $PWD/slots-extraction/data/XMLExtracts/ -outpathText $PWD/slots-extraction/data/textExtracts/ 
-python $PWD/slots-extraction/scripts/parse_extracts.py -XMLFiles $PWD/slots-extraction/data/XMLExtracts/ -textFiles $PWD/slots-extraction/data/textExtracts/ -correctDOIRecords $PWD/slots-extraction/data/correctDOIRecords.json -outfile $PWD/slots-extraction/data/slotExtracts/slot_extracts.json
+mkdir  $PWD/slots-extraction/data/$1/slotExtracts
+mkdir  $PWD/slots-extraction/data/$1/textExtracts
+mkdir  $PWD/slots-extraction/data/$1/XMLExtracts
+
+python $PWD/slots-extraction/scripts/pdf_extract.py -pdfpath $PWD/slots-extraction/data/$1/ -outpathXML $PWD/slots-extraction/data/$1/XMLExtracts/ -outpathText $PWD/slots-extraction/data/$1/textExtracts/ 
+python $PWD/slots-extraction/scripts/parse_extracts.py -XMLFiles $PWD/slots-extraction/data/$1/XMLExtracts/ -textFiles $PWD/slots-extraction/data/$1/textExtracts/ -correctDOIRecords $PWD/slots-extraction/data/$1/correctDOIRecords.json -outfile $PWD/slots-extraction/data/$1/slotExtracts/slot_extracts.json

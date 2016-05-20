@@ -251,6 +251,7 @@ $("#pdf-form").submit(function(e)
      error: function(jqXHR, textStatus, errorThrown) 
      {
         alert('Pdf was unable to be uploaded, please refresh and try again.');
+        alert(errorThrown);
      }          
     });
     e.preventDefault(); //Prevent Default action. 

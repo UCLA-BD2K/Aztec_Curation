@@ -4,11 +4,21 @@ var util = require('../utility/generalUtil.js');
 var ToolController = require('../controllers/tool-controller');
 var HomeController = require('../controllers/home-controller');
 var UserController = require('../controllers/user-controller');
-var multer  = require('multer');
-var upload = multer({dest: 'slots-extraction/data/papers/'}); //uploads/
 var PdfController = require('../controllers/pdf-controller.js');
-
-/* GET home page. */
+var multer  = require('multer');
+var mkdirp = require('mkdirp');
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+   var user = req.user.attributes.USER_ID;
+   var path = 'slots-extraction/data/'+ user;
+    mkdirp(path, cb, function(e){ // make this mkdirp - right now it runs if folders exist 
+        cb(null, path); // path earlier
+    }); 
+  }
+});
+var upload = multer({storage:storage});
+// var upload = multer({dest:'slots-extraction/data/1/papers/' }); //
+/* GET home page. */ 
 router.get('/', HomeController.home);
 
 
@@ -40,7 +50,26 @@ router.post('/signup', HomeController.signup);
 router.post('/pdf-upload', upload.single('pdf'), PdfController.upload);
 
 router.post('/pdf-delete', PdfController.delete_file);
-
+// fix this 
+// function file_upload(self,req, res){
+//   var user = req.user.attributes.USER_ID;
+  // var exec = require('child_process').exec;
+  // const execFile = require('child_process').execFile;
+  // const child = execFile('bash', ['/Users/davidmeng/Desktop/Aztec_Curation/slots-extraction/scripts/create_folder.sh',user], (error, stdout, stderr) => {
+  // if (error) {
+  // }
+  //     console.log(stdout);
+  // });  
+//   console.log("User ID here is ");
+//   console.log(user);
+//   var base_path = 'slots-extraction/data/';
+//   var destination = base_path + user + '/papers/';
+//    console.log("dest  here is ");
+//   console.log(destination);
+//   var upload = multer({dest: destination}); //'slots-extraction/data/papers/'
+//   // var uploaded_pdf = upload.single('pdf');
+//   return upload.single('pdf');
+// };
 
 // route middleware to ensure user is logged in
 function isLoggedIn(req, res, next) {
