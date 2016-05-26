@@ -359,6 +359,10 @@ text-transform: none;
 }
 .pdf-nm-dt{
   font-weight: 100;
+    /* padding: 1%; */
+    padding-left: 2.3%;
+    padding-right: 2.3%;
+    word-wrap: break-word;
 }
 #ld-img{
   visibility: collapse;
