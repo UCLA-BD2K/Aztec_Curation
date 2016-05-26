@@ -17,9 +17,6 @@
         url: '/api/tool/<%=azid%>',
         type: 'GET',
       }).done(function(data) {
-        console.log(data);
-        console.log(data.basic_section.name);
-        console.log(data.author_section.authors.length);
         $('#tool-display').text(JSON.stringify(data, null, 4));
         $('#toolh1').append(data.basic_section.name);
         if (data.author_section.authors.length > 0){
@@ -63,7 +60,7 @@
          if(data.link_section.links.length > 0){
           $('#hphead').append('Home Page URL: ');
           for (var i = data.link_section.links.length - 1; i >= 0; i--) {
-            $('#hpdeet').append('<li>'+'<a href=\"'+data.link_section.links[i].url + '\">' + data.link_section.links[i].url + '</a>'+ '</li>');
+            $('#hpdeet').append('<li>'+'<a href=\"'+data.link_section.links[i].link_url + '\">' + data.link_section.links[i].link_url + '</a>'+ '</li>');
           };
         } else{
           $('.homepage').hide();
@@ -106,8 +103,15 @@
         if(data.author_section.maintainers.length > 0){
           $('#mainthead').append('Maintainers: ');
           for (var i = data.author_section.maintainers.length - 1; i >= 0; i--) {
+            if (data.author_section.maintainers[i].email){
             $('#maintdeet').append('<li>'+ data.author_section.maintainers[i].first_name + ' ' + data.author_section.maintainers[i].last_name +
             '&nbsp'+ '&lt;'+ data.author_section.maintainers[i].email + '&gt;' +'</li>');
+            }
+            else if(!data.author_section.maintainers[i].email){
+              $('#maintdeet').append('<li>'+ data.author_section.maintainers[i].first_name + ' ' + data.author_section.maintainers[i].last_name +
+            '&nbsp'+'</li>');
+            }
+            
           };
         } else{
           $('.maintain').hide();
