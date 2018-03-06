@@ -7,7 +7,6 @@ node_js:
   - "0.12"
   - "0.11"
   - "0.10"
-  - "0.8"
   - "iojs"
 
 addons:
@@ -17,7 +16,3 @@ addons:
     packages:
     - g++-4.8
     - gcc-4.8
-
-before_install:
-  # npm shipped with Node.js 0.8 doesn't support carret so let's update it
-  - if [ "$TRAVIS_NODE_VERSION" == "0.8" ]; then npm install -g npm; fi
