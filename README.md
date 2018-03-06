@@ -1,15 +1,15 @@
 # Aztec Curation Tool
 This web application is used to populate the metadata of the tools in Aztec.
 
-##Setting Up the Environment
+## Setting Up the Environment
 
-###[Docker Compose](https://docs.docker.com/compose/install/)
+### [Docker Compose](https://docs.docker.com/compose/install/)
 Use Docker Compose to setup both MySQL and MongoDB.  To set up the databases, run the following command in the root folder.
 ```js
 docker-compose up
 ```
 
-##Server Setup
+## Server Setup
 
 * Pull Repository
 * Run docker-compose to get the databases up and running
