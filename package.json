@@ -21,7 +21,7 @@
     "express-session": "1.12.1",
     "http-auth": "^2.2.8",
     "knex": "0.20.0",
-    "mongoose": "~3.8.1",
+    "mongoose": "~5.7.7",
     "morgan": "~1.6.1",
     "mysql": "2.9.0",
     "passport": "0.3.2",
